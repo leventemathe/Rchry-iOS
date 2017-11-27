@@ -1,0 +1,6 @@
+framework module LMViews {
+  umbrella header "LMViews-umbrella.h"
+
+  export *
+  module * { export * }
+}

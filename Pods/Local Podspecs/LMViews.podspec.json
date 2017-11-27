@@ -1,0 +1,22 @@
+{
+  "name": "LMViews",
+  "version": "0.2",
+  "summary": "A set of IBDesignable UIView subclasses with IBInspectable properties",
+  "homepage": "https://github.com/leviouss/LMViews",
+  "license": "MIT",
+  "authors": {
+    "Levente Máthé": "leviouss@gmail.com"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source": {
+    "git": "https://github.com/leviouss/LMViews.git",
+    "tag": "v0.2-alpha"
+  },
+  "source_files": [
+    "LMViews",
+    "LMViews/**/*.{h,m,swift}"
+  ],
+  "exclude_files": "Classes/Exclude"
+}

@@ -1,0 +1,22 @@
+PODS:
+  - LMViews (0.2)
+
+DEPENDENCIES:
+  - LMViews (from `https://github.com/leviouss/LMViews.git`, tag `v0.2-alpha`)
+
+EXTERNAL SOURCES:
+  LMViews:
+    :git: https://github.com/leviouss/LMViews.git
+    :tag: v0.2-alpha
+
+CHECKOUT OPTIONS:
+  LMViews:
+    :git: https://github.com/leviouss/LMViews.git
+    :tag: v0.2-alpha
+
+SPEC CHECKSUMS:
+  LMViews: 553ee3653234a75f3ec349c6ee352099c30efe93
+
+PODFILE CHECKSUM: f9029deef9bdef513c10552da5c8014901faca0c
+
+COCOAPODS: 1.3.1

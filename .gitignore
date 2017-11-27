@@ -1,0 +1,13 @@
+.DS_Store
+
+build
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+
+GoogleService-Info.plist
+GoogleService-Info-Dev.plist
+GoogleService-Info-Prod.plist
+FirebaseConfig/Dev/GoogleService-Info.plist
+FirebaseConfig/Prod/GoogleService-Info.plist
+
+Configuration.swift

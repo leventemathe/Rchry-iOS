@@ -1,0 +1,6 @@
+framework module Pods_Rchry {
+  umbrella header "Pods-Rchry-umbrella.h"
+
+  export *
+  module * { export * }
+}
