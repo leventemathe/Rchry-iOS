@@ -19,18 +19,23 @@ struct FirebaseAuthService: AuthService {
     
     private init() {}
     
-    func login(_ socialProvider: SocialProvider, withToken token: String) {
+    func login(_ socialProvider: SocialProvider, withToken token: String, withCompletion completion: @escaping (AuthError?)->()) {
         switch socialProvider {
         case .facebook:
             FacebookAuthProvider.credential(withAccessToken: token)
         }
     }
     
-    func logout() {
-        
+    func logout(_ completion: @escaping (AuthError?)->()) {
+        do {
+            try Auth.auth().signOut()
+            completion(nil)
+        } catch {
+            completion(.other)
+        }
     }
     
-    func deleteUser() {
+    func deleteUser(_ completion: @escaping (AuthError?)->()) {
         
     }
 }

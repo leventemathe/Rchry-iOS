@@ -10,9 +10,15 @@ import Foundation
 
 struct ProfileVM {
     
-    var facebookAuthService: SocialAuthService = FacebookAuthService.instance
+    var facebookAuthService: SocialAuthService
+    var authService: AuthService
     
     func logout() {
-        facebookAuthService.logout()
+        authService.logout { error in
+            print("logged out from firebase")
+            self.facebookAuthService.logout { error in
+                print("logged out ffrom facebook")
+            }
+        }
     }
 }

@@ -10,5 +10,6 @@ import Foundation
 
 protocol SocialAuthService {
     
-    func logout()
+    func login(_ completion: @escaping (AuthError?)->())
+    func logout(_ completion: @escaping (AuthError?)->())
 }

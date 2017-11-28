@@ -43,7 +43,7 @@
                                 </constraints>
                             </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pvN-W7-gpb">
-                                <rect key="frame" x="32" y="219" width="256" height="156"/>
+                                <rect key="frame" x="0.0" y="219" width="320" height="156"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="156" id="YIp-4m-tXB"/>
                                 </constraints>
@@ -51,34 +51,46 @@
                                     <segue destination="6kG-IX-dwS" kind="embed" id="6xM-SM-FbD"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XFI-TB-tBl" customClass="FBSDKLoginButton">
-                                <rect key="frame" x="40" y="391" width="240" height="60"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="fqK-cY-GbW"/>
-                                    <constraint firstAttribute="height" constant="60" id="lgr-Sy-v1N"/>
-                                </constraints>
-                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1XN-YM-lXk" customClass="LMButton" customModule="LMViews">
+                                <rect key="frame" x="49.5" y="391" width="221" height="49"/>
+                                <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="21"/>
+                                <inset key="contentEdgeInsets" minX="12" minY="12" maxX="12" maxY="12"/>
+                                <state key="normal" title="Login with Facebook">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="border" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="24"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="facebookLoginBtnTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f5C-pK-56E"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="kJC-i5-oTX" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="GE3-w0-ErU"/>
                             <constraint firstItem="ft4-xA-DqM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="Ifb-S9-jWj"/>
-                            <constraint firstItem="XFI-TB-tBl" firstAttribute="top" secondItem="pvN-W7-gpb" secondAttribute="bottom" constant="16" id="JdQ-U3-yTc"/>
+                            <constraint firstItem="1XN-YM-lXk" firstAttribute="top" secondItem="pvN-W7-gpb" secondAttribute="bottom" constant="16" id="Ljx-1O-Mni"/>
                             <constraint firstItem="ft4-xA-DqM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dgR-Aa-dbp"/>
-                            <constraint firstItem="pvN-W7-gpb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="fYr-Id-ebf"/>
-                            <constraint firstItem="XFI-TB-tBl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fz4-gK-svL"/>
+                            <constraint firstItem="pvN-W7-gpb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fYr-Id-ebf"/>
                             <constraint firstItem="kJC-i5-oTX" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="mdt-Hs-AZ3"/>
                             <constraint firstItem="pvN-W7-gpb" firstAttribute="top" secondItem="ft4-xA-DqM" secondAttribute="bottom" constant="32" id="oTR-S1-zHE"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pvN-W7-gpb" secondAttribute="trailing" constant="32" id="uJD-Lh-ghP"/>
+                            <constraint firstItem="1XN-YM-lXk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pbe-ih-cDp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pvN-W7-gpb" secondAttribute="trailing" id="uJD-Lh-ghP"/>
                             <constraint firstItem="kJC-i5-oTX" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="vR3-Y6-ZYp"/>
                             <constraint firstItem="kJC-i5-oTX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="yZd-f6-mm2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <connections>
-                        <outlet property="facbookLoginBtn" destination="XFI-TB-tBl" id="Aee-RY-Goy"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -106,7 +118,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Targets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jI9-mc-uvd">
-                                <rect key="frame" x="56.5" y="28" width="207.5" height="37.5"/>
+                                <rect key="frame" x="57" y="28" width="207.5" height="37.5"/>
                                 <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -144,7 +156,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score Shots" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ftb-aw-Siv">
-                                <rect key="frame" x="72.5" y="28" width="175.5" height="37.5"/>
+                                <rect key="frame" x="73" y="28" width="175.5" height="37.5"/>
                                 <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -182,7 +194,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5GR-pk-ayH">
-                                <rect key="frame" x="64" y="28" width="192.5" height="37.5"/>
+                                <rect key="frame" x="64.5" y="28" width="192.5" height="37.5"/>
                                 <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>

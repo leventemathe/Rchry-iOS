@@ -7,18 +7,21 @@
 //
 
 import UIKit
+import LMViews
 import FBSDKLoginKit
 
 class LoginVC: UIViewController {
     
-    private var loginVM = LoginVM()
+    private var loginVM = LoginVM(facebookAuthService: FacebookAuthService.instance, authService: FirebaseAuthService.instance)
     
-    @IBOutlet weak var facbookLoginBtn: FBSDKLoginButton!
+    @IBAction func facebookLoginBtnTouched(_ sender: LMButton) {
+        loginVM.login { error in
+            print("logged in from vc")
+        }
+    }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        facbookLoginBtn.delegate = loginVM.facebookAuthService as! FBSDKLoginButtonDelegate
-        facbookLoginBtn.readPermissions = ["public_profile"]
+        super.viewDidLoad()        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

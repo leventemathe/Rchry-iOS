@@ -9,7 +9,7 @@
 import Foundation
 import FBSDKLoginKit
 
-class FacebookAuthService: NSObject, SocialAuthService {
+class FacebookAuthService: SocialAuthService {
     
     private static var _instance = FacebookAuthService()
     
@@ -17,27 +17,27 @@ class FacebookAuthService: NSObject, SocialAuthService {
         return _instance
     }
     
-    func logout() {
+    private init() {}
+    
+    func login(_ completion: @escaping (AuthError?)->()) {
+        FBSDKLoginManager().logIn(withReadPermissions: ["public_profile"], from: nil, handler: { (result, error) in
+            if let error = error {
+                print(error)
+                completion(.other)
+                return
+            } else if let result = result {
+                print(result)
+                completion(nil)
+                return
+            }
+            print("other error while facebook login")
+            completion(.other)
+        })
+    }
+    
+    func logout(_ completion: @escaping (AuthError?)->()) {
+        // TODO: errors?!?
         FBSDKLoginManager().logOut()
     }
 }
 
-extension FacebookAuthService: FBSDKLoginButtonDelegate {
-    
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-        
-    }
-    
-    func loginButtonWillLogin(_ loginButton: FBSDKLoginButton!) -> Bool {
-        return true
-    }
-    
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        if let error = error {
-            
-            return
-        }
-        
-        let token = FBSDKAccessToken.current().tokenString
-    }
-}

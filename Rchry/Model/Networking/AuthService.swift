@@ -8,13 +8,18 @@
 
 import Foundation
 
+enum AuthError {
+    case network
+    case other
+}
+
 enum SocialProvider {
     case facebook
 }
 
 protocol AuthService {
     
-    func login(_ socialProvider: SocialProvider, withToken token: String)
-    func logout()
-    func deleteUser()
+    func login(_ socialProvider: SocialProvider, withToken token: String, withCompletion completion: @escaping (AuthError?)->())
+    func logout(_ completion: @escaping (AuthError?)->())
+    func deleteUser(_ completion: @escaping (AuthError?)->())
 }
