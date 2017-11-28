@@ -9,9 +9,12 @@
 /* Begin PBXBuildFile section */
 		9685A74CDFA59C45A10901C3 /* Pods_RchryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F660C2B4174B7F0EA6DE75E3 /* Pods_RchryUITests.framework */; };
 		BA612F4279376393D67C2A99 /* Pods_RchryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1590B90AFD3CED9B09886251 /* Pods_RchryTests.framework */; };
+		D76CA94F1FCC622300D8C2AC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D76CA94E1FCC622300D8C2AC /* Colors.xcassets */; };
+		D778CA801FCD9094001F2D99 /* Amatic-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D778CA7E1FCD9093001F2D99 /* Amatic-Bold.ttf */; };
+		D778CA811FCD9094001F2D99 /* AmaticSC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D778CA7F1FCD9093001F2D99 /* AmaticSC-Regular.ttf */; };
 		D7C6F2751FC7163B0032A879 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6F2741FC7163B0032A879 /* AppDelegate.swift */; };
-		D7C6F2771FC7163B0032A879 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6F2761FC7163B0032A879 /* ViewController.swift */; };
-		D7C6F27A1FC7163B0032A879 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7C6F2781FC7163B0032A879 /* Main.storyboard */; };
+		D7C6F2771FC7163B0032A879 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6F2761FC7163B0032A879 /* LoginVC.swift */; };
+		D7C6F27A1FC7163B0032A879 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7C6F2781FC7163B0032A879 /* Login.storyboard */; };
 		D7C6F27C1FC7163B0032A879 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7C6F27B1FC7163B0032A879 /* Assets.xcassets */; };
 		D7C6F27F1FC7163B0032A879 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7C6F27D1FC7163B0032A879 /* LaunchScreen.storyboard */; };
 		D7C6F28A1FC7163B0032A879 /* RchryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6F2891FC7163B0032A879 /* RchryTests.swift */; };
@@ -42,10 +45,13 @@
 		5BDF93A5376BC52B6C849307 /* Pods-RchryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RchryUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RchryUITests/Pods-RchryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8331675368C4BD72B7D40057 /* Pods-Rchry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rchry.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rchry/Pods-Rchry.release.xcconfig"; sourceTree = "<group>"; };
 		C82D1563AD28DBE6B97FCED7 /* Pods-RchryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RchryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RchryTests/Pods-RchryTests.release.xcconfig"; sourceTree = "<group>"; };
+		D76CA94E1FCC622300D8C2AC /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		D778CA7E1FCD9093001F2D99 /* Amatic-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Amatic-Bold.ttf"; sourceTree = "<group>"; };
+		D778CA7F1FCD9093001F2D99 /* AmaticSC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmaticSC-Regular.ttf"; sourceTree = "<group>"; };
 		D7C6F2711FC7163B0032A879 /* Rchry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rchry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C6F2741FC7163B0032A879 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D7C6F2761FC7163B0032A879 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D7C6F2791FC7163B0032A879 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D7C6F2761FC7163B0032A879 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		D7C6F2791FC7163B0032A879 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		D7C6F27B1FC7163B0032A879 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D7C6F27E1FC7163B0032A879 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D7C6F2801FC7163B0032A879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -137,12 +143,10 @@
 		D7C6F2731FC7163B0032A879 /* Rchry */ = {
 			isa = PBXGroup;
 			children = (
-				D7C6F2741FC7163B0032A879 /* AppDelegate.swift */,
-				D7C6F2761FC7163B0032A879 /* ViewController.swift */,
-				D7C6F2781FC7163B0032A879 /* Main.storyboard */,
-				D7C6F27B1FC7163B0032A879 /* Assets.xcassets */,
-				D7C6F27D1FC7163B0032A879 /* LaunchScreen.storyboard */,
-				D7C6F2801FC7163B0032A879 /* Info.plist */,
+				D7F0D8BE1FCC58D7009A044B /* Supporting Files */,
+				D7F0D8BB1FCC58A8009A044B /* Model */,
+				D7F0D8BC1FCC58B3009A044B /* ViewModel */,
+				D7F0D8BD1FCC58BE009A044B /* View */,
 			);
 			path = Rchry;
 			sourceTree = "<group>";
@@ -163,6 +167,51 @@
 				D7C6F2961FC7163B0032A879 /* Info.plist */,
 			);
 			path = RchryUITests;
+			sourceTree = "<group>";
+		};
+		D7F0D8BB1FCC58A8009A044B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D7F0D8BC1FCC58B3009A044B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D7F0D8BD1FCC58BE009A044B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D7F0D8BF1FCC5FB2009A044B /* Login */,
+				D7C6F27D1FC7163B0032A879 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D7F0D8BE1FCC58D7009A044B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D7C6F2741FC7163B0032A879 /* AppDelegate.swift */,
+				D7C6F2801FC7163B0032A879 /* Info.plist */,
+				D7C6F27B1FC7163B0032A879 /* Assets.xcassets */,
+				D76CA94E1FCC622300D8C2AC /* Colors.xcassets */,
+				D778CA7E1FCD9093001F2D99 /* Amatic-Bold.ttf */,
+				D778CA7F1FCD9093001F2D99 /* AmaticSC-Regular.ttf */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D7F0D8BF1FCC5FB2009A044B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D7C6F2761FC7163B0032A879 /* LoginVC.swift */,
+				D7C6F2781FC7163B0032A879 /* Login.storyboard */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,8 +331,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7C6F27F1FC7163B0032A879 /* LaunchScreen.storyboard in Resources */,
+				D76CA94F1FCC622300D8C2AC /* Colors.xcassets in Resources */,
+				D778CA811FCD9094001F2D99 /* AmaticSC-Regular.ttf in Resources */,
+				D778CA801FCD9094001F2D99 /* Amatic-Bold.ttf in Resources */,
 				D7C6F27C1FC7163B0032A879 /* Assets.xcassets in Resources */,
-				D7C6F27A1FC7163B0032A879 /* Main.storyboard in Resources */,
+				D7C6F27A1FC7163B0032A879 /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,10 +427,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Rchry/Pods-Rchry-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/LMViews/LMViews.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LMViews.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -458,7 +516,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7C6F2771FC7163B0032A879 /* ViewController.swift in Sources */,
+				D7C6F2771FC7163B0032A879 /* LoginVC.swift in Sources */,
 				D7C6F2751FC7163B0032A879 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,12 +553,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D7C6F2781FC7163B0032A879 /* Main.storyboard */ = {
+		D7C6F2781FC7163B0032A879 /* Login.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				D7C6F2791FC7163B0032A879 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Login.storyboard;
 			sourceTree = "<group>";
 		};
 		D7C6F27D1FC7163B0032A879 /* LaunchScreen.storyboard */ = {
@@ -628,8 +686,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2XA4EDUMR4;
-				INFOPLIST_FILE = Rchry/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				INFOPLIST_FILE = "$(SRCROOT)/Rchry/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.levente.mathe.Rchry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -645,8 +703,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2XA4EDUMR4;
-				INFOPLIST_FILE = Rchry/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				INFOPLIST_FILE = "$(SRCROOT)/Rchry/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.levente.mathe.Rchry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
