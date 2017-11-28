@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Title-->
+        <scene sceneID="QvK-c2-QA0">
+            <objects>
+                <viewController storyboardIdentifier="TargetsVC" id="r9x-aX-ug9" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1Ud-eP-3bw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="he1-d2-uzU"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="kOo-BJ-KaT">
+                        <barButtonItem key="leftBarButtonItem" title="Profile" id="cVM-8k-48Q">
+                            <connections>
+                                <segue destination="9Ry-Pe-szW" kind="show" id="vR9-E0-WWL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E6T-Ac-Edr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="799" y="45"/>
+        </scene>
+        <!--ProfileVC-->
+        <scene sceneID="N7K-Sp-tEM">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileVC" id="9Ry-Pe-szW" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vpv-XJ-ZUf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1431" y="-202"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qUp-rV-Lr2">
+            <objects>
+                <navigationController storyboardIdentifier="TargetsNavigationVC" automaticallyAdjustsScrollViewInsets="NO" id="3Sw-E6-bfA" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mGX-GX-huv">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="r9x-aX-ug9" kind="relationship" relationship="rootViewController" id="9Xx-De-Phc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xPs-Ja-9Ac" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="33.600000000000001" y="44.977511244377816"/>
+        </scene>
+    </scenes>
+</document>

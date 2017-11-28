@@ -17,7 +17,7 @@
         <!--LoginVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginVC" customModule="Rchry" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="BYZ-38-t0r" customClass="LoginVC" customModule="Rchry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -51,13 +51,23 @@
                                     <segue destination="6kG-IX-dwS" kind="embed" id="6xM-SM-FbD"/>
                                 </connections>
                             </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XFI-TB-tBl" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="40" y="391" width="240" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="fqK-cY-GbW"/>
+                                    <constraint firstAttribute="height" constant="60" id="lgr-Sy-v1N"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="kJC-i5-oTX" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="GE3-w0-ErU"/>
                             <constraint firstItem="ft4-xA-DqM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="Ifb-S9-jWj"/>
+                            <constraint firstItem="XFI-TB-tBl" firstAttribute="top" secondItem="pvN-W7-gpb" secondAttribute="bottom" constant="16" id="JdQ-U3-yTc"/>
                             <constraint firstItem="ft4-xA-DqM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dgR-Aa-dbp"/>
                             <constraint firstItem="pvN-W7-gpb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="fYr-Id-ebf"/>
+                            <constraint firstItem="XFI-TB-tBl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fz4-gK-svL"/>
                             <constraint firstItem="kJC-i5-oTX" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="mdt-Hs-AZ3"/>
                             <constraint firstItem="pvN-W7-gpb" firstAttribute="top" secondItem="ft4-xA-DqM" secondAttribute="bottom" constant="32" id="oTR-S1-zHE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pvN-W7-gpb" secondAttribute="trailing" constant="32" id="uJD-Lh-ghP"/>
@@ -66,6 +76,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="facbookLoginBtn" destination="XFI-TB-tBl" id="Aee-RY-Goy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -93,13 +106,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Targets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jI9-mc-uvd">
-                                <rect key="frame" x="106.5" y="28" width="109" height="34.5"/>
+                                <rect key="frame" x="56.5" y="28" width="207.5" height="37.5"/>
                                 <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="target_icons" translatesAutoresizingMaskIntoConstraints="NO" id="TKx-wx-mj6">
-                                <rect key="frame" x="62" y="70.5" width="196" height="52"/>
+                                <rect key="frame" x="62" y="73.5" width="196" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="52" id="Jsp-84-A1S"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="196" id="Ptq-3h-wvC"/>
@@ -131,13 +144,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score Shots" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ftb-aw-Siv">
-                                <rect key="frame" x="117.5" y="28" width="87" height="34.5"/>
+                                <rect key="frame" x="72.5" y="28" width="175.5" height="37.5"/>
                                 <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="score_icons" translatesAutoresizingMaskIntoConstraints="NO" id="bS4-I1-nrg">
-                                <rect key="frame" x="62" y="70.5" width="196" height="52"/>
+                                <rect key="frame" x="62" y="73.5" width="196" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="52" id="RuF-DD-XGP"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="196" id="XZ5-TR-Ffk"/>
@@ -169,13 +182,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track Results" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5GR-pk-ayH">
-                                <rect key="frame" x="110.5" y="28" width="101" height="34.5"/>
+                                <rect key="frame" x="64" y="28" width="192.5" height="37.5"/>
                                 <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="graph_icon" translatesAutoresizingMaskIntoConstraints="NO" id="mix-0T-W9t">
-                                <rect key="frame" x="62" y="70.5" width="196" height="52"/>
+                                <rect key="frame" x="62" y="73.5" width="196" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="52" id="0eh-pA-OE6"/>
                                     <constraint firstAttribute="width" constant="196" id="QpZ-eD-pcc"/>

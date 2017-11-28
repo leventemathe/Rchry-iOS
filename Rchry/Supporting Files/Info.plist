@@ -49,5 +49,34 @@
 		<string>Amatic-Bold.ttf</string>
 		<string>AmaticSC-Regular.ttf</string>
 	</array>
+    
+    
+    
+    <!-- Facebook -->
+    
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>fb1593483210709092</string>
+            </array>
+        </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>1593483210709092</string>
+    <key>FacebookDisplayName</key>
+    <string>Rchry</string>
+    
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>fbapi</string>
+        <string>fb-messenger-api</string>
+        <string>fbauth2</string>
+        <string>fbshareextension</string>
+    </array>
+    
+    <!-- End of Facebook -->
+    
 </dict>
 </plist>
