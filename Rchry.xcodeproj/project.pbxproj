@@ -138,6 +138,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D71E08D21FCED8CA00D9FAA3 /* AlertModal */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AlertModal;
+			sourceTree = "<group>";
+		};
 		D7572C8A1FCDA06F0024DEED /* Targets */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +277,7 @@
 		D7F0D8BD1FCC58BE009A044B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D71E08D21FCED8CA00D9FAA3 /* AlertModal */,
 				D7572C911FCDA4980024DEED /* Profile */,
 				D7F0D8BF1FCC5FB2009A044B /* Login */,
 				D7572C8A1FCDA06F0024DEED /* Targets */,
