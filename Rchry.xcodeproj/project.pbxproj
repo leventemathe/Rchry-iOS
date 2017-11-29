@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		9685A74CDFA59C45A10901C3 /* Pods_RchryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F660C2B4174B7F0EA6DE75E3 /* Pods_RchryUITests.framework */; };
 		BA612F4279376393D67C2A99 /* Pods_RchryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1590B90AFD3CED9B09886251 /* Pods_RchryTests.framework */; };
+		D71E08D41FCEE40000D9FAA3 /* MessageAlertModal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D71E08D31FCEE40000D9FAA3 /* MessageAlertModal.storyboard */; };
+		D71E08D61FCEE9A400D9FAA3 /* MessageAlertModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E08D51FCEE9A400D9FAA3 /* MessageAlertModalVC.swift */; };
+		D71E08D81FCEECA200D9FAA3 /* TargetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E08D71FCEECA200D9FAA3 /* TargetsVC.swift */; };
 		D733044B1FCDA88F00FE4B8E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D733044A1FCDA88E00FE4B8E /* GoogleService-Info.plist */; };
 		D7572C8C1FCDA0AF0024DEED /* Targets.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7572C8B1FCDA0AF0024DEED /* Targets.storyboard */; };
 		D7572C8E1FCDA2A40024DEED /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7572C8D1FCDA2A40024DEED /* Profile.storyboard */; };
@@ -20,6 +23,7 @@
 		D77EE5171FCDB83D00FAEDBA /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77EE5161FCDB83D00FAEDBA /* FirebaseAuthService.swift */; };
 		D7AD33A41FCDB45D00C12112 /* FacebookAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AD33A31FCDB45D00C12112 /* FacebookAuthService.swift */; };
 		D7AD33A61FCDB4F600C12112 /* SocialAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AD33A51FCDB4F600C12112 /* SocialAuthService.swift */; };
+		D7B254401FCEF61300976CAD /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7B2543F1FCEF61300976CAD /* Lato-Regular.ttf */; };
 		D7C6F2751FC7163B0032A879 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6F2741FC7163B0032A879 /* AppDelegate.swift */; };
 		D7C6F2771FC7163B0032A879 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6F2761FC7163B0032A879 /* LoginVC.swift */; };
 		D7C6F27A1FC7163B0032A879 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7C6F2781FC7163B0032A879 /* Login.storyboard */; };
@@ -55,6 +59,9 @@
 		5BDF93A5376BC52B6C849307 /* Pods-RchryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RchryUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RchryUITests/Pods-RchryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8331675368C4BD72B7D40057 /* Pods-Rchry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rchry.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rchry/Pods-Rchry.release.xcconfig"; sourceTree = "<group>"; };
 		C82D1563AD28DBE6B97FCED7 /* Pods-RchryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RchryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RchryTests/Pods-RchryTests.release.xcconfig"; sourceTree = "<group>"; };
+		D71E08D31FCEE40000D9FAA3 /* MessageAlertModal.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessageAlertModal.storyboard; sourceTree = "<group>"; };
+		D71E08D51FCEE9A400D9FAA3 /* MessageAlertModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAlertModalVC.swift; sourceTree = "<group>"; };
+		D71E08D71FCEECA200D9FAA3 /* TargetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetsVC.swift; sourceTree = "<group>"; };
 		D733044A1FCDA88E00FE4B8E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D7572C8B1FCDA0AF0024DEED /* Targets.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Targets.storyboard; sourceTree = "<group>"; };
 		D7572C8D1FCDA2A40024DEED /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -66,6 +73,7 @@
 		D77EE5161FCDB83D00FAEDBA /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		D7AD33A31FCDB45D00C12112 /* FacebookAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuthService.swift; sourceTree = "<group>"; };
 		D7AD33A51FCDB4F600C12112 /* SocialAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAuthService.swift; sourceTree = "<group>"; };
+		D7B2543F1FCEF61300976CAD /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		D7C6F2711FC7163B0032A879 /* Rchry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rchry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C6F2741FC7163B0032A879 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7C6F2761FC7163B0032A879 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -141,6 +149,8 @@
 		D71E08D21FCED8CA00D9FAA3 /* AlertModal */ = {
 			isa = PBXGroup;
 			children = (
+				D71E08D31FCEE40000D9FAA3 /* MessageAlertModal.storyboard */,
+				D71E08D51FCEE9A400D9FAA3 /* MessageAlertModalVC.swift */,
 			);
 			path = AlertModal;
 			sourceTree = "<group>";
@@ -149,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				D7572C8B1FCDA0AF0024DEED /* Targets.storyboard */,
+				D71E08D71FCEECA200D9FAA3 /* TargetsVC.swift */,
 			);
 			path = Targets;
 			sourceTree = "<group>";
@@ -295,6 +306,7 @@
 				D76CA94E1FCC622300D8C2AC /* Colors.xcassets */,
 				D778CA7E1FCD9093001F2D99 /* Amatic-Bold.ttf */,
 				D778CA7F1FCD9093001F2D99 /* AmaticSC-Regular.ttf */,
+				D7B2543F1FCEF61300976CAD /* Lato-Regular.ttf */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -427,12 +439,14 @@
 				D7C6F27F1FC7163B0032A879 /* LaunchScreen.storyboard in Resources */,
 				D76CA94F1FCC622300D8C2AC /* Colors.xcassets in Resources */,
 				D733044B1FCDA88F00FE4B8E /* GoogleService-Info.plist in Resources */,
+				D71E08D41FCEE40000D9FAA3 /* MessageAlertModal.storyboard in Resources */,
 				D7572C8E1FCDA2A40024DEED /* Profile.storyboard in Resources */,
 				D778CA811FCD9094001F2D99 /* AmaticSC-Regular.ttf in Resources */,
 				D7572C8C1FCDA0AF0024DEED /* Targets.storyboard in Resources */,
 				D778CA801FCD9094001F2D99 /* Amatic-Bold.ttf in Resources */,
 				D7C6F27C1FC7163B0032A879 /* Assets.xcassets in Resources */,
 				D7C6F27A1FC7163B0032A879 /* Login.storyboard in Resources */,
+				D7B254401FCEF61300976CAD /* Lato-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +641,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D71E08D81FCEECA200D9FAA3 /* TargetsVC.swift in Sources */,
 				D77EE5171FCDB83D00FAEDBA /* FirebaseAuthService.swift in Sources */,
 				D7572C901FCDA3FD0024DEED /* ProfileVC.swift in Sources */,
 				D7AD33A41FCDB45D00C12112 /* FacebookAuthService.swift in Sources */,
@@ -636,6 +651,7 @@
 				D7572C941FCDA4ED0024DEED /* ProfileVM.swift in Sources */,
 				D7C6F2751FC7163B0032A879 /* AppDelegate.swift in Sources */,
 				D7AD33A61FCDB4F600C12112 /* SocialAuthService.swift in Sources */,
+				D71E08D61FCEE9A400D9FAA3 /* MessageAlertModalVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

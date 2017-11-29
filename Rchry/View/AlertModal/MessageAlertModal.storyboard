@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Amatic-Bold.ttf">
+            <string>Amatic-Bold</string>
+        </array>
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Message Alert ModalVC-->
+        <scene sceneID="ZLA-4c-cmw">
+            <objects>
+                <viewController storyboardIdentifier="MessageAlertModalVC" modalPresentationStyle="overFullScreen" id="HvW-Ap-ITJ" customClass="MessageAlertModalVC" customModule="Rchry" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rit-BJ-Pez">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PrN-So-y5I">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" name="ColorThemeMid"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="58K-bI-xZi" customClass="LMView" customModule="LMViews">
+                                <rect key="frame" x="40" y="209.5" width="240" height="149.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8de-iW-QBC">
+                                        <rect key="frame" x="98" y="8" width="45" height="41"/>
+                                        <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="38"/>
+                                        <color key="textColor" name="ColorThemeMid"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaU-kF-khz">
+                                        <rect key="frame" x="8" y="57" width="220" height="22"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                                        <color key="textColor" name="ColorThemeDark"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZ8-tk-Swd" customClass="LMButton" customModule="LMViews">
+                                        <rect key="frame" x="97.5" y="90.5" width="45" height="51"/>
+                                        <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
+                                        <inset key="contentEdgeInsets" minX="12" minY="8" maxX="12" maxY="8"/>
+                                        <state key="normal" title="OK">
+                                            <color key="titleColor" name="ColorThemeDark"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="24"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="border" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="gradientColorA">
+                                                <color key="value" red="0.31764705879999999" green="0.69803921570000005" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="gradient" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.31764705879999999" green="0.69803921570000005" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="okBtnTouched:" destination="HvW-Ap-ITJ" eventType="touchUpInside" id="eaK-8x-Y0O"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="5pI-Ch-Kp1"/>
+                                    <constraint firstItem="UZ8-tk-Swd" firstAttribute="centerX" secondItem="58K-bI-xZi" secondAttribute="centerX" id="9kN-e9-yEP"/>
+                                    <constraint firstAttribute="trailing" secondItem="kaU-kF-khz" secondAttribute="trailing" constant="12" id="BMQ-jx-UJt"/>
+                                    <constraint firstItem="8de-iW-QBC" firstAttribute="top" secondItem="58K-bI-xZi" secondAttribute="top" constant="8" id="EnY-q5-YTW"/>
+                                    <constraint firstItem="kaU-kF-khz" firstAttribute="top" secondItem="8de-iW-QBC" secondAttribute="bottom" constant="8" id="LRs-BK-uva"/>
+                                    <constraint firstAttribute="bottom" secondItem="UZ8-tk-Swd" secondAttribute="bottom" constant="8" id="WPV-xm-BQw"/>
+                                    <constraint firstItem="8de-iW-QBC" firstAttribute="centerX" secondItem="58K-bI-xZi" secondAttribute="centerX" id="bBz-zP-y6g"/>
+                                    <constraint firstItem="kaU-kF-khz" firstAttribute="leading" secondItem="58K-bI-xZi" secondAttribute="leading" constant="8" id="fjb-xd-KuF"/>
+                                    <constraint firstItem="UZ8-tk-Swd" firstAttribute="top" secondItem="kaU-kF-khz" secondAttribute="bottom" constant="12" id="i41-rJ-LzN"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="32"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="58K-bI-xZi" firstAttribute="centerY" secondItem="Rit-BJ-Pez" secondAttribute="centerY" id="3n7-ut-DHh"/>
+                            <constraint firstItem="PrN-So-y5I" firstAttribute="bottom" secondItem="Rit-BJ-Pez" secondAttribute="bottom" id="Bzy-KO-VFf"/>
+                            <constraint firstItem="PrN-So-y5I" firstAttribute="trailing" secondItem="Rit-BJ-Pez" secondAttribute="trailing" id="EWH-ng-sL0"/>
+                            <constraint firstItem="58K-bI-xZi" firstAttribute="centerX" secondItem="Rit-BJ-Pez" secondAttribute="centerX" id="Mfq-2F-7nC"/>
+                            <constraint firstItem="PrN-So-y5I" firstAttribute="leading" secondItem="Rit-BJ-Pez" secondAttribute="leading" id="k8t-BC-nyh"/>
+                            <constraint firstItem="PrN-So-y5I" firstAttribute="top" secondItem="Rit-BJ-Pez" secondAttribute="top" id="zwz-B7-N9y"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7An-Zy-OMF"/>
+                    </view>
+                    <connections>
+                        <outlet property="messageLbl" destination="kaU-kF-khz" id="dZW-rf-jL4"/>
+                        <outlet property="titleLbl" destination="8de-iW-QBC" id="MAc-9m-Z4k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xke-90-0mJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="225" y="-104.5774647887324"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="ColorThemeDark">
+            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeMid">
+            <color red="0.37599998709999999" green="0.74500000479999995" blue="0.70200002189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

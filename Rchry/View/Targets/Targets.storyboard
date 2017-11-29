@@ -12,7 +12,7 @@
         <!--Title-->
         <scene sceneID="QvK-c2-QA0">
             <objects>
-                <viewController storyboardIdentifier="TargetsVC" id="r9x-aX-ug9" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TargetsVC" id="r9x-aX-ug9" customClass="TargetsVC" customModule="Rchry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Ud-eP-3bw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

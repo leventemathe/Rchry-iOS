@@ -48,6 +48,7 @@
 	<array>
 		<string>Amatic-Bold.ttf</string>
 		<string>AmaticSC-Regular.ttf</string>
+		<string>Lato-Regular.ttf</string>
 	</array>
 	<key>CFBundleURLTypes</key>
 	<array>

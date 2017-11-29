@@ -16,7 +16,7 @@ class LoginVC: UIViewController {
     
     @IBAction func facebookLoginBtnTouched(_ sender: LMButton) {
         loginVM.login { error in
-            print("logged in from vc")
+            print("logged in from vc")            
         }
     }
     
