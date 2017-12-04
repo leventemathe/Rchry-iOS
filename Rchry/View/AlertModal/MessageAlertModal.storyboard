@@ -104,6 +104,7 @@
                         <viewLayoutGuide key="safeArea" id="7An-Zy-OMF"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundView" destination="PrN-So-y5I" id="th3-gd-eZU"/>
                         <outlet property="messageLbl" destination="kaU-kF-khz" id="dZW-rf-jL4"/>
                         <outlet property="titleLbl" destination="8de-iW-QBC" id="MAc-9m-Z4k"/>
                     </connections>

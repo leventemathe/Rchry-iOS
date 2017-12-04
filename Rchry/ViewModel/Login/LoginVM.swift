@@ -13,15 +13,39 @@ struct LoginVM {
     var facebookAuthService: SocialAuthService
     var authService: AuthService
     
-    func login(_ completion: @escaping (AuthError?)->()) {
-        facebookAuthService.login { error in
+    func loginWithFacebook(_ completion: @escaping (AuthError?)->()) {
+        login(.facebook, withCompletion: completion)
+    }
+    
+    private func login(_ social: SocialProvider, withCompletion completion: @escaping (AuthError?)->()) {
+        var service: SocialAuthService!
+        switch social {
+        case .facebook:
+            service = facebookAuthService
+        }
+        service.login { (error, token) in
             if let error = error {
                 completion(error)
                 return
             }
-            print("yay logged in with facebook")
-            completion(nil)
-            // TODO: login with firebase too
+            if let token = token {
+                self.loginToAccount(withSocialProvider: social, withToken: token, withCompletion: completion)
+            }
+            completion(.invalidCredential)
         }
+    }
+    
+    private func loginToAccount(withSocialProvider social: SocialProvider, withToken token: String, withCompletion completion: @escaping (AuthError?)->()) {
+        self.authService.login(social, withToken: token, withCompletion: { error in
+            if let error = error {
+                self.facebookAuthService.logout { error in
+                    completion(error)
+                }
+                completion(error)
+                return
+            }
+            completion(nil)
+        })
+        return
     }
 }

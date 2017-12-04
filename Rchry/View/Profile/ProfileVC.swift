@@ -13,7 +13,9 @@ class ProfileVC: UIViewController {
     private var profileVM = ProfileVM(facebookAuthService: FacebookAuthService.instance, authService: FirebaseAuthService.instance)
     
     @IBAction func logoutBtnTouched(_ sender: UIButton) {
-        profileVM.logout()
+        profileVM.logout { error in
+            
+        }
     }
     
     override func viewDidLoad() {

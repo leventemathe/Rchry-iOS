@@ -11,6 +11,6 @@ import UIKit
 class TargetsVC: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
-        MessageAlertModalVC.present(withTitle: "Logged in", withMessage: "Logged in. More text. More text. More text. More text. More text. More text. More text. More text. More text. More text. More text.", fromVC: self)
+        MessageAlertModalVC.present(withTitle: "Hello", withMessage: "Bello", fromVC: self)
     }
 }

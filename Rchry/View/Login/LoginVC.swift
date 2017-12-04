@@ -15,8 +15,8 @@ class LoginVC: UIViewController {
     private var loginVM = LoginVM(facebookAuthService: FacebookAuthService.instance, authService: FirebaseAuthService.instance)
     
     @IBAction func facebookLoginBtnTouched(_ sender: LMButton) {
-        loginVM.login { error in
-            print("logged in from vc")            
+        loginVM.loginWithFacebook { error in
+            
         }
     }
     

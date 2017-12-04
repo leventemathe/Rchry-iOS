@@ -158,8 +158,8 @@
 		D7572C8A1FCDA06F0024DEED /* Targets */ = {
 			isa = PBXGroup;
 			children = (
-				D7572C8B1FCDA0AF0024DEED /* Targets.storyboard */,
 				D71E08D71FCEECA200D9FAA3 /* TargetsVC.swift */,
+				D7572C8B1FCDA0AF0024DEED /* Targets.storyboard */,
 			);
 			path = Targets;
 			sourceTree = "<group>";

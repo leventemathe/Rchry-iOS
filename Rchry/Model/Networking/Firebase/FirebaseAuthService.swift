@@ -22,8 +22,27 @@ struct FirebaseAuthService: AuthService {
     func login(_ socialProvider: SocialProvider, withToken token: String, withCompletion completion: @escaping (AuthError?)->()) {
         switch socialProvider {
         case .facebook:
-            FacebookAuthProvider.credential(withAccessToken: token)
+            loginWithFacebook(token, withCompletion: completion)
         }
+    }
+    
+    private func loginWithFacebook(_ token: String, withCompletion completion: @escaping (AuthError?)->()) {
+        let credential = FacebookAuthProvider.credential(withAccessToken: token)
+        Auth.auth().signIn(with: credential) { (user, error) in
+            if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
+                switch errorCode {
+                case .credentialAlreadyInUse:
+                    completion(.credentialTaken)
+                case .invalidCredential:
+                    completion(.invalidCredential)
+                default:
+                    completion(.other)
+                }
+                return
+            }
+            completion(nil)
+        }
+        
     }
     
     func logout(_ completion: @escaping (AuthError?)->()) {
@@ -36,6 +55,8 @@ struct FirebaseAuthService: AuthService {
     }
     
     func deleteUser(_ completion: @escaping (AuthError?)->()) {
-        
+        Auth.auth().currentUser?.delete { error in
+            completion(.other)
+        }
     }
 }

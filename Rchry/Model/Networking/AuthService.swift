@@ -9,7 +9,11 @@
 import Foundation
 
 enum AuthError {
+    case cancelled
     case network
+    case permissionDenied
+    case credentialTaken
+    case invalidCredential
     case other
 }
 

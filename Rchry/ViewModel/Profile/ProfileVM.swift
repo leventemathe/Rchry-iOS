@@ -13,11 +13,18 @@ struct ProfileVM {
     var facebookAuthService: SocialAuthService
     var authService: AuthService
     
-    func logout() {
+    func logout(_ completion: @escaping (AuthError?)->()) {
         authService.logout { error in
-            print("logged out from firebase")
+            if let error = error {
+                completion(error)
+                return
+            }
             self.facebookAuthService.logout { error in
-                print("logged out ffrom facebook")
+                if let error = error {
+                    completion(error)
+                    return
+                }
+                completion(nil)
             }
         }
     }

@@ -19,25 +19,30 @@ class FacebookAuthService: SocialAuthService {
     
     private init() {}
     
-    func login(_ completion: @escaping (AuthError?)->()) {
+    func login(_ completion: @escaping (AuthError?, _ token: String?)->()) {
         FBSDKLoginManager().logIn(withReadPermissions: ["public_profile"], from: nil, handler: { (result, error) in
-            if let error = error {
-                print(error)
-                completion(.other)
+            if error != nil {
+                completion(.other, nil)
                 return
             } else if let result = result {
-                print(result)
-                completion(nil)
+                if result.declinedPermissions != nil {
+                    completion(.permissionDenied, nil)
+                } else if result.isCancelled {
+                    completion(.cancelled, nil)
+                } else if result.token != nil {
+                    completion(nil, result.token.tokenString)
+                } else {
+                    completion(.other, nil)
+                }
                 return
             }
-            print("other error while facebook login")
-            completion(.other)
+            completion(.other, nil)
         })
     }
     
     func logout(_ completion: @escaping (AuthError?)->()) {
-        // TODO: errors?!?
         FBSDKLoginManager().logOut()
+        completion(nil)
     }
 }
 

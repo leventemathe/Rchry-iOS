@@ -11,20 +11,35 @@ import LMViews
 
 class MessageAlertModalVC: UIViewController {
 
+    @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var messageLbl: UILabel!
+    
+    var backgroundStartingOpacity: CGFloat = 0.0
+    var backgroundFinalOpacity: CGFloat = 0.4
     
     var titleText: String!
     var message: String!
     
     @IBAction func okBtnTouched(_ sender: LMButton) {
-        dismiss(animated: true, completion: nil)
+        UIView.animate(withDuration: 0.1, animations: {
+            self.backgroundView.alpha = self.backgroundStartingOpacity
+        })
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        backgroundView.alpha = backgroundFinalOpacity
         messageLbl.text = message
         titleLbl.text = titleText
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIView.animate(withDuration: 0.1, animations: {
+            self.backgroundView.alpha = self.backgroundFinalOpacity
+        })
     }
     
     static func present(withTitle title: String, withMessage message: String, fromVC vc: UIViewController) {
