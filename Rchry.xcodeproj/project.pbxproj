@@ -12,6 +12,7 @@
 		D71E08D61FCEE9A400D9FAA3 /* MessageAlertModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E08D51FCEE9A400D9FAA3 /* MessageAlertModalVC.swift */; };
 		D71E08D81FCEECA200D9FAA3 /* TargetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E08D71FCEECA200D9FAA3 /* TargetsVC.swift */; };
 		D733044B1FCDA88F00FE4B8E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D733044A1FCDA88E00FE4B8E /* GoogleService-Info.plist */; };
+		D73F50A51FD6EB7500B6AB2E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D73F50A71FD6EB7500B6AB2E /* Localizable.strings */; };
 		D7572C901FCDA3FD0024DEED /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7572C8F1FCDA3FD0024DEED /* ProfileVC.swift */; };
 		D7572C941FCDA4ED0024DEED /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7572C931FCDA4ED0024DEED /* ProfileVM.swift */; };
 		D76CA94F1FCC622300D8C2AC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D76CA94E1FCC622300D8C2AC /* Colors.xcassets */; };
@@ -67,6 +68,8 @@
 		D734C4CF1FD5860200027CDD /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Profile.strings; sourceTree = "<group>"; };
 		D734C4D01FD5860200027CDD /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		D73F50991FD6D9FA00B6AB2E /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Targets.strings; sourceTree = "<group>"; };
+		D73F50A61FD6EB7500B6AB2E /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D73F50A81FD6EB7900B6AB2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D7572C8F1FCDA3FD0024DEED /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		D7572C931FCDA4ED0024DEED /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
 		D76CA94E1FCC622300D8C2AC /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -165,6 +168,7 @@
 			children = (
 				D7D689391FD57EEF00ABB213 /* Targets.storyboard */,
 				D71E08D71FCEECA200D9FAA3 /* TargetsVC.swift */,
+				D73F50A71FD6EB7500B6AB2E /* Localizable.strings */,
 			);
 			path = Targets;
 			sourceTree = "<group>";
@@ -423,6 +427,7 @@
 			knownRegions = (
 				en,
 				Base,
+				hu,
 			);
 			mainGroup = D7C6F2681FC7163B0032A879;
 			productRefGroup = D7C6F2721FC7163B0032A879 /* Products */;
@@ -442,6 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7C6F27F1FC7163B0032A879 /* LaunchScreen.storyboard in Resources */,
+				D73F50A51FD6EB7500B6AB2E /* Localizable.strings in Resources */,
 				D7D6893E1FD57EFB00ABB213 /* Profile.storyboard in Resources */,
 				D76CA94F1FCC622300D8C2AC /* Colors.xcassets in Resources */,
 				D733044B1FCDA88F00FE4B8E /* GoogleService-Info.plist in Resources */,
@@ -692,6 +698,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		D73F50A71FD6EB7500B6AB2E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D73F50A61FD6EB7500B6AB2E /* hu */,
+				D73F50A81FD6EB7900B6AB2E /* Base */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		D7C6F2781FC7163B0032A879 /* Login.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
