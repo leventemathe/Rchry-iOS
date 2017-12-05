@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Title-->
+        <!--Targets-->
         <scene sceneID="QvK-c2-QA0">
             <objects>
                 <viewController storyboardIdentifier="TargetsVC" id="r9x-aX-ug9" customClass="TargetsVC" customModule="Rchry" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,7 +19,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="he1-d2-uzU"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="kOo-BJ-KaT">
+                    <navigationItem key="navigationItem" title="Targets" id="kOo-BJ-KaT">
                         <barButtonItem key="leftBarButtonItem" title="Profile" id="cVM-8k-48Q">
                             <connections>
                                 <segue destination="9Ry-Pe-szW" kind="show" id="vR9-E0-WWL"/>

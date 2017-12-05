@@ -1,0 +1,12 @@
+
+/* Class = "UIButton"; normalTitle = "Login with Facebook"; ObjectID = "1XN-YM-lXk"; */
+"1XN-YM-lXk.normalTitle" = "Belépés Facebookkal";
+
+/* Class = "UILabel"; text = "Track Results"; ObjectID = "5GR-pk-ayH"; */
+"5GR-pk-ayH.text" = "Kövesd az eredményeid";
+
+/* Class = "UILabel"; text = "Score Shots"; ObjectID = "Ftb-aw-Siv"; */
+"Ftb-aw-Siv.text" = "Rögzítsd a pontjaid";
+
+/* Class = "UILabel"; text = "Create Targets"; ObjectID = "jI9-mc-uvd"; */
+"jI9-mc-uvd.text" = "Hozz létre célokat";

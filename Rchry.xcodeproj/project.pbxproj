@@ -62,6 +62,11 @@
 		D71E08D51FCEE9A400D9FAA3 /* MessageAlertModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAlertModalVC.swift; sourceTree = "<group>"; };
 		D71E08D71FCEECA200D9FAA3 /* TargetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetsVC.swift; sourceTree = "<group>"; };
 		D733044A1FCDA88E00FE4B8E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D734C4CC1FD5860000027CDD /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/MessageAlertModal.strings; sourceTree = "<group>"; };
+		D734C4CD1FD5860100027CDD /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Login.strings; sourceTree = "<group>"; };
+		D734C4CF1FD5860200027CDD /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Profile.strings; sourceTree = "<group>"; };
+		D734C4D01FD5860200027CDD /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		D73F50991FD6D9FA00B6AB2E /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Targets.strings; sourceTree = "<group>"; };
 		D7572C8F1FCDA3FD0024DEED /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		D7572C931FCDA4ED0024DEED /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
 		D76CA94E1FCC622300D8C2AC /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -691,6 +696,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D7C6F2791FC7163B0032A879 /* Base */,
+				D734C4CD1FD5860100027CDD /* hu */,
 			);
 			name = Login.storyboard;
 			sourceTree = "<group>";
@@ -699,6 +705,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D7C6F27E1FC7163B0032A879 /* Base */,
+				D734C4D01FD5860200027CDD /* hu */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -707,6 +714,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D7D689371FD57EDC00ABB213 /* Base */,
+				D734C4CC1FD5860000027CDD /* hu */,
 			);
 			name = MessageAlertModal.storyboard;
 			sourceTree = "<group>";
@@ -715,6 +723,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D7D6893A1FD57EEF00ABB213 /* Base */,
+				D73F50991FD6D9FA00B6AB2E /* hu */,
 			);
 			name = Targets.storyboard;
 			sourceTree = "<group>";
@@ -723,6 +732,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D7D6893D1FD57EFB00ABB213 /* Base */,
+				D734C4CF1FD5860200027CDD /* hu */,
 			);
 			name = Profile.storyboard;
 			sourceTree = "<group>";
@@ -734,6 +744,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -791,6 +802,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
