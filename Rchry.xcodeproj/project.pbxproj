@@ -15,6 +15,7 @@
 		D73F50A51FD6EB7500B6AB2E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D73F50A71FD6EB7500B6AB2E /* Localizable.strings */; };
 		D7572C901FCDA3FD0024DEED /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7572C8F1FCDA3FD0024DEED /* ProfileVC.swift */; };
 		D7572C941FCDA4ED0024DEED /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7572C931FCDA4ED0024DEED /* ProfileVM.swift */; };
+		D75D54651FD83740003B3D3F /* AuthErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D54641FD83740003B3D3F /* AuthErrorHandler.swift */; };
 		D76CA94F1FCC622300D8C2AC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D76CA94E1FCC622300D8C2AC /* Colors.xcassets */; };
 		D778CA801FCD9094001F2D99 /* Amatic-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D778CA7E1FCD9093001F2D99 /* Amatic-Bold.ttf */; };
 		D778CA811FCD9094001F2D99 /* AmaticSC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D778CA7F1FCD9093001F2D99 /* AmaticSC-Regular.ttf */; };
@@ -72,6 +73,7 @@
 		D73F50A81FD6EB7900B6AB2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D7572C8F1FCDA3FD0024DEED /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		D7572C931FCDA4ED0024DEED /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
+		D75D54641FD83740003B3D3F /* AuthErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrorHandler.swift; sourceTree = "<group>"; };
 		D76CA94E1FCC622300D8C2AC /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D778CA7E1FCD9093001F2D99 /* Amatic-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Amatic-Bold.ttf"; sourceTree = "<group>"; };
 		D778CA7F1FCD9093001F2D99 /* AmaticSC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmaticSC-Regular.ttf"; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 		D7F0D8BC1FCC58B3009A044B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D75D54641FD83740003B3D3F /* AuthErrorHandler.swift */,
 				D7DFD2E01FCDBA6000893BEB /* Login */,
 				D7572C921FCDA4D70024DEED /* Profile */,
 			);
@@ -659,6 +662,7 @@
 				D7DFD2DF1FCDB90B00893BEB /* AuthService.swift in Sources */,
 				D7C6F2771FC7163B0032A879 /* LoginVC.swift in Sources */,
 				D7DFD2E21FCDBA6D00893BEB /* LoginVM.swift in Sources */,
+				D75D54651FD83740003B3D3F /* AuthErrorHandler.swift in Sources */,
 				D7572C941FCDA4ED0024DEED /* ProfileVM.swift in Sources */,
 				D7C6F2751FC7163B0032A879 /* AppDelegate.swift in Sources */,
 				D7AD33A61FCDB4F600C12112 /* SocialAuthService.swift in Sources */,

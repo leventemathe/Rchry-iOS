@@ -25,7 +25,7 @@ class FacebookAuthService: SocialAuthService {
                 completion(.other, nil)
                 return
             } else if let result = result {
-                if result.declinedPermissions != nil {
+                if result.declinedPermissions != nil && result.declinedPermissions.count > 0 {
                     completion(.permissionDenied, nil)
                 } else if result.isCancelled {
                     completion(.cancelled, nil)

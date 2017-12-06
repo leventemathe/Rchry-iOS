@@ -10,11 +10,15 @@ import UIKit
 
 class ProfileVC: UIViewController {
     
-    private var profileVM = ProfileVM(facebookAuthService: FacebookAuthService.instance, authService: FirebaseAuthService.instance)
+    let ERROR_TITLE = NSLocalizedString("LogoutErrorTitle", comment: "The error title for logout errors")
+    
+    private var profileVM = ProfileVM(facebookAuthService: FacebookAuthService.instance, authService: FirebaseAuthService.instance, authErrorHandler: BasicAuthErrorHandler())
     
     @IBAction func logoutBtnTouched(_ sender: UIButton) {
-        profileVM.logout { error in
-            
+        profileVM.logout { errorMessage in
+            if let errorMessage = errorMessage {
+                MessageAlertModalVC.present(withTitle: self.ERROR_TITLE, withMessage: errorMessage, fromVC: self)
+            }
         }
     }
     

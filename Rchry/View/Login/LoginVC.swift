@@ -12,16 +12,16 @@ import FBSDKLoginKit
 
 class LoginVC: UIViewController {
     
-    private var loginVM = LoginVM(facebookAuthService: FacebookAuthService.instance, authService: FirebaseAuthService.instance)
+    let ERROR_TITLE = NSLocalizedString("LoginErrorTitle", comment: "The title for the login error")
+    
+    private var loginVM = LoginVM(facebookAuthService: FacebookAuthService.instance, authService: FirebaseAuthService.instance, authErrorHandler: BasicAuthErrorHandler())
     
     @IBAction func facebookLoginBtnTouched(_ sender: LMButton) {
-        loginVM.loginWithFacebook { error in
-            
+        loginVM.loginWithFacebook { errorMessage in
+            if let errorMessage = errorMessage {
+                MessageAlertModalVC.present(withTitle: self.ERROR_TITLE, withMessage: errorMessage, fromVC: self)
+            }
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

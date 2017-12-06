@@ -1,8 +1,13 @@
 .DS_Store
 
 build
-*.xcodeproj/*
-!*.xcodeproj/project.pbxproj
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
 
 GoogleService-Info.plist
 GoogleService-Info-Dev.plist
