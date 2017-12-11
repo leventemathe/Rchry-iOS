@@ -12,9 +12,12 @@
 		D71E08D61FCEE9A400D9FAA3 /* MessageAlertModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E08D51FCEE9A400D9FAA3 /* MessageAlertModalVC.swift */; };
 		D71E08D81FCEECA200D9FAA3 /* TargetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E08D71FCEECA200D9FAA3 /* TargetsVC.swift */; };
 		D733044B1FCDA88F00FE4B8E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D733044A1FCDA88E00FE4B8E /* GoogleService-Info.plist */; };
+		D7377D1A1FDEE50A00AEA161 /* ProfileVMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7377D191FDEE50A00AEA161 /* ProfileVMTest.swift */; };
+		D7377D1C1FDEE56200AEA161 /* AuthMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7377D1B1FDEE56200AEA161 /* AuthMocks.swift */; };
 		D7572C901FCDA3FD0024DEED /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7572C8F1FCDA3FD0024DEED /* ProfileVC.swift */; };
 		D7572C941FCDA4ED0024DEED /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7572C931FCDA4ED0024DEED /* ProfileVM.swift */; };
 		D75D54651FD83740003B3D3F /* AuthErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D54641FD83740003B3D3F /* AuthErrorHandler.swift */; };
+		D763A99F1FD84BC3005B8540 /* LoginVMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D763A99E1FD84BC3005B8540 /* LoginVMTest.swift */; };
 		D76CA94F1FCC622300D8C2AC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D76CA94E1FCC622300D8C2AC /* Colors.xcassets */; };
 		D778CA801FCD9094001F2D99 /* Amatic-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D778CA7E1FCD9093001F2D99 /* Amatic-Bold.ttf */; };
 		D778CA811FCD9094001F2D99 /* AmaticSC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D778CA7F1FCD9093001F2D99 /* AmaticSC-Regular.ttf */; };
@@ -28,7 +31,6 @@
 		D7C6F27A1FC7163B0032A879 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7C6F2781FC7163B0032A879 /* Login.storyboard */; };
 		D7C6F27C1FC7163B0032A879 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7C6F27B1FC7163B0032A879 /* Assets.xcassets */; };
 		D7C6F27F1FC7163B0032A879 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7C6F27D1FC7163B0032A879 /* LaunchScreen.storyboard */; };
-		D7C6F28A1FC7163B0032A879 /* RchryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6F2891FC7163B0032A879 /* RchryTests.swift */; };
 		D7C6F2951FC7163B0032A879 /* RchryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6F2941FC7163B0032A879 /* RchryUITests.swift */; };
 		D7D689381FD57EDC00ABB213 /* MessageAlertModal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D689361FD57EDC00ABB213 /* MessageAlertModal.storyboard */; };
 		D7D6893B1FD57EEF00ABB213 /* Targets.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D689391FD57EEF00ABB213 /* Targets.storyboard */; };
@@ -68,10 +70,13 @@
 		D734C4CD1FD5860100027CDD /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Login.strings; sourceTree = "<group>"; };
 		D734C4CF1FD5860200027CDD /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Profile.strings; sourceTree = "<group>"; };
 		D734C4D01FD5860200027CDD /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		D7377D191FDEE50A00AEA161 /* ProfileVMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVMTest.swift; sourceTree = "<group>"; };
+		D7377D1B1FDEE56200AEA161 /* AuthMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthMocks.swift; sourceTree = "<group>"; };
 		D73F50991FD6D9FA00B6AB2E /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Targets.strings; sourceTree = "<group>"; };
 		D7572C8F1FCDA3FD0024DEED /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		D7572C931FCDA4ED0024DEED /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
 		D75D54641FD83740003B3D3F /* AuthErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrorHandler.swift; sourceTree = "<group>"; };
+		D763A99E1FD84BC3005B8540 /* LoginVMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVMTest.swift; sourceTree = "<group>"; };
 		D76CA94E1FCC622300D8C2AC /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D778CA7E1FCD9093001F2D99 /* Amatic-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Amatic-Bold.ttf"; sourceTree = "<group>"; };
 		D778CA7F1FCD9093001F2D99 /* AmaticSC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmaticSC-Regular.ttf"; sourceTree = "<group>"; };
@@ -89,7 +94,6 @@
 		D7C6F27E1FC7163B0032A879 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D7C6F2801FC7163B0032A879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7C6F2851FC7163B0032A879 /* RchryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RchryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D7C6F2891FC7163B0032A879 /* RchryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RchryTests.swift; sourceTree = "<group>"; };
 		D7C6F28B1FC7163B0032A879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7C6F2901FC7163B0032A879 /* RchryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RchryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C6F2941FC7163B0032A879 /* RchryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RchryUITests.swift; sourceTree = "<group>"; };
@@ -163,6 +167,16 @@
 				D71E08D51FCEE9A400D9FAA3 /* MessageAlertModalVC.swift */,
 			);
 			path = AlertModal;
+			sourceTree = "<group>";
+		};
+		D7377D1D1FDEE96700AEA161 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D7377D1B1FDEE56200AEA161 /* AuthMocks.swift */,
+				D763A99E1FD84BC3005B8540 /* LoginVMTest.swift */,
+				D7377D191FDEE50A00AEA161 /* ProfileVMTest.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		D7572C8A1FCDA06F0024DEED /* Targets */ = {
@@ -256,7 +270,7 @@
 		D7C6F2881FC7163B0032A879 /* RchryTests */ = {
 			isa = PBXGroup;
 			children = (
-				D7C6F2891FC7163B0032A879 /* RchryTests.swift */,
+				D7377D1D1FDEE96700AEA161 /* ViewModel */,
 				D7C6F28B1FC7163B0032A879 /* Info.plist */,
 			);
 			path = RchryTests;
@@ -413,6 +427,7 @@
 					};
 					D7C6F2841FC7163B0032A879 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						TestTargetID = D7C6F2701FC7163B0032A879;
 					};
@@ -502,9 +517,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RchryTests/Pods-RchryTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -674,7 +694,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7C6F28A1FC7163B0032A879 /* RchryTests.swift in Sources */,
+				D7377D1C1FDEE56200AEA161 /* AuthMocks.swift in Sources */,
+				D7377D1A1FDEE50A00AEA161 /* ProfileVMTest.swift in Sources */,
+				D763A99F1FD84BC3005B8540 /* LoginVMTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -908,12 +930,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2XA4EDUMR4;
 				INFOPLIST_FILE = RchryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.levente.mathe.RchryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rchry.app/Rchry";
@@ -926,6 +950,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2XA4EDUMR4;
 				INFOPLIST_FILE = RchryTests/Info.plist;
