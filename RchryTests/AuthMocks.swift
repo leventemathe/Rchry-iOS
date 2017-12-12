@@ -8,6 +8,23 @@
 
 import Foundation
 @testable import Rchry
+import FBSDKLoginKit
+
+class FacebookLoginManagerMock: FacebookLoginManager {
+    
+    var result: FBSDKLoginManagerLoginResult?
+    var error: Error?
+    
+    func logIn(withReadPermissions permissions: [String], from vc: UIViewController!, handler: FBSDKLoginManagerRequestTokenHandler!) {
+        if let error = error {
+            handler(nil, error)
+        } else if let result = result {
+            handler(result, nil)
+        } else {
+            handler(nil, nil)
+        }
+    }
+}
 
 class FacebookAuthServiceMock: SocialAuthService {
     

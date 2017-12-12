@@ -21,6 +21,7 @@
 		D76CA94F1FCC622300D8C2AC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D76CA94E1FCC622300D8C2AC /* Colors.xcassets */; };
 		D778CA801FCD9094001F2D99 /* Amatic-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D778CA7E1FCD9093001F2D99 /* Amatic-Bold.ttf */; };
 		D778CA811FCD9094001F2D99 /* AmaticSC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D778CA7F1FCD9093001F2D99 /* AmaticSC-Regular.ttf */; };
+		D77C86181FE01CD900226CBC /* FacebookAuthServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77C86171FE01CD900226CBC /* FacebookAuthServiceTest.swift */; };
 		D77EE5171FCDB83D00FAEDBA /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77EE5161FCDB83D00FAEDBA /* FirebaseAuthService.swift */; };
 		D7AD33A41FCDB45D00C12112 /* FacebookAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AD33A31FCDB45D00C12112 /* FacebookAuthService.swift */; };
 		D7AD33A61FCDB4F600C12112 /* SocialAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AD33A51FCDB4F600C12112 /* SocialAuthService.swift */; };
@@ -80,6 +81,7 @@
 		D76CA94E1FCC622300D8C2AC /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D778CA7E1FCD9093001F2D99 /* Amatic-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Amatic-Bold.ttf"; sourceTree = "<group>"; };
 		D778CA7F1FCD9093001F2D99 /* AmaticSC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmaticSC-Regular.ttf"; sourceTree = "<group>"; };
+		D77C86171FE01CD900226CBC /* FacebookAuthServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuthServiceTest.swift; sourceTree = "<group>"; };
 		D77EE5161FCDB83D00FAEDBA /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		D7AD33A31FCDB45D00C12112 /* FacebookAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuthService.swift; sourceTree = "<group>"; };
 		D7AD33A51FCDB4F600C12112 /* SocialAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAuthService.swift; sourceTree = "<group>"; };
@@ -172,7 +174,6 @@
 		D7377D1D1FDEE96700AEA161 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				D7377D1B1FDEE56200AEA161 /* AuthMocks.swift */,
 				D763A99E1FD84BC3005B8540 /* LoginVMTest.swift */,
 				D7377D191FDEE50A00AEA161 /* ProfileVMTest.swift */,
 			);
@@ -203,6 +204,22 @@
 				D7572C931FCDA4ED0024DEED /* ProfileVM.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		D77C86151FE01CA700226CBC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D77C86161FE01CB500226CBC /* Networking */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D77C86161FE01CB500226CBC /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				D77C86171FE01CD900226CBC /* FacebookAuthServiceTest.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		D77EE5151FCDB82100FAEDBA /* Firebase */ = {
@@ -270,6 +287,8 @@
 		D7C6F2881FC7163B0032A879 /* RchryTests */ = {
 			isa = PBXGroup;
 			children = (
+				D7377D1B1FDEE56200AEA161 /* AuthMocks.swift */,
+				D77C86151FE01CA700226CBC /* Model */,
 				D7377D1D1FDEE96700AEA161 /* ViewModel */,
 				D7C6F28B1FC7163B0032A879 /* Info.plist */,
 			);
@@ -695,6 +714,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7377D1C1FDEE56200AEA161 /* AuthMocks.swift in Sources */,
+				D77C86181FE01CD900226CBC /* FacebookAuthServiceTest.swift in Sources */,
 				D7377D1A1FDEE50A00AEA161 /* ProfileVMTest.swift in Sources */,
 				D763A99F1FD84BC3005B8540 /* LoginVMTest.swift in Sources */,
 			);

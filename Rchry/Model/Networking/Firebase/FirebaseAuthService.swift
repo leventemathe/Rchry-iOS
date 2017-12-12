@@ -11,10 +11,13 @@ import Firebase
 
 struct FirebaseAuthService: AuthService {
     
-    private static var _instance = FirebaseAuthService()
+    private static var _instance: FirebaseAuthService?
     
-    static var instance: FirebaseAuthService {
-        return _instance
+    static func getInstance() -> FirebaseAuthService {
+        if _instance == nil {
+            _instance = FirebaseAuthService()
+        }
+        return _instance!
     }
     
     private init() {}

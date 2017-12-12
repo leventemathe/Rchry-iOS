@@ -9,18 +9,30 @@
 import Foundation
 import FBSDKLoginKit
 
+protocol FacebookLoginManager {
+
+     func logIn(withReadPermissions permissions: [String], from vc: UIViewController!, handler: FBSDKLoginManagerRequestTokenHandler!)
+}
+
+class BasicFacebookLoginManager: FacebookLoginManager {
+    
+    private let manager = FBSDKLoginManager()
+    
+    func logIn(withReadPermissions permissions: [String], from vc: UIViewController!, handler: FBSDKLoginManagerRequestTokenHandler!) {
+        manager.logIn(withReadPermissions: permissions, from: vc, handler: handler)
+    }
+}
+
 class FacebookAuthService: SocialAuthService {
     
-    private static var _instance = FacebookAuthService()
+    private var loginManager: FacebookLoginManager
     
-    static var instance: FacebookAuthService {
-        return _instance
+    init(_ loginManager: FacebookLoginManager = BasicFacebookLoginManager()) {
+        self.loginManager = loginManager
     }
     
-    private init() {}
-    
     func login(_ completion: @escaping (AuthError?, _ token: String?)->()) {
-        FBSDKLoginManager().logIn(withReadPermissions: ["public_profile"], from: nil, handler: { (result, error) in
+        loginManager.logIn(withReadPermissions: ["public_profile"], from: nil, handler: { (result, error) in
             if error != nil {
                 completion(.other, nil)
                 return
