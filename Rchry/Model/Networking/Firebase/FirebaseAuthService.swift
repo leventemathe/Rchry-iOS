@@ -10,13 +10,31 @@ import Foundation
 import Firebase
 
 protocol FirebaseAuth {
+    
     func signIn(with credential: AuthCredential, completion: @escaping AuthResultCallback)
+    func signOut(_ completion: @escaping (Error?) -> ())
+    func deleteCurrentUser(_ completion: @escaping (Error?) -> ())
 }
 
 fileprivate class BasicFirebaseAuth: FirebaseAuth {
     
     func signIn(with credential: AuthCredential, completion: @escaping AuthResultCallback) {
         Auth.auth().signIn(with: credential, completion: completion)
+    }
+    
+    func signOut(_ completion: @escaping (Error?) -> ()) {
+        do {
+            try Auth.auth().signOut()
+            completion(nil)
+        } catch {
+            completion(AuthError.other)
+        }
+    }
+    
+    func deleteCurrentUser(_ completion: @escaping (Error?) -> ()) {
+        Auth.auth().currentUser?.delete { error in
+            completion(AuthError.other)
+        }
     }
 }
 
@@ -55,17 +73,22 @@ struct FirebaseAuthService: AuthService {
     }
     
     func logout(_ completion: @escaping (AuthError?)->()) {
-        do {
-            try Auth.auth().signOut()
-            completion(nil)
-        } catch {
-            completion(.other)
+        firebaseAuth.signOut { error in
+            if let _ = error {
+                completion(.other)
+            } else {
+                completion(nil)
+            }
         }
     }
     
     func deleteUser(_ completion: @escaping (AuthError?)->()) {
-        Auth.auth().currentUser?.delete { error in
-            completion(.other)
+        firebaseAuth.deleteCurrentUser { error in
+            if let _ = error {
+                completion(.other)
+            } else {
+                completion(nil)
+            }
         }
     }
 }

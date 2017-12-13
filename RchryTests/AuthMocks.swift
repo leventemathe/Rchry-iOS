@@ -25,6 +25,10 @@ class FacebookLoginManagerMock: FacebookLoginManager {
             handler(nil, nil)
         }
     }
+    
+    func logout() {
+        
+    }
 }
 
 class FirebaseAuthMock: FirebaseAuth {
@@ -36,6 +40,22 @@ class FirebaseAuthMock: FirebaseAuth {
             completion(nil, error)
         } else {
             completion(nil, nil)
+        }
+    }
+    
+    func signOut(_ completion: @escaping (Error?) -> ()) {
+        if let error = error {
+            completion(error)
+        } else {
+            completion(nil)
+        }
+    }
+    
+    func deleteCurrentUser(_ completion: @escaping (Error?) -> ()) {
+        if let error = error {
+            completion(error)
+        } else {
+            completion(nil)
         }
     }
 }

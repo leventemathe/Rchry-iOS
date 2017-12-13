@@ -11,7 +11,8 @@ import FBSDKLoginKit
 
 protocol FacebookLoginManager {
 
-     func logIn(withReadPermissions permissions: [String], from vc: UIViewController!, handler: FBSDKLoginManagerRequestTokenHandler!)
+    func logIn(withReadPermissions permissions: [String], from vc: UIViewController!, handler: FBSDKLoginManagerRequestTokenHandler!)
+    func logout()
 }
 
 fileprivate class BasicFacebookLoginManager: FacebookLoginManager {
@@ -20,6 +21,10 @@ fileprivate class BasicFacebookLoginManager: FacebookLoginManager {
     
     func logIn(withReadPermissions permissions: [String], from vc: UIViewController!, handler: FBSDKLoginManagerRequestTokenHandler!) {
         manager.logIn(withReadPermissions: permissions, from: vc, handler: handler)
+    }
+    
+    func logout() {
+        FBSDKLoginManager().logOut()
     }
 }
 
@@ -53,7 +58,7 @@ class FacebookAuthService: SocialAuthService {
     }
     
     func logout(_ completion: @escaping (AuthError?)->()) {
-        FBSDKLoginManager().logOut()
+        loginManager.logout()
         completion(nil)
     }
 }

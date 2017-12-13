@@ -97,4 +97,19 @@ class FacebookAuthServiceTest: XCTestCase {
             }
         }
     }
+    
+    func testLogoutSuccessful() {
+        createFacebookAuthService()
+        facebookAuthService.logout { error in
+            XCTAssert(error == nil, "testLogoutSuccessful")
+        }
+    }
+    
+    func testLogoutErrorHappened() {
+        loginManager.error = NSError()
+        createFacebookAuthService()
+        facebookAuthService.logout { error in
+            XCTAssert(error == nil, "testLogoutErrorHappened")
+        }
+    }
 }

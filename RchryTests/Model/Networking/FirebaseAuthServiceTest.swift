@@ -30,10 +30,48 @@ class FirebaseAuthServiceTest: XCTestCase {
         firebaseAuthService = FirebaseAuthService(firebaseAuth: firebaseAuth)
     }
     
-    func testLoginSuccess() {
+    func testLoginSuccessful() {
         createFirebaseAuthService()
         firebaseAuthService.login(.facebook, withToken: "asd", withCompletion: { error in
-            XCTAssert(error == nil, "testLoginSuccess")
+            XCTAssert(error == nil, "testLoginSuccessful")
         })
+    }
+    
+    func testLoginErrorHappened() {
+        firebaseAuth.error = NSError()
+        createFirebaseAuthService()
+        firebaseAuthService.login(.facebook, withToken: "asd", withCompletion: { error in
+            XCTAssert(error != nil, "testLoginErrorHappened")
+        })
+    }
+    
+    func testLogoutSuccessful() {
+        createFirebaseAuthService()
+        firebaseAuthService.logout { error in
+            XCTAssert(error == nil, "testLogoutSuccessful")
+        }
+    }
+    
+    func testLogoutErrorHappened() {
+        firebaseAuth.error = NSError()
+        createFirebaseAuthService()
+        firebaseAuthService.logout { error in
+            XCTAssert(error != nil, "testLogoutErrorHappened")
+        }
+    }
+    
+    func testDeleteSuccesful() {
+        createFirebaseAuthService()
+        firebaseAuthService.deleteUser { error in
+            XCTAssert(error == nil, "testDeleteSuccesful")
+        }
+    }
+    
+    func testDeleteErrorHappened() {
+        firebaseAuth.error = NSError()
+        createFirebaseAuthService()
+        firebaseAuthService.deleteUser { error in
+            XCTAssert(error != nil, "testDeleteErrorHappened")
+        }
     }
 }
