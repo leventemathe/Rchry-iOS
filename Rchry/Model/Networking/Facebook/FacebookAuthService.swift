@@ -14,7 +14,7 @@ protocol FacebookLoginManager {
      func logIn(withReadPermissions permissions: [String], from vc: UIViewController!, handler: FBSDKLoginManagerRequestTokenHandler!)
 }
 
-class BasicFacebookLoginManager: FacebookLoginManager {
+fileprivate class BasicFacebookLoginManager: FacebookLoginManager {
     
     private let manager = FBSDKLoginManager()
     

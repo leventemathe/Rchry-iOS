@@ -9,18 +9,24 @@
 import Foundation
 import Firebase
 
+protocol FirebaseAuth {
+    func signIn(with credential: AuthCredential, completion: @escaping AuthResultCallback)
+}
+
+fileprivate class BasicFirebaseAuth: FirebaseAuth {
+    
+    func signIn(with credential: AuthCredential, completion: @escaping AuthResultCallback) {
+        Auth.auth().signIn(with: credential, completion: completion)
+    }
+}
+
 struct FirebaseAuthService: AuthService {
     
-    private static var _instance: FirebaseAuthService?
+    var firebaseAuth: FirebaseAuth
     
-    static func getInstance() -> FirebaseAuthService {
-        if _instance == nil {
-            _instance = FirebaseAuthService()
-        }
-        return _instance!
+    init(firebaseAuth: FirebaseAuth = BasicFirebaseAuth()) {
+        self.firebaseAuth = firebaseAuth
     }
-    
-    private init() {}
     
     func login(_ socialProvider: SocialProvider, withToken token: String, withCompletion completion: @escaping (AuthError?)->()) {
         switch socialProvider {
@@ -31,7 +37,7 @@ struct FirebaseAuthService: AuthService {
     
     private func loginWithFacebook(_ token: String, withCompletion completion: @escaping (AuthError?)->()) {
         let credential = FacebookAuthProvider.credential(withAccessToken: token)
-        Auth.auth().signIn(with: credential) { (user, error) in
+        firebaseAuth.signIn(with: credential) { (user, error) in
             if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
                 switch errorCode {
                 case .credentialAlreadyInUse:

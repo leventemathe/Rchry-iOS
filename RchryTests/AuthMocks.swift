@@ -9,6 +9,7 @@
 import Foundation
 @testable import Rchry
 import FBSDKLoginKit
+import Firebase
 
 class FacebookLoginManagerMock: FacebookLoginManager {
     
@@ -22,6 +23,19 @@ class FacebookLoginManagerMock: FacebookLoginManager {
             handler(result, nil)
         } else {
             handler(nil, nil)
+        }
+    }
+}
+
+class FirebaseAuthMock: FirebaseAuth {
+    
+    var error: Error?
+    
+    func signIn(with credential: AuthCredential, completion: @escaping AuthResultCallback) {
+        if let error = error {
+            completion(nil, error)
+        } else {
+            completion(nil, nil)
         }
     }
 }

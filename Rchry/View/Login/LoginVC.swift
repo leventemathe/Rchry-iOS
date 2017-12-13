@@ -14,7 +14,7 @@ class LoginVC: UIViewController {
     
     let ERROR_TITLE = NSLocalizedString("LoginErrorTitle", comment: "The title for the login error")
     
-    private var loginVM = LoginVM(facebookAuthService: FacebookAuthService(), authService: FirebaseAuthService.getInstance(), authErrorHandler: BasicAuthErrorHandler())
+    private var loginVM = LoginVM(facebookAuthService: FacebookAuthService(), authService: FirebaseAuthService(), authErrorHandler: BasicAuthErrorHandler())
     
     @IBAction func facebookLoginBtnTouched(_ sender: LMButton) {
         loginVM.loginWithFacebook { errorMessage in
