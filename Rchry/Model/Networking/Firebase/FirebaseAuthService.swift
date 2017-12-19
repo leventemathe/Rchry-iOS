@@ -14,9 +14,10 @@ protocol FirebaseAuth {
     func signIn(with credential: AuthCredential, completion: @escaping AuthResultCallback)
     func signOut(_ completion: @escaping (Error?) -> ())
     func deleteCurrentUser(_ completion: @escaping (Error?) -> ())
+    func getUser() -> User?
 }
 
-fileprivate class BasicFirebaseAuth: FirebaseAuth {
+fileprivate struct BasicFirebaseAuth: FirebaseAuth {
     
     func signIn(with credential: AuthCredential, completion: @escaping AuthResultCallback) {
         Auth.auth().signIn(with: credential, completion: completion)
@@ -35,6 +36,10 @@ fileprivate class BasicFirebaseAuth: FirebaseAuth {
         Auth.auth().currentUser?.delete { error in
             completion(AuthError.other)
         }
+    }
+    
+    func getUser() -> User? {
+        return Auth.auth().currentUser
     }
 }
 
@@ -90,5 +95,12 @@ struct FirebaseAuthService: AuthService {
                 completion(nil)
             }
         }
+    }
+    
+    func isLoggedIn() -> Bool {
+        if let _ = firebaseAuth.getUser() {
+            return true
+        }
+        return false
     }
 }

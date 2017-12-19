@@ -32,7 +32,7 @@ class FacebookLoginManagerMock: FacebookLoginManager {
 }
 
 class FirebaseAuthMock: FirebaseAuth {
-    
+
     var error: Error?
     
     func signIn(with credential: AuthCredential, completion: @escaping AuthResultCallback) {
@@ -57,6 +57,10 @@ class FirebaseAuthMock: FirebaseAuth {
         } else {
             completion(nil)
         }
+    }
+    
+    func getUser() -> User? {
+        return nil
     }
 }
 
@@ -108,5 +112,9 @@ class AuthServiceMock: AuthService {
             return
         }
         completion(nil)
+    }
+    
+    func isLoggedIn() -> Bool {
+        return true
     }
 }

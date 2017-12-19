@@ -15,7 +15,7 @@ protocol FacebookLoginManager {
     func logout()
 }
 
-fileprivate class BasicFacebookLoginManager: FacebookLoginManager {
+fileprivate struct BasicFacebookLoginManager: FacebookLoginManager {
     
     private let manager = FBSDKLoginManager()
     
@@ -28,7 +28,7 @@ fileprivate class BasicFacebookLoginManager: FacebookLoginManager {
     }
 }
 
-class FacebookAuthService: SocialAuthService {
+struct FacebookAuthService: SocialAuthService {
     
     private var loginManager: FacebookLoginManager
     

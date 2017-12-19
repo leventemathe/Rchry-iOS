@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9685A74CDFA59C45A10901C3 /* Pods_RchryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F660C2B4174B7F0EA6DE75E3 /* Pods_RchryUITests.framework */; };
 		BA612F4279376393D67C2A99 /* Pods_RchryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1590B90AFD3CED9B09886251 /* Pods_RchryTests.framework */; };
 		D71E08D61FCEE9A400D9FAA3 /* MessageAlertModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E08D51FCEE9A400D9FAA3 /* MessageAlertModalVC.swift */; };
 		D71E08D81FCEECA200D9FAA3 /* TargetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E08D71FCEECA200D9FAA3 /* TargetsVC.swift */; };
@@ -33,7 +32,6 @@
 		D7C6F27A1FC7163B0032A879 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7C6F2781FC7163B0032A879 /* Login.storyboard */; };
 		D7C6F27C1FC7163B0032A879 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7C6F27B1FC7163B0032A879 /* Assets.xcassets */; };
 		D7C6F27F1FC7163B0032A879 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7C6F27D1FC7163B0032A879 /* LaunchScreen.storyboard */; };
-		D7C6F2951FC7163B0032A879 /* RchryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6F2941FC7163B0032A879 /* RchryUITests.swift */; };
 		D7D689381FD57EDC00ABB213 /* MessageAlertModal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D689361FD57EDC00ABB213 /* MessageAlertModal.storyboard */; };
 		D7D6893B1FD57EEF00ABB213 /* Targets.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D689391FD57EEF00ABB213 /* Targets.storyboard */; };
 		D7D6893E1FD57EFB00ABB213 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D6893C1FD57EFB00ABB213 /* Profile.storyboard */; };
@@ -44,13 +42,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		D7C6F2861FC7163B0032A879 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D7C6F2691FC7163B0032A879 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D7C6F2701FC7163B0032A879;
-			remoteInfo = Rchry;
-		};
-		D7C6F2911FC7163B0032A879 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D7C6F2691FC7163B0032A879 /* Project object */;
 			proxyType = 1;
@@ -99,9 +90,6 @@
 		D7C6F2801FC7163B0032A879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7C6F2851FC7163B0032A879 /* RchryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RchryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C6F28B1FC7163B0032A879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D7C6F2901FC7163B0032A879 /* RchryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RchryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D7C6F2941FC7163B0032A879 /* RchryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RchryUITests.swift; sourceTree = "<group>"; };
-		D7C6F2961FC7163B0032A879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7D689371FD57EDC00ABB213 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MessageAlertModal.storyboard; sourceTree = "<group>"; };
 		D7D6893A1FD57EEF00ABB213 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Targets.storyboard; sourceTree = "<group>"; };
 		D7D6893D1FD57EFB00ABB213 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
@@ -127,14 +115,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA612F4279376393D67C2A99 /* Pods_RchryTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D7C6F28D1FC7163B0032A879 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9685A74CDFA59C45A10901C3 /* Pods_RchryUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,7 +237,6 @@
 			children = (
 				D7C6F2731FC7163B0032A879 /* Rchry */,
 				D7C6F2881FC7163B0032A879 /* RchryTests */,
-				D7C6F2931FC7163B0032A879 /* RchryUITests */,
 				D7C6F2721FC7163B0032A879 /* Products */,
 				AD21B679C2AE158BFC26419E /* Pods */,
 				121886182674ED5E73AE7FAD /* Frameworks */,
@@ -269,7 +248,6 @@
 			children = (
 				D7C6F2711FC7163B0032A879 /* Rchry.app */,
 				D7C6F2851FC7163B0032A879 /* RchryTests.xctest */,
-				D7C6F2901FC7163B0032A879 /* RchryUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -296,15 +274,6 @@
 				D7C6F28B1FC7163B0032A879 /* Info.plist */,
 			);
 			path = RchryTests;
-			sourceTree = "<group>";
-		};
-		D7C6F2931FC7163B0032A879 /* RchryUITests */ = {
-			isa = PBXGroup;
-			children = (
-				D7C6F2941FC7163B0032A879 /* RchryUITests.swift */,
-				D7C6F2961FC7163B0032A879 /* Info.plist */,
-			);
-			path = RchryUITests;
 			sourceTree = "<group>";
 		};
 		D7DFD2E01FCDBA6000893BEB /* Login */ = {
@@ -412,27 +381,6 @@
 			productReference = D7C6F2851FC7163B0032A879 /* RchryTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		D7C6F28F1FC7163B0032A879 /* RchryUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D7C6F29F1FC7163B0032A879 /* Build configuration list for PBXNativeTarget "RchryUITests" */;
-			buildPhases = (
-				CC60871681AD22D7EF2FB6E2 /* [CP] Check Pods Manifest.lock */,
-				D7C6F28C1FC7163B0032A879 /* Sources */,
-				D7C6F28D1FC7163B0032A879 /* Frameworks */,
-				D7C6F28E1FC7163B0032A879 /* Resources */,
-				0D5415937410E9E23C55FBF2 /* [CP] Embed Pods Frameworks */,
-				963A0CC6244F9DF490F4C2A8 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D7C6F2921FC7163B0032A879 /* PBXTargetDependency */,
-			);
-			name = RchryUITests;
-			productName = RchryUITests;
-			productReference = D7C6F2901FC7163B0032A879 /* RchryUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -450,11 +398,6 @@
 					D7C6F2841FC7163B0032A879 = {
 						CreatedOnToolsVersion = 9.1;
 						LastSwiftMigration = 0920;
-						ProvisioningStyle = Automatic;
-						TestTargetID = D7C6F2701FC7163B0032A879;
-					};
-					D7C6F28F1FC7163B0032A879 = {
-						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
 						TestTargetID = D7C6F2701FC7163B0032A879;
 					};
@@ -476,7 +419,6 @@
 			targets = (
 				D7C6F2701FC7163B0032A879 /* Rchry */,
 				D7C6F2841FC7163B0032A879 /* RchryTests */,
-				D7C6F28F1FC7163B0032A879 /* RchryUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -508,31 +450,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D7C6F28E1FC7163B0032A879 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0D5415937410E9E23C55FBF2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RchryUITests/Pods-RchryUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		1D8A0E40D9EDA4FA28ACE18D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -624,21 +544,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rchry/Pods-Rchry-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		963A0CC6244F9DF490F4C2A8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RchryUITests/Pods-RchryUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		972F301865FC5BB64A69666A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -670,24 +575,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RchryTests/Pods-RchryTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CC60871681AD22D7EF2FB6E2 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RchryUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -724,14 +611,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D7C6F28C1FC7163B0032A879 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D7C6F2951FC7163B0032A879 /* RchryUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -739,11 +618,6 @@
 			isa = PBXTargetDependency;
 			target = D7C6F2701FC7163B0032A879 /* Rchry */;
 			targetProxy = D7C6F2861FC7163B0032A879 /* PBXContainerItemProxy */;
-		};
-		D7C6F2921FC7163B0032A879 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D7C6F2701FC7163B0032A879 /* Rchry */;
-			targetProxy = D7C6F2911FC7163B0032A879 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -987,40 +861,6 @@
 			};
 			name = Release;
 		};
-		D7C6F2A01FC7163B0032A879 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5BDF93A5376BC52B6C849307 /* Pods-RchryUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2XA4EDUMR4;
-				INFOPLIST_FILE = RchryUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.levente.mathe.RchryUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Rchry;
-			};
-			name = Debug;
-		};
-		D7C6F2A11FC7163B0032A879 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E68E94AEEC220AEB5F1CCEC5 /* Pods-RchryUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2XA4EDUMR4;
-				INFOPLIST_FILE = RchryUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.levente.mathe.RchryUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Rchry;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1047,15 +887,6 @@
 			buildConfigurations = (
 				D7C6F29D1FC7163B0032A879 /* Debug */,
 				D7C6F29E1FC7163B0032A879 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D7C6F29F1FC7163B0032A879 /* Build configuration list for PBXNativeTarget "RchryUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D7C6F2A01FC7163B0032A879 /* Debug */,
-				D7C6F2A11FC7163B0032A879 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

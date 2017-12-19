@@ -26,4 +26,5 @@ protocol AuthService {
     func login(_ socialProvider: SocialProvider, withToken token: String, withCompletion completion: @escaping (AuthError?)->())
     func logout(_ completion: @escaping (AuthError?)->())
     func deleteUser(_ completion: @escaping (AuthError?)->())
+    func isLoggedIn() -> Bool
 }
