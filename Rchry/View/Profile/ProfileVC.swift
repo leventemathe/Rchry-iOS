@@ -18,11 +18,17 @@ class ProfileVC: UIViewController {
         profileVM.logout { errorMessage in
             if let errorMessage = errorMessage {
                 MessageAlertModalVC.present(withTitle: self.ERROR_TITLE, withMessage: errorMessage, fromVC: self)
+            } else {
+                self.presentLoginVC()
             }
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    private func presentLoginVC() {
+        if let parent = navigationController?.parent as? MainVC {
+            parent.setLoginVC()
+        } else {
+            fatalError("The parent of the targets nav vc should be main vc.")
+        }
     }
 }

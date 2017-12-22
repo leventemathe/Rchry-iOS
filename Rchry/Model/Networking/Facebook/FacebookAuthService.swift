@@ -37,6 +37,11 @@ struct FacebookAuthService: SocialAuthService {
     }
     
     func login(_ completion: @escaping (AuthError?, _ token: String?)->()) {
+        // TODO: do i need this?
+        var vc = UIApplication.shared.keyWindow?.rootViewController
+        while vc?.presentedViewController != nil {
+            vc = vc?.presentedViewController
+        }
         loginManager.logIn(withReadPermissions: ["public_profile"], from: nil, handler: { (result, error) in
             if error != nil {
                 completion(.other, nil)

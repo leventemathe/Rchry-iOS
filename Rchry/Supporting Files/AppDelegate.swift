@@ -13,14 +13,13 @@ import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-    
-    var authService = FirebaseAuthService()
+    var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+    private var mainVC = MainVC()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         FirebaseApp.configure()
-        
+
         decideInitialVC()
         return true
     }
@@ -30,36 +29,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return handled
     }
     
-    private func setLoginVC() {
-        let storyboard = UIStoryboard(name: "Login", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "LoginVC")
-        window?.rootViewController = vc
-    }
-    
-    private func setTargetsVC() {
-        let storyboard = UIStoryboard(name: "Targets", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "TargetsNavigationVC")
-        window?.rootViewController = vc
-    }
-    
     private func decideInitialVC() {
-        if authService.isLoggedIn() {
-            setTargetsVC()
-        } else {
-            setLoginVC()
-        }
+        window?.rootViewController = mainVC
+        window?.makeKeyAndVisible()
+    }
+    
+    private func decideVC() {
+        mainVC.decideVC()
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         decideVC()
-    }
-    
-    private func decideVC() {
-        if !authService.isLoggedIn() {
-            if type(of: window?.rootViewController) != LoginVC.self {
-                setLoginVC()
-            }
-        }
     }
 }
 
