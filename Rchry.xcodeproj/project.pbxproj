@@ -57,12 +57,12 @@
 		5BDF93A5376BC52B6C849307 /* Pods-RchryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RchryUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RchryUITests/Pods-RchryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8331675368C4BD72B7D40057 /* Pods-Rchry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rchry.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rchry/Pods-Rchry.release.xcconfig"; sourceTree = "<group>"; };
 		C82D1563AD28DBE6B97FCED7 /* Pods-RchryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RchryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RchryTests/Pods-RchryTests.release.xcconfig"; sourceTree = "<group>"; };
+		D71ACA3B1FF3D35500988370 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Profile.strings; sourceTree = "<group>"; };
 		D71E08D51FCEE9A400D9FAA3 /* MessageAlertModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAlertModalVC.swift; sourceTree = "<group>"; };
 		D71E08D71FCEECA200D9FAA3 /* TargetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetsVC.swift; sourceTree = "<group>"; };
 		D733044A1FCDA88E00FE4B8E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D734C4CC1FD5860000027CDD /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/MessageAlertModal.strings; sourceTree = "<group>"; };
 		D734C4CD1FD5860100027CDD /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Login.strings; sourceTree = "<group>"; };
-		D734C4CF1FD5860200027CDD /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Profile.strings; sourceTree = "<group>"; };
 		D734C4D01FD5860200027CDD /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		D7377D191FDEE50A00AEA161 /* ProfileVMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVMTest.swift; sourceTree = "<group>"; };
 		D7377D1B1FDEE56200AEA161 /* AuthMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthMocks.swift; sourceTree = "<group>"; };
@@ -675,7 +675,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D7D6893D1FD57EFB00ABB213 /* Base */,
-				D734C4CF1FD5860200027CDD /* hu */,
+				D71ACA3B1FF3D35500988370 /* hu */,
 			);
 			name = Profile.storyboard;
 			sourceTree = "<group>";

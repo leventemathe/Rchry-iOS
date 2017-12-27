@@ -10,4 +10,7 @@ import UIKit
 
 class TargetsVC: UIViewController {
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        navigationItem.backBarButtonItem?.title = ""
+    }
 }

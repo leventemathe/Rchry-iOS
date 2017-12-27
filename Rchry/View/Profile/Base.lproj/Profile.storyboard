@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Amatic-Bold.ttf">
+            <string>Amatic-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--ProfileVC-->
+        <!--Profile-->
         <scene sceneID="B4P-Wq-wSE">
             <objects>
                 <viewController storyboardIdentifier="ProfileVC" id="0a0-6k-bB0" customClass="ProfileVC" customModule="Rchry" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,8 +24,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co2-UM-Vss">
-                                <rect key="frame" x="163" y="318" width="48" height="30"/>
-                                <state key="normal" title="Logout"/>
+                                <rect key="frame" x="166" y="314" width="42" height="38"/>
+                                <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="24"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" name="ColorThemeDark"/>
+                                </state>
                                 <connections>
                                     <action selector="logoutBtnTouched:" destination="0a0-6k-bB0" eventType="touchUpInside" id="Cmv-BX-X2L"/>
                                 </connections>
@@ -32,10 +41,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="j48-0w-ESB"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Profile" id="3K7-SA-ivd"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0f8-60-A8s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-263" y="86"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="ColorThemeDark">
+            <color red="0.094999998807907104" green="0.33700001239776611" blue="0.45399999618530273" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
