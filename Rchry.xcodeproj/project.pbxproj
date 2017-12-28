@@ -159,13 +159,13 @@
 			path = AlertModal;
 			sourceTree = "<group>";
 		};
-		D73528EE1FF5277F00EDC0FC /* NewTarget */ = {
+		D73528EE1FF5277F00EDC0FC /* New Target */ = {
 			isa = PBXGroup;
 			children = (
 				D73528EF1FF5279900EDC0FC /* NewTarget.storyboard */,
 				D73528F11FF527B700EDC0FC /* NewTargetVC.swift */,
 			);
-			path = NewTarget;
+			path = "New Target";
 			sourceTree = "<group>";
 		};
 		D7377D1D1FDEE96700AEA161 /* ViewModel */ = {
@@ -323,7 +323,7 @@
 				D71E08D21FCED8CA00D9FAA3 /* AlertModal */,
 				D7F0D8BF1FCC5FB2009A044B /* Login */,
 				D7572C8A1FCDA06F0024DEED /* Targets */,
-				D73528EE1FF5277F00EDC0FC /* NewTarget */,
+				D73528EE1FF5277F00EDC0FC /* New Target */,
 				D7572C911FCDA4980024DEED /* Profile */,
 				D7C6F27D1FC7163B0032A879 /* LaunchScreen.storyboard */,
 				D7A1FA061FED39E1004DDF50 /* MainVC.swift */,
