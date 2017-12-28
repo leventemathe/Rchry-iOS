@@ -6,8 +6,9 @@ target 'Rchry' do
   use_frameworks!
 
   # Pods for Rchry
-  pod 'LMViews',              :git => 'https://github.com/leviouss/LMViews.git', :tag => 'v0.3-alpha'
-  pod 'ReactiveCocoa',        '~> 7.0.1'
+  pod 'LMViews',              :git => 'https://github.com/leviouss/LMViews.git', :tag => 'v0.4-alpha'
+  pod 'RxSwift',    '~> 4.0'
+  pod 'RxCocoa',    '~> 4.0'
   pod 'FBSDKLoginKit',        '~> 4.28.0'
   pod 'Firebase/Analytics',   '~> 4.6.0'
   pod 'Firebase/Auth',        '~> 4.6.0'
@@ -16,11 +17,8 @@ target 'Rchry' do
   target 'RchryTests' do
     inherit! :search_paths
     # Pods for testing
-  end
-
-  target 'RchryUITests' do
-    inherit! :search_paths
-    # Pods for testing
+    pod 'RxBlocking', '~> 4.0'
+    pod 'RxTest',     '~> 4.0'
   end
 
 end

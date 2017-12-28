@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import RxCocoa
 
 class TargetsVC: UIViewController {
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        navigationItem.backBarButtonItem?.title = ""
+    @IBAction func newTargetBtnTouched(_ sender: UIBarButtonItem) {
+        let newTargetVC = UIStoryboard(name: "NewTarget", bundle: nil).instantiateViewController(withIdentifier: "NewTargetVC")
+        navigationController?.pushViewController(newTargetVC, animated: true)
     }
 }

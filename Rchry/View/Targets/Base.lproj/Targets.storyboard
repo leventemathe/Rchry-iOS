@@ -22,10 +22,16 @@
                     </view>
                     <navigationItem key="navigationItem" title="Targets" id="kOo-BJ-KaT">
                         <barButtonItem key="backBarButtonItem" title=" " id="oyV-o2-T89"/>
-                        <barButtonItem key="leftBarButtonItem" title="Profile" image="profile_icon" id="cVM-8k-48Q">
+                        <barButtonItem key="leftBarButtonItem" image="profile_icon" id="cVM-8k-48Q">
                             <color key="tintColor" name="ColorThemeMid"/>
                             <connections>
                                 <segue destination="9Ry-Pe-szW" kind="show" id="vR9-E0-WWL"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="9J5-KE-Go8">
+                            <color key="tintColor" name="ColorThemeMid"/>
+                            <connections>
+                                <action selector="newTargetBtnTouched:" destination="r9x-aX-ug9" id="MES-gV-MIh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
