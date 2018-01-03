@@ -8,11 +8,7 @@
 
 import UIKit
 
-class LMSegmentedControl: UISegmentedControl {
-
-    override func awakeFromNib() {
-        
-    }
+open class LMSegmentedControl: UISegmentedControl {
     
     @IBInspectable open var cornerRadius: CGFloat = 0.0 {
         didSet {

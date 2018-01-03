@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '24A7E80E0B458EF8798DF2B43943F7E4'
+               BlueprintIdentifier = '05029A74B4AA8DCC359D0C69128683B0'
                BlueprintName = 'LMViews'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'LMViews.framework'>

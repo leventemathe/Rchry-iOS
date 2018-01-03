@@ -1,10 +1,10 @@
 PODS:
-  - Bolts (1.8.4):
-    - Bolts/AppLinks (= 1.8.4)
-    - Bolts/Tasks (= 1.8.4)
-  - Bolts/AppLinks (1.8.4):
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
-  - Bolts/Tasks (1.8.4)
+  - Bolts/Tasks (1.9.0)
   - FBSDKCoreKit (4.29.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.28.0):
@@ -49,18 +49,18 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.3)
   - GTMSessionFetcher/Core (1.1.12)
   - leveldb-library (1.20)
-  - LMViews (0.4)
+  - LMViews (0.5.1)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - RxBlocking (4.0.0):
+  - RxBlocking (4.1.0):
     - RxSwift (~> 4.0)
-  - RxCocoa (4.0.0):
+  - RxCocoa (4.1.0):
     - RxSwift (~> 4.0)
-  - RxSwift (4.0.0)
-  - RxTest (4.0.0):
+  - RxSwift (4.1.0)
+  - RxTest (4.1.0):
     - RxSwift (~> 4.0)
 
 DEPENDENCIES:
@@ -68,7 +68,7 @@ DEPENDENCIES:
   - Firebase/Analytics (~> 4.6.0)
   - Firebase/Auth (~> 4.6.0)
   - Firebase/Database (~> 4.6.0)
-  - LMViews (from `https://github.com/leviouss/LMViews.git`, tag `v0.4-alpha`)
+  - LMViews (from `https://github.com/leviouss/LMViews.git`, tag `v0.5.1-alpha`)
   - RxBlocking (~> 4.0)
   - RxCocoa (~> 4.0)
   - RxSwift (~> 4.0)
@@ -77,15 +77,15 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   LMViews:
     :git: https://github.com/leviouss/LMViews.git
-    :tag: v0.4-alpha
+    :tag: v0.5.1-alpha
 
 CHECKOUT OPTIONS:
   LMViews:
     :git: https://github.com/leviouss/LMViews.git
-    :tag: v0.4-alpha
+    :tag: v0.5.1-alpha
 
 SPEC CHECKSUMS:
-  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   FBSDKCoreKit: 6f139173dc63a1deaff4430a55f2fe5bb222d2af
   FBSDKLoginKit: b077381c27d800f21661757e8140cf2c80a91e4a
   Firebase: 27321a925aa85520618255a7c630859e0502ccbd
@@ -97,13 +97,13 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   GTMSessionFetcher: ebaa1f79a5366922c1735f1566901f50beba23b7
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
-  LMViews: c42493a12578d9216ed8eb82e66d55f78c757ea6
+  LMViews: 629284ed5acb8a60ec56d6e1c76f24b8fe2bbafe
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  RxBlocking: 923c2c8106d80d7c2d6b276afd66ce3b10824836
-  RxCocoa: d62846ca96495d862fa4c59ea7d87e5031d7340e
-  RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
-  RxTest: 0041e792cede35e53e4749f378d21482af0e9d12
+  RxBlocking: 193d33fad26f00a4e60831481938486deaaaa200
+  RxCocoa: cc1fec49cdc8fabe645964de7c51c099a36c2aa8
+  RxSwift: 4219941c1244c88002901bd87a69d3aea9ae71f0
+  RxTest: cc62dd7e02049f21dfc910d0c4ca8fee1ecd4f74
 
-PODFILE CHECKSUM: d3762c6cb6fb9f1745546f995d6d036487e671c7
+PODFILE CHECKSUM: bd1258abbd6e26eb0130d93e9119f0f4bd32f226
 
 COCOAPODS: 1.4.0.beta.2

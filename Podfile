@@ -6,9 +6,9 @@ target 'Rchry' do
   use_frameworks!
 
   # Pods for Rchry
-  pod 'LMViews',              :git => 'https://github.com/leviouss/LMViews.git', :tag => 'v0.4-alpha'
-  pod 'RxSwift',    '~> 4.0'
-  pod 'RxCocoa',    '~> 4.0'
+  pod 'LMViews',              :git => 'https://github.com/leviouss/LMViews.git', :tag => 'v0.5.1-alpha'
+  pod 'RxSwift',              '~> 4.0'
+  pod 'RxCocoa',              '~> 4.0'
   pod 'FBSDKLoginKit',        '~> 4.28.0'
   pod 'Firebase/Analytics',   '~> 4.6.0'
   pod 'Firebase/Auth',        '~> 4.6.0'

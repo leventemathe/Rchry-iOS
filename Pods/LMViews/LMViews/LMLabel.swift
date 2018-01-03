@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LMLabel: UILabel {
+open class LMLabel: UILabel {
 
     @IBInspectable open var cornerRadius: CGFloat = 0.0 {
         didSet {
@@ -90,11 +90,11 @@ class LMLabel: UILabel {
     
     private var textPaddingInsets: UIEdgeInsets = UIEdgeInsets.zero
     
-    override func drawText(in rect: CGRect) {
+    override open func drawText(in rect: CGRect) {
         super.drawText(in: UIEdgeInsetsInsetRect(rect, textPaddingInsets))
     }
     
-    override var intrinsicContentSize: CGSize {
+    override open var intrinsicContentSize: CGSize {
         var size = super.intrinsicContentSize
         size.width += textPaddingInsets.left + textPaddingInsets.right
         size.height += textPaddingInsets.top + textPaddingInsets.bottom
