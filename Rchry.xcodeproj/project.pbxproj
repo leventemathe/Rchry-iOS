@@ -42,6 +42,8 @@
 		D7C6F27A1FC7163B0032A879 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7C6F2781FC7163B0032A879 /* Login.storyboard */; };
 		D7C6F27C1FC7163B0032A879 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7C6F27B1FC7163B0032A879 /* Assets.xcassets */; };
 		D7C6F27F1FC7163B0032A879 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7C6F27D1FC7163B0032A879 /* LaunchScreen.storyboard */; };
+		D7C7E9101FFE848C003C102D /* TargetsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C7E90F1FFE848C003C102D /* TargetsService.swift */; };
+		D7C7E9161FFE956B003C102D /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C7E9151FFE956B003C102D /* DatabaseError.swift */; };
 		D7D689381FD57EDC00ABB213 /* MessageAlertModal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D689361FD57EDC00ABB213 /* MessageAlertModal.storyboard */; };
 		D7D6893B1FD57EEF00ABB213 /* Targets.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D689391FD57EEF00ABB213 /* Targets.storyboard */; };
 		D7D6893E1FD57EFB00ABB213 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D6893C1FD57EFB00ABB213 /* Profile.storyboard */; };
@@ -111,6 +113,8 @@
 		D7C6F2801FC7163B0032A879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D7C6F2851FC7163B0032A879 /* RchryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RchryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C6F28B1FC7163B0032A879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7C7E90F1FFE848C003C102D /* TargetsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetsService.swift; sourceTree = "<group>"; };
+		D7C7E9151FFE956B003C102D /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 		D7D689371FD57EDC00ABB213 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MessageAlertModal.storyboard; sourceTree = "<group>"; };
 		D7D6893A1FD57EEF00ABB213 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Targets.storyboard; sourceTree = "<group>"; };
 		D7D6893D1FD57EFB00ABB213 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
@@ -248,10 +252,8 @@
 		D7AD33A11FCDB43800C12112 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				D7AD33A51FCDB4F600C12112 /* SocialAuthService.swift */,
-				D7DFD2DE1FCDB90B00893BEB /* AuthService.swift */,
-				D7AD33A21FCDB44300C12112 /* Facebook */,
-				D77EE5151FCDB82100FAEDBA /* Firebase */,
+				D7C7E9111FFE85B8003C102D /* Auth */,
+				D7C7E9141FFE861E003C102D /* Database */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -316,6 +318,26 @@
 				D7C6F28B1FC7163B0032A879 /* Info.plist */,
 			);
 			path = RchryTests;
+			sourceTree = "<group>";
+		};
+		D7C7E9111FFE85B8003C102D /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				D7AD33A51FCDB4F600C12112 /* SocialAuthService.swift */,
+				D7DFD2DE1FCDB90B00893BEB /* AuthService.swift */,
+				D7AD33A21FCDB44300C12112 /* Facebook */,
+				D77EE5151FCDB82100FAEDBA /* Firebase */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		D7C7E9141FFE861E003C102D /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				D7C7E9151FFE956B003C102D /* DatabaseError.swift */,
+				D7C7E90F1FFE848C003C102D /* TargetsService.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		D7DFD2E01FCDBA6000893BEB /* Login */ = {
@@ -648,10 +670,12 @@
 				D73528F21FF527B700EDC0FC /* NewTargetVC.swift in Sources */,
 				D7AD33A61FCDB4F600C12112 /* SocialAuthService.swift in Sources */,
 				D71E08D61FCEE9A400D9FAA3 /* MessageAlertModalVC.swift in Sources */,
+				D7C7E9161FFE956B003C102D /* DatabaseError.swift in Sources */,
 				D71FB5B81FFD32A20085CDDC /* Extensions.swift in Sources */,
 				D7A1FA071FED39E1004DDF50 /* MainVC.swift in Sources */,
 				D71FB5BC1FFD34C40085CDDC /* ScoresSubVM.swift in Sources */,
 				D71FB5BA1FFD33D30085CDDC /* ScoreCell.swift in Sources */,
+				D7C7E9101FFE848C003C102D /* TargetsService.swift in Sources */,
 				D7C36A071FFD289E00C2E68E /* PickAnIconSubVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

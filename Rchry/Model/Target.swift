@@ -8,11 +8,11 @@
 
 import UIKit
 
-struct Target {
+struct Target: Codable {
     
     let name: String
     let distance: Float
     let scores: [Float]
-    let icon: UIImage
+    let icon: String
     var shots: Int
 }
