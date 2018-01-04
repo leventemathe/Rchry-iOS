@@ -6,11 +6,11 @@
 //  Copyright © 2018. Máthé Levente. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class PickAnIconSubVM {
     
-    let images = [#imageLiteral(resourceName: "target"), #imageLiteral(resourceName: "deer"), #imageLiteral(resourceName: "bear"), #imageLiteral(resourceName: "ram"), #imageLiteral(resourceName: "wolf")]
+    let images = ["target", "deer", "bear", "ram", "wolf"]
     
     private var _selectedImage: Int?
     

@@ -103,7 +103,7 @@ class PickAnIconCollectionViewDelegate: NSObject, UICollectionViewDelegate, UICo
             } else {
                 cell.removeBorder()
             }
-            cell.update(pickAnIconVM.images[indexPath.row])
+            cell.update(UIImage(named: pickAnIconVM.images[indexPath.row])!)
             return cell
         }
         fatalError("Could not cast cell for item at ... as PickAnIconCell.")
