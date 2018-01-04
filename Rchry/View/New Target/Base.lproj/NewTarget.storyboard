@@ -85,7 +85,7 @@
                                                                                 <rect key="frame" x="0.0" y="0.0" width="101" height="32"/>
                                                                                 <color key="textColor" name="ColorThemeDark"/>
                                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="color" keyPath="underlineColor">
                                                                                         <color key="value" name="ColorThemeMid"/>
@@ -93,7 +93,7 @@
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="underlineWidth">
                                                                                         <real key="value" value="1"/>
                                                                                     </userDefinedRuntimeAttribute>
-                                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="numbersOnly" value="YES"/>
+                                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="numbersOnly" value="NO"/>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </textField>
                                                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oTs-rB-r5U" customClass="LMSegmentedControl" customModule="LMViews">
@@ -132,7 +132,7 @@
                                                                                 <rect key="frame" x="0.0" y="0.0" width="169.5" height="32"/>
                                                                                 <color key="textColor" name="ColorThemeDark"/>
                                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="color" keyPath="underlineColor">
                                                                                         <color key="value" name="ColorThemeMid"/>
@@ -140,7 +140,7 @@
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="underlineWidth">
                                                                                         <real key="value" value="1"/>
                                                                                     </userDefinedRuntimeAttribute>
-                                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="numbersOnly" value="YES"/>
+                                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="numbersOnly" value="NO"/>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </textField>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cc-MP-sIz" customClass="LMButton" customModule="LMViews">

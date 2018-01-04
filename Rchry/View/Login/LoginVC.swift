@@ -34,7 +34,6 @@ class LoginVC: UIViewController {
         }
     }
     
-    // TODO: maybe move this or change to call main vc
     private func presentTargetsVC() {
         if let parent = parent as? MainVC {
             parent.setTargetsNavigationVC()

@@ -23,7 +23,25 @@ extension UIViewController {
 
 extension Float {
     
-    var prettyString: String {
-        return self.truncatingRemainder(dividingBy: 1.0) == 0.0 ? String(format: "%.0f", self) : String(self)
+    var prettyString: String? {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.locale = Locale.current
+        if let result = numberFormatter.string(from: NSNumber(value: self)) {
+            return result
+        }
+        return nil
+    }
+}
+
+extension String {
+    
+    var float: Float? {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.locale = Locale.current
+        if let result =  numberFormatter.number(from: self) {
+            return result.floatValue
+        }
+        return nil
     }
 }
