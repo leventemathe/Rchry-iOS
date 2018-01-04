@@ -24,6 +24,7 @@ class NewTargetVC: UIViewController {
     private var pickAnIconCollectionViewDelegate: PickAnIconCollectionViewDelegate!
     
     @IBAction func addScoreBtnTouched(_ sender: LMButton) {
+        // TODO: locale number
         if let scoreString = scoresTextField.text, let score = Float(scoreString) {
             _ = newTargetVM.scoresSubVM.add(score: score)
             scoresCollectionView.reloadData()
@@ -66,7 +67,7 @@ class ScoresCollectionViewDelegate: NSObject, UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScoreCell", for: indexPath) as? ScoreCell {
             if let score = scoresVM[indexPath.row] {
-                cell.update(String(score))
+                cell.update(score.prettyString)
             }
             return cell
         }
@@ -74,6 +75,7 @@ class ScoresCollectionViewDelegate: NSObject, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // TODO: locale number
         if let cell = collectionView.cellForItem(at: indexPath) as? ScoreCell, let scoreString = cell.scoreLbl.text, let score = Float(scoreString) {
             if scoresVM.remove(score: score) {
                 collectionView.deleteItems(at: [indexPath])
