@@ -78,14 +78,14 @@
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </textField>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="KLc-uo-TDz">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="KLc-uo-TDz">
                                                                         <rect key="frame" x="0.0" y="51.5" width="213.5" height="32"/>
                                                                         <subviews>
                                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. 15" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fbO-70-Zpc" customClass="LMTextField" customModule="LMViews">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="91.5" height="32"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="101" height="32"/>
                                                                                 <color key="textColor" name="ColorThemeDark"/>
                                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                                                                <textInputTraits key="textInputTraits"/>
+                                                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="color" keyPath="underlineColor">
                                                                                         <color key="value" name="ColorThemeMid"/>
@@ -97,9 +97,8 @@
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </textField>
                                                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oTs-rB-r5U" customClass="LMSegmentedControl" customModule="LMViews">
-                                                                                <rect key="frame" x="103.5" y="0.0" width="110" height="33"/>
+                                                                                <rect key="frame" x="113" y="0.0" width="100.5" height="33"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="width" constant="110" id="9c1-hI-Gzg"/>
                                                                                     <constraint firstAttribute="height" constant="32" id="k4Q-Lw-dgF"/>
                                                                                 </constraints>
                                                                                 <segments>
@@ -133,7 +132,7 @@
                                                                                 <rect key="frame" x="0.0" y="0.0" width="169.5" height="32"/>
                                                                                 <color key="textColor" name="ColorThemeDark"/>
                                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                                                                <textInputTraits key="textInputTraits"/>
+                                                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="color" keyPath="underlineColor">
                                                                                         <color key="value" name="ColorThemeMid"/>
@@ -303,10 +302,10 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="3bX-WO-4Qm" secondAttribute="trailing" id="Brn-cm-uJP"/>
+                                                    <constraint firstAttribute="trailing" secondItem="APW-5W-jSi" secondAttribute="trailing" id="IO0-Vc-jXm"/>
                                                     <constraint firstAttribute="trailing" secondItem="MlD-Fi-XvK" secondAttribute="trailing" id="Tv5-1h-ziE"/>
                                                     <constraint firstItem="MlD-Fi-XvK" firstAttribute="leading" secondItem="dTH-SK-zQK" secondAttribute="leading" id="dtl-wY-Tcu"/>
-                                                    <constraint firstAttribute="trailing" secondItem="APW-5W-jSi" secondAttribute="trailing" id="gDL-QX-IBQ"/>
-                                                    <constraint firstItem="APW-5W-jSi" firstAttribute="leading" secondItem="dTH-SK-zQK" secondAttribute="leading" id="qoY-lL-VvT"/>
+                                                    <constraint firstItem="APW-5W-jSi" firstAttribute="leading" secondItem="dTH-SK-zQK" secondAttribute="leading" id="oxj-MU-nVG"/>
                                                     <constraint firstItem="3bX-WO-4Qm" firstAttribute="leading" secondItem="dTH-SK-zQK" secondAttribute="leading" id="rqg-0O-gwk"/>
                                                 </constraints>
                                             </stackView>
@@ -359,9 +358,6 @@
         </namedColor>
         <namedColor name="ColorThemeDark">
             <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="ColorThemeDark">
-            <color red="0.094999998807907104" green="0.33700001239776611" blue="0.45399999618530273" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ColorThemeMid">
             <color red="0.37599998712539673" green="0.74500000476837158" blue="0.70200002193450928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
