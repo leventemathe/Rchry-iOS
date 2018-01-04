@@ -24,7 +24,7 @@ class NewTargetVC: UIViewController {
     private var pickAnIconCollectionViewDelegate: PickAnIconCollectionViewDelegate!
     
     @IBAction func addScoreBtnTouched(_ sender: LMButton) {
-        if let scoreString = scoresTextField.text, let score = Int(scoreString) {
+        if let scoreString = scoresTextField.text, let score = Float(scoreString) {
             _ = newTargetVM.scoresSubVM.add(score: score)
             scoresCollectionView.reloadData()
         }
@@ -74,7 +74,7 @@ class ScoresCollectionViewDelegate: NSObject, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? ScoreCell, let scoreString = cell.scoreLbl.text, let score = Int(scoreString) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? ScoreCell, let scoreString = cell.scoreLbl.text, let score = Float(scoreString) {
             if scoresVM.remove(score: score) {
                 collectionView.deleteItems(at: [indexPath])
             }

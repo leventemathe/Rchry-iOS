@@ -10,13 +10,13 @@ import Foundation
 
 class ScoresSubVM {
     
-    private var _scores = [Int]()
+    private var _scores = [Float]()
     
-    var scores: [Int] {
+    var scores: [Float] {
         return _scores
     }
     
-    func add(score: Int) -> Bool {
+    func add(score: Float) -> Bool {
         if !_scores.contains(score) {
             _scores.append(score)
             return true
@@ -24,7 +24,7 @@ class ScoresSubVM {
         return false
     }
     
-    func remove(score: Int) -> Bool {
+    func remove(score: Float) -> Bool {
         if let scoreIndex = _scores.index(of: score) {
             _scores.remove(at: scoreIndex)
             return true
@@ -36,7 +36,7 @@ class ScoresSubVM {
         return _scores.count
     }
     
-    subscript(index: Int) -> Int? {
+    subscript(index: Int) -> Float? {
         return _scores[index]
     }
 }
