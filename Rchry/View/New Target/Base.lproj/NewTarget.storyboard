@@ -298,6 +298,9 @@
                                                                 <real key="value" value="23"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="createBtnTouched:" destination="3TO-43-DHA" eventType="touchUpInside" id="Zkh-Ju-VhF"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>

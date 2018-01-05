@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum DatabaseError {
+enum DatabaseError: Error {
     case network
     case server
     case json

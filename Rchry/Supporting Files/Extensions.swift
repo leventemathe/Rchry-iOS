@@ -23,12 +23,28 @@ extension UIViewController {
 
 extension Float {
     
-    var prettyString: String? {
+    func prettyString(_ locale: Locale = Locale.current) -> String? {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
-        numberFormatter.locale = Locale.current
+        numberFormatter.locale = locale
         if let result = numberFormatter.string(from: NSNumber(value: self)) {
             return result
+        }
+        return nil
+    }
+    
+    func dashSeparatedString(_ locale: Locale = Locale.current) -> String? {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.locale = locale
+        
+        if let result = numberFormatter.string(from: NSNumber(value: self)), let decimalSeparator = locale.decimalSeparator {
+            let subStrings = result.split(separator: Character(decimalSeparator))
+            if subStrings.count >= 2 {
+                return String(subStrings[0]) + "-" + String(subStrings[1])
+            } else if subStrings.count >= 1 {
+                return String(subStrings[0])
+            }
         }
         return nil
     }
@@ -36,9 +52,9 @@ extension Float {
 
 extension String {
     
-    var float: Float? {
+    func float(_ locale: Locale = Locale.current) -> Float? {
         let numberFormatter = NumberFormatter()
-        numberFormatter.locale = Locale.current
+        numberFormatter.locale = locale
         if let result =  numberFormatter.number(from: self) {
             return result.floatValue
         }
