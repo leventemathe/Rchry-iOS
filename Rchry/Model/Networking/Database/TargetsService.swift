@@ -22,6 +22,7 @@ struct TargetNames {
 protocol TargetService {
     
     func create(target: Target) -> Observable<Void>
+    func doesTargetExist(withName name: String, andWithDistance distance: Float) -> Observable<Bool>
 }
 
 struct FirebaseTargetService: TargetService {
@@ -40,25 +41,62 @@ struct FirebaseTargetService: TargetService {
         self.jsonDecoder = jsonDecoder
     }
     
-    // TODO: return observable
+    static func createTargetKey(fromName name: String, andDistance distance: Float) -> String? {
+        if let distanceString = distance.dashSeparatedString() {
+            return name + "-" + distanceString
+        }
+        return nil
+    }
+    
     func create(target: Target) -> Observable<Void> {
-        let subject = PublishSubject<Void>()
-        guard let distanceString = target.distance.dashSeparatedString() else {
-            subject.onError(DatabaseError.other)
-            return subject.asObserver()
+        guard let pathName = FirebaseTargetService.createTargetKey(fromName: target.name, andDistance: target.distance) else {
+            return Observable<Void>.error(DatabaseError.other)
         }
-        databaseReference.child(TargetNames.PATH).child(target.name + "-" + distanceString).updateChildValues([
-            TargetNames.NAME: target.name,
-            TargetNames.DISTANCE: target.distance,
-            TargetNames.SCORES: target.scores,
-            TargetNames.ICON: target.icon
-        ]) { error, snapshot in
-            if let error = error {
-                subject.onError(DatabaseError.server)
-            } else {
-                subject.onCompleted()
+        return Observable<Void>.create { observer in
+            self.databaseReference.child(TargetNames.PATH).child(pathName).updateChildValues([
+                TargetNames.NAME: target.name,
+                TargetNames.DISTANCE: target.distance,
+                TargetNames.SCORES: target.scores,
+                TargetNames.ICON: target.icon
+            ]) { error, snapshot in
+                if let error = error {
+                    observer.onError(DatabaseError.server)
+                } else {
+                    observer.onCompleted()
+                }
             }
+            return Disposables.create()
         }
-        return subject.asObserver()
+    }
+    
+    func doesTargetExist(withName name: String, andWithDistance distance: Float) -> Observable<Bool> {
+        guard let pathName = FirebaseTargetService.createTargetKey(fromName: name, andDistance: distance) else {
+            return Observable<Bool>.error(DatabaseError.other)
+        }
+        print("pathname: \(pathName)")
+        return Observable<Bool>.create { observer in
+            self.databaseReference.child(TargetNames.PATH).child(pathName).observeSingleEvent(of: .value, with: { snapshot in
+                if snapshot.exists() {
+                    observer.onNext(true)
+                } else {
+                    observer.onNext(false)
+                }
+                observer.onCompleted()
+            }, withCancel: { error in
+                observer.onError(DatabaseError.server)
+            })
+            return Disposables.create()
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+

@@ -1,3 +1,5 @@
+/* Class = "UILabel"; text = "A target with this name and distance already exists."; ObjectID = "IoV-3j-X5l"; */
+"IoV-3j-X5l.text" = "Ez a cél már létezik ezzel a távval.";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "6j6-Au-Hoq"; */
 "6j6-Au-Hoq.text" = "Név";

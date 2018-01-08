@@ -8,9 +8,12 @@
 
 import UIKit
 import LMViews
+import RxCocoa
+import RxSwift
 
 class NewTargetVC: UIViewController {
     
+    @IBOutlet weak var targetDistanceExistsErrorLbl: UILabel!
     @IBOutlet weak var nameTextField: LMTextField!
     @IBOutlet weak var distanceTextField: LMTextField!
     @IBOutlet weak var scoresTextField: LMTextField!
@@ -38,6 +41,7 @@ class NewTargetVC: UIViewController {
         hideKeyboardWhenTappedAround()
         setupScoresCollectionView()
         setupPickAnIconCollectionView()
+        setupNameAndDistanceChecking()
     }
     
     private func setupScoresCollectionView() {
@@ -50,6 +54,20 @@ class NewTargetVC: UIViewController {
         pickAnIconCollectionViewDelegate = PickAnIconCollectionViewDelegate(pickAnIconCollectionView, withPickAnIconSubVM: newTargetVM.pickAnIconSubVM)
         pickAnIconCollectionView.delegate = pickAnIconCollectionViewDelegate
         pickAnIconCollectionView.dataSource = pickAnIconCollectionViewDelegate
+    }
+    
+    private func setupNameAndDistanceChecking() {
+        bindNameAndDistanceToVariables()
+        bindExistsVariableToErrorLblIsHidden()
+    }
+    
+    private func bindNameAndDistanceToVariables() {
+        newTargetVM.bindName(fromObservable: nameTextField.rx.text.asObservable())
+        newTargetVM.bindDistance(fromObservable: distanceTextField.rx.text.asObservable())
+    }
+    
+    private func bindExistsVariableToErrorLblIsHidden() {
+        newTargetVM.bindTargetExists(toObserver: targetDistanceExistsErrorLbl.rx.isHidden.asObserver())
     }
 }
 

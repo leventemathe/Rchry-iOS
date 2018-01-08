@@ -76,7 +76,6 @@
 		D71FB5BB1FFD34C40085CDDC /* ScoresSubVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresSubVM.swift; sourceTree = "<group>"; };
 		D71FB5BD1FFD3A820085CDDC /* NewTargetVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTargetVM.swift; sourceTree = "<group>"; };
 		D71FB5C21FFD48360085CDDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NewTarget.storyboard; sourceTree = "<group>"; };
-		D71FB5C41FFD48660085CDDC /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/NewTarget.strings; sourceTree = "<group>"; };
 		D733044A1FCDA88E00FE4B8E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D734C4CC1FD5860000027CDD /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/MessageAlertModal.strings; sourceTree = "<group>"; };
 		D734C4CD1FD5860100027CDD /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Login.strings; sourceTree = "<group>"; };
@@ -84,6 +83,7 @@
 		D73528F11FF527B700EDC0FC /* NewTargetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTargetVC.swift; sourceTree = "<group>"; };
 		D7377D191FDEE50A00AEA161 /* ProfileVMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVMTest.swift; sourceTree = "<group>"; };
 		D7377D1B1FDEE56200AEA161 /* AuthMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthMocks.swift; sourceTree = "<group>"; };
+		D74BA1A72003D37400B84CC4 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/NewTarget.strings; sourceTree = "<group>"; };
 		D7572C8F1FCDA3FD0024DEED /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		D7572C931FCDA4ED0024DEED /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
 		D75D54641FD83740003B3D3F /* AuthErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrorHandler.swift; sourceTree = "<group>"; };
@@ -707,7 +707,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D71FB5C21FFD48360085CDDC /* Base */,
-				D71FB5C41FFD48660085CDDC /* hu */,
+				D74BA1A72003D37400B84CC4 /* hu */,
 			);
 			name = NewTarget.storyboard;
 			sourceTree = "<group>";
