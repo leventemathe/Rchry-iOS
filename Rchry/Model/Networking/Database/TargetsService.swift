@@ -73,7 +73,6 @@ struct FirebaseTargetService: TargetService {
         guard let pathName = FirebaseTargetService.createTargetKey(fromName: name, andDistance: distance) else {
             return Observable<Bool>.error(DatabaseError.other)
         }
-        print("pathname: \(pathName)")
         return Observable<Bool>.create { observer in
             self.databaseReference.child(TargetNames.PATH).child(pathName).observeSingleEvent(of: .value, with: { snapshot in
                 if snapshot.exists() {
