@@ -16,44 +16,31 @@ class NewTargetVC: UIViewController {
     @IBOutlet weak var targetDistanceExistsErrorLbl: UILabel!
     @IBOutlet weak var nameTextField: LMTextField!
     @IBOutlet weak var distanceTextField: LMTextField!
+    
     @IBOutlet weak var scoresTextField: LMTextField!
+    @IBOutlet weak var addScoreBtn: LMButton!
     
     @IBOutlet weak var scoresCollectionView: UICollectionView!
     @IBOutlet weak var pickAnIconCollectionView: UICollectionView!
     
+    @IBOutlet weak var createBtn: LMButton!
+    
     var newTargetVM = NewTargetVM()
-    
-    private var scoresCollectionViewDelegate: ScoresCollectionViewDelegate!
-    private var pickAnIconCollectionViewDelegate: PickAnIconCollectionViewDelegate!
-    
-    @IBAction func addScoreBtnTouched(_ sender: LMButton) {
-        if let scoreString = scoresTextField.text, let score = scoreString.float() {
-            _ = newTargetVM.scoresSubVM.add(score: score)
-            scoresCollectionView.reloadData()
-        }
-    }
-    
-    @IBAction func createBtnTouched(_ sender: LMButton) {
-        newTargetVM.createTarget()
-    }
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         hideKeyboardWhenTappedAround()
+        setupNameAndDistanceChecking()
+        setupNewScoreAdding()
         setupScoresCollectionView()
         setupPickAnIconCollectionView()
-        setupNameAndDistanceChecking()
+        setupSelectedIconSource()
+        setupCreateBtn()
     }
     
-    private func setupScoresCollectionView() {
-        scoresCollectionViewDelegate = ScoresCollectionViewDelegate(scoresCollectionView, withScoresSubVM: newTargetVM.scoresSubVM)
-        scoresCollectionView.delegate = scoresCollectionViewDelegate
-        scoresCollectionView.dataSource = scoresCollectionViewDelegate
-    }
-    
-    private func setupPickAnIconCollectionView() {
-        pickAnIconCollectionViewDelegate = PickAnIconCollectionViewDelegate(pickAnIconCollectionView, withPickAnIconSubVM: newTargetVM.pickAnIconSubVM)
-        pickAnIconCollectionView.delegate = pickAnIconCollectionViewDelegate
-        pickAnIconCollectionView.dataSource = pickAnIconCollectionViewDelegate
+    override func viewDidAppear(_ animated: Bool) {
+        setupAddingBorderToSelectedIcon()
     }
     
     private func setupNameAndDistanceChecking() {
@@ -62,89 +49,85 @@ class NewTargetVC: UIViewController {
     }
     
     private func bindNameAndDistanceToVariables() {
-        newTargetVM.bindName(fromObservable: nameTextField.rx.text.asObservable())
-        newTargetVM.bindDistance(fromObservable: distanceTextField.rx.text.asObservable())
+        newTargetVM.bindInputName(fromObservable: nameTextField.rx.text.asObservable())
+        newTargetVM.bindInputDistance(fromObservable: distanceTextField.rx.text.asObservable())
     }
     
     private func bindExistsVariableToErrorLblIsHidden() {
-        newTargetVM.bindTargetExists(toObserver: targetDistanceExistsErrorLbl.rx.isHidden.asObserver())
-    }
-}
-
-class ScoresCollectionViewDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    private weak var collectionView: UICollectionView!
-    private var scoresVM: ScoresSubVM
-    
-    init(_ collectionView: UICollectionView, withScoresSubVM scoresVM: ScoresSubVM) {
-        self.collectionView = collectionView
-        self.scoresVM = scoresVM
+        newTargetVM.bindOutputTargetExists(toObserver: targetDistanceExistsErrorLbl.rx.isHidden.asObserver())
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return scoresVM.count
+    private func setupNewScoreAdding() {
+        let tap = addScoreBtn.rx.tap
+        let scoreText = scoresTextField.rx.text
+        
+        let scoreObservable = scoreText.asObservable()
+            .filter({ $0 != nil && $0!.float() != nil })
+            .map({ $0!.float()! })
+            .flatMap({ Observable<Float>.just($0) })
+        
+        let tapWithScoreObservable = tap.asObservable()
+            .withLatestFrom(scoreObservable)
+        newTargetVM.bindInputNewScore(fromObservable: tapWithScoreObservable)
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScoreCell", for: indexPath) as? ScoreCell {
-            if let score = scoresVM[indexPath.row], let scoreString = score.prettyString() {
+    private func setupScoresCollectionView() {
+        setupScoresCollectionViewDataSource()
+        setupScoreTapped()
+    }
+    
+    private func setupScoresCollectionViewDataSource() {
+        let datasource = newTargetVM.outputScoresDatasource
+        datasource.asObservable().bind(to: scoresCollectionView.rx.items(cellIdentifier: "ScoreCell", cellType: ScoreCell.self)) { row, score, cell in
+            if let scoreString = score.prettyString() {
                 cell.update(scoreString)
-            }
-            return cell
-        }
-        fatalError("Could not cast cell for item at ... as ScoreCell.")
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? ScoreCell  {
-            if let scoreString = cell.scoreLbl.text, let score = scoreString.float() {
-                if scoresVM.remove(score: score) {
-                    collectionView.deleteItems(at: [indexPath])
-                }
-            }
-        }
-    }
-}
-
-class PickAnIconCollectionViewDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    private weak var collectionView: UICollectionView!
-    private var pickAnIconVM: PickAnIconSubVM
-    
-    init(_ collectionView: UICollectionView, withPickAnIconSubVM pickAnIconVM: PickAnIconSubVM) {
-        self.collectionView = collectionView
-        self.pickAnIconVM = pickAnIconVM
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return pickAnIconVM.images.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PickAnIconCell", for: indexPath) as? PickAnIconCell {
-            if pickAnIconVM.isSelected(indexPath.row) {
-                cell.addBorder()
             } else {
-                cell.removeBorder()
+                cell.update("")
             }
-            cell.update(UIImage(named: pickAnIconVM.images[indexPath.row])!)
-            return cell
-        }
-        fatalError("Could not cast cell for item at ... as PickAnIconCell.")
+            }.disposed(by: disposeBag)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if pickAnIconVM.isSelected(indexPath.row) {
-            return
-        }
-        if let newSelectedCell = collectionView.cellForItem(at: indexPath) as? PickAnIconCell {
-            if let selected = pickAnIconVM.selectedImage, let oldSelectedCell = collectionView.cellForItem(at: IndexPath(row: selected, section: 0)) as? PickAnIconCell {
-                oldSelectedCell.removeBorder()
+    private func setupScoreTapped() {
+        let tapEventWithIndex = scoresCollectionView.rx.itemSelected
+            .asObservable()
+            .flatMap({ Observable<Int>.just($0.row) })
+        newTargetVM.bindInputDeleteScore(fromObservable: tapEventWithIndex)
+    }
+    
+    private func setupPickAnIconCollectionView() {
+        setupPickAnIconCollectionViewDatasource()
+    }
+    
+    private func setupPickAnIconCollectionViewDatasource() {
+        let dataSource = newTargetVM.outputIcons
+        dataSource.asObservable().bind(to: pickAnIconCollectionView.rx.items(cellIdentifier: "PickAnIconCell", cellType: PickAnIconCell.self)) { item, iconString, cell in
+            if let image = UIImage(named: iconString) {
+                cell.update(image)
             }
-            newSelectedCell.addBorder()
-            pickAnIconVM.selectedImage = indexPath.row
-            return
-        }
-        fatalError("Could not cast cell for item at ... as PickAnIconCell.")
+        }.disposed(by: disposeBag)
+    }
+    
+    private func setupSelectedIconSource() {
+        let tapEventWithImageName = pickAnIconCollectionView.rx.itemSelected
+            .asObservable()
+            .flatMap { Observable<Int>.just($0.row) }
+        newTargetVM.bindInputIconSelected(fromObservable: tapEventWithImageName.asObservable())
+    }
+    
+    private func setupAddingBorderToSelectedIcon() {
+        newTargetVM.outputSelectedIcon
+            .subscribe(onNext: { last, current in
+                if let lastCell = self.pickAnIconCollectionView.cellForItem(at: IndexPath(item: last, section: 0)) as? PickAnIconCell {
+                    lastCell.removeBorder()
+                }
+                if let currentCell = self.pickAnIconCollectionView.cellForItem(at: IndexPath(item: current, section: 0)) as? PickAnIconCell {
+                    currentCell.addBorder()
+                }
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+    }
+    
+    private func setupCreateBtn() {
+        
     }
 }

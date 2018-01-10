@@ -11,26 +11,30 @@ import RxSwift
 
 struct NewTargetVM {
     
-    let scoresSubVM: ScoresSubVM
-    let pickAnIconSubVM: PickAnIconSubVM
-    
     private let targetService: TargetService
+    private let targetValidator: TargetValidator
+    private let databaseErrorHandler: DatabaseErrorHandler
     
-    private var name = Variable<String>("")
-    private var distance = Variable<String>("")
-    private var targetExists = Variable<Bool>(false)
+    private var inputName = Variable<String>("")
+    private var inputDistance = Variable<String>("")
+    private var outputTargetExists = Variable<Bool>(false)
+    private var scores = Variable<[Float]>([Float]())
+    private var icons = Variable<[String]>(["target", "deer", "bear", "ram", "wolf"])
+    private var lastAndCurrentlySelectedIcon = Variable<(Int, Int)>((0, 0))
 
     private let disposeBag = DisposeBag()
     
-    init(targetService: TargetService = FirebaseTargetService(), scoresSubVM: ScoresSubVM = ScoresSubVM(), pickAnIconSubVM: PickAnIconSubVM = PickAnIconSubVM()) {
+    init(targetService: TargetService = FirebaseTargetService(),
+         targetValidator: TargetValidator = TargetValidator(),
+         databaseErrorHandler: DatabaseErrorHandler = BasicDatabaseErrorHandler()) {
         self.targetService = targetService
-        self.scoresSubVM = scoresSubVM
-        self.pickAnIconSubVM = pickAnIconSubVM
+        self.targetValidator = targetValidator
+        self.databaseErrorHandler = databaseErrorHandler
         observeNameAndDistance()
     }
     
     private func observeNameAndDistance() {
-        Observable<(name: String, distance: String)>.combineLatest(name.asObservable(), distance.asObservable(), resultSelector: {
+        Observable<(name: String, distance: String)>.combineLatest(inputName.asObservable(), inputDistance.asObservable(), resultSelector: {
             (name: $0, distance: $1)
         })
         .filter({ $0.name != "" && $0.distance != "" })
@@ -45,40 +49,89 @@ struct NewTargetVM {
         if let distanceFloat = distance.float() {
             let observable = targetService.doesTargetExist(withName: name, andWithDistance: distanceFloat)
             observable
-                .subscribe(onNext: { self.targetExists.value = $0 }, onError: nil, onCompleted: nil, onDisposed: nil)
+                .subscribe(onNext: { self.outputTargetExists.value = $0 }, onError: nil, onCompleted: nil, onDisposed: nil)
                 .disposed(by: disposeBag)
         }
     }
     
-    func bindName(fromObservable observable: Observable<String?>) {
+    func bindInputName(fromObservable observable: Observable<String?>) {
         observable
             .map({ return $0 == nil ? "" : $0!})
-            .bind(to: name)
+            .bind(to: inputName)
             .disposed(by: disposeBag)
     }
     
-    func bindDistance(fromObservable observable: Observable<String?>) {
+    func bindInputDistance(fromObservable observable: Observable<String?>) {
         observable
             .map({ return $0 == nil ? "" : $0!})
-            .bind(to: distance)
+            .bind(to: inputDistance)
             .disposed(by: disposeBag)
     }
     
-    func bindTargetExists(toObserver observer: AnyObserver<Bool>) {
-        targetExists.asObservable()
+    func bindOutputTargetExists(toObserver observer: AnyObserver<Bool>) {
+        outputTargetExists.asObservable()
             .map { !$0 }
             .bind(to: observer)
             .disposed(by: disposeBag)
     }
     
-    // TODO: hook this up to vc
-    // validate too, send bakc error message as string
-    // then separately do the uploading
-    func createTarget() {
-        targetService.create(target: Target(name: "Target", distance: 15.2, scores: [0, 5, 8, 10, 11], icon: "target", shots: 0)).subscribe(onError: { error in
-            print("An error happened while creating target: \(error).")
-        }, onCompleted: {
-            print("Target succesfully created.")
-        }).disposed(by: disposeBag)
+    func bindInputNewScore(fromObservable observable: Observable<Float>) {
+        observable
+            .filter { !self.scores.value.contains($0) }
+            .subscribe(onNext: { self.scores.value.append($0) }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+    }
+    
+    var outputScoresDatasource: Observable<[Float]> {
+        return scores.asObservable()
+    }
+    
+    func bindInputDeleteScore(fromObservable observable: Observable<Int>) {
+        observable
+            .subscribe(onNext: { self.scores.value.remove(at: $0) }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+    }
+    
+    var outputIcons: Observable<[String]> {
+        return icons.asObservable()
+    }
+    
+    func bindInputIconSelected(fromObservable observable: Observable<Int>) {
+        observable
+            .subscribe(onNext: { currentlySelected in
+                let lastSelected = self.lastAndCurrentlySelectedIcon.value.1
+                self.lastAndCurrentlySelectedIcon.value = (lastSelected, currentlySelected)
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+    }
+    
+    var outputSelectedIcon: Observable<(Int, Int)> {
+        return lastAndCurrentlySelectedIcon.asObservable()
+    }
+    
+    // TODO:
+    func create(target: Target) -> Observable<String?> {
+        switch targetValidator.validate(target: target) {
+        case .success:
+            return save(target: target)
+        case .failure(let errorMessage):
+            return Observable<String?>.just(errorMessage)
+        }
+    }
+    
+    private func save(target: Target) -> Observable<String?> {
+        return Observable<String?>.create { observer in
+            self.targetService.create(target: target).subscribe(onNext: nil, onError: { error in
+                if let error = error as? DatabaseError {
+                    observer.onNext(self.databaseErrorHandler.handle(error: error))
+                } else {
+                    observer.onNext(self.databaseErrorHandler.handle(error: DatabaseError.other))
+                }
+                observer.onCompleted()
+            }, onCompleted: {
+                observer.onCompleted()
+            }, onDisposed: nil).disposed(by: self.disposeBag)
+            return Disposables.create()
+        }
     }
 }

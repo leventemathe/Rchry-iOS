@@ -171,9 +171,6 @@
                                                                                         <real key="value" value="16"/>
                                                                                     </userDefinedRuntimeAttribute>
                                                                                 </userDefinedRuntimeAttributes>
-                                                                                <connections>
-                                                                                    <action selector="addScoreBtnTouched:" destination="3TO-43-DHA" eventType="touchUpInside" id="Tbp-jb-Cf9"/>
-                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                     </stackView>
@@ -304,9 +301,6 @@
                                                                 <real key="value" value="23"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="createBtnTouched:" destination="3TO-43-DHA" eventType="touchUpInside" id="Zkh-Ju-VhF"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -348,6 +342,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="New Target" id="V1P-Rb-dse"/>
                     <connections>
+                        <outlet property="addScoreBtn" destination="8cc-MP-sIz" id="iWf-pO-7L3"/>
+                        <outlet property="createBtn" destination="Qpg-Cu-BnL" id="Nnf-fi-4qn"/>
                         <outlet property="distanceTextField" destination="fbO-70-Zpc" id="5RE-x9-VTm"/>
                         <outlet property="nameTextField" destination="aEV-WL-x9A" id="vQr-fK-Ggo"/>
                         <outlet property="pickAnIconCollectionView" destination="3bX-WO-4Qm" id="j9n-an-89Z"/>
