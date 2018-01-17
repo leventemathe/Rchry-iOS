@@ -25,7 +25,7 @@ protocol TargetService {
     func doesTargetExist(withName name: String, andWithDistance distance: Float) -> Observable<Bool>
 }
 
-struct FirebaseTargetService: TargetService {
+class FirebaseTargetService: TargetService {
     
     // This should be a database reference protocol really, but it takes a lot of work to create one, so this will suffice for now.
     // To mock it, just sublcass it and override the used methods. It's less safe, but it also takes less time...
@@ -52,8 +52,8 @@ struct FirebaseTargetService: TargetService {
         guard let pathName = FirebaseTargetService.createTargetKey(fromName: target.name, andDistance: target.distance) else {
             return Observable<Void>.error(DatabaseError.other)
         }
-        return Observable<Void>.create { observer in
-            self.databaseReference.child(TargetNames.PATH).child(pathName).updateChildValues([
+        return Observable<Void>.create { [weak self] observer in
+            self?.databaseReference.child(TargetNames.PATH).child(pathName).updateChildValues([
                 TargetNames.NAME: target.name,
                 TargetNames.DISTANCE: target.distance,
                 TargetNames.SCORES: target.scores,
@@ -73,8 +73,8 @@ struct FirebaseTargetService: TargetService {
         guard let pathName = FirebaseTargetService.createTargetKey(fromName: name, andDistance: distance) else {
             return Observable<Bool>.error(DatabaseError.other)
         }
-        return Observable<Bool>.create { observer in
-            self.databaseReference.child(TargetNames.PATH).child(pathName).observeSingleEvent(of: .value, with: { snapshot in
+        return Observable<Bool>.create { [weak self] observer in
+            self?.databaseReference.child(TargetNames.PATH).child(pathName).observeSingleEvent(of: .value, with: { snapshot in
                 if snapshot.exists() {
                     observer.onNext(true)
                 } else {

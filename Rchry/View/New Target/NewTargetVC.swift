@@ -36,9 +36,10 @@ class NewTargetVC: UIViewController {
         setupScoresCollectionView()
         setupPickAnIconCollectionView()
         setupSelectedIconSource()
-        setupCreateBtn()
+        setupCreateButtonEnabling()
+        setupCreateBtnTouched()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         setupAddingBorderToSelectedIcon()
     }
@@ -116,7 +117,7 @@ class NewTargetVC: UIViewController {
     
     private func setupAddingBorderToSelectedIcon() {
         newTargetVM.outputSelectedIcon
-            .subscribe(onNext: { last, current in
+            .subscribe(onNext: { [unowned self] last, current in
                 if let lastCell = self.pickAnIconCollectionView.cellForItem(at: IndexPath(item: last, section: 0)) as? PickAnIconCell {
                     lastCell.removeBorder()
                 }
@@ -127,7 +128,13 @@ class NewTargetVC: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    private func setupCreateBtn() {
+    private func setupCreateButtonEnabling() {
+        let isTargetReadyDriver = newTargetVM.outputIsTargetReady.asDriver()
+        let isEnabled = createBtn.rx.isEnabled.asObserver()
+        isTargetReadyDriver.drive(isEnabled).disposed(by: disposeBag)
+    }
+    
+    private func setupCreateBtnTouched() {
         
     }
 }
