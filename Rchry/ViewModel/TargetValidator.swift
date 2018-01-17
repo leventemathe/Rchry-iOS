@@ -15,8 +15,8 @@ enum TargetValidationResult {
 
 struct TargetValidator {
     
-    let ERROR_NAME_EMPTY = NSLocalizedString("TargetValidationErrorEmptyName", comment: "The name of the provided target is an empty string.")
-    let ERROR_SCORES_EMPTY = NSLocalizedString("TargetValidationErrorEmptyScores", comment: "No scores were provided for the target.")
+    let ERROR_NAME_EMPTY = NSLocalizedString("TargetValidationErrorEmptyName", comment: "The name of the provided target is an empty string")
+    let ERROR_SCORES_EMPTY = NSLocalizedString("TargetValidationErrorEmptyScores", comment: "No scores were provided for the target")
     
     func validate(target: Target) -> TargetValidationResult {
         let name = target.name.trimmingCharacters(in: .whitespaces)

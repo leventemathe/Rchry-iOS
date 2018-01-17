@@ -13,6 +13,9 @@ import RxSwift
 
 class NewTargetVC: UIViewController {
     
+    let CREATE_BTN_TEXT_ENABLED = NSLocalizedString("CreateTargetBtnTextEnabled", comment: "The text displayed on the create target button, when it's enabled")
+    let CREATE_BTN_TEXT_DISABLED = NSLocalizedString("CreateTargetBtnTextDisabled", comment: "The text displayed on the create target button, when it's disabled")
+    
     @IBOutlet weak var targetDistanceExistsErrorLbl: UILabel!
     @IBOutlet weak var nameTextField: LMTextField!
     @IBOutlet weak var distanceTextField: LMTextField!
@@ -36,6 +39,7 @@ class NewTargetVC: UIViewController {
         setupScoresCollectionView()
         setupPickAnIconCollectionView()
         setupSelectedIconSource()
+        setupCreateBtnText()
         setupCreateButtonEnabling()
         setupCreateBtnTouched()
     }
@@ -126,6 +130,11 @@ class NewTargetVC: UIViewController {
                 }
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .disposed(by: disposeBag)
+    }
+    
+    private func setupCreateBtnText() {
+        createBtn.setTitle(CREATE_BTN_TEXT_ENABLED, for: .normal)
+        createBtn.setTitle(CREATE_BTN_TEXT_DISABLED, for: .disabled)
     }
     
     private func setupCreateButtonEnabling() {
