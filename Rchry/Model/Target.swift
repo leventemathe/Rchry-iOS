@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum DistanceUnit {
+    case meter
+    case yard
+}
+
 struct Target: Codable {
     
     let name: String

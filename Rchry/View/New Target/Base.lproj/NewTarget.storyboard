@@ -346,6 +346,7 @@
                         <outlet property="addScoreBtn" destination="8cc-MP-sIz" id="iWf-pO-7L3"/>
                         <outlet property="createBtn" destination="Qpg-Cu-BnL" id="Nnf-fi-4qn"/>
                         <outlet property="distanceTextField" destination="fbO-70-Zpc" id="5RE-x9-VTm"/>
+                        <outlet property="distanceUnitSelector" destination="oTs-rB-r5U" id="iqh-gd-mFW"/>
                         <outlet property="nameTextField" destination="aEV-WL-x9A" id="vQr-fK-Ggo"/>
                         <outlet property="pickAnIconCollectionView" destination="3bX-WO-4Qm" id="j9n-an-89Z"/>
                         <outlet property="scoresCollectionView" destination="MlD-Fi-XvK" id="bhn-IL-UuE"/>

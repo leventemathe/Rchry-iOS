@@ -31,6 +31,7 @@
 		D77C86181FE01CD900226CBC /* FacebookAuthServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77C86171FE01CD900226CBC /* FacebookAuthServiceTest.swift */; };
 		D77C861A1FE042DC00226CBC /* FirebaseAuthServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77C86191FE042DC00226CBC /* FirebaseAuthServiceTest.swift */; };
 		D77EE5171FCDB83D00FAEDBA /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77EE5161FCDB83D00FAEDBA /* FirebaseAuthService.swift */; };
+		D7985581201109EA0034E4A4 /* DistanceUnitConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7985580201109EA0034E4A4 /* DistanceUnitConverter.swift */; };
 		D7A1FA071FED39E1004DDF50 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A1FA061FED39E1004DDF50 /* MainVC.swift */; };
 		D7AD33A41FCDB45D00C12112 /* FacebookAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AD33A31FCDB45D00C12112 /* FacebookAuthService.swift */; };
 		D7AD33A61FCDB4F600C12112 /* SocialAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AD33A51FCDB4F600C12112 /* SocialAuthService.swift */; };
@@ -96,6 +97,7 @@
 		D77C86171FE01CD900226CBC /* FacebookAuthServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuthServiceTest.swift; sourceTree = "<group>"; };
 		D77C86191FE042DC00226CBC /* FirebaseAuthServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthServiceTest.swift; sourceTree = "<group>"; };
 		D77EE5161FCDB83D00FAEDBA /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
+		D7985580201109EA0034E4A4 /* DistanceUnitConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceUnitConverter.swift; sourceTree = "<group>"; };
 		D7A1FA061FED39E1004DDF50 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		D7AD33A31FCDB45D00C12112 /* FacebookAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuthService.swift; sourceTree = "<group>"; };
 		D7AD33A51FCDB4F600C12112 /* SocialAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAuthService.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 			children = (
 				D7AD33A11FCDB43800C12112 /* Networking */,
 				D7BF04D61FFE66A000465C8C /* Target.swift */,
+				D7985580201109EA0034E4A4 /* DistanceUnitConverter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D71E08D81FCEECA200D9FAA3 /* TargetsVC.swift in Sources */,
+				D7985581201109EA0034E4A4 /* DistanceUnitConverter.swift in Sources */,
 				D77EE5171FCDB83D00FAEDBA /* FirebaseAuthService.swift in Sources */,
 				D7572C901FCDA3FD0024DEED /* ProfileVC.swift in Sources */,
 				D7AD33A41FCDB45D00C12112 /* FacebookAuthService.swift in Sources */,

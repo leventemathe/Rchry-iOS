@@ -19,6 +19,7 @@ class NewTargetVC: UIViewController {
     @IBOutlet weak var targetDistanceExistsErrorLbl: UILabel!
     @IBOutlet weak var nameTextField: LMTextField!
     @IBOutlet weak var distanceTextField: LMTextField!
+    @IBOutlet weak var distanceUnitSelector: LMSegmentedControl!
     
     @IBOutlet weak var scoresTextField: LMTextField!
     @IBOutlet weak var addScoreBtn: LMButton!
@@ -34,116 +35,140 @@ class NewTargetVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
-        setupNameAndDistanceChecking()
-        setupNewScoreAdding()
-        setupScoresCollectionView()
-        setupPickAnIconCollectionView()
-        setupSelectedIconSource()
-        setupCreateBtnText()
-        setupCreateButtonEnabling()
-        setupCreateBtnTouched()
+        setupCreateBtnLabelText()
+        bindInput()
+        bindDatasourcesFromVM()
+        bindOutput()
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
-        setupAddingBorderToSelectedIcon()
+        // This has to go here, because the cells have to be visible to set the initial selection
+        bindOutputCurrentAndLastSelectedIcons()
     }
     
-    private func setupNameAndDistanceChecking() {
-        bindNameAndDistanceToVariables()
-        bindExistsVariableToErrorLblIsHidden()
-    }
-    
-    private func bindNameAndDistanceToVariables() {
-        newTargetVM.bindInputName(fromObservable: nameTextField.rx.text.asObservable())
-        newTargetVM.bindInputDistance(fromObservable: distanceTextField.rx.text.asObservable())
-    }
-    
-    private func bindExistsVariableToErrorLblIsHidden() {
-        newTargetVM.bindOutputTargetExists(toObserver: targetDistanceExistsErrorLbl.rx.isHidden.asObserver())
-    }
-    
-    private func setupNewScoreAdding() {
-        let tap = addScoreBtn.rx.tap
-        let scoreText = scoresTextField.rx.text
-        
-        let scoreObservable = scoreText.asObservable()
-            .filter({ $0 != nil && $0!.float() != nil })
-            .map({ $0!.float()! })
-            .flatMap({ Observable<Float>.just($0) })
-        
-        let tapWithScoreObservable = tap.asObservable()
-            .withLatestFrom(scoreObservable)
-        newTargetVM.bindInputNewScore(fromObservable: tapWithScoreObservable)
-    }
-    
-    private func setupScoresCollectionView() {
-        setupScoresCollectionViewDataSource()
-        setupScoreTapped()
-    }
-    
-    private func setupScoresCollectionViewDataSource() {
-        let datasource = newTargetVM.outputScoresDatasource
-        datasource.asObservable().bind(to: scoresCollectionView.rx.items(cellIdentifier: "ScoreCell", cellType: ScoreCell.self)) { row, score, cell in
-            if let scoreString = score.prettyString() {
-                cell.update(scoreString)
-            } else {
-                cell.update("")
-            }
-            }.disposed(by: disposeBag)
-    }
-    
-    private func setupScoreTapped() {
-        let tapEventWithIndex = scoresCollectionView.rx.itemSelected
-            .asObservable()
-            .flatMap({ Observable<Int>.just($0.row) })
-        newTargetVM.bindInputDeleteScore(fromObservable: tapEventWithIndex)
-    }
-    
-    private func setupPickAnIconCollectionView() {
-        setupPickAnIconCollectionViewDatasource()
-    }
-    
-    private func setupPickAnIconCollectionViewDatasource() {
-        let dataSource = newTargetVM.outputIcons
-        dataSource.asObservable().bind(to: pickAnIconCollectionView.rx.items(cellIdentifier: "PickAnIconCell", cellType: PickAnIconCell.self)) { item, iconString, cell in
-            if let image = UIImage(named: iconString) {
-                cell.update(image)
-            }
-        }.disposed(by: disposeBag)
-    }
-    
-    private func setupSelectedIconSource() {
-        let tapEventWithImageName = pickAnIconCollectionView.rx.itemSelected
-            .asObservable()
-            .flatMap { Observable<Int>.just($0.row) }
-        newTargetVM.bindInputIconSelected(fromObservable: tapEventWithImageName.asObservable())
-    }
-    
-    private func setupAddingBorderToSelectedIcon() {
-        newTargetVM.outputSelectedIcon
-            .subscribe(onNext: { [unowned self] last, current in
-                if let lastCell = self.pickAnIconCollectionView.cellForItem(at: IndexPath(item: last, section: 0)) as? PickAnIconCell {
-                    lastCell.removeBorder()
-                }
-                if let currentCell = self.pickAnIconCollectionView.cellForItem(at: IndexPath(item: current, section: 0)) as? PickAnIconCell {
-                    currentCell.addBorder()
-                }
-            }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .disposed(by: disposeBag)
-    }
-    
-    private func setupCreateBtnText() {
+    private func setupCreateBtnLabelText() {
         createBtn.setTitle(CREATE_BTN_TEXT_ENABLED, for: .normal)
         createBtn.setTitle(CREATE_BTN_TEXT_DISABLED, for: .disabled)
     }
     
-    private func setupCreateButtonEnabling() {
-        let isTargetReadyDriver = newTargetVM.outputIsTargetReady.asDriver()
-        let isEnabled = createBtn.rx.isEnabled.asObserver()
-        isTargetReadyDriver.drive(isEnabled).disposed(by: disposeBag)
+    private func bindInput() {
+        bindInputName()
+        bindInputDistance()
+        bindInputDistanceUnit()
+        bindInputAddScore()
+        bindInputDeleteScore()
+        bindInputIconSelection()
+        bindInputCreateButton()
     }
     
-    private func setupCreateBtnTouched() {
-        
+    private func bindInputName() {
+        nameTextField.rx.text.asObservable()
+            .map { $0 ?? "" }
+            .bind(to: newTargetVM.inputName)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindInputDistance() {
+        distanceTextField.rx.text.asObservable()
+            .map { $0 ?? "" }
+            .map { $0.float() }
+            .bind(to: newTargetVM.inputDistance)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindInputDistanceUnit() {
+        distanceUnitSelector.rx.value.asObservable()
+            .map { $0 == 0 ? DistanceUnit.meter : DistanceUnit.yard }
+            .bind(to: newTargetVM.inputDistanceUnit)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindInputAddScore() {
+        addScoreBtn.rx.tap.asObservable()
+            .withLatestFrom(scoresTextField.rx.text.asObservable())
+            .map { $0 ?? "" }
+            .map { $0.float() }
+            .bind(to: newTargetVM.inputNewScore)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindInputDeleteScore() {
+        scoresCollectionView.rx.itemSelected.asObservable()
+            .map { $0.item }
+            .bind(to: newTargetVM.inputDeletedScoreIndex)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindInputIconSelection() {
+        pickAnIconCollectionView.rx.itemSelected.asObservable()
+            .map { $0.item }
+            .bind(to: newTargetVM.inputCurrentSelectedIcon)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindInputCreateButton() {
+        createBtn.rx.tap.asObservable()
+            .subscribe(onNext: { [weak self] in
+                if let target = self?.newTargetVM.createTarget() {
+                    
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindDatasourcesFromVM() {
+        bindDatasourceScores()
+        bindDatasourceIcons()
+    }
+    
+    private func bindDatasourceScores() {
+        newTargetVM.datasourceScores.bind(to: scoresCollectionView.rx.items(cellIdentifier: "ScoreCell", cellType: ScoreCell.self)) { _, score, cell in
+            if let scoreString = score.prettyString() {
+                cell.update(scoreString)
+            }
+        }
+        .disposed(by: disposeBag)
+    }
+    
+    private func bindDatasourceIcons() {
+        newTargetVM.datasourceIcons.bind(to: pickAnIconCollectionView.rx.items(cellIdentifier: "PickAnIconCell", cellType: PickAnIconCell.self)) { _, icon, cell in
+            if let image = UIImage(named: icon) {
+                cell.update(image)
+            }
+        }
+        .disposed(by: disposeBag)
+    }
+
+    private func bindOutput() {
+        bindOutputDoesTargetExist()
+        bindOutputIsTargetReady()
+    }
+    
+    private func bindOutputDoesTargetExist() {
+        newTargetVM.outputDoesTargetExist.asDriver(onErrorJustReturn: false)
+            .map{ !$0 }
+            .drive(targetDistanceExistsErrorLbl.rx.isHidden.asObserver())
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindOutputCurrentAndLastSelectedIcons() {
+        newTargetVM.outputCurrentAndLastSelectedIcons.asObservable()
+            .subscribe(onNext: { [weak self] in
+                let lastSelectedIndexPath = IndexPath(item: $0.1, section: 0)
+                if let lastSelectedCell = self?.pickAnIconCollectionView.cellForItem(at: lastSelectedIndexPath) as? PickAnIconCell {
+                    lastSelectedCell.removeBorder()
+                }
+                let currentSelectedIndexpath = IndexPath(item: $0.0, section: 0)
+                if let currentSelectedCell = self?.pickAnIconCollectionView.cellForItem(at: currentSelectedIndexpath) as? PickAnIconCell {
+                    currentSelectedCell.addBorder()
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindOutputIsTargetReady() {
+        newTargetVM.outputIsTargetReady.asDriver(onErrorJustReturn: false)
+            .drive(createBtn.rx.isEnabled.asObserver())
+            .disposed(by: disposeBag)
     }
 }
