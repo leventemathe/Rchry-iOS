@@ -12,17 +12,17 @@ struct ProfileVM {
     
     var facebookAuthService: SocialAuthService
     var authService: AuthService
-    var authErrorHandler: AuthErrorHandler
+    var authErrorHandler: AuthErrorToMessageMapper
     
     func logout(_ completion: @escaping (_ errorMessage: String?)->()) {
         authService.logout { error in
             if let error = error {
-                self.authErrorHandler.handle(error: error, withCompletion: completion)
+                self.authErrorHandler.map(error: error, withCompletion: completion)
                 return
             }
             self.facebookAuthService.logout { error in
                 if let error = error {
-                    self.authErrorHandler.handle(error: error, withCompletion: completion)
+                    self.authErrorHandler.map(error: error, withCompletion: completion)
                     return
                 }
                 completion(nil)

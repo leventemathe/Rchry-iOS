@@ -12,7 +12,7 @@ struct LoginVM {
     
     var facebookAuthService: SocialAuthService
     var authService: AuthService
-    var authErrorHandler: AuthErrorHandler
+    var authErrorHandler: AuthErrorToMessageMapper
     
     func loginWithFacebook(_ completion: @escaping (_ errorMessage: String?)->()) {
         login(.facebook, withCompletion: completion)
@@ -26,7 +26,7 @@ struct LoginVM {
         }
         socialService.login { (error, token) in
             if let error = error {
-                self.authErrorHandler.handle(error: error, withCompletion: completion)
+                self.authErrorHandler.map(error: error, withCompletion: completion)
                 return
             }
             if let token = token {
@@ -42,11 +42,11 @@ struct LoginVM {
             if let error = error {
                 self.facebookAuthService.logout { error in
                     if let error = error {
-                        self.authErrorHandler.handle(error: error, withCompletion: completion)
+                        self.authErrorHandler.map(error: error, withCompletion: completion)
                     }
                     return
                 }
-                self.authErrorHandler.handle(error: error, withCompletion: completion)
+                self.authErrorHandler.map(error: error, withCompletion: completion)
                 return
             }
             completion(nil)

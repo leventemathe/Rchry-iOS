@@ -61,8 +61,15 @@ class FirebaseTargetService: TargetService {
                 TargetNames.ICON: target.icon,
                 TargetNames.SHOTS: target.shots
             ]) { error, snapshot in
-                if let error = error {
-                    observer.onError(DatabaseError.server)
+                if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
+                    switch errorCode {
+                    case .networkError:
+                        observer.onError(DatabaseError.network)
+                    case .tooManyRequests:
+                        observer.onError(DatabaseError.tooManyRequests)
+                    default:
+                        observer.onError(DatabaseError.server)
+                    }
                 } else {
                     observer.onNext(target)
                     observer.onCompleted()

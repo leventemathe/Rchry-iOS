@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol AuthErrorHandler {
+protocol AuthErrorToMessageMapper {
 
     var ERROR_CANCELLED: String {
         get
@@ -26,10 +26,10 @@ protocol AuthErrorHandler {
         get
     }
     
-    func handle(error: AuthError, withCompletion completion: @escaping (String?)->())
+    func map(error: AuthError, withCompletion completion: @escaping (String?)->())
 }
 
-struct BasicAuthErrorHandler: AuthErrorHandler {
+struct BasicAuthErrorToMessageMapper: AuthErrorToMessageMapper {
     
     var ERROR_CANCELLED: String {
         return NSLocalizedString("AuthErrorCancelled", comment: "An error message that is presented when the user cancels the social login, e.g. Facebook")
@@ -47,7 +47,7 @@ struct BasicAuthErrorHandler: AuthErrorHandler {
         return NSLocalizedString("AuthErrorOther", comment: "An error message for an unknown error")
     }
     
-    func handle(error: AuthError, withCompletion completion: @escaping (String?)->()) {
+    func map(error: AuthError, withCompletion completion: @escaping (String?)->()) {
         switch error {
         case .cancelled:
             completion(self.ERROR_CANCELLED)

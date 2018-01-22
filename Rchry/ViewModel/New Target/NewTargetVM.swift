@@ -13,7 +13,7 @@ class NewTargetVM {
     
     private let targetService: TargetService
     private let targetValidator: TargetValidator
-    private let databaseErrorHandler: DatabaseErrorHandler
+    private let databaseErrorHandler: DatabaseErrorToMessageMapper
     private let distanceUnitConverter: DistanceUnitConverter
     
     var inputName = Variable("")
@@ -85,7 +85,7 @@ class NewTargetVM {
                 return self.targetService.create(target: target)
                     .map { ($0, nil) }
                     .catchError {
-                        let errorString = self.databaseErrorHandler.handle(error: $0 as! DatabaseError)
+                        let errorString = self.databaseErrorHandler.map(error: $0 as! DatabaseError)
                         return Observable.just((nil, errorString))
                     }
             }
@@ -95,7 +95,7 @@ class NewTargetVM {
     
     init(targetService: TargetService = FirebaseTargetService(),
          targetValidator: TargetValidator = TargetValidator(),
-         databaseErrorHandler: DatabaseErrorHandler = BasicDatabaseErrorHandler(),
+         databaseErrorHandler: DatabaseErrorToMessageMapper = BasicDatabaseErrorToMessageMapper(),
          distanceUnitConverter: DistanceUnitConverter = DistanceUnitConverter()) {
         self.targetService = targetService
         self.targetValidator = targetValidator

@@ -11,7 +11,7 @@
 		D71E08D61FCEE9A400D9FAA3 /* MessageAlertModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E08D51FCEE9A400D9FAA3 /* MessageAlertModalVC.swift */; };
 		D71E08D81FCEECA200D9FAA3 /* TargetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E08D71FCEECA200D9FAA3 /* TargetsVC.swift */; };
 		D71F8E312004F64E0077ECAB /* TargetValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71F8E302004F64E0077ECAB /* TargetValidator.swift */; };
-		D71F8E332004FABE0077ECAB /* DatabaseErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71F8E322004FABE0077ECAB /* DatabaseErrorHandler.swift */; };
+		D71F8E332004FABE0077ECAB /* DatabaseErrorToMessageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71F8E322004FABE0077ECAB /* DatabaseErrorToMessageMapper.swift */; };
 		D71FB5B81FFD32A20085CDDC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71FB5B71FFD32A20085CDDC /* Extensions.swift */; };
 		D71FB5BA1FFD33D30085CDDC /* ScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71FB5B91FFD33D30085CDDC /* ScoreCell.swift */; };
 		D71FB5BE1FFD3A820085CDDC /* NewTargetVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71FB5BD1FFD3A820085CDDC /* NewTargetVM.swift */; };
@@ -22,7 +22,7 @@
 		D7377D1C1FDEE56200AEA161 /* AuthMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7377D1B1FDEE56200AEA161 /* AuthMocks.swift */; };
 		D7572C901FCDA3FD0024DEED /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7572C8F1FCDA3FD0024DEED /* ProfileVC.swift */; };
 		D7572C941FCDA4ED0024DEED /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7572C931FCDA4ED0024DEED /* ProfileVM.swift */; };
-		D75D54651FD83740003B3D3F /* AuthErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D54641FD83740003B3D3F /* AuthErrorHandler.swift */; };
+		D75D54651FD83740003B3D3F /* AuthErrorToMessageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D54641FD83740003B3D3F /* AuthErrorToMessageMapper.swift */; };
 		D763A99F1FD84BC3005B8540 /* LoginVMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D763A99E1FD84BC3005B8540 /* LoginVMTest.swift */; };
 		D76CA94F1FCC622300D8C2AC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D76CA94E1FCC622300D8C2AC /* Colors.xcassets */; };
 		D77496B81FFD0D13001138B8 /* PickAnIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77496B71FFD0D13001138B8 /* PickAnIconCell.swift */; };
@@ -74,7 +74,7 @@
 		D71E08D51FCEE9A400D9FAA3 /* MessageAlertModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAlertModalVC.swift; sourceTree = "<group>"; };
 		D71E08D71FCEECA200D9FAA3 /* TargetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetsVC.swift; sourceTree = "<group>"; };
 		D71F8E302004F64E0077ECAB /* TargetValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetValidator.swift; sourceTree = "<group>"; };
-		D71F8E322004FABE0077ECAB /* DatabaseErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseErrorHandler.swift; sourceTree = "<group>"; };
+		D71F8E322004FABE0077ECAB /* DatabaseErrorToMessageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseErrorToMessageMapper.swift; sourceTree = "<group>"; };
 		D71FB5B71FFD32A20085CDDC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D71FB5B91FFD33D30085CDDC /* ScoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCell.swift; sourceTree = "<group>"; };
 		D71FB5BD1FFD3A820085CDDC /* NewTargetVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTargetVM.swift; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 		D74BA1A72003D37400B84CC4 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/NewTarget.strings; sourceTree = "<group>"; };
 		D7572C8F1FCDA3FD0024DEED /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		D7572C931FCDA4ED0024DEED /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
-		D75D54641FD83740003B3D3F /* AuthErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrorHandler.swift; sourceTree = "<group>"; };
+		D75D54641FD83740003B3D3F /* AuthErrorToMessageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrorToMessageMapper.swift; sourceTree = "<group>"; };
 		D763A99E1FD84BC3005B8540 /* LoginVMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVMTest.swift; sourceTree = "<group>"; };
 		D76CA94E1FCC622300D8C2AC /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D77496B71FFD0D13001138B8 /* PickAnIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickAnIconCell.swift; sourceTree = "<group>"; };
@@ -363,8 +363,8 @@
 		D7F0D8BC1FCC58B3009A044B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				D75D54641FD83740003B3D3F /* AuthErrorHandler.swift */,
-				D71F8E322004FABE0077ECAB /* DatabaseErrorHandler.swift */,
+				D75D54641FD83740003B3D3F /* AuthErrorToMessageMapper.swift */,
+				D71F8E322004FABE0077ECAB /* DatabaseErrorToMessageMapper.swift */,
 				D71F8E302004F64E0077ECAB /* TargetValidator.swift */,
 				D7DFD2E01FCDBA6000893BEB /* Login */,
 				D7C36A051FFD288400C2E68E /* New Target */,
@@ -672,13 +672,13 @@
 				D77496B81FFD0D13001138B8 /* PickAnIconCell.swift in Sources */,
 				D7DFD2E21FCDBA6D00893BEB /* LoginVM.swift in Sources */,
 				D7BF04D71FFE66A000465C8C /* Target.swift in Sources */,
-				D75D54651FD83740003B3D3F /* AuthErrorHandler.swift in Sources */,
+				D75D54651FD83740003B3D3F /* AuthErrorToMessageMapper.swift in Sources */,
 				D7572C941FCDA4ED0024DEED /* ProfileVM.swift in Sources */,
 				D7C6F2751FC7163B0032A879 /* AppDelegate.swift in Sources */,
 				D73528F21FF527B700EDC0FC /* NewTargetVC.swift in Sources */,
 				D7AD33A61FCDB4F600C12112 /* SocialAuthService.swift in Sources */,
 				D71E08D61FCEE9A400D9FAA3 /* MessageAlertModalVC.swift in Sources */,
-				D71F8E332004FABE0077ECAB /* DatabaseErrorHandler.swift in Sources */,
+				D71F8E332004FABE0077ECAB /* DatabaseErrorToMessageMapper.swift in Sources */,
 				D7C7E9161FFE956B003C102D /* DatabaseError.swift in Sources */,
 				D71FB5B81FFD32A20085CDDC /* Extensions.swift in Sources */,
 				D7A1FA071FED39E1004DDF50 /* MainVC.swift in Sources */,

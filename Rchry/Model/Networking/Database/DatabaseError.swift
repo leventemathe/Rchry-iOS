@@ -12,6 +12,7 @@ enum DatabaseError: Error {
     case network
     case server
     case json
+    case tooManyRequests
     case other
 }
 
