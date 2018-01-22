@@ -26,7 +26,7 @@ class NewTargetVM {
     private var _datasourceScores: Variable<[Float]>? = nil
     var datasourceScores: Observable<[Float]> {
         if _datasourceScores == nil {
-            _datasourceScores = Variable([Float]())
+            _datasourceScores = Variable([0])
             setupNewScore()
             setupDeleteScore()
         }
@@ -72,6 +72,25 @@ class NewTargetVM {
             }
     }
     
+    func outputTargetCreated(reactingTo observable: Observable<()>) -> Observable<(Target?, String?)> {
+        return observable
+            .flatMap { [unowned self] () -> Observable<(Target?, String?)> in
+                let distance = self.generateDistanceInMeters()
+                let target = Target(name: self.inputName.value,
+                                    distance: distance,
+                                    scores: self._datasourceScores!.value,
+                                    icon: self._datasourceIcons[self.inputCurrentSelectedIcon.value],
+                                    shots: 0)
+                print("target service is called in flatmap")
+                return self.targetService.create(target: target)
+                    .map { ($0, nil) }
+                    .catchError {
+                        let errorString = self.databaseErrorHandler.handle(error: $0 as! DatabaseError)
+                        return Observable.just((nil, errorString))
+                    }
+            }
+    }
+    
     let disposeBag = DisposeBag()
     
     init(targetService: TargetService = FirebaseTargetService(),
@@ -88,8 +107,8 @@ class NewTargetVM {
         inputNewScore.asObservable()
             .filter { $0  != nil }
             .map { $0! }
-            .subscribe(onNext: { [weak self] in
-                self?._datasourceScores?.value.append($0)
+            .subscribe(onNext: { [unowned self] in
+                self._datasourceScores?.value.append($0)
             })
             .disposed(by: disposeBag)
     }
@@ -98,8 +117,8 @@ class NewTargetVM {
         inputDeletedScoreIndex.asObservable()
             .filter { $0  != nil }
             .map { $0! }
-            .subscribe(onNext: { [weak self] in
-                self?._datasourceScores?.value.remove(at: $0)
+            .subscribe(onNext: { [unowned self] in
+                self._datasourceScores?.value.remove(at: $0)
             })
             .disposed(by: disposeBag)
     }
@@ -112,30 +131,23 @@ class NewTargetVM {
             .map { ($0, $1!) }
             .filter { $0.0 != "" }
             .debounce(0.25, scheduler: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in
-                guard let this = self else { return }
-                this.targetService.doesTargetExist(withName: $0.0, andWithDistance: $0.1)
-                    .bind(to: this._outputDoesTargetExist!)
-                    .disposed(by: this.disposeBag)
+            .subscribe(onNext: { [unowned self] in
+                self.targetService.doesTargetExist(withName: $0.0, andWithDistance: $0.1)
+                    .bind(to: self._outputDoesTargetExist!)
+                    .disposed(by: self.disposeBag)
             })
             .disposed(by: disposeBag)
     }
     
     private func setupOutputCurrentAndLastSelectedIcons() {
         inputCurrentSelectedIcon.asObservable()
-            .subscribe(onNext: { [weak self] in
-                guard let this = self else { return }
-                let lastSelected = this._outputCurrentAndLastSelectedIcons!.value.0
+            .subscribe(onNext: { [unowned self] in
+                let lastSelected = self._outputCurrentAndLastSelectedIcons!.value.0
                 let currentSelected = $0
-                this._outputCurrentAndLastSelectedIcons?.value = (currentSelected, lastSelected)
+                self._outputCurrentAndLastSelectedIcons?.value = (currentSelected, lastSelected)
             })
             .disposed(by: disposeBag)
         
-    }
-    
-    func createTarget() -> Target {
-        let distance = generateDistanceInMeters()
-        return Target(name: inputName.value, distance: distance, scores: _datasourceScores!.value, icon: _datasourceIcons[inputCurrentSelectedIcon.value], shots: 0)
     }
     
     private func generateDistanceInMeters() -> Float {

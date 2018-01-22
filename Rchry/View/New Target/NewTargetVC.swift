@@ -37,6 +37,7 @@ class NewTargetVC: UIViewController {
         hideKeyboardWhenTappedAround()
         setupCreateBtnLabelText()
         bindInput()
+        bindInputOutput()
         bindDatasourcesFromVM()
         bindOutput()
     }
@@ -58,7 +59,6 @@ class NewTargetVC: UIViewController {
         bindInputAddScore()
         bindInputDeleteScore()
         bindInputIconSelection()
-        bindInputCreateButton()
     }
     
     private func bindInputName() {
@@ -106,13 +106,20 @@ class NewTargetVC: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    private func bindInputCreateButton() {
-        createBtn.rx.tap.asObservable()
-            .subscribe(onNext: { [weak self] in
-                if let target = self?.newTargetVM.createTarget() {
-                    
+    private func bindInputOutput() {
+        bindInputOutputCreateTarget()
+    }
+    
+    private func bindInputOutputCreateTarget() {
+        newTargetVM.outputTargetCreated(reactingTo: createBtn.rx.tap.asObservable())
+            .subscribe(onNext: { [weak self] (target, error) in
+                if let error = error {
+                    guard let this = self else { return }
+                    MessageAlertModalVC.present(withTitle: CommonMessages.ERROR_TITLE, withMessage: error, fromVC: this)
+                } else {
+                    self?.navigationController?.popViewController(animated: true)
                 }
-            })
+            }, onError: { print("errored \($0)") }, onCompleted: { print("completed") })
             .disposed(by: disposeBag)
     }
     
@@ -146,7 +153,7 @@ class NewTargetVC: UIViewController {
     
     private func bindOutputDoesTargetExist() {
         newTargetVM.outputDoesTargetExist.asDriver(onErrorJustReturn: false)
-            .map{ !$0 }
+            .map { !$0 }
             .drive(targetDistanceExistsErrorLbl.rx.isHidden.asObserver())
             .disposed(by: disposeBag)
     }

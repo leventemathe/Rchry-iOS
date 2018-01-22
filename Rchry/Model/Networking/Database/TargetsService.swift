@@ -17,11 +17,12 @@ struct TargetNames {
     static let DISTANCE = "distance"
     static let SCORES = "scores"
     static let ICON = "icon"
+    static let SHOTS = "shots"
 }
 
 protocol TargetService {
     
-    func create(target: Target) -> Observable<Void>
+    func create(target: Target) -> Observable<Target>
     func doesTargetExist(withName name: String, andWithDistance distance: Float) -> Observable<Bool>
 }
 
@@ -48,20 +49,22 @@ class FirebaseTargetService: TargetService {
         return nil
     }
     
-    func create(target: Target) -> Observable<Void> {
+    func create(target: Target) -> Observable<Target> {
         guard let pathName = FirebaseTargetService.createTargetKey(fromName: target.name, andDistance: target.distance) else {
-            return Observable<Void>.error(DatabaseError.other)
+            return Observable<Target>.error(DatabaseError.other)
         }
-        return Observable<Void>.create { [weak self] observer in
+        return Observable<Target>.create { [weak self] observer in
             self?.databaseReference.child(TargetNames.PATH).child(pathName).updateChildValues([
                 TargetNames.NAME: target.name,
                 TargetNames.DISTANCE: target.distance,
                 TargetNames.SCORES: target.scores,
-                TargetNames.ICON: target.icon
+                TargetNames.ICON: target.icon,
+                TargetNames.SHOTS: target.shots
             ]) { error, snapshot in
                 if let error = error {
                     observer.onError(DatabaseError.server)
                 } else {
+                    observer.onNext(target)
                     observer.onCompleted()
                 }
             }

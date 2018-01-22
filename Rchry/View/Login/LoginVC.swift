@@ -12,8 +12,6 @@ import FBSDKLoginKit
 
 class LoginVC: UIViewController {
     
-    let ERROR_TITLE = NSLocalizedString("LoginErrorTitle", comment: "The title for the login error")
-    
     private var loginVM = LoginVM(facebookAuthService: FacebookAuthService(), authService: FirebaseAuthService(), authErrorHandler: BasicAuthErrorHandler())
     
     override func viewWillAppear(_ animated: Bool) {
@@ -27,7 +25,7 @@ class LoginVC: UIViewController {
     @IBAction func facebookLoginBtnTouched(_ sender: LMButton) {
         loginVM.loginWithFacebook { errorMessage in
             if let errorMessage = errorMessage {
-                MessageAlertModalVC.present(withTitle: self.ERROR_TITLE, withMessage: errorMessage, fromVC: self)
+                MessageAlertModalVC.present(withTitle: CommonMessages.ERROR_TITLE, withMessage: errorMessage, fromVC: self)
             } else {
                 self.presentTargetsVC()
             }

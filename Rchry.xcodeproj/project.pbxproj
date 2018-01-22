@@ -36,6 +36,7 @@
 		D7AD33A41FCDB45D00C12112 /* FacebookAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AD33A31FCDB45D00C12112 /* FacebookAuthService.swift */; };
 		D7AD33A61FCDB4F600C12112 /* SocialAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AD33A51FCDB4F600C12112 /* SocialAuthService.swift */; };
 		D7B254401FCEF61300976CAD /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7B2543F1FCEF61300976CAD /* Lato-Regular.ttf */; };
+		D7B38D9920120EA800BAD510 /* CommonMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B38D9820120EA800BAD510 /* CommonMessages.swift */; };
 		D7BF04D71FFE66A000465C8C /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BF04D61FFE66A000465C8C /* Target.swift */; };
 		D7C1C4D81FD8471700FA0551 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D7C1C4DA1FD8471700FA0551 /* Localizable.strings */; };
 		D7C6F2751FC7163B0032A879 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6F2741FC7163B0032A879 /* AppDelegate.swift */; };
@@ -102,6 +103,7 @@
 		D7AD33A31FCDB45D00C12112 /* FacebookAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuthService.swift; sourceTree = "<group>"; };
 		D7AD33A51FCDB4F600C12112 /* SocialAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAuthService.swift; sourceTree = "<group>"; };
 		D7B2543F1FCEF61300976CAD /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		D7B38D9820120EA800BAD510 /* CommonMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonMessages.swift; sourceTree = "<group>"; };
 		D7BF04D51FFE642900465C8C /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Targets.strings; sourceTree = "<group>"; };
 		D7BF04D61FFE66A000465C8C /* Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
 		D7C1C4D91FD8471700FA0551 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 			children = (
 				D7C6F2741FC7163B0032A879 /* AppDelegate.swift */,
 				D71FB5B71FFD32A20085CDDC /* Extensions.swift */,
+				D7B38D9820120EA800BAD510 /* CommonMessages.swift */,
 				D7C6F2801FC7163B0032A879 /* Info.plist */,
 				D7C6F27B1FC7163B0032A879 /* Assets.xcassets */,
 				D76CA94E1FCC622300D8C2AC /* Colors.xcassets */,
@@ -665,6 +668,7 @@
 				D71FB5BE1FFD3A820085CDDC /* NewTargetVM.swift in Sources */,
 				D7DFD2DF1FCDB90B00893BEB /* AuthService.swift in Sources */,
 				D7C6F2771FC7163B0032A879 /* LoginVC.swift in Sources */,
+				D7B38D9920120EA800BAD510 /* CommonMessages.swift in Sources */,
 				D77496B81FFD0D13001138B8 /* PickAnIconCell.swift in Sources */,
 				D7DFD2E21FCDBA6D00893BEB /* LoginVM.swift in Sources */,
 				D7BF04D71FFE66A000465C8C /* Target.swift in Sources */,
