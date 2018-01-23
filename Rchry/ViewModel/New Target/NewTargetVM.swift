@@ -14,7 +14,6 @@ class NewTargetVM {
     private let targetService: TargetService
     private let targetValidator: TargetValidator
     private let databaseErrorHandler: DatabaseErrorToMessageMapper
-    private let distanceUnitConverter: DistanceUnitConverter
     
     var inputName = Variable("")
     var inputDistance = Variable<Float?>(nil)
@@ -75,9 +74,8 @@ class NewTargetVM {
     func outputTargetCreated(reactingTo observable: Observable<()>) -> Observable<(Target?, String?)> {
         return observable
             .flatMap { [unowned self] () -> Observable<(Target?, String?)> in
-                let distance = self.generateDistanceInMeters()
                 let target = Target(name: self.inputName.value,
-                                    distance: distance,
+                                    distance: self.inputDistance.value!,
                                     preferredDistanceUnit: self.inputDistanceUnit.value,
                                     scores: self._datasourceScores!.value,
                                     icon: self._datasourceIcons[self.inputCurrentSelectedIcon.value],
@@ -95,12 +93,10 @@ class NewTargetVM {
     
     init(targetService: TargetService = FirebaseTargetService(),
          targetValidator: TargetValidator = TargetValidator(),
-         databaseErrorHandler: DatabaseErrorToMessageMapper = BasicDatabaseErrorToMessageMapper(),
-         distanceUnitConverter: DistanceUnitConverter = DistanceUnitConverter()) {
+         databaseErrorHandler: DatabaseErrorToMessageMapper = BasicDatabaseErrorToMessageMapper()) {
         self.targetService = targetService
         self.targetValidator = targetValidator
         self.databaseErrorHandler = databaseErrorHandler
-        self.distanceUnitConverter = distanceUnitConverter
     }
     
     private func setupNewScore() {
@@ -148,16 +144,5 @@ class NewTargetVM {
             })
             .disposed(by: disposeBag)
         
-    }
-    
-    private func generateDistanceInMeters() -> Float {
-        var distance = inputDistance.value!
-        switch inputDistanceUnit.value {
-        case .yard:
-            distance = distanceUnitConverter.convertYardsToMeters(distance)
-        case .meter:
-            break
-        }
-        return distance
     }
 }

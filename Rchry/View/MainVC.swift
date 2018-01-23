@@ -35,7 +35,7 @@ class MainVC: UIViewController {
     }
     
     func decideVC() {
-        if authService.isLoggedIn() {
+        if authService.isLoggedIn{
             if !childViewControllers.contains(targetsNavigationVC) {
                 setTargetsNavigationVC()
             }

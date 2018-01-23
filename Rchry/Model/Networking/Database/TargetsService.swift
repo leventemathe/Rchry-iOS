@@ -43,16 +43,16 @@ class FirebaseTargetCoder {
     
     func decode(targetDicitonary: [String: Any]) -> Target? {
         guard let name = targetDicitonary[TargetNames.NAME] as? String else { return nil }
-        guard let distance = targetDicitonary[TargetNames.DISTANCE] as? Float else { return nil }
-        guard let preferredDistanceUnit = targetDicitonary[TargetNames.PREFERRED_DISTANCE_UNIT] as? String,
-              let preferredDistanceUnitString = preferredDistanceUnit.toDistanceUnit() else { return nil }
+        guard var distance = targetDicitonary[TargetNames.DISTANCE] as? Float else { return nil }
+        guard let preferredDistanceUnitString = targetDicitonary[TargetNames.PREFERRED_DISTANCE_UNIT] as? String,
+              let preferredDistanceUnit = preferredDistanceUnitString.toDistanceUnit() else { return nil }
         var scores = targetDicitonary[TargetNames.SCORES] as? [Float]
         if scores == nil {
             scores = [Float]()
         }
         guard let icon = targetDicitonary[TargetNames.ICON] as? String else { return nil }
         guard let shots = targetDicitonary[TargetNames.SHOTS] as? Int else { return nil }
-        return Target(name: name, distance: distance, preferredDistanceUnit: preferredDistanceUnitString, scores: scores!, icon: icon, shots: shots)
+        return Target(name: name, distance: distance, preferredDistanceUnit: preferredDistanceUnit, scores: scores!, icon: icon, shots: shots)
     }
     
     func decode(targetsDicitonary: [String: Any]) -> [Target] {
@@ -72,10 +72,14 @@ class FirebaseTargetService: TargetService {
     // To mock it, just sublcass it and override the used methods. It's less safe, but it also takes less time...
     private var databaseReference: DatabaseReference
     private var targetCoder: FirebaseTargetCoder
+    private var authService: AuthService
     
-    init(databaseReference: DatabaseReference = Database.database().reference(), firebaseTargetCoder: FirebaseTargetCoder = FirebaseTargetCoder()) {
+    init(databaseReference: DatabaseReference = Database.database().reference(),
+         firebaseTargetCoder: FirebaseTargetCoder = FirebaseTargetCoder(),
+         authService: AuthService = FirebaseAuthService()) {
         self.databaseReference = databaseReference
         self.targetCoder = firebaseTargetCoder
+        self.authService = authService
     }
     
     static func createTargetKey(fromName name: String, andDistance distance: Float) -> String? {
@@ -86,11 +90,14 @@ class FirebaseTargetService: TargetService {
     }
     
     func create(target: Target) -> Observable<Target> {
-        guard let pathName = FirebaseTargetService.createTargetKey(fromName: target.name, andDistance: target.distance) else {
-            return Observable<Target>.error(DatabaseError.other)
+        guard let uid = authService.userID else {
+            return Observable<Target>.error(DatabaseError.userNotLoggedIn)
         }
-        return Observable<Target>.create { [unowned self] observer in
-            self.databaseReference.child(TargetNames.PATH).child(pathName).updateChildValues(self.targetCoder.encode(target: target)) { error, snapshot in
+        guard let pathName = FirebaseTargetService.createTargetKey(fromName: target.name, andDistance: target.distance) else {
+            return Observable.error(DatabaseError.other)
+        }
+        return Observable.create { [unowned self] observer in
+            self.databaseReference.child(uid).child(TargetNames.PATH).child(pathName).updateChildValues(self.targetCoder.encode(target: target)) { error, snapshot in
                 if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
                     switch errorCode {
                     case .networkError:
@@ -110,11 +117,14 @@ class FirebaseTargetService: TargetService {
     }
     
     func doesTargetExist(withName name: String, andWithDistance distance: Float) -> Observable<Bool> {
+        guard let uid = authService.userID else {
+            return Observable.error(DatabaseError.userNotLoggedIn)
+        }
         guard let pathName = FirebaseTargetService.createTargetKey(fromName: name, andDistance: distance) else {
             return Observable<Bool>.error(DatabaseError.other)
         }
-        return Observable<Bool>.create { [weak self] observer in
-            self?.databaseReference.child(TargetNames.PATH).child(pathName).observeSingleEvent(of: .value, with: { snapshot in
+        return Observable.create { [weak self] observer in
+            self?.databaseReference.child(uid).child(TargetNames.PATH).child(pathName).observeSingleEvent(of: .value, with: { snapshot in
                 if snapshot.exists() {
                     observer.onNext(true)
                 } else {
@@ -129,8 +139,11 @@ class FirebaseTargetService: TargetService {
     }
     
     func observeTargets() -> Observable<[Target]> {
+        guard let uid = authService.userID else {
+            return Observable.error(DatabaseError.userNotLoggedIn)
+        }
         return Observable.create { [unowned self] observer in
-            let handle = self.databaseReference.child(TargetNames.PATH).observe(.value, with: { snapshot in
+            let handle = self.databaseReference.child(uid).child(TargetNames.PATH).observe(.value, with: { snapshot in
                 if let value = snapshot.value, let targetsDict = value as? [String: Any] {
                     let targets = self.targetCoder.decode(targetsDicitonary: targetsDict)
                     observer.onNext(targets)

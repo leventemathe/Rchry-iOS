@@ -44,7 +44,7 @@ fileprivate struct BasicFirebaseAuth: FirebaseAuth {
 }
 
 struct FirebaseAuthService: AuthService {
-    
+
     var firebaseAuth: FirebaseAuth
     
     init(firebaseAuth: FirebaseAuth = BasicFirebaseAuth()) {
@@ -97,10 +97,14 @@ struct FirebaseAuthService: AuthService {
         }
     }
     
-    func isLoggedIn() -> Bool {
+    var isLoggedIn: Bool {
         if let _ = firebaseAuth.getUser() {
             return true
         }
         return false
+    }
+    
+    var userID: String? {
+        return firebaseAuth.getUser()?.uid
     }
 }

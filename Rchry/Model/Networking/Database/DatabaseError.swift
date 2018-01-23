@@ -13,6 +13,7 @@ enum DatabaseError: Error {
     case server
     case json
     case tooManyRequests
+    case userNotLoggedIn
     case other
 }
 
