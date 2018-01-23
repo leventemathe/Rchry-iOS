@@ -24,6 +24,12 @@ class TargetsVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // This removes empty cells
+        targetsTableView.tableFooterView = UIView()
+        observeTargets()
+    }
+    
+    private func observeTargets() {
         targetsVM.targets
             .do(onNext: { [unowned self] (targets, error) in
                 if let error = error {
