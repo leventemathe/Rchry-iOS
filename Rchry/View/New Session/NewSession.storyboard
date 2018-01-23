@@ -5,11 +5,20 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Amatic-Bold.ttf">
+            <string>Amatic-Bold</string>
+        </array>
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--New SessionVC-->
+        <!--New Session-->
         <scene sceneID="dpx-b1-GDJ">
             <objects>
                 <viewController restorationIdentifier="NewSessionVC" storyboardIdentifier="NewSessionVC" id="HKZ-R3-Eqv" customClass="NewSessionVC" customModule="Rchry" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,21 +26,180 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Session" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uiv-eK-hz9">
-                                <rect key="frame" x="138" y="243" width="99" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="cXI-91-hjm">
+                                <rect key="frame" x="12" y="255.5" width="351" height="156"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="pXQ-P8-ZnV">
+                                        <rect key="frame" x="0.0" y="0.0" width="351" height="32"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="9Wr-vc-GZQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="75" height="32"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add guest" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kay-Z7-W4w">
+                                                        <rect key="frame" x="0.0" y="0.0" width="75" height="32"/>
+                                                        <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
+                                                        <color key="textColor" name="ColorThemeDark"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="S0u-my-28K">
+                                                <rect key="frame" x="87" y="0.0" width="220" height="32"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. j_doe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="clu-zs-6Uk" customClass="LMTextField" customModule="LMViews">
+                                                        <rect key="frame" x="0.0" y="0.0" width="220" height="32"/>
+                                                        <color key="textColor" name="ColorThemeDark"/>
+                                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="underlineColor">
+                                                                <color key="value" name="ColorThemeMid"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="underlineWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLp-yC-axx" customClass="LMButton" customModule="LMViews">
+                                                <rect key="frame" x="319" y="0.0" width="32" height="32"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="32" id="2PP-x0-nhJ"/>
+                                                    <constraint firstAttribute="width" constant="32" id="BgW-bJ-uGb"/>
+                                                </constraints>
+                                                <color key="tintColor" name="ColorThemeDark"/>
+                                                <state key="normal" image="plus_icon">
+                                                    <color key="titleColor" name="ColorThemeDark"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="border" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.31764705879999999" green="0.69803921570000005" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="16"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="H21-XP-GiE">
+                                        <rect key="frame" x="0.0" y="44" width="351" height="54"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="54" id="Hho-oO-cH6"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Utj-Zr-pxg">
+                                            <size key="itemSize" width="103" height="32"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GuestCell" id="HtQ-6p-GCB">
+                                                <rect key="frame" x="0.0" y="0.0" width="103" height="32"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="103" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSe-w3-YAl" customClass="LMLabel" customModule="LMViews">
+                                                            <rect key="frame" x="21.5" y="3" width="60" height="26"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="26" id="HjX-Dw-mDi"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="24"/>
+                                                            <color key="textColor" name="ColorThemeDark"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="24"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="border" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                    <real key="value" value="1"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                    <color key="value" red="0.31764705879999999" green="0.69803921570000005" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="textPaddingLeft">
+                                                                    <real key="value" value="4"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="textPaddingRight">
+                                                                    <real key="value" value="4"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                    </subviews>
+                                                </view>
+                                                <constraints>
+                                                    <constraint firstItem="NSe-w3-YAl" firstAttribute="centerY" secondItem="HtQ-6p-GCB" secondAttribute="centerY" id="KGE-7h-05N"/>
+                                                    <constraint firstItem="NSe-w3-YAl" firstAttribute="centerX" secondItem="HtQ-6p-GCB" secondAttribute="centerX" id="an4-H3-qhw"/>
+                                                </constraints>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVE-z0-t1M" customClass="LMButton" customModule="LMViews">
+                                        <rect key="frame" x="95.5" y="110" width="160" height="46"/>
+                                        <color key="backgroundColor" name="ColorThemeBright"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="hsT-uv-tpv"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="vsJ-Rc-mrf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="31"/>
+                                        <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                        <state key="normal" title="Start">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="23"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="pXQ-P8-ZnV" secondAttribute="trailing" id="26h-Ap-ygu"/>
+                                    <constraint firstItem="pXQ-P8-ZnV" firstAttribute="leading" secondItem="cXI-91-hjm" secondAttribute="leading" id="4VM-fH-4i9"/>
+                                    <constraint firstItem="H21-XP-GiE" firstAttribute="leading" secondItem="cXI-91-hjm" secondAttribute="leading" id="j3X-a5-Anp"/>
+                                    <constraint firstAttribute="trailing" secondItem="H21-XP-GiE" secondAttribute="trailing" id="xpR-Fp-hQE"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="S2A-bH-Gx7" firstAttribute="trailing" secondItem="cXI-91-hjm" secondAttribute="trailing" constant="12" id="9GX-lH-V4b"/>
+                            <constraint firstItem="cXI-91-hjm" firstAttribute="leading" secondItem="S2A-bH-Gx7" secondAttribute="leading" constant="12" id="kia-MF-au7"/>
+                            <constraint firstItem="cXI-91-hjm" firstAttribute="centerY" secondItem="yCw-Eb-hrQ" secondAttribute="centerY" id="vTM-Nw-7M5"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="S2A-bH-Gx7"/>
                     </view>
+                    <navigationItem key="navigationItem" title="New Session" id="dIr-0u-vOw">
+                        <barButtonItem key="backBarButtonItem" title=" " id="wPY-In-QeF"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N0S-Ns-Ldm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-158" y="99"/>
+            <point key="canvasLocation" x="-159.19999999999999" y="98.50074962518741"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="plus_icon" width="24" height="24"/>
+        <namedColor name="ColorThemeBright">
+            <color red="0.47499999399999998" green="0.97299999000000004" blue="0.73299998040000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeDark">
+            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeDark">
+            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeMid">
+            <color red="0.37599998709999999" green="0.74500000479999995" blue="0.70200002189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
