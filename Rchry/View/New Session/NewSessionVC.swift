@@ -13,9 +13,12 @@ import RxSwift
 
 class NewSessionVC: UIViewController {
 
+    @IBOutlet weak var guestPickerViews: UIStackView!
+    @IBOutlet weak var availableGuestsCollectionView: UICollectionView!
     @IBOutlet weak var guestTextfield: LMTextField!
     @IBOutlet weak var addGuestBtn: LMButton!
     @IBOutlet weak var addedGuestsCollectionView: UICollectionView!
+    @IBOutlet weak var nameTextfield: LMTextField!
     @IBOutlet weak var startBtn: LMButton!
     
     var newSessionVM: NewSessionVM!
@@ -35,12 +38,14 @@ class NewSessionVC: UIViewController {
             .filter { $0 != nil }
             .map { $0!.trimmingCharacters(in: .whitespaces) }
             .filter { $0 != ""}
-        newSessionVM = NewSessionVM(newGuestAdded: newGuestAdded)
+        let addedGuestRemoved = addedGuestsCollectionView.rx.itemSelected.asObservable()
+            .map { $0.item }
+        newSessionVM = NewSessionVM(newGuestAdded: newGuestAdded, addedGuestRemoved: addedGuestRemoved)
     }
     
     private func setupAddedGuestsCollectionView() {
         newSessionVM.guestsDatasource.asObservable()
-            .bind(to: addedGuestsCollectionView.rx.items(cellIdentifier: "GuestCell", cellType: GuestCell.self)) { _, guest, cell in
+            .bind(to: addedGuestsCollectionView.rx.items(cellIdentifier: "AddedGuestCell", cellType: GuestCell.self)) { _, guest, cell in
                 cell.update(name: guest)
             }
             .disposed(by: disposeBag)

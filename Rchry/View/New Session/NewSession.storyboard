@@ -27,16 +27,99 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="cXI-91-hjm">
-                                <rect key="frame" x="12" y="255.5" width="351" height="156"/>
+                                <rect key="frame" x="12" y="232.5" width="351" height="202.5"/>
                                 <subviews>
+                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="iLh-Aw-hKY">
+                                        <rect key="frame" x="0.0" y="-78" width="351" height="78"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick a guest you added earlier:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnv-xb-4Ae">
+                                                <rect key="frame" x="56.5" y="0.0" width="238.5" height="0.0"/>
+                                                <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
+                                                <color key="textColor" name="ColorThemeDark"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4zK-tI-bTg">
+                                                <rect key="frame" x="0.0" y="12" width="351" height="54"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="54" id="07c-vI-8eo"/>
+                                                </constraints>
+                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FBT-AG-mhz">
+                                                    <size key="itemSize" width="80" height="40"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="GuestCell" reuseIdentifier="GuestCell" id="Toe-Nj-cjQ" customClass="GuestCell" customModule="Rchry" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="80" height="40"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="40"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Hi-iH-jxS" customClass="LMLabel" customModule="LMViews">
+                                                                    <rect key="frame" x="10" y="7" width="60" height="26"/>
+                                                                    <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="24"/>
+                                                                    <color key="textColor" name="ColorThemeDark"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                            <real key="value" value="19"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="border" value="YES"/>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                            <real key="value" value="1"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                            <color key="value" red="0.31764705879999999" green="0.69803921570000005" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="textPaddingLeft">
+                                                                            <real key="value" value="12"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="textPaddingRight">
+                                                                            <real key="value" value="12"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="textPaddingTop">
+                                                                            <real key="value" value="4"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="textPaddingBottom">
+                                                                            <real key="value" value="8"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                            </subviews>
+                                                        </view>
+                                                        <constraints>
+                                                            <constraint firstItem="0Hi-iH-jxS" firstAttribute="centerY" secondItem="Toe-Nj-cjQ" secondAttribute="centerY" id="YDB-WK-Eb6"/>
+                                                            <constraint firstItem="0Hi-iH-jxS" firstAttribute="centerX" secondItem="Toe-Nj-cjQ" secondAttribute="centerX" id="i60-j9-aje"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <outlet property="guestNameLbl" destination="0Hi-iH-jxS" id="C7X-33-MUH"/>
+                                                        </connections>
+                                                    </collectionViewCell>
+                                                </cells>
+                                            </collectionView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yea-q0-Mrt">
+                                                <rect key="frame" x="166.5" y="78" width="18.5" height="0.0"/>
+                                                <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
+                                                <color key="textColor" name="ColorThemeDark"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="4zK-tI-bTg" firstAttribute="leading" secondItem="iLh-Aw-hKY" secondAttribute="leading" id="NQY-PE-dAB"/>
+                                            <constraint firstAttribute="trailing" secondItem="4zK-tI-bTg" secondAttribute="trailing" id="UV2-d4-wBW"/>
+                                        </constraints>
+                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="pXQ-P8-ZnV">
                                         <rect key="frame" x="0.0" y="0.0" width="351" height="32"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="9Wr-vc-GZQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="75" height="32"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="111" height="32"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add guest" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kay-Z7-W4w">
-                                                        <rect key="frame" x="0.0" y="0.0" width="75" height="32"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new guest" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kay-Z7-W4w">
+                                                        <rect key="frame" x="0.0" y="0.0" width="111" height="32"/>
                                                         <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
                                                         <color key="textColor" name="ColorThemeDark"/>
                                                         <nil key="highlightedColor"/>
@@ -44,10 +127,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="S0u-my-28K">
-                                                <rect key="frame" x="87" y="0.0" width="220" height="32"/>
+                                                <rect key="frame" x="123" y="0.0" width="184" height="32"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. j_doe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="clu-zs-6Uk" customClass="LMTextField" customModule="LMViews">
-                                                        <rect key="frame" x="0.0" y="0.0" width="220" height="32"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="184" height="32"/>
                                                         <color key="textColor" name="ColorThemeDark"/>
                                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -100,7 +183,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="GuestCell" reuseIdentifier="GuestCell" id="HtQ-6p-GCB" customClass="GuestCell" customModule="Rchry" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="AddedGuestCell" reuseIdentifier="AddedGuestCell" id="HtQ-6p-GCB" customClass="GuestCell" customModule="Rchry" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -108,7 +191,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSe-w3-YAl" customClass="LMLabel" customModule="LMViews">
-                                                            <rect key="frame" x="0.0" y="7" width="60" height="26"/>
+                                                            <rect key="frame" x="10" y="7" width="60" height="26"/>
                                                             <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="24"/>
                                                             <color key="textColor" name="ColorThemeDark"/>
                                                             <nil key="highlightedColor"/>
@@ -149,8 +232,33 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="iuw-VX-TGl">
+                                        <rect key="frame" x="0.0" y="110" width="351" height="34.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmr-pW-f97">
+                                                <rect key="frame" x="0.0" y="0.0" width="44.5" height="34.5"/>
+                                                <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
+                                                <color key="textColor" name="ColorThemeDark"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. house competition" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wx0-Nr-TMK" customClass="LMTextField" customModule="LMViews">
+                                                <rect key="frame" x="56.5" y="0.0" width="294.5" height="34.5"/>
+                                                <color key="textColor" name="ColorThemeDark"/>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="underlineColor">
+                                                        <color key="value" name="ColorThemeMid"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="underlineWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVE-z0-t1M" customClass="LMButton" customModule="LMViews">
-                                        <rect key="frame" x="95.5" y="110" width="160" height="46"/>
+                                        <rect key="frame" x="95.5" y="156.5" width="160" height="46"/>
                                         <color key="backgroundColor" name="ColorThemeBright"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="46" id="hsT-uv-tpv"/>
@@ -171,7 +279,9 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="pXQ-P8-ZnV" secondAttribute="trailing" id="26h-Ap-ygu"/>
                                     <constraint firstItem="pXQ-P8-ZnV" firstAttribute="leading" secondItem="cXI-91-hjm" secondAttribute="leading" id="4VM-fH-4i9"/>
+                                    <constraint firstAttribute="trailing" secondItem="iuw-VX-TGl" secondAttribute="trailing" id="Grl-yY-UIh"/>
                                     <constraint firstItem="H21-XP-GiE" firstAttribute="leading" secondItem="cXI-91-hjm" secondAttribute="leading" id="j3X-a5-Anp"/>
+                                    <constraint firstItem="iuw-VX-TGl" firstAttribute="leading" secondItem="cXI-91-hjm" secondAttribute="leading" id="t4x-dU-NQg"/>
                                     <constraint firstAttribute="trailing" secondItem="H21-XP-GiE" secondAttribute="trailing" id="xpR-Fp-hQE"/>
                                 </constraints>
                             </stackView>
@@ -190,8 +300,11 @@
                     <connections>
                         <outlet property="addGuestBtn" destination="RLp-yC-axx" id="i6l-TU-nhc"/>
                         <outlet property="addedGuestsCollectionView" destination="H21-XP-GiE" id="ECI-Qm-R1M"/>
+                        <outlet property="availableGuestsCollectionView" destination="4zK-tI-bTg" id="7vQ-nP-P6b"/>
+                        <outlet property="guestPickerViews" destination="iLh-Aw-hKY" id="jsz-AV-dPT"/>
                         <outlet property="guestTextfield" destination="clu-zs-6Uk" id="9Bs-gy-ont"/>
-                        <outlet property="startBtn" destination="NVE-z0-t1M" id="Vr0-BQ-NAH"/>
+                        <outlet property="nameTextfield" destination="wx0-Nr-TMK" id="bD4-o3-Gtu"/>
+                        <outlet property="startBtn" destination="NVE-z0-t1M" id="ZJS-qS-5ps"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N0S-Ns-Ldm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -206,6 +319,21 @@
         </namedColor>
         <namedColor name="ColorThemeDark">
             <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeDark">
+            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeDark">
+            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeDark">
+            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeDark">
+            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeMid">
+            <color red="0.37599998709999999" green="0.74500000479999995" blue="0.70200002189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ColorThemeMid">
             <color red="0.37599998709999999" green="0.74500000479999995" blue="0.70200002189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
