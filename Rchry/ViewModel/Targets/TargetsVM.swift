@@ -20,8 +20,13 @@ class TargetsVM {
         self.databaseErrorMapper = databaseErrorMapper
     }
     
+    var targetsArray = [Target]()
+    
     var targets: Observable<([Target]?, String?)> {
         return targetService.observeTargets()
+            .do(onNext: { [unowned self] targets in
+                self.targetsArray = targets
+            })
             .map { ($0, nil) }
             .catchError { [unowned self] error in
                 let errorString = self.databaseErrorMapper.map(error: error as! DatabaseError)

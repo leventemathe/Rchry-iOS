@@ -24,6 +24,7 @@
 		D7572C941FCDA4ED0024DEED /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7572C931FCDA4ED0024DEED /* ProfileVM.swift */; };
 		D75D54651FD83740003B3D3F /* AuthErrorToMessageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D54641FD83740003B3D3F /* AuthErrorToMessageMapper.swift */; };
 		D763A99F1FD84BC3005B8540 /* LoginVMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D763A99E1FD84BC3005B8540 /* LoginVMTest.swift */; };
+		D766875F2017732C00F9F65B /* NewSessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D766875E2017732C00F9F65B /* NewSessionVC.swift */; };
 		D76CA94F1FCC622300D8C2AC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D76CA94E1FCC622300D8C2AC /* Colors.xcassets */; };
 		D77496B81FFD0D13001138B8 /* PickAnIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77496B71FFD0D13001138B8 /* PickAnIconCell.swift */; };
 		D778CA801FCD9094001F2D99 /* Amatic-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D778CA7E1FCD9093001F2D99 /* Amatic-Bold.ttf */; };
@@ -38,6 +39,10 @@
 		D7AD33A61FCDB4F600C12112 /* SocialAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AD33A51FCDB4F600C12112 /* SocialAuthService.swift */; };
 		D7B254401FCEF61300976CAD /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7B2543F1FCEF61300976CAD /* Lato-Regular.ttf */; };
 		D7B38D9920120EA800BAD510 /* CommonMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B38D9820120EA800BAD510 /* CommonMessages.swift */; };
+		D7BBC00E2017665A00DC2480 /* NewSession.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7BBC00D2017665A00DC2480 /* NewSession.storyboard */; };
+		D7BBC0112017671300DC2480 /* Target.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7BBC0102017671300DC2480 /* Target.storyboard */; };
+		D7BBC0132017678000DC2480 /* TargetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BBC0122017678000DC2480 /* TargetVC.swift */; };
+		D7BBC01620176CE500DC2480 /* TargetVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BBC01520176CE500DC2480 /* TargetVM.swift */; };
 		D7BF04D71FFE66A000465C8C /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BF04D61FFE66A000465C8C /* Target.swift */; };
 		D7C1C4D81FD8471700FA0551 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D7C1C4DA1FD8471700FA0551 /* Localizable.strings */; };
 		D7C6F2751FC7163B0032A879 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6F2741FC7163B0032A879 /* AppDelegate.swift */; };
@@ -92,6 +97,7 @@
 		D7572C931FCDA4ED0024DEED /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
 		D75D54641FD83740003B3D3F /* AuthErrorToMessageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrorToMessageMapper.swift; sourceTree = "<group>"; };
 		D763A99E1FD84BC3005B8540 /* LoginVMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVMTest.swift; sourceTree = "<group>"; };
+		D766875E2017732C00F9F65B /* NewSessionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSessionVC.swift; sourceTree = "<group>"; };
 		D76CA94E1FCC622300D8C2AC /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D77496B71FFD0D13001138B8 /* PickAnIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickAnIconCell.swift; sourceTree = "<group>"; };
 		D778CA7E1FCD9093001F2D99 /* Amatic-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Amatic-Bold.ttf"; sourceTree = "<group>"; };
@@ -106,6 +112,10 @@
 		D7AD33A51FCDB4F600C12112 /* SocialAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAuthService.swift; sourceTree = "<group>"; };
 		D7B2543F1FCEF61300976CAD /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		D7B38D9820120EA800BAD510 /* CommonMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonMessages.swift; sourceTree = "<group>"; };
+		D7BBC00D2017665A00DC2480 /* NewSession.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewSession.storyboard; sourceTree = "<group>"; };
+		D7BBC0102017671300DC2480 /* Target.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Target.storyboard; sourceTree = "<group>"; };
+		D7BBC0122017678000DC2480 /* TargetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetVC.swift; sourceTree = "<group>"; };
+		D7BBC01520176CE500DC2480 /* TargetVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetVM.swift; sourceTree = "<group>"; };
 		D7BF04D51FFE642900465C8C /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Targets.strings; sourceTree = "<group>"; };
 		D7BF04D61FFE66A000465C8C /* Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
 		D7C1C4D91FD8471700FA0551 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -281,6 +291,32 @@
 			path = Facebook;
 			sourceTree = "<group>";
 		};
+		D7BBC00C2017637E00DC2480 /* New Session */ = {
+			isa = PBXGroup;
+			children = (
+				D7BBC00D2017665A00DC2480 /* NewSession.storyboard */,
+				D766875E2017732C00F9F65B /* NewSessionVC.swift */,
+			);
+			path = "New Session";
+			sourceTree = "<group>";
+		};
+		D7BBC00F2017670500DC2480 /* Target */ = {
+			isa = PBXGroup;
+			children = (
+				D7BBC0102017671300DC2480 /* Target.storyboard */,
+				D7BBC0122017678000DC2480 /* TargetVC.swift */,
+			);
+			path = Target;
+			sourceTree = "<group>";
+		};
+		D7BBC01420176CD300DC2480 /* Target */ = {
+			isa = PBXGroup;
+			children = (
+				D7BBC01520176CE500DC2480 /* TargetVM.swift */,
+			);
+			path = Target;
+			sourceTree = "<group>";
+		};
 		D7C36A051FFD288400C2E68E /* New Target */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,6 +414,7 @@
 				D71F8E302004F64E0077ECAB /* TargetValidator.swift */,
 				D7DFD2E01FCDBA6000893BEB /* Login */,
 				D7A557B620161F50004F556C /* Targets */,
+				D7BBC01420176CD300DC2480 /* Target */,
 				D7C36A051FFD288400C2E68E /* New Target */,
 				D7572C921FCDA4D70024DEED /* Profile */,
 			);
@@ -390,7 +427,9 @@
 				D71E08D21FCED8CA00D9FAA3 /* AlertModal */,
 				D7F0D8BF1FCC5FB2009A044B /* Login */,
 				D7572C8A1FCDA06F0024DEED /* Targets */,
+				D7BBC00F2017670500DC2480 /* Target */,
 				D73528EE1FF5277F00EDC0FC /* New Target */,
+				D7BBC00C2017637E00DC2480 /* New Session */,
 				D7572C911FCDA4980024DEED /* Profile */,
 				D7C6F27D1FC7163B0032A879 /* LaunchScreen.storyboard */,
 				D7A1FA061FED39E1004DDF50 /* MainVC.swift */,
@@ -523,7 +562,9 @@
 				D7D689381FD57EDC00ABB213 /* MessageAlertModal.storyboard in Resources */,
 				D7D6893B1FD57EEF00ABB213 /* Targets.storyboard in Resources */,
 				D778CA801FCD9094001F2D99 /* Amatic-Bold.ttf in Resources */,
+				D7BBC0112017671300DC2480 /* Target.storyboard in Resources */,
 				D7C6F27C1FC7163B0032A879 /* Assets.xcassets in Resources */,
+				D7BBC00E2017665A00DC2480 /* NewSession.storyboard in Resources */,
 				D7C1C4D81FD8471700FA0551 /* Localizable.strings in Resources */,
 				D7C6F27A1FC7163B0032A879 /* Login.storyboard in Resources */,
 				D7B254401FCEF61300976CAD /* Lato-Regular.ttf in Resources */,
@@ -694,8 +735,11 @@
 				D7C7E9161FFE956B003C102D /* DatabaseError.swift in Sources */,
 				D71FB5B81FFD32A20085CDDC /* Extensions.swift in Sources */,
 				D7A1FA071FED39E1004DDF50 /* MainVC.swift in Sources */,
+				D7BBC01620176CE500DC2480 /* TargetVM.swift in Sources */,
+				D766875F2017732C00F9F65B /* NewSessionVC.swift in Sources */,
 				D71FB5BA1FFD33D30085CDDC /* ScoreCell.swift in Sources */,
 				D71F8E312004F64E0077ECAB /* TargetValidator.swift in Sources */,
+				D7BBC0132017678000DC2480 /* TargetVC.swift in Sources */,
 				D7C7E9101FFE848C003C102D /* TargetsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

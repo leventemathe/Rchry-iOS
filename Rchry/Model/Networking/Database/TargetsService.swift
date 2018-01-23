@@ -43,7 +43,7 @@ class FirebaseTargetCoder {
     
     func decode(targetDicitonary: [String: Any]) -> Target? {
         guard let name = targetDicitonary[TargetNames.NAME] as? String else { return nil }
-        guard var distance = targetDicitonary[TargetNames.DISTANCE] as? Float else { return nil }
+        guard let distance = targetDicitonary[TargetNames.DISTANCE] as? Float else { return nil }
         guard let preferredDistanceUnitString = targetDicitonary[TargetNames.PREFERRED_DISTANCE_UNIT] as? String,
               let preferredDistanceUnit = preferredDistanceUnitString.toDistanceUnit() else { return nil }
         var scores = targetDicitonary[TargetNames.SCORES] as? [Float]

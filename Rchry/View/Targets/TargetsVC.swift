@@ -20,13 +20,22 @@ class TargetsVC: UIViewController {
     @IBOutlet weak var targetsTableView: UITableView!
     
     let targetsVM = TargetsVM()
-    private var disposeBag = DisposeBag()
+    private var networkingDisposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        removeEmptyCells()
+        setupTargetTap()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // This removes empty cells
-        targetsTableView.tableFooterView = UIView()
         observeTargets()
+    }
+    
+    private func removeEmptyCells() {
+        targetsTableView.tableFooterView = UIView()
     }
     
     private func observeTargets() {
@@ -42,11 +51,23 @@ class TargetsVC: UIViewController {
             .bind(to: targetsTableView.rx.items(cellIdentifier: "TargetCell", cellType: TargetCell.self)) { _, target, cell in
                 cell.update(icon: target.icon, name: target.name, distance: target.distance, preferredDistanceUnit: target.preferredDistanceUnit, scores: target.scores, shots: target.shots)
             }
+            .disposed(by: networkingDisposeBag)
+    }
+    
+    private func setupTargetTap() {
+        targetsTableView.rx.itemSelected.asObservable()
+            .subscribe(onNext: { [unowned self] indexpath in
+                let storyboard = UIStoryboard(name: "Target", bundle: nil)
+                let targetVC = storyboard.instantiateViewController(withIdentifier: "TargetVC") as! TargetVC
+                let target = self.targetsVM.targetsArray[indexpath.item]
+                targetVC.targetVM = TargetVM(target: target)
+                self.navigationController?.pushViewController(targetVC, animated: true)
+            })
             .disposed(by: disposeBag)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         // To release Firebase listener
-        disposeBag = DisposeBag()
+        networkingDisposeBag = DisposeBag()
     }
 }
