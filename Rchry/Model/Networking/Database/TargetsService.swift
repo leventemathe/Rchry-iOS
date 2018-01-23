@@ -15,6 +15,7 @@ struct TargetNames {
     static let PATH = "targets"
     static let NAME = "name"
     static let DISTANCE = "distance"
+    static let PREFERRED_DISTANCE_UNIT = "preferred_distance_unit"
     static let SCORES = "scores"
     static let ICON = "icon"
     static let SHOTS = "shots"
@@ -24,6 +25,45 @@ protocol TargetService {
     
     func create(target: Target) -> Observable<Target>
     func doesTargetExist(withName name: String, andWithDistance distance: Float) -> Observable<Bool>
+    func observeTargets() -> Observable<[Target]>
+}
+
+class FirebaseTargetCoder {
+    
+    func encode(target: Target) -> [String: Any] {
+        return [
+            TargetNames.NAME: target.name,
+            TargetNames.DISTANCE: target.distance,
+            TargetNames.PREFERRED_DISTANCE_UNIT: target.preferredDistanceUnit.toString(),
+            TargetNames.SCORES: target.scores,
+            TargetNames.ICON: target.icon,
+            TargetNames.SHOTS: target.shots
+        ]
+    }
+    
+    func decode(targetDicitonary: [String: Any]) -> Target? {
+        guard let name = targetDicitonary[TargetNames.NAME] as? String else { return nil }
+        guard let distance = targetDicitonary[TargetNames.DISTANCE] as? Float else { return nil }
+        guard let preferredDistanceUnit = targetDicitonary[TargetNames.PREFERRED_DISTANCE_UNIT] as? String,
+              let preferredDistanceUnitString = preferredDistanceUnit.toDistanceUnit() else { return nil }
+        var scores = targetDicitonary[TargetNames.SCORES] as? [Float]
+        if scores == nil {
+            scores = [Float]()
+        }
+        guard let icon = targetDicitonary[TargetNames.ICON] as? String else { return nil }
+        guard let shots = targetDicitonary[TargetNames.SHOTS] as? Int else { return nil }
+        return Target(name: name, distance: distance, preferredDistanceUnit: preferredDistanceUnitString, scores: scores!, icon: icon, shots: shots)
+    }
+    
+    func decode(targetsDicitonary: [String: Any]) -> [Target] {
+        var targets = [Target]()
+        targetsDicitonary.forEach { _, targetDictionary in
+            if let targetDictionary = targetDictionary as? [String: Any], let target = decode(targetDicitonary: targetDictionary) {
+                targets.append(target)
+            }
+        }
+        return targets
+    }
 }
 
 class FirebaseTargetService: TargetService {
@@ -31,15 +71,11 @@ class FirebaseTargetService: TargetService {
     // This should be a database reference protocol really, but it takes a lot of work to create one, so this will suffice for now.
     // To mock it, just sublcass it and override the used methods. It's less safe, but it also takes less time...
     private var databaseReference: DatabaseReference
+    private var targetCoder: FirebaseTargetCoder
     
-    // These could be protocols too
-    private var jsonEncoder: JSONEncoder
-    private var jsonDecoder: JSONDecoder
-    
-    init(databaseReference: DatabaseReference = Database.database().reference(), jsonEncoder: JSONEncoder = JSONEncoder(), jsonDecoder: JSONDecoder = JSONDecoder()) {
+    init(databaseReference: DatabaseReference = Database.database().reference(), firebaseTargetCoder: FirebaseTargetCoder = FirebaseTargetCoder()) {
         self.databaseReference = databaseReference
-        self.jsonEncoder = jsonEncoder
-        self.jsonDecoder = jsonDecoder
+        self.targetCoder = firebaseTargetCoder
     }
     
     static func createTargetKey(fromName name: String, andDistance distance: Float) -> String? {
@@ -53,14 +89,8 @@ class FirebaseTargetService: TargetService {
         guard let pathName = FirebaseTargetService.createTargetKey(fromName: target.name, andDistance: target.distance) else {
             return Observable<Target>.error(DatabaseError.other)
         }
-        return Observable<Target>.create { [weak self] observer in
-            self?.databaseReference.child(TargetNames.PATH).child(pathName).updateChildValues([
-                TargetNames.NAME: target.name,
-                TargetNames.DISTANCE: target.distance,
-                TargetNames.SCORES: target.scores,
-                TargetNames.ICON: target.icon,
-                TargetNames.SHOTS: target.shots
-            ]) { error, snapshot in
+        return Observable<Target>.create { [unowned self] observer in
+            self.databaseReference.child(TargetNames.PATH).child(pathName).updateChildValues(self.targetCoder.encode(target: target)) { error, snapshot in
                 if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
                     switch errorCode {
                     case .networkError:
@@ -95,6 +125,33 @@ class FirebaseTargetService: TargetService {
                 observer.onError(DatabaseError.server)
             })
             return Disposables.create()
+        }
+    }
+    
+    func observeTargets() -> Observable<[Target]> {
+        return Observable.create { [unowned self] observer in
+            let handle = self.databaseReference.child(TargetNames.PATH).observe(.value, with: { snapshot in
+                if let value = snapshot.value, let targetsDict = value as? [String: Any] {
+                    let targets = self.targetCoder.decode(targetsDicitonary: targetsDict)
+                    observer.onNext(targets)
+                }
+            }, withCancel: { error in
+                if let errorCode = AuthErrorCode(rawValue: error._code) {
+                    switch errorCode {
+                    case .networkError:
+                        observer.onError(DatabaseError.network)
+                    case .tooManyRequests:
+                        observer.onError(DatabaseError.tooManyRequests)
+                    default:
+                        observer.onError(DatabaseError.server)
+                    }
+                } else {
+                    observer.onError(DatabaseError.other)
+                }
+            })
+            return Disposables.create {
+                self.databaseReference.removeObserver(withHandle: handle)
+            }
         }
     }
 }

@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Amatic-Bold.ttf">
+            <string>Amatic-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Targets-->
         <scene sceneID="QvK-c2-QA0">
@@ -17,7 +22,156 @@
                     <view key="view" contentMode="scaleToFill" id="1Ud-eP-3bw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="59T-DE-HAL">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TargetCell" rowHeight="100" id="uNy-dT-LtX" customClass="TargetCell" customModule="Rchry" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uNy-dT-LtX" id="uzy-ui-Jqi">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dVl-n3-DmA">
+                                                    <rect key="frame" x="16" y="8" width="343" height="84.5"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bE7-MO-o0s" userLabel="I" customClass="LMImageView" customModule="LMViews">
+                                                            <rect key="frame" x="0.0" y="0.0" width="82" height="82"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="82" id="8uf-Qv-hAY"/>
+                                                                <constraint firstAttribute="height" constant="82" id="SbC-b2-qdj"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="46"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </imageView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6RK-Sa-CdR">
+                                                            <rect key="frame" x="90" y="0.0" width="245" height="84.5"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0SX-PQ-Gtr">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="164" height="30.5"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Agf-l8-tRM">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="86.5" height="30.5"/>
+                                                                            <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="28"/>
+                                                                            <color key="textColor" name="ColorThemeDark"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EzA-D9-2vb">
+                                                                            <rect key="frame" x="102.5" y="0.0" width="61.5" height="30.5"/>
+                                                                            <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="28"/>
+                                                                            <color key="textColor" name="ColorThemeDark"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kTq-7D-aKY">
+                                                                    <rect key="frame" x="0.0" y="38.5" width="245" height="46"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="46" id="G2h-Il-Eu4"/>
+                                                                    </constraints>
+                                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pft-jM-YI3">
+                                                                        <size key="itemSize" width="32" height="32"/>
+                                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                    </collectionViewFlowLayout>
+                                                                    <cells>
+                                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TargetsScoreCell" id="2c5-UK-NEX" customClass="ScoreCell" customModule="Rchry" customModuleProvider="target">
+                                                                            <rect key="frame" x="0.0" y="7" width="32" height="32"/>
+                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                                <subviews>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EO8-2r-5gF" customClass="LMLabel" customModule="LMViews">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                                                                        <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="24"/>
+                                                                                        <color key="textColor" name="ColorThemeDark"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                        <userDefinedRuntimeAttributes>
+                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                                <real key="value" value="16"/>
+                                                                                            </userDefinedRuntimeAttribute>
+                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="border" value="YES"/>
+                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                                <real key="value" value="1"/>
+                                                                                            </userDefinedRuntimeAttribute>
+                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                                <color key="value" red="0.31764705879999999" green="0.69803921570000005" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                            </userDefinedRuntimeAttribute>
+                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="textPaddingLeft">
+                                                                                                <real key="value" value="4"/>
+                                                                                            </userDefinedRuntimeAttribute>
+                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="textPaddingRight">
+                                                                                                <real key="value" value="4"/>
+                                                                                            </userDefinedRuntimeAttribute>
+                                                                                        </userDefinedRuntimeAttributes>
+                                                                                    </label>
+                                                                                </subviews>
+                                                                            </view>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="bottom" secondItem="EO8-2r-5gF" secondAttribute="bottom" id="7Z0-4E-atK"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="EO8-2r-5gF" secondAttribute="trailing" id="IsK-ZX-nW6"/>
+                                                                                <constraint firstItem="EO8-2r-5gF" firstAttribute="top" secondItem="2c5-UK-NEX" secondAttribute="top" id="S3A-P2-hrP"/>
+                                                                                <constraint firstItem="EO8-2r-5gF" firstAttribute="leading" secondItem="2c5-UK-NEX" secondAttribute="leading" id="eP2-wl-Y5Y"/>
+                                                                            </constraints>
+                                                                            <size key="customSize" width="32" height="32"/>
+                                                                            <connections>
+                                                                                <outlet property="scoreLbl" destination="EO8-2r-5gF" id="jGk-AM-ChQ"/>
+                                                                            </connections>
+                                                                        </collectionViewCell>
+                                                                    </cells>
+                                                                </collectionView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="kTq-7D-aKY" secondAttribute="trailing" id="VD2-t9-v5y"/>
+                                                                <constraint firstItem="kTq-7D-aKY" firstAttribute="leading" secondItem="6RK-Sa-CdR" secondAttribute="leading" id="ij5-Fn-Ztu"/>
+                                                            </constraints>
+                                                        </stackView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O34-Oo-oox">
+                                                            <rect key="frame" x="343" y="0.0" width="0.0" height="84.5"/>
+                                                            <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="33"/>
+                                                            <color key="textColor" name="ColorThemeDark"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="O34-Oo-oox" firstAttribute="centerY" secondItem="dVl-n3-DmA" secondAttribute="centerY" id="UUT-1g-xID"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dVl-n3-DmA" firstAttribute="centerY" secondItem="uzy-ui-Jqi" secondAttribute="centerY" id="Wfo-Th-Lcc"/>
+                                                <constraint firstAttribute="trailing" secondItem="dVl-n3-DmA" secondAttribute="trailing" constant="16" id="anL-y0-VbE"/>
+                                                <constraint firstItem="dVl-n3-DmA" firstAttribute="leading" secondItem="uzy-ui-Jqi" secondAttribute="leading" constant="16" id="azZ-pd-CLL"/>
+                                                <constraint firstItem="dVl-n3-DmA" firstAttribute="centerX" secondItem="uzy-ui-Jqi" secondAttribute="centerX" id="mbC-cM-mGB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="distanceLbl" destination="EzA-D9-2vb" id="xZl-7J-iFY"/>
+                                            <outlet property="iconImageView" destination="bE7-MO-o0s" id="D21-4g-3S0"/>
+                                            <outlet property="nameLbl" destination="Agf-l8-tRM" id="YFd-Il-knA"/>
+                                            <outlet property="scoresCollectionView" destination="kTq-7D-aKY" id="nEe-bc-lIE"/>
+                                            <outlet property="shotsLbl" destination="O34-Oo-oox" id="HWG-RG-VmZ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="59T-DE-HAL" firstAttribute="top" secondItem="he1-d2-uzU" secondAttribute="top" id="BoJ-eL-7RB"/>
+                            <constraint firstItem="59T-DE-HAL" firstAttribute="bottom" secondItem="he1-d2-uzU" secondAttribute="bottom" id="I4I-9C-kl5"/>
+                            <constraint firstItem="59T-DE-HAL" firstAttribute="leading" secondItem="he1-d2-uzU" secondAttribute="leading" id="KzZ-px-auA"/>
+                            <constraint firstItem="59T-DE-HAL" firstAttribute="trailing" secondItem="he1-d2-uzU" secondAttribute="trailing" id="SYG-ce-zXe"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="he1-d2-uzU"/>
                     </view>
                     <navigationItem key="navigationItem" title="Targets" id="kOo-BJ-KaT">
@@ -35,10 +189,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="targetsTableView" destination="59T-DE-HAL" id="2sy-Ny-a7v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E6T-Ac-Edr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="799" y="45"/>
+            <point key="canvasLocation" x="797.60000000000002" y="44.527736131934034"/>
         </scene>
         <!--ProfileVC-->
         <scene sceneID="N7K-Sp-tEM">

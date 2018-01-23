@@ -119,7 +119,7 @@ class NewTargetVC: UIViewController {
                 } else {
                     self?.navigationController?.popViewController(animated: true)
                 }
-            }, onError: { print("errored \($0)") }, onCompleted: { print("completed") })
+            })
             .disposed(by: disposeBag)
     }
     

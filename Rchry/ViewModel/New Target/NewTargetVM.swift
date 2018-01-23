@@ -78,10 +78,10 @@ class NewTargetVM {
                 let distance = self.generateDistanceInMeters()
                 let target = Target(name: self.inputName.value,
                                     distance: distance,
+                                    preferredDistanceUnit: self.inputDistanceUnit.value,
                                     scores: self._datasourceScores!.value,
                                     icon: self._datasourceIcons[self.inputCurrentSelectedIcon.value],
                                     shots: 0)
-                print("target service is called in flatmap")
                 return self.targetService.create(target: target)
                     .map { ($0, nil) }
                     .catchError {

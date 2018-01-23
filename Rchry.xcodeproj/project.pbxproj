@@ -33,6 +33,8 @@
 		D77EE5171FCDB83D00FAEDBA /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77EE5161FCDB83D00FAEDBA /* FirebaseAuthService.swift */; };
 		D7985581201109EA0034E4A4 /* DistanceUnitConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7985580201109EA0034E4A4 /* DistanceUnitConverter.swift */; };
 		D7A1FA071FED39E1004DDF50 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A1FA061FED39E1004DDF50 /* MainVC.swift */; };
+		D7A557B520161C88004F556C /* TargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A557B420161C88004F556C /* TargetCell.swift */; };
+		D7A557B820161F6D004F556C /* TargetsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A557B720161F6D004F556C /* TargetsVM.swift */; };
 		D7AD33A41FCDB45D00C12112 /* FacebookAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AD33A31FCDB45D00C12112 /* FacebookAuthService.swift */; };
 		D7AD33A61FCDB4F600C12112 /* SocialAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7AD33A51FCDB4F600C12112 /* SocialAuthService.swift */; };
 		D7B254401FCEF61300976CAD /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7B2543F1FCEF61300976CAD /* Lato-Regular.ttf */; };
@@ -100,6 +102,8 @@
 		D77EE5161FCDB83D00FAEDBA /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		D7985580201109EA0034E4A4 /* DistanceUnitConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceUnitConverter.swift; sourceTree = "<group>"; };
 		D7A1FA061FED39E1004DDF50 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		D7A557B420161C88004F556C /* TargetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCell.swift; sourceTree = "<group>"; };
+		D7A557B720161F6D004F556C /* TargetsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetsVM.swift; sourceTree = "<group>"; };
 		D7AD33A31FCDB45D00C12112 /* FacebookAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuthService.swift; sourceTree = "<group>"; };
 		D7AD33A51FCDB4F600C12112 /* SocialAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAuthService.swift; sourceTree = "<group>"; };
 		D7B2543F1FCEF61300976CAD /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
@@ -207,6 +211,7 @@
 			children = (
 				D7D689391FD57EEF00ABB213 /* Targets.storyboard */,
 				D71E08D71FCEECA200D9FAA3 /* TargetsVC.swift */,
+				D7A557B420161C88004F556C /* TargetCell.swift */,
 			);
 			path = Targets;
 			sourceTree = "<group>";
@@ -251,6 +256,14 @@
 				D77EE5161FCDB83D00FAEDBA /* FirebaseAuthService.swift */,
 			);
 			path = Firebase;
+			sourceTree = "<group>";
+		};
+		D7A557B620161F50004F556C /* Targets */ = {
+			isa = PBXGroup;
+			children = (
+				D7A557B720161F6D004F556C /* TargetsVM.swift */,
+			);
+			path = Targets;
 			sourceTree = "<group>";
 		};
 		D7AD33A11FCDB43800C12112 /* Networking */ = {
@@ -367,6 +380,7 @@
 				D71F8E322004FABE0077ECAB /* DatabaseErrorToMessageMapper.swift */,
 				D71F8E302004F64E0077ECAB /* TargetValidator.swift */,
 				D7DFD2E01FCDBA6000893BEB /* Login */,
+				D7A557B620161F50004F556C /* Targets */,
 				D7C36A051FFD288400C2E68E /* New Target */,
 				D7572C921FCDA4D70024DEED /* Profile */,
 			);
@@ -670,6 +684,7 @@
 				D7C6F2771FC7163B0032A879 /* LoginVC.swift in Sources */,
 				D7B38D9920120EA800BAD510 /* CommonMessages.swift in Sources */,
 				D77496B81FFD0D13001138B8 /* PickAnIconCell.swift in Sources */,
+				D7A557B820161F6D004F556C /* TargetsVM.swift in Sources */,
 				D7DFD2E21FCDBA6D00893BEB /* LoginVM.swift in Sources */,
 				D7BF04D71FFE66A000465C8C /* Target.swift in Sources */,
 				D75D54651FD83740003B3D3F /* AuthErrorToMessageMapper.swift in Sources */,
@@ -678,6 +693,7 @@
 				D73528F21FF527B700EDC0FC /* NewTargetVC.swift in Sources */,
 				D7AD33A61FCDB4F600C12112 /* SocialAuthService.swift in Sources */,
 				D71E08D61FCEE9A400D9FAA3 /* MessageAlertModalVC.swift in Sources */,
+				D7A557B520161C88004F556C /* TargetCell.swift in Sources */,
 				D71F8E332004FABE0077ECAB /* DatabaseErrorToMessageMapper.swift in Sources */,
 				D7C7E9161FFE956B003C102D /* DatabaseError.swift in Sources */,
 				D71FB5B81FFD32A20085CDDC /* Extensions.swift in Sources */,
