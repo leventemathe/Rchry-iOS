@@ -25,10 +25,12 @@
 		D75D54651FD83740003B3D3F /* AuthErrorToMessageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D54641FD83740003B3D3F /* AuthErrorToMessageMapper.swift */; };
 		D763A99F1FD84BC3005B8540 /* LoginVMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D763A99E1FD84BC3005B8540 /* LoginVMTest.swift */; };
 		D766875F2017732C00F9F65B /* NewSessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D766875E2017732C00F9F65B /* NewSessionVC.swift */; };
+		D766876220177CE600F9F65B /* NewSessionVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D766876120177CE600F9F65B /* NewSessionVM.swift */; };
 		D76CA94F1FCC622300D8C2AC /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D76CA94E1FCC622300D8C2AC /* Colors.xcassets */; };
 		D77496B81FFD0D13001138B8 /* PickAnIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77496B71FFD0D13001138B8 /* PickAnIconCell.swift */; };
 		D778CA801FCD9094001F2D99 /* Amatic-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D778CA7E1FCD9093001F2D99 /* Amatic-Bold.ttf */; };
 		D778CA811FCD9094001F2D99 /* AmaticSC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D778CA7F1FCD9093001F2D99 /* AmaticSC-Regular.ttf */; };
+		D77ABD4E20178A3300418986 /* GuestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77ABD4D20178A3300418986 /* GuestCell.swift */; };
 		D77C86181FE01CD900226CBC /* FacebookAuthServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77C86171FE01CD900226CBC /* FacebookAuthServiceTest.swift */; };
 		D77C861A1FE042DC00226CBC /* FirebaseAuthServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77C86191FE042DC00226CBC /* FirebaseAuthServiceTest.swift */; };
 		D77EE5171FCDB83D00FAEDBA /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77EE5161FCDB83D00FAEDBA /* FirebaseAuthService.swift */; };
@@ -98,10 +100,12 @@
 		D75D54641FD83740003B3D3F /* AuthErrorToMessageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrorToMessageMapper.swift; sourceTree = "<group>"; };
 		D763A99E1FD84BC3005B8540 /* LoginVMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVMTest.swift; sourceTree = "<group>"; };
 		D766875E2017732C00F9F65B /* NewSessionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSessionVC.swift; sourceTree = "<group>"; };
+		D766876120177CE600F9F65B /* NewSessionVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSessionVM.swift; sourceTree = "<group>"; };
 		D76CA94E1FCC622300D8C2AC /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D77496B71FFD0D13001138B8 /* PickAnIconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickAnIconCell.swift; sourceTree = "<group>"; };
 		D778CA7E1FCD9093001F2D99 /* Amatic-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Amatic-Bold.ttf"; sourceTree = "<group>"; };
 		D778CA7F1FCD9093001F2D99 /* AmaticSC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmaticSC-Regular.ttf"; sourceTree = "<group>"; };
+		D77ABD4D20178A3300418986 /* GuestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCell.swift; sourceTree = "<group>"; };
 		D77C86171FE01CD900226CBC /* FacebookAuthServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuthServiceTest.swift; sourceTree = "<group>"; };
 		D77C86191FE042DC00226CBC /* FirebaseAuthServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthServiceTest.swift; sourceTree = "<group>"; };
 		D77EE5161FCDB83D00FAEDBA /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
@@ -241,6 +245,14 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		D766876020177CC200F9F65B /* New Session */ = {
+			isa = PBXGroup;
+			children = (
+				D766876120177CE600F9F65B /* NewSessionVM.swift */,
+			);
+			path = "New Session";
+			sourceTree = "<group>";
+		};
 		D77C86151FE01CA700226CBC /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,6 +308,7 @@
 			children = (
 				D7BBC00D2017665A00DC2480 /* NewSession.storyboard */,
 				D766875E2017732C00F9F65B /* NewSessionVC.swift */,
+				D77ABD4D20178A3300418986 /* GuestCell.swift */,
 			);
 			path = "New Session";
 			sourceTree = "<group>";
@@ -416,6 +429,7 @@
 				D7A557B620161F50004F556C /* Targets */,
 				D7BBC01420176CD300DC2480 /* Target */,
 				D7C36A051FFD288400C2E68E /* New Target */,
+				D766876020177CC200F9F65B /* New Session */,
 				D7572C921FCDA4D70024DEED /* Profile */,
 			);
 			path = ViewModel;
@@ -718,6 +732,7 @@
 				D7AD33A41FCDB45D00C12112 /* FacebookAuthService.swift in Sources */,
 				D71FB5BE1FFD3A820085CDDC /* NewTargetVM.swift in Sources */,
 				D7DFD2DF1FCDB90B00893BEB /* AuthService.swift in Sources */,
+				D766876220177CE600F9F65B /* NewSessionVM.swift in Sources */,
 				D7C6F2771FC7163B0032A879 /* LoginVC.swift in Sources */,
 				D7B38D9920120EA800BAD510 /* CommonMessages.swift in Sources */,
 				D77496B81FFD0D13001138B8 /* PickAnIconCell.swift in Sources */,
@@ -739,6 +754,7 @@
 				D766875F2017732C00F9F65B /* NewSessionVC.swift in Sources */,
 				D71FB5BA1FFD33D30085CDDC /* ScoreCell.swift in Sources */,
 				D71F8E312004F64E0077ECAB /* TargetValidator.swift in Sources */,
+				D77ABD4E20178A3300418986 /* GuestCell.swift in Sources */,
 				D7BBC0132017678000DC2480 /* TargetVC.swift in Sources */,
 				D7C7E9101FFE848C003C102D /* TargetsService.swift in Sources */,
 			);

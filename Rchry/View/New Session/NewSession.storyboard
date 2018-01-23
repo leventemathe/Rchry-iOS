@@ -94,30 +94,27 @@
                                             <constraint firstAttribute="height" constant="54" id="Hho-oO-cH6"/>
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Utj-Zr-pxg">
-                                            <size key="itemSize" width="103" height="32"/>
+                                            <size key="itemSize" width="80" height="40"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GuestCell" id="HtQ-6p-GCB">
-                                                <rect key="frame" x="0.0" y="0.0" width="103" height="32"/>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="GuestCell" reuseIdentifier="GuestCell" id="HtQ-6p-GCB" customClass="GuestCell" customModule="Rchry" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="80" height="40"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="103" height="32"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="40"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSe-w3-YAl" customClass="LMLabel" customModule="LMViews">
-                                                            <rect key="frame" x="21.5" y="3" width="60" height="26"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="26" id="HjX-Dw-mDi"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="0.0" y="7" width="60" height="26"/>
                                                             <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="24"/>
                                                             <color key="textColor" name="ColorThemeDark"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                    <real key="value" value="24"/>
+                                                                    <real key="value" value="19"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="border" value="YES"/>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -127,10 +124,16 @@
                                                                     <color key="value" red="0.31764705879999999" green="0.69803921570000005" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="textPaddingLeft">
-                                                                    <real key="value" value="4"/>
+                                                                    <real key="value" value="12"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="textPaddingRight">
+                                                                    <real key="value" value="12"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="textPaddingTop">
                                                                     <real key="value" value="4"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="textPaddingBottom">
+                                                                    <real key="value" value="8"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
@@ -140,6 +143,9 @@
                                                     <constraint firstItem="NSe-w3-YAl" firstAttribute="centerY" secondItem="HtQ-6p-GCB" secondAttribute="centerY" id="KGE-7h-05N"/>
                                                     <constraint firstItem="NSe-w3-YAl" firstAttribute="centerX" secondItem="HtQ-6p-GCB" secondAttribute="centerX" id="an4-H3-qhw"/>
                                                 </constraints>
+                                                <connections>
+                                                    <outlet property="guestNameLbl" destination="NSe-w3-YAl" id="ydm-O4-Xn4"/>
+                                                </connections>
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
@@ -181,6 +187,12 @@
                     <navigationItem key="navigationItem" title="New Session" id="dIr-0u-vOw">
                         <barButtonItem key="backBarButtonItem" title=" " id="wPY-In-QeF"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addGuestBtn" destination="RLp-yC-axx" id="i6l-TU-nhc"/>
+                        <outlet property="addedGuestsCollectionView" destination="H21-XP-GiE" id="ECI-Qm-R1M"/>
+                        <outlet property="guestTextfield" destination="clu-zs-6Uk" id="9Bs-gy-ont"/>
+                        <outlet property="startBtn" destination="NVE-z0-t1M" id="Vr0-BQ-NAH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N0S-Ns-Ldm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -191,9 +203,6 @@
         <image name="plus_icon" width="24" height="24"/>
         <namedColor name="ColorThemeBright">
             <color red="0.47499999399999998" green="0.97299999000000004" blue="0.73299998040000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="ColorThemeDark">
-            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ColorThemeDark">
             <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
