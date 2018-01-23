@@ -14,9 +14,12 @@ class NewSessionVM {
     private let disposeBag = DisposeBag()
     
     private var guests = Variable([String]())
+    private var name = Variable("")
     
-    init(newGuestAdded: Observable<String>, addedGuestRemoved: Observable<Int>) {
+    init(newGuestAdded: Observable<String>, addedGuestRemoved: Observable<Int>, nameChanged: Observable<String>) {
         newGuestAdded
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .filter { $0 != ""}
             .filter { [unowned self] in !self.guests.value.contains($0) }
             .subscribe(onNext: { [unowned self] in self.guests.value.append($0) })
             .disposed(by: disposeBag)
@@ -26,9 +29,18 @@ class NewSessionVM {
                 self.guests.value.remove(at: index)
             })
             .disposed(by: disposeBag)
+        
+        nameChanged
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .bind(to: name)
+            .disposed(by: disposeBag)
     }
     
     var guestsDatasource: Observable<[String]> {
         return guests.asObservable()
+    }
+    
+    var isSessionReady: Observable<Bool> {
+        return name.asObservable().map { $0 != "" }
     }
 }

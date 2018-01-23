@@ -12,7 +12,10 @@ import RxCocoa
 import RxSwift
 
 class NewSessionVC: UIViewController {
-
+    
+    static let NEW_SESSION_START_BUTTON_DISABLED = NSLocalizedString("NewSesseionStartButtonDisabled", comment: "The form is not filled yet, so the start button is disabled")
+    static let NEW_SESSION_START_BUTTON_ENABLED = NSLocalizedString("NewSesseionStartButtonEnabled", comment: "The form is filled, so the start button is enabled")
+    
     @IBOutlet weak var guestPickerViews: UIStackView!
     @IBOutlet weak var availableGuestsCollectionView: UICollectionView!
     @IBOutlet weak var guestTextfield: LMTextField!
@@ -30,17 +33,21 @@ class NewSessionVC: UIViewController {
         hideKeyboardWhenTappedAround()
         setupNewTargetVM()
         setupAddedGuestsCollectionView()
+        setupStartButton()
     }
     
     private func setupNewTargetVM() {
         let newGuestAdded = addGuestBtn.rx.tap.asObservable()
             .withLatestFrom(guestTextfield.rx.text.asObservable())
             .filter { $0 != nil }
-            .map { $0!.trimmingCharacters(in: .whitespaces) }
-            .filter { $0 != ""}
+            .map { $0! }
+        
         let addedGuestRemoved = addedGuestsCollectionView.rx.itemSelected.asObservable()
             .map { $0.item }
-        newSessionVM = NewSessionVM(newGuestAdded: newGuestAdded, addedGuestRemoved: addedGuestRemoved)
+        
+        let nameChanged = nameTextfield.rx.text.asObservable().filter{ $0 != nil }.map { $0! }
+        
+        newSessionVM = NewSessionVM(newGuestAdded: newGuestAdded, addedGuestRemoved: addedGuestRemoved, nameChanged: nameChanged)
     }
     
     private func setupAddedGuestsCollectionView() {
@@ -48,6 +55,15 @@ class NewSessionVC: UIViewController {
             .bind(to: addedGuestsCollectionView.rx.items(cellIdentifier: "AddedGuestCell", cellType: GuestCell.self)) { _, guest, cell in
                 cell.update(name: guest)
             }
+            .disposed(by: disposeBag)
+    }
+    
+    private func setupStartButton() {
+        startBtn.setTitle(NewSessionVC.NEW_SESSION_START_BUTTON_DISABLED, for: .disabled)
+        startBtn.setTitle(NewSessionVC.NEW_SESSION_START_BUTTON_ENABLED, for: .normal)
+        
+        newSessionVM.isSessionReady.asDriver(onErrorJustReturn: false)
+            .drive(startBtn.rx.isEnabled)
             .disposed(by: disposeBag)
     }
 }
