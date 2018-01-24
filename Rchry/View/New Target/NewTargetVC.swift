@@ -88,6 +88,7 @@ class NewTargetVC: UIViewController {
             .withLatestFrom(scoresTextField.rx.text.asObservable())
             .map { $0 ?? "" }
             .map { $0.float() }
+            .do(onNext: { [unowned self] _ in self.scoresTextField.text = "" })
             .bind(to: newTargetVM.inputNewScore)
             .disposed(by: disposeBag)
     }

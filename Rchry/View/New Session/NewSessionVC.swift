@@ -49,6 +49,7 @@ class NewSessionVC: UIViewController {
             .withLatestFrom(guestTextfield.rx.text.asObservable())
             .filter { $0 != nil }
             .map { $0! }
+            .do(onNext: { [unowned self] _ in self.guestTextfield.text = "" })
         
         let availableGuestAdded = availableGuestsCollectionView.rx.itemSelected.asObservable()
             .map { $0.item }
