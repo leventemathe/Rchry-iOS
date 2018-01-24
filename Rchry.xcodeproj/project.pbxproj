@@ -231,8 +231,8 @@
 		D74C39642018BCFA006EDBB4 /* Session */ = {
 			isa = PBXGroup;
 			children = (
-				D74C39652018BD19006EDBB4 /* SessionVC.swift */,
 				D74C39672018BD33006EDBB4 /* Session.storyboard */,
+				D74C39652018BD19006EDBB4 /* SessionVC.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";

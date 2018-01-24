@@ -18,10 +18,13 @@ class NewSessionVC: UIViewController {
     
     @IBOutlet weak var guestPickerViews: UIStackView!
     @IBOutlet weak var availableGuestsCollectionView: UICollectionView!
+    
     @IBOutlet weak var guestTextfield: LMTextField!
     @IBOutlet weak var addGuestBtn: LMButton!
     @IBOutlet weak var addedGuestsCollectionView: UICollectionView!
+    
     @IBOutlet weak var nameTextfield: LMTextField!
+    
     @IBOutlet weak var startBtn: LMButton!
     
     // This needs to be set when the vc is created, outside of the vc
@@ -30,6 +33,8 @@ class NewSessionVC: UIViewController {
     var newSessionVM: NewSessionVM!
     
     private let disposeBag = DisposeBag()
+    // Separate dispose bag to empty in viewWillDisappear to clean up Firebase observer
+    private var networkDisposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,12 +50,20 @@ class NewSessionVC: UIViewController {
             .filter { $0 != nil }
             .map { $0! }
         
+        let availableGuestAdded = availableGuestsCollectionView.rx.itemSelected.asObservable()
+            .map { $0.item }
+            .map { [unowned self] in self.newSessionVM.savedGuestsArray[$0] }
+        
         let addedGuestRemoved = addedGuestsCollectionView.rx.itemSelected.asObservable()
             .map { $0.item }
         
         let nameChanged = nameTextfield.rx.text.asObservable().filter{ $0 != nil }.map { $0! }
         
-        newSessionVM = NewSessionVM(ownerTarget: ownerTarget, newGuestAdded: newGuestAdded, addedGuestRemoved: addedGuestRemoved, nameChanged: nameChanged)
+        newSessionVM = NewSessionVM(ownerTarget: ownerTarget,
+                                    newGuestAdded: newGuestAdded,
+                                    availableGuestAdded: availableGuestAdded,
+                                    addedGuestRemoved: addedGuestRemoved,
+                                    nameChanged: nameChanged)
     }
     
     private func setupAddedGuestsCollectionView() {
@@ -91,6 +104,37 @@ class NewSessionVC: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupSavedGuestsObserving()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        networkDisposeBag = DisposeBag()
+    }
+    
+    private func setupSavedGuestsObserving() {
+        newSessionVM.savedGuestsDatasource
+            .do(onNext: { [unowned self] (guests, error) in
+                if let error = error {
+                    MessageAlertModalVC.present(withTitle: CommonMessages.ERROR_TITLE, withMessage: error, fromVC: self)
+                    return
+                }
+                if guests != nil && guests!.count > 0 {
+                    self.guestPickerViews.isHidden = false
+                } else {
+                    self.guestPickerViews.isHidden = true
+                }
+            })
+            .map { (guests, _) -> [String] in
+                return guests ?? [String]()
+            }
+            .bind(to: availableGuestsCollectionView.rx.items(cellIdentifier: "GuestCell", cellType: GuestCell.self)) { _, guest, cell in
+                cell.update(name: guest)
+            }
+            .disposed(by: networkDisposeBag)
     }
 }
 

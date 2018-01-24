@@ -23,6 +23,7 @@ struct SessionNames {
 protocol SessionService {
     
     func create(session: Session) -> Observable<Session>
+    func observeGuests() -> Observable<[String]>
 }
 
 struct FirebaseSessionCoder {
@@ -96,6 +97,25 @@ class FirebaseSessionService: SessionService {
                 observer.onError(DatabaseError.other)
             }
             return Disposables.create()
+        }
+    }
+    
+    func observeGuests() -> Observable<[String]> {
+        guard let uid = authService.userID else {
+            return Observable.error(DatabaseError.userNotLoggedIn)
+        }
+        return Observable.create { [unowned self] observer in
+            let handle = self.databaseRef.child(uid).child(SessionNames.SAVED_GUESTS).observe(.value, with: { snapshot in
+                if let guestsDict = snapshot.value as? [String: Any] {
+                    let guests = guestsDict.keys.map { $0 }
+                    observer.onNext(guests)
+                }
+            }, withCancel: { error in
+                // TODO: Instead of terminating stream, pass the error in onNext
+                // TODO: Similarly in other services too
+                observer.onError(DatabaseError.server)
+            })
+            return Disposables.create { self.databaseRef.removeObserver(withHandle: handle) }
         }
     }
 }

@@ -22,6 +22,7 @@ class NewSessionVM {
     
     init(ownerTarget: Target,
          newGuestAdded: Observable<String>,
+         availableGuestAdded: Observable<String>,
          addedGuestRemoved: Observable<Int>,
          nameChanged: Observable<String>,
          sessionService: SessionService = FirebaseSessionService(),
@@ -34,6 +35,11 @@ class NewSessionVM {
         newGuestAdded
             .map { $0.trimmingCharacters(in: .whitespaces) }
             .filter { $0 != ""}
+            .filter { [unowned self] in !self.guests.value.contains($0) }
+            .subscribe(onNext: { [unowned self] in self.guests.value.append($0) })
+            .disposed(by: disposeBag)
+        
+        availableGuestAdded
             .filter { [unowned self] in !self.guests.value.contains($0) }
             .subscribe(onNext: { [unowned self] in self.guests.value.append($0) })
             .disposed(by: disposeBag)
@@ -68,5 +74,14 @@ class NewSessionVM {
                         return Observable.just((nil, self.errorMapper.map(error: error as! DatabaseError)))
                 }
         }
+    }
+    
+    var savedGuestsArray = [String]()
+    
+    var savedGuestsDatasource: Observable<([String]?, String?)> {
+        return sessionService.observeGuests()
+            .do(onNext: { [unowned self] in self.savedGuestsArray = $0 })
+            .map { ($0, nil) }
+            .catchError { [unowned self] in Observable.just((nil, self.errorMapper.map(error: $0 as! DatabaseError))) }
     }
 }
