@@ -85,7 +85,9 @@ class NewSessionVC: UIViewController {
                 if let error = error {
                     MessageAlertModalVC.present(withTitle: CommonMessages.ERROR_TITLE, withMessage: error, fromVC: self)
                 } else {
-                    print("created session")
+                    let storyboard = UIStoryboard(name: "Session", bundle: nil)
+                    let sessionVC = storyboard.instantiateViewController(withIdentifier: "SessionVC")
+                    self.navigationController?.pushViewController(sessionVC, animated: true)
                 }
             })
             .disposed(by: disposeBag)

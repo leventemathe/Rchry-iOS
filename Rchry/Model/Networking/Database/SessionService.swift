@@ -15,6 +15,9 @@ struct SessionNames {
     static let GUEST_PATH = "guest_sessions"
     // Guests are saved here too for easy retrieval
     static let SAVED_GUESTS = "guests"
+    
+    static let TIMESTAMP = "timestamp"
+    static let NAME = "name"
 }
 
 protocol SessionService {
@@ -26,13 +29,24 @@ struct FirebaseSessionCoder {
     
     func encode(session: Session, withTimestamp timestamp: Double, underTarget target: String) -> [String: Any] {
         let sessionKey = "\(session.name)-\(Int(timestamp))"
-        let guestDictWithTimestamp = session.guests.reduce(into: [String: [String: Double]](), { dict, guest in dict[guest] = [sessionKey: timestamp] })
-        let guestDict = session.guests.reduce(into: [String: Double](), { dict, guest in dict[guest] = timestamp })
-        return [
-            "\(TargetNames.PATH)/\(target)/\(SessionNames.MY_PATH)/\(sessionKey)": timestamp,
-            "\(TargetNames.PATH)/\(target)/\(SessionNames.GUEST_PATH)": guestDictWithTimestamp,
-            "\(SessionNames.SAVED_GUESTS)": guestDict
+        
+        let mySessionDict = [
+            "\(TargetNames.PATH)/\(target)/\(SessionNames.MY_PATH)/\(sessionKey)":
+                [SessionNames.TIMESTAMP: timestamp,
+                 SessionNames.NAME: session.name] as Any
         ]
+        
+        let guestSessionDict = session.guests.reduce(into: [String: Any](), { dict, guest in
+            dict["\(TargetNames.PATH)/\(target)/\(SessionNames.GUEST_PATH)/\(guest)/\(sessionKey)"] =
+                [SessionNames.TIMESTAMP: timestamp,
+                 SessionNames.NAME: session.name] as Any
+        })
+        
+        let guestDict = session.guests.reduce(into: [String: Any](), { dict, guest in
+            dict["\(SessionNames.SAVED_GUESTS)/\(guest)"] = timestamp as Any
+        })
+        
+        return mySessionDict.merging(guestSessionDict, uniquingKeysWith: { one, two in  one }).merging(guestDict, uniquingKeysWith: { one, two in  one })
     }
 }
 

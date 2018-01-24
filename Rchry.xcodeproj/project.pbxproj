@@ -20,6 +20,8 @@
 		D73528F21FF527B700EDC0FC /* NewTargetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73528F11FF527B700EDC0FC /* NewTargetVC.swift */; };
 		D7377D1A1FDEE50A00AEA161 /* ProfileVMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7377D191FDEE50A00AEA161 /* ProfileVMTest.swift */; };
 		D7377D1C1FDEE56200AEA161 /* AuthMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7377D1B1FDEE56200AEA161 /* AuthMocks.swift */; };
+		D74C39662018BD19006EDBB4 /* SessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D74C39652018BD19006EDBB4 /* SessionVC.swift */; };
+		D74C39682018BD33006EDBB4 /* Session.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D74C39672018BD33006EDBB4 /* Session.storyboard */; };
 		D755503920188D9100177A98 /* Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D755503820188D9100177A98 /* Dates.swift */; };
 		D7572C901FCDA3FD0024DEED /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7572C8F1FCDA3FD0024DEED /* ProfileVC.swift */; };
 		D7572C941FCDA4ED0024DEED /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7572C931FCDA4ED0024DEED /* ProfileVM.swift */; };
@@ -98,6 +100,8 @@
 		D7377D191FDEE50A00AEA161 /* ProfileVMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVMTest.swift; sourceTree = "<group>"; };
 		D7377D1B1FDEE56200AEA161 /* AuthMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthMocks.swift; sourceTree = "<group>"; };
 		D74BA1A72003D37400B84CC4 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/NewTarget.strings; sourceTree = "<group>"; };
+		D74C39652018BD19006EDBB4 /* SessionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionVC.swift; sourceTree = "<group>"; };
+		D74C39672018BD33006EDBB4 /* Session.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Session.storyboard; sourceTree = "<group>"; };
 		D755503820188D9100177A98 /* Dates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dates.swift; sourceTree = "<group>"; };
 		D7572C8F1FCDA3FD0024DEED /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		D7572C931FCDA4ED0024DEED /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
@@ -222,6 +226,15 @@
 				D7377D191FDEE50A00AEA161 /* ProfileVMTest.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D74C39642018BCFA006EDBB4 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				D74C39652018BD19006EDBB4 /* SessionVC.swift */,
+				D74C39672018BD33006EDBB4 /* Session.storyboard */,
+			);
+			path = Session;
 			sourceTree = "<group>";
 		};
 		D7572C8A1FCDA06F0024DEED /* Targets */ = {
@@ -452,6 +465,7 @@
 				D7BBC00F2017670500DC2480 /* Target */,
 				D73528EE1FF5277F00EDC0FC /* New Target */,
 				D7BBC00C2017637E00DC2480 /* New Session */,
+				D74C39642018BCFA006EDBB4 /* Session */,
 				D7572C911FCDA4980024DEED /* Profile */,
 				D7C6F27D1FC7163B0032A879 /* LaunchScreen.storyboard */,
 				D7A1FA061FED39E1004DDF50 /* MainVC.swift */,
@@ -589,6 +603,7 @@
 				D7C6F27C1FC7163B0032A879 /* Assets.xcassets in Resources */,
 				D7BBC00E2017665A00DC2480 /* NewSession.storyboard in Resources */,
 				D7C1C4D81FD8471700FA0551 /* Localizable.strings in Resources */,
+				D74C39682018BD33006EDBB4 /* Session.storyboard in Resources */,
 				D7C6F27A1FC7163B0032A879 /* Login.storyboard in Resources */,
 				D7B254401FCEF61300976CAD /* Lato-Regular.ttf in Resources */,
 			);
@@ -758,6 +773,7 @@
 				D71E08D61FCEE9A400D9FAA3 /* MessageAlertModalVC.swift in Sources */,
 				D7A557B520161C88004F556C /* TargetCell.swift in Sources */,
 				D71F8E332004FABE0077ECAB /* DatabaseErrorToMessageMapper.swift in Sources */,
+				D74C39662018BD19006EDBB4 /* SessionVC.swift in Sources */,
 				D7C7E9161FFE956B003C102D /* DatabaseError.swift in Sources */,
 				D71FB5B81FFD32A20085CDDC /* Extensions.swift in Sources */,
 				D7A1FA071FED39E1004DDF50 /* MainVC.swift in Sources */,
