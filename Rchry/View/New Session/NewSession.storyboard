@@ -27,22 +27,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="cXI-91-hjm">
-                                <rect key="frame" x="12" y="232.5" width="351" height="202.5"/>
+                                <rect key="frame" x="12" y="145" width="351" height="377.5"/>
                                 <subviews>
-                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="iLh-Aw-hKY">
-                                        <rect key="frame" x="0.0" y="-78" width="351" height="78"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="iLh-Aw-hKY">
+                                        <rect key="frame" x="0.0" y="0.0" width="351" height="155"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick a guest you added earlier:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnv-xb-4Ae">
-                                                <rect key="frame" x="56.5" y="0.0" width="238.5" height="0.0"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick a guest you added earlier:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnv-xb-4Ae">
+                                                <rect key="frame" x="0.0" y="0.0" width="351" height="34.5"/>
                                                 <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
                                                 <color key="textColor" name="ColorThemeDark"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4zK-tI-bTg">
-                                                <rect key="frame" x="0.0" y="12" width="351" height="54"/>
+                                                <rect key="frame" x="0.0" y="46.5" width="351" height="62"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="54" id="07c-vI-8eo"/>
+                                                    <constraint firstAttribute="height" constant="62" id="07c-vI-8eo"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FBT-AG-mhz">
                                                     <size key="itemSize" width="80" height="40"/>
@@ -59,7 +59,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Hi-iH-jxS" customClass="LMLabel" customModule="LMViews">
-                                                                    <rect key="frame" x="10" y="7" width="60" height="26"/>
+                                                                    <rect key="frame" x="0.0" y="7" width="60" height="26"/>
                                                                     <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="24"/>
                                                                     <color key="textColor" name="ColorThemeDark"/>
                                                                     <nil key="highlightedColor"/>
@@ -100,20 +100,16 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yea-q0-Mrt">
-                                                <rect key="frame" x="166.5" y="78" width="18.5" height="0.0"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yea-q0-Mrt">
+                                                <rect key="frame" x="0.0" y="120.5" width="351" height="34.5"/>
                                                 <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
                                                 <color key="textColor" name="ColorThemeDark"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="4zK-tI-bTg" firstAttribute="leading" secondItem="iLh-Aw-hKY" secondAttribute="leading" id="NQY-PE-dAB"/>
-                                            <constraint firstAttribute="trailing" secondItem="4zK-tI-bTg" secondAttribute="trailing" id="UV2-d4-wBW"/>
-                                        </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="pXQ-P8-ZnV">
-                                        <rect key="frame" x="0.0" y="0.0" width="351" height="32"/>
+                                        <rect key="frame" x="0.0" y="167" width="351" height="32"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="9Wr-vc-GZQ">
                                                 <rect key="frame" x="0.0" y="0.0" width="111" height="32"/>
@@ -171,10 +167,10 @@
                                         </subviews>
                                     </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="H21-XP-GiE">
-                                        <rect key="frame" x="0.0" y="44" width="351" height="54"/>
+                                        <rect key="frame" x="0.0" y="211" width="351" height="62"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="54" id="Hho-oO-cH6"/>
+                                            <constraint firstAttribute="height" constant="62" id="Hho-oO-cH6"/>
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Utj-Zr-pxg">
                                             <size key="itemSize" width="80" height="40"/>
@@ -233,7 +229,7 @@
                                         </cells>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="iuw-VX-TGl">
-                                        <rect key="frame" x="0.0" y="110" width="351" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="285" width="351" height="34.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmr-pW-f97">
                                                 <rect key="frame" x="0.0" y="0.0" width="44.5" height="34.5"/>
@@ -258,7 +254,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVE-z0-t1M" customClass="LMButton" customModule="LMViews">
-                                        <rect key="frame" x="95.5" y="156.5" width="160" height="46"/>
+                                        <rect key="frame" x="95.5" y="331.5" width="160" height="46"/>
                                         <color key="backgroundColor" name="ColorThemeBright"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="46" id="hsT-uv-tpv"/>
@@ -277,9 +273,11 @@
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="iLh-Aw-hKY" firstAttribute="leading" secondItem="cXI-91-hjm" secondAttribute="leading" id="0hI-Ee-yjQ"/>
                                     <constraint firstAttribute="trailing" secondItem="pXQ-P8-ZnV" secondAttribute="trailing" id="26h-Ap-ygu"/>
                                     <constraint firstItem="pXQ-P8-ZnV" firstAttribute="leading" secondItem="cXI-91-hjm" secondAttribute="leading" id="4VM-fH-4i9"/>
                                     <constraint firstAttribute="trailing" secondItem="iuw-VX-TGl" secondAttribute="trailing" id="Grl-yY-UIh"/>
+                                    <constraint firstAttribute="trailing" secondItem="iLh-Aw-hKY" secondAttribute="trailing" id="YCh-lB-B8V"/>
                                     <constraint firstItem="H21-XP-GiE" firstAttribute="leading" secondItem="cXI-91-hjm" secondAttribute="leading" id="j3X-a5-Anp"/>
                                     <constraint firstItem="iuw-VX-TGl" firstAttribute="leading" secondItem="cXI-91-hjm" secondAttribute="leading" id="t4x-dU-NQg"/>
                                     <constraint firstAttribute="trailing" secondItem="H21-XP-GiE" secondAttribute="trailing" id="xpR-Fp-hQE"/>
