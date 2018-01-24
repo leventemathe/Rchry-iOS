@@ -64,6 +64,17 @@ class FirebaseTargetCoder {
         }
         return targets
     }
+    
+    func createTargetKey(_ target: Target) -> String? {
+        return createTargetKey(fromName: target.name, andDistance: target.distance)
+    }
+    
+    func createTargetKey(fromName name: String, andDistance distance: Float) -> String? {
+        if let distanceString = distance.dashSeparatedString() {
+            return name + "-" + distanceString
+        }
+        return nil
+    }
 }
 
 class FirebaseTargetService: TargetService {
@@ -82,31 +93,17 @@ class FirebaseTargetService: TargetService {
         self.authService = authService
     }
     
-    static func createTargetKey(fromName name: String, andDistance distance: Float) -> String? {
-        if let distanceString = distance.dashSeparatedString() {
-            return name + "-" + distanceString
-        }
-        return nil
-    }
-    
     func create(target: Target) -> Observable<Target> {
         guard let uid = authService.userID else {
             return Observable<Target>.error(DatabaseError.userNotLoggedIn)
         }
-        guard let pathName = FirebaseTargetService.createTargetKey(fromName: target.name, andDistance: target.distance) else {
+        guard let pathName = targetCoder.createTargetKey(fromName: target.name, andDistance: target.distance) else {
             return Observable.error(DatabaseError.other)
         }
         return Observable.create { [unowned self] observer in
             self.databaseReference.child(uid).child(TargetNames.PATH).child(pathName).updateChildValues(self.targetCoder.encode(target: target)) { error, snapshot in
-                if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
-                    switch errorCode {
-                    case .networkError:
-                        observer.onError(DatabaseError.network)
-                    case .tooManyRequests:
-                        observer.onError(DatabaseError.tooManyRequests)
-                    default:
-                        observer.onError(DatabaseError.server)
-                    }
+                if let _ = error {
+                    observer.onError(DatabaseError.server)
                 } else {
                     observer.onNext(target)
                     observer.onCompleted()
@@ -120,7 +117,7 @@ class FirebaseTargetService: TargetService {
         guard let uid = authService.userID else {
             return Observable.error(DatabaseError.userNotLoggedIn)
         }
-        guard let pathName = FirebaseTargetService.createTargetKey(fromName: name, andDistance: distance) else {
+        guard let pathName = targetCoder.createTargetKey(fromName: name, andDistance: distance) else {
             return Observable<Bool>.error(DatabaseError.other)
         }
         return Observable.create { [weak self] observer in
@@ -149,18 +146,7 @@ class FirebaseTargetService: TargetService {
                     observer.onNext(targets)
                 }
             }, withCancel: { error in
-                if let errorCode = AuthErrorCode(rawValue: error._code) {
-                    switch errorCode {
-                    case .networkError:
-                        observer.onError(DatabaseError.network)
-                    case .tooManyRequests:
-                        observer.onError(DatabaseError.tooManyRequests)
-                    default:
-                        observer.onError(DatabaseError.server)
-                    }
-                } else {
-                    observer.onError(DatabaseError.other)
-                }
+                observer.onError(DatabaseError.server)
             })
             return Disposables.create {
                 self.databaseReference.removeObserver(withHandle: handle)

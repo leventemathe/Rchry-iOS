@@ -20,6 +20,7 @@
 		D73528F21FF527B700EDC0FC /* NewTargetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73528F11FF527B700EDC0FC /* NewTargetVC.swift */; };
 		D7377D1A1FDEE50A00AEA161 /* ProfileVMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7377D191FDEE50A00AEA161 /* ProfileVMTest.swift */; };
 		D7377D1C1FDEE56200AEA161 /* AuthMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7377D1B1FDEE56200AEA161 /* AuthMocks.swift */; };
+		D755503920188D9100177A98 /* Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D755503820188D9100177A98 /* Dates.swift */; };
 		D7572C901FCDA3FD0024DEED /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7572C8F1FCDA3FD0024DEED /* ProfileVC.swift */; };
 		D7572C941FCDA4ED0024DEED /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7572C931FCDA4ED0024DEED /* ProfileVM.swift */; };
 		D75D54651FD83740003B3D3F /* AuthErrorToMessageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D54641FD83740003B3D3F /* AuthErrorToMessageMapper.swift */; };
@@ -97,6 +98,7 @@
 		D7377D191FDEE50A00AEA161 /* ProfileVMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVMTest.swift; sourceTree = "<group>"; };
 		D7377D1B1FDEE56200AEA161 /* AuthMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthMocks.swift; sourceTree = "<group>"; };
 		D74BA1A72003D37400B84CC4 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/NewTarget.strings; sourceTree = "<group>"; };
+		D755503820188D9100177A98 /* Dates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dates.swift; sourceTree = "<group>"; };
 		D7572C8F1FCDA3FD0024DEED /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		D7572C931FCDA4ED0024DEED /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
 		D75D54641FD83740003B3D3F /* AuthErrorToMessageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrorToMessageMapper.swift; sourceTree = "<group>"; };
@@ -463,6 +465,7 @@
 				D7C6F2741FC7163B0032A879 /* AppDelegate.swift */,
 				D71FB5B71FFD32A20085CDDC /* Extensions.swift */,
 				D7B38D9820120EA800BAD510 /* CommonMessages.swift */,
+				D755503820188D9100177A98 /* Dates.swift */,
 				D7C6F2801FC7163B0032A879 /* Info.plist */,
 				D7C6F27B1FC7163B0032A879 /* Assets.xcassets */,
 				D76CA94E1FCC622300D8C2AC /* Colors.xcassets */,
@@ -733,6 +736,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D71E08D81FCEECA200D9FAA3 /* TargetsVC.swift in Sources */,
+				D755503920188D9100177A98 /* Dates.swift in Sources */,
 				D77EE5171FCDB83D00FAEDBA /* FirebaseAuthService.swift in Sources */,
 				D7572C901FCDA3FD0024DEED /* ProfileVC.swift in Sources */,
 				D7AD33A41FCDB45D00C12112 /* FacebookAuthService.swift in Sources */,

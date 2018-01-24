@@ -10,10 +10,12 @@ import Foundation
 
 struct Session {
     
+    let ownerTarget: Target
     let name: String
     let guests: [String]
     
-    init(name: String, guests: [String]? = nil) {
+    init(ownerTarget: Target, name: String, guests: [String]? = nil) {
+        self.ownerTarget = ownerTarget
         self.name = name
         if let guests = guests {
             self.guests = guests

@@ -41,7 +41,8 @@ class TargetVC: UIViewController {
         newSessionBtn.rx.tap.asObservable()
             .subscribe(onNext: { [unowned self] in
                 let storyboard = UIStoryboard(name: "NewSession", bundle: nil)
-                let newSessionVC = storyboard.instantiateViewController(withIdentifier: "NewSessionVC")
+                let newSessionVC = storyboard.instantiateViewController(withIdentifier: "NewSessionVC") as! NewSessionVC
+                newSessionVC.ownerTarget = self.targetVM.target
                 self.navigationController?.pushViewController(newSessionVC, animated: true)
             })
             .disposed(by: disposeBag)

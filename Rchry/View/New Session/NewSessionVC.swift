@@ -24,6 +24,9 @@ class NewSessionVC: UIViewController {
     @IBOutlet weak var nameTextfield: LMTextField!
     @IBOutlet weak var startBtn: LMButton!
     
+    // This needs to be set when the vc is created, outside of the vc
+    var ownerTarget: Target!
+    // This is set in viewDidLoad
     var newSessionVM: NewSessionVM!
     
     private let disposeBag = DisposeBag()
@@ -47,7 +50,7 @@ class NewSessionVC: UIViewController {
         
         let nameChanged = nameTextfield.rx.text.asObservable().filter{ $0 != nil }.map { $0! }
         
-        newSessionVM = NewSessionVM(newGuestAdded: newGuestAdded, addedGuestRemoved: addedGuestRemoved, nameChanged: nameChanged)
+        newSessionVM = NewSessionVM(ownerTarget: ownerTarget, newGuestAdded: newGuestAdded, addedGuestRemoved: addedGuestRemoved, nameChanged: nameChanged)
     }
     
     private func setupAddedGuestsCollectionView() {
@@ -59,11 +62,32 @@ class NewSessionVC: UIViewController {
     }
     
     private func setupStartButton() {
+        setupStartButtonTitle()
+        setupStartButtonEnabling()
+        setupStartButtonTapped()
+    }
+    
+    private func setupStartButtonTitle() {
         startBtn.setTitle(NewSessionVC.NEW_SESSION_START_BUTTON_DISABLED, for: .disabled)
         startBtn.setTitle(NewSessionVC.NEW_SESSION_START_BUTTON_ENABLED, for: .normal)
-        
+    }
+    
+    private func setupStartButtonEnabling() {
         newSessionVM.isSessionReady.asDriver(onErrorJustReturn: false)
             .drive(startBtn.rx.isEnabled)
+            .disposed(by: disposeBag)
+    }
+    
+    private func setupStartButtonTapped() {
+        let tap = startBtn.rx.tap.asObservable()
+        newSessionVM.createSession(reactingTo: tap)
+            .subscribe(onNext: { [unowned self] (_, error) in
+                if let error = error {
+                    MessageAlertModalVC.present(withTitle: CommonMessages.ERROR_TITLE, withMessage: error, fromVC: self)
+                } else {
+                    print("created session")
+                }
+            })
             .disposed(by: disposeBag)
     }
 }
