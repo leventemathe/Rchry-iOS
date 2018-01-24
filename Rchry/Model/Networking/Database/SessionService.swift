@@ -11,8 +11,8 @@ import RxSwift
 import Firebase
 
 struct SessionNames {
-    static let MY_PATH = "my_sessions"
-    static let GUEST_PATH = "guest_sessions"
+    static let PATH = "sessions"
+    static let MY_SCORES = "my_scores"
     // Guests are saved here too for easy retrieval
     static let SAVED_GUESTS = "guests"
     
@@ -30,23 +30,30 @@ struct FirebaseSessionCoder {
     func encode(session: Session, withTimestamp timestamp: Double, underTarget target: String) -> [String: Any] {
         let sessionKey = "\(session.name)-\(Int(timestamp))"
         
-        let mySessionDict = [
-            "\(TargetNames.PATH)/\(target)/\(SessionNames.MY_PATH)/\(sessionKey)":
-                [SessionNames.TIMESTAMP: timestamp,
-                 SessionNames.NAME: session.name] as Any
+        let sessionDataDict: [String: Any] = [
+            "\(SessionNames.PATH)/\(sessionKey)/name": session.name,
+            "\(SessionNames.PATH)/\(sessionKey)/timestamp": timestamp,
+            "\(SessionNames.PATH)/\(sessionKey)/target": target
         ]
         
-        let guestSessionDict = session.guests.reduce(into: [String: Any](), { dict, guest in
-            dict["\(TargetNames.PATH)/\(target)/\(SessionNames.GUEST_PATH)/\(guest)/\(sessionKey)"] =
-                [SessionNames.TIMESTAMP: timestamp,
-                 SessionNames.NAME: session.name] as Any
+        // TODO: remove this, after some scores have been written
+        let mySessionScoresDict = [
+            "\(SessionNames.PATH)/\(sessionKey)/\(SessionNames.MY_SCORES)/": timestamp as Any
+        ]
+        
+        // TODO: remove this, after some scores have been written
+        let guestSessionScoresDict = session.guests.reduce(into: [String: Any](), { dict, guest in
+            dict["\(SessionNames.PATH)/\(sessionKey)/\(guest)"] = timestamp as Any
         })
         
-        let guestDict = session.guests.reduce(into: [String: Any](), { dict, guest in
+        let savedGuestsDict = session.guests.reduce(into: [String: Any](), { dict, guest in
             dict["\(SessionNames.SAVED_GUESTS)/\(guest)"] = timestamp as Any
         })
         
-        return mySessionDict.merging(guestSessionDict, uniquingKeysWith: { one, two in  one }).merging(guestDict, uniquingKeysWith: { one, two in  one })
+        return sessionDataDict
+            .merging(mySessionScoresDict, uniquingKeysWith: { one, two in one })
+            .merging(guestSessionScoresDict, uniquingKeysWith: { one, two in  one })
+            .merging(savedGuestsDict, uniquingKeysWith: { one, two in  one })
     }
 }
 
