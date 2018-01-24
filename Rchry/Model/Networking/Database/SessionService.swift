@@ -27,10 +27,11 @@ struct FirebaseSessionCoder {
     func encode(session: Session, withTimestamp timestamp: Double, underTarget target: String) -> [String: Any] {
         let sessionKey = "\(session.name)-\(Int(timestamp))"
         let guestDictWithTimestamp = session.guests.reduce(into: [String: [String: Double]](), { dict, guest in dict[guest] = [sessionKey: timestamp] })
+        let guestDict = session.guests.reduce(into: [String: Double](), { dict, guest in dict[guest] = timestamp })
         return [
             "\(TargetNames.PATH)/\(target)/\(SessionNames.MY_PATH)/\(sessionKey)": timestamp,
             "\(TargetNames.PATH)/\(target)/\(SessionNames.GUEST_PATH)": guestDictWithTimestamp,
-            "\(SessionNames.SAVED_GUESTS)": guestDictWithTimestamp
+            "\(SessionNames.SAVED_GUESTS)": guestDict
         ]
     }
 }
