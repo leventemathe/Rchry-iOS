@@ -26,13 +26,14 @@ class SessionVC: UIViewController {
     private func setupScoresTableView() {
         let sessionDatasource = SessionScoreSelectorDatasource()
         sessionVM.scores.bind(to: scoreSelectorTableView.rx.items(dataSource: sessionDatasource)).disposed(by: disposeBag)
+        scoreSelectorTableView.rx.setDelegate(sessionDatasource)
     }
 }
 
-class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITableViewDataSource {
+class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITableViewDataSource, UITableViewDelegate {
     
     typealias Element = [SessionSection]
-    
+
     var sections = Element()
     
     func tableView(_ tableView: UITableView, observedEvent: Event<Element>) {
@@ -63,5 +64,15 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sections[section].numberOfShot
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = Bundle.main.loadNibNamed("SessionScoreSelectorHeaderView", owner: self, options: nil)?.first as? SessionScoreSelectorHeaderView
+        header?.update(title: sections[section].numberOfShot)
+        return header
     }
 }
