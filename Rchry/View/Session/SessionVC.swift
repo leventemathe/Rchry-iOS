@@ -10,8 +10,14 @@ import UIKit
 
 class SessionVC: UIViewController {
 
+    @IBOutlet weak var scoresTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupScoresTableView()
+    }
+    
+    private func setupScoresTableView() {
+        
     }
 }
