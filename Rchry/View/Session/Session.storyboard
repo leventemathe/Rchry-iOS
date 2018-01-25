@@ -26,7 +26,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ieg-9o-xYt">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ieg-9o-xYt">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -116,6 +116,10 @@
                                                 <constraint firstAttribute="trailing" secondItem="KFr-dJ-c3R" secondAttribute="trailing" id="nmQ-d6-4F1"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="ownerLbl" destination="KFr-dJ-c3R" id="EX9-6z-VQd"/>
+                                            <outlet property="scoresCollectionView" destination="xJ9-o7-aTi" id="Pt7-dl-HSr"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -131,7 +135,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Session" id="FIb-vB-JyY"/>
                     <connections>
-                        <outlet property="scoresTableView" destination="Ieg-9o-xYt" id="keS-v9-Emz"/>
+                        <outlet property="scoreSelectorTableView" destination="Ieg-9o-xYt" id="p81-Y7-3BN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rsb-SL-c9W" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -8,6 +8,13 @@
 
 import UIKit
 
-class SessionScoreCell: UICollectionViewCell {
+class SessionScoreCell: ScoreCell {
 
+    func setSelected() {
+        scoreLbl.backgroundColor = UIColor(named: "ColorThemeBright")
+    }
+    
+    func setUnselected() {
+        scoreLbl.backgroundColor = UIColor.clear
+    }
 }

@@ -239,8 +239,8 @@
 			children = (
 				D74C39672018BD33006EDBB4 /* Session.storyboard */,
 				D74C39652018BD19006EDBB4 /* SessionVC.swift */,
-				D74EF8402019E13E00FF1512 /* SessionScoreCell.swift */,
 				D74EF8422019E2AA00FF1512 /* SessionScoreSelectorCell.swift */,
+				D74EF8402019E13E00FF1512 /* SessionScoreCell.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";

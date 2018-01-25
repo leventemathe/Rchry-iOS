@@ -7,7 +7,25 @@
 //
 
 import UIKit
+import RxSwift
 
 class SessionScoreSelectorCell: UITableViewCell {
     
+    @IBOutlet weak var ownerLbl: UILabel!
+    @IBOutlet weak var scoresCollectionView: UICollectionView!
+    
+    private var disposeBag = DisposeBag()
+    
+    func update(owner: String, scoresDatasource scores: Observable<[Float]>) {
+        ownerLbl.text = owner
+        
+        disposeBag = DisposeBag()
+        scores.bind(to: scoresCollectionView.rx.items(cellIdentifier: "SessionScoreCell", cellType: SessionScoreCell.self)) { _, score, cell in
+            if let scoreString = score.prettyString() {
+                cell.update(scoreString)
+            }
+        }
+        .disposed(by: disposeBag)
+    }
 }
+
