@@ -24,9 +24,9 @@ class SessionVC: UIViewController {
     }
     
     private func setupScoresTableView() {
-        let sessionDatasource = SessionScoreSelectorDatasource()
+        let sessionDatasource = SessionScoreSelectorDatasource(sessionVM: sessionVM)
         sessionVM.scores.bind(to: scoreSelectorTableView.rx.items(dataSource: sessionDatasource)).disposed(by: disposeBag)
-        scoreSelectorTableView.rx.setDelegate(sessionDatasource)
+        scoreSelectorTableView.rx.setDelegate(sessionDatasource).disposed(by: disposeBag)
     }
 }
 
@@ -34,7 +34,15 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
     
     typealias Element = [SessionSection]
 
-    var sections = Element()
+    private var sections = Element()
+    
+    private weak var sessionVM: SessionVM!
+    
+    private let disposeBag = DisposeBag()
+    
+    init(sessionVM: SessionVM) {
+        self.sessionVM = sessionVM
+    }
     
     func tableView(_ tableView: UITableView, observedEvent: Event<Element>) {
         switch observedEvent {
@@ -50,20 +58,16 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].scores.count
+        return sections[section].scoresByUser.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SessionScoreSelectorCell") as! SessionScoreSelectorCell
-        let owner = sections[indexPath.section].scores[indexPath.row].0
+        let owner = sections[indexPath.section].scoresByUser[indexPath.row].0
         // TODO: inject scores from vm
         let scores = Observable<[Float]>.just([0,5,8,10,11])
         cell.update(owner: owner, scoresDatasource: scores)
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section].numberOfShot
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -72,7 +76,10 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = Bundle.main.loadNibNamed("SessionScoreSelectorHeaderView", owner: self, options: nil)?.first as? SessionScoreSelectorHeaderView
-        header?.update(title: sections[section].numberOfShot)
+        if let header = header {
+            header.update(sections[section].index, title: sections[section].title)
+            sessionVM.changeShotActiveness(reactingTo: header.tapped)
+        }
         return header
     }
 }
