@@ -120,17 +120,4 @@ class FirebaseSessionService: SessionService {
             return Disposables.create { self.databaseRef.removeObserver(withHandle: handle) }
         }
     }
-    
-    func add(score: Float, withIndex index: Int, forSession session: Session, forUser user: String = SessionNames.MY_SCORES) -> Observable<Float> {
-        guard let uid = authService.userID else {
-            return Observable.error(DatabaseError.userNotLoggedIn)
-        }
-        return Observable.create { [unowned self] observer in
-            let sessionKey = self.firebaseSessionCoder.createSessionKey(fromSession: session)
-            self.databaseRef.child(uid).child(SessionNames.PATH).child(sessionKey).child(String(index)).setValue(score, withCompletionBlock: { error, ref in
-                
-            })
-            return Disposables.create()
-        }
-    }
 }
