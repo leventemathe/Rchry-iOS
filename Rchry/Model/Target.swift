@@ -56,5 +56,6 @@ struct Target {
     let preferredDistanceUnit: DistanceUnit
     let scores: [Float]
     let icon: String
+    let timestamp: Double
     var shots: Int
 }

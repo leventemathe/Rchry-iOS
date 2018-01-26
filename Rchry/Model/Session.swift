@@ -12,11 +12,13 @@ struct Session {
     
     let ownerTarget: Target
     let name: String
+    let timestamp: Double
     let guests: [String]
     
-    init(ownerTarget: Target, name: String, guests: [String]? = nil) {
+    init(ownerTarget: Target, name: String, timestamp: Double, guests: [String]? = nil) {
         self.ownerTarget = ownerTarget
         self.name = name
+        self.timestamp = timestamp
         if let guests = guests {
             self.guests = guests
         } else {

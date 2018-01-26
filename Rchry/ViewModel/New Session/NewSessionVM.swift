@@ -13,6 +13,7 @@ class NewSessionVM {
     
     private var sessionService: SessionService
     private var errorMapper: DatabaseErrorToMessageMapper
+    private let dateProvider: DateProvider
     
     private let disposeBag = DisposeBag()
     
@@ -26,9 +27,11 @@ class NewSessionVM {
          addedGuestRemoved: Observable<Int>,
          nameChanged: Observable<String>,
          sessionService: SessionService = FirebaseSessionService(),
-         errorMapper: DatabaseErrorToMessageMapper = BasicDatabaseErrorToMessageMapper()) {
+         errorMapper: DatabaseErrorToMessageMapper = BasicDatabaseErrorToMessageMapper(),
+         dateProvider: DateProvider = BasicDateProvider()) {
         self.sessionService = sessionService
         self.errorMapper = errorMapper
+        self.dateProvider = dateProvider
         
         self.ownerTarget = ownerTarget
         
@@ -67,7 +70,7 @@ class NewSessionVM {
     func createSession(reactingTo observable: Observable<()>) -> Observable<(Session?, String?)> {
         return observable
             .flatMap { [unowned self] _ -> Observable<(Session?, String?)> in
-                let session = Session(ownerTarget: self.ownerTarget, name: self.name.value, guests: self.guests.value)
+                let session = Session(ownerTarget: self.ownerTarget, name: self.name.value, timestamp: self.dateProvider.currentTimestamp, guests: self.guests.value)
                 return self.sessionService.create(session: session)
                     .map { ($0, nil) }
                     .catchError { error in

@@ -14,6 +14,7 @@ class NewTargetVM {
     private let targetService: TargetService
     private let targetValidator: TargetValidator
     private let databaseErrorHandler: DatabaseErrorToMessageMapper
+    private let dateProvider: DateProvider
     
     var inputName = Variable("")
     var inputDistance = Variable<Float?>(nil)
@@ -79,6 +80,7 @@ class NewTargetVM {
                                     preferredDistanceUnit: self.inputDistanceUnit.value,
                                     scores: self._datasourceScores!.value,
                                     icon: self._datasourceIcons[self.inputCurrentSelectedIcon.value],
+                                    timestamp: self.dateProvider.currentTimestamp,
                                     shots: 0)
                 return self.targetService.create(target: target)
                     .map { ($0, nil) }
@@ -93,10 +95,12 @@ class NewTargetVM {
     
     init(targetService: TargetService = FirebaseTargetService(),
          targetValidator: TargetValidator = TargetValidator(),
-         databaseErrorHandler: DatabaseErrorToMessageMapper = BasicDatabaseErrorToMessageMapper()) {
+         databaseErrorHandler: DatabaseErrorToMessageMapper = BasicDatabaseErrorToMessageMapper(),
+         dateProvider: DateProvider = BasicDateProvider()) {
         self.targetService = targetService
         self.targetValidator = targetValidator
         self.databaseErrorHandler = databaseErrorHandler
+        self.dateProvider = dateProvider
     }
     
     private func setupNewScore() {
