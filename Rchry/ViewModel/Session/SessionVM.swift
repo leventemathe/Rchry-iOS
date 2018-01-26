@@ -11,18 +11,17 @@ import RxSwift
 
 struct SessionSection {
     
-    typealias ScoresByUser = [(String, Float)]
+    typealias ScoreByUser = [(String, Float)]
     
     var index: Int
     var title: String
-    var scoresByUser: ScoresByUser
-    var score: Float?
+    var scoresByUser: ScoreByUser?
     var active: Bool
     
-    init(index: Int, title: String, scoresByUser: ScoresByUser, active: Bool) {
+    init(index: Int, title: String, active: Bool, scoreByUser: ScoreByUser = []) {
         self.index = index
         self.title = title
-        self.scoresByUser = scoresByUser
+        self.scoresByUser = scoreByUser
         self.active = active
     }
 }
@@ -33,15 +32,16 @@ class SessionVM {
     
     private var _possibleScores = Variable<[Float]>([0, 5, 8, 10, 11])
     private var _scores = Variable([
-        SessionSection(index: 0, title: "Shot 1", scoresByUser: [("My score", 5), ("apa", 8)], active: false),
-        SessionSection(index: 1, title: "Shot 2", scoresByUser: [("My score", 8), ("apa", 5)], active: true)
+        SessionSection(index: 0, title: "Shot 1", active: false, scoreByUser: [("My score", 5), ("apa", 8)]),
+        SessionSection(index: 1, title: "Shot 2", active: true, scoreByUser: [("My score", 8), ("apa", 5)])
     ])
+    private var _activeness: PublishSubject<Int>?
     
     var possibleScores: Observable<[Float]> {
         return _possibleScores.asObservable()
     }
     
-    var scores: Observable<[SessionSection]> {
+    var scoresDatasource: Observable<[SessionSection]> {
         return _scores.asObservable()
     }
     
@@ -49,7 +49,6 @@ class SessionVM {
         observable
             .subscribe(onNext: { [unowned self] in
                 self._scores.value[$0].active = !self._scores.value[$0].active
-                print("activeness changed at \($0) to \(self._scores.value[$0].active)")
             })
             .disposed(by: disposeBag)
     }
