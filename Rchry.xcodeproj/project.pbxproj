@@ -44,6 +44,8 @@
 		D77C86181FE01CD900226CBC /* FacebookAuthServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77C86171FE01CD900226CBC /* FacebookAuthServiceTest.swift */; };
 		D77C861A1FE042DC00226CBC /* FirebaseAuthServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77C86191FE042DC00226CBC /* FirebaseAuthServiceTest.swift */; };
 		D77EE5171FCDB83D00FAEDBA /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77EE5161FCDB83D00FAEDBA /* FirebaseAuthService.swift */; };
+		D7935AD2201B6D7200A5174F /* Shot.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7935AD1201B6D7200A5174F /* Shot.swift */; };
+		D7935AD4201B6FA300A5174F /* ShotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7935AD3201B6FA300A5174F /* ShotService.swift */; };
 		D7A1FA071FED39E1004DDF50 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A1FA061FED39E1004DDF50 /* MainVC.swift */; };
 		D7A557B520161C88004F556C /* TargetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A557B420161C88004F556C /* TargetCell.swift */; };
 		D7A557B820161F6D004F556C /* TargetsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A557B720161F6D004F556C /* TargetsVM.swift */; };
@@ -129,6 +131,8 @@
 		D77C86171FE01CD900226CBC /* FacebookAuthServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuthServiceTest.swift; sourceTree = "<group>"; };
 		D77C86191FE042DC00226CBC /* FirebaseAuthServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthServiceTest.swift; sourceTree = "<group>"; };
 		D77EE5161FCDB83D00FAEDBA /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
+		D7935AD1201B6D7200A5174F /* Shot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shot.swift; sourceTree = "<group>"; };
+		D7935AD3201B6FA300A5174F /* ShotService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotService.swift; sourceTree = "<group>"; };
 		D7A1FA061FED39E1004DDF50 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		D7A557B420161C88004F556C /* TargetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCell.swift; sourceTree = "<group>"; };
 		D7A557B720161F6D004F556C /* TargetsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetsVM.swift; sourceTree = "<group>"; };
@@ -440,6 +444,7 @@
 				D7C7E9151FFE956B003C102D /* DatabaseError.swift */,
 				D7C7E90F1FFE848C003C102D /* TargetsService.swift */,
 				D7709ECD20179CF30080FC22 /* SessionService.swift */,
+				D7935AD3201B6FA300A5174F /* ShotService.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -458,6 +463,7 @@
 				D7AD33A11FCDB43800C12112 /* Networking */,
 				D7BF04D61FFE66A000465C8C /* Target.swift */,
 				D7709ECF20179D560080FC22 /* Session.swift */,
+				D7935AD1201B6D7200A5174F /* Shot.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -777,6 +783,7 @@
 				D71E08D81FCEECA200D9FAA3 /* TargetsVC.swift in Sources */,
 				D755503920188D9100177A98 /* Dates.swift in Sources */,
 				D77EE5171FCDB83D00FAEDBA /* FirebaseAuthService.swift in Sources */,
+				D7935AD2201B6D7200A5174F /* Shot.swift in Sources */,
 				D7572C901FCDA3FD0024DEED /* ProfileVC.swift in Sources */,
 				D74EF8412019E13E00FF1512 /* SessionScoreCell.swift in Sources */,
 				D7AD33A41FCDB45D00C12112 /* FacebookAuthService.swift in Sources */,
@@ -804,6 +811,7 @@
 				D7C7E9161FFE956B003C102D /* DatabaseError.swift in Sources */,
 				D71FB5B81FFD32A20085CDDC /* Extensions.swift in Sources */,
 				D7A1FA071FED39E1004DDF50 /* MainVC.swift in Sources */,
+				D7935AD4201B6FA300A5174F /* ShotService.swift in Sources */,
 				D7231CD6201A2B320073CBD7 /* SessionScoreSelectorHeaderView.swift in Sources */,
 				D7BBC01620176CE500DC2480 /* TargetVM.swift in Sources */,
 				D766875F2017732C00F9F65B /* NewSessionVC.swift in Sources */,

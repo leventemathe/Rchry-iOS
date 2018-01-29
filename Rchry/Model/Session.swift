@@ -14,6 +14,7 @@ struct Session {
     let name: String
     let timestamp: Double
     let guests: [String]
+    let trackUserScore: Bool = true
     
     init(ownerTarget: Target, name: String, timestamp: Double, guests: [String]? = nil) {
         self.ownerTarget = ownerTarget

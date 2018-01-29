@@ -95,13 +95,16 @@ class NewSessionVC: UIViewController {
     private func setupStartButtonTapped() {
         let tap = startBtn.rx.tap.asObservable()
         newSessionVM.createSession(reactingTo: tap)
-            .subscribe(onNext: { [unowned self] (_, error) in
+            .subscribe(onNext: { [unowned self] (session, error) in
                 if let error = error {
                     MessageAlertModalVC.present(withTitle: CommonMessages.ERROR_TITLE, withMessage: error, fromVC: self)
-                } else {
+                } else if let session = session {
                     let storyboard = UIStoryboard(name: "Session", bundle: nil)
-                    let sessionVC = storyboard.instantiateViewController(withIdentifier: "SessionVC")
+                    let sessionVC = storyboard.instantiateViewController(withIdentifier: "SessionVC") as! SessionVC
+                    sessionVC.sessionVM = SessionVM(session: session)
                     self.navigationController?.pushViewController(sessionVC, animated: true)
+                } else {
+                    MessageAlertModalVC.present(withTitle: CommonMessages.ERROR_TITLE, withMessage: CommonMessages.UNKOWN_ERROR, fromVC: self)
                 }
             })
             .disposed(by: disposeBag)

@@ -11,4 +11,5 @@ import Foundation
 struct CommonMessages {
     
     static let ERROR_TITLE = NSLocalizedString("ErrorTitle", comment: "A common title for error")
+    static let UNKOWN_ERROR = NSLocalizedString("UnknownErrror", comment: "A common case error message for unknown/other types of error")
 }
