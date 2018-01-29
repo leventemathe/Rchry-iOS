@@ -70,10 +70,16 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
         return elements[section].active ? elements[section].scores.count : 0
     }
     
+    // TODO: do the subs clean up?
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SessionScoreSelectorCell") as! SessionScoreSelectorCell
         let owner = elements[indexPath.section].scores[indexPath.row].0
         cell.update(owner: owner, scoresDatasource: sessionVM.possibleScores)
+        cell.scoreSelected
+            .subscribe(onNext: { scoreByUser in
+                print("score tapped at: \(scoreByUser)")
+            }, onError: { print("error: \($0)") }, onCompleted: { print("completed") }, onDisposed: { print("disposed") })
+            .disposed(by: disposeBag)
         return cell
     }
     

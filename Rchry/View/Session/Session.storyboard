@@ -67,7 +67,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q89-cd-vJn" customClass="LMLabel" customModule="LMViews">
+                                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q89-cd-vJn" customClass="LMLabel" customModule="LMViews">
                                                                         <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                                                                         <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="24"/>
                                                                         <color key="textColor" name="ColorThemeDark"/>
