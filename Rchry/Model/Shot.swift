@@ -17,6 +17,7 @@ class Shot {
     
     let index: Int
     let title: String
+    // Should the UI show this shot?
     var active: Bool
     
     private var _scores: Variable<ScoresByUser>
@@ -27,6 +28,10 @@ class Shot {
         return _scores.value
     }
     
+    // When all the scores are selected, emit a shot ready event, then complete.
+    // It should emit only once, as this can happen only once.
+    // It should be subscribed to to get notified when a new shot can be added.
+    // So SessionVM subs to it.
     private var _shotReady = PublishSubject<Void>()
     
     var shotReady: Observable<Void> {

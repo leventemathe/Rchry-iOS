@@ -13,10 +13,12 @@ class SessionScoreCell: ScoreCell {
     func setSelected() {
         scoreLbl.backgroundColor = UIColor(named: "ColorThemeBright")
         scoreLbl.textColor = UIColor.white
+        scoreLbl.borderColor = .clear
     }
     
     func setUnselected() {
         scoreLbl.backgroundColor = UIColor.clear
         scoreLbl.textColor = UIColor(named: "ColorThemeDark")
+        scoreLbl.borderColor = UIColor(named: "ColorThemeMid")!
     }
 }
