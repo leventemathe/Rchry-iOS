@@ -14,24 +14,49 @@ class SessionScoreSelectorCell: UITableViewCell {
     @IBOutlet weak var ownerLbl: UILabel!
     @IBOutlet weak var scoresCollectionView: UICollectionView!
     
-    private var index: Int!
+    private var sessionScoreSelectorVM: SessionScoreSelectorVM!
     
     private var disposeBag = DisposeBag()
     
-    func update(index: Int, owner: String, scoresDatasource scores: Observable<[Float]>) {
-        self.index = index
-        self.ownerLbl.text = owner
+    func update(sessionScoreSelectorVM: SessionScoreSelectorVM) {
         disposeBag = DisposeBag()
-        setupScoresDatasource(scores)
+        self.sessionScoreSelectorVM = sessionScoreSelectorVM
+        setupOwnerLbl()
+        setupScoresDatasource()
+        setupReactingToTappingScore()
+        setupObservingScoreSelection()
     }
 
-    private func setupScoresDatasource(_ scores: Observable<[Float]>) {
-        scores.bind(to: scoresCollectionView.rx.items(cellIdentifier: "SessionScoreCell", cellType: SessionScoreCell.self)) { _, score, cell in
+    private func setupOwnerLbl() {
+        sessionScoreSelectorVM.owner.bind(to: ownerLbl.rx.text).disposed(by: disposeBag)
+    }
+    
+    private func setupScoresDatasource() {
+        sessionScoreSelectorVM.scoresDataSource.bind(to: scoresCollectionView.rx.items(cellIdentifier: "SessionScoreCell", cellType: SessionScoreCell.self)) { [unowned self] index, score, cell in
             if let scoreString = score.prettyString() {
                 cell.update(scoreString)
+                if self.sessionScoreSelectorVM.selectedItemIndex == nil || self.sessionScoreSelectorVM.selectedItemIndex! != index  {
+                    cell.setUnselected()
+                } else {
+                    cell.setSelected()
+                }
             }
         }
         .disposed(by: disposeBag)
+    }
+    
+    private func setupReactingToTappingScore() {
+        let selected = scoresCollectionView.rx.itemSelected.asObservable()
+            .map { $0.item }
+        sessionScoreSelectorVM.selectItem(reactingTo: selected)
+    }
+    
+    private func setupObservingScoreSelection() {
+        sessionScoreSelectorVM.selectedItem
+            .subscribe(onNext: { [unowned self] _ in
+                self.scoresCollectionView.reloadData()
+            })
+            .disposed(by: disposeBag)
     }
 }
 

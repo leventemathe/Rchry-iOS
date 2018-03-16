@@ -20,6 +20,18 @@ class SessionVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScoresTableView()
+        
+        // TEST CODE
+        //let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        //view.addGestureRecognizer(tap)
+    }
+    
+    var index = 0
+    
+    @objc func tapped() {
+        print("session vc tapped")
+        index += 1
+        //sessionVM.addShot(withIndex: index)
     }
     
     private func setupScoresTableView() {
@@ -69,7 +81,8 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SessionScoreSelectorCell") as! SessionScoreSelectorCell
         let owner = elements[indexPath.section].scores[indexPath.row].0
-        cell.update(index: indexPath.section, owner: owner, scoresDatasource: sessionVM.possibleScores)
+        let sessionScoreSelctorVM = SessionScoreSelectorVM(index: indexPath.section, owner: owner, scores: sessionVM.possibleScores)
+        cell.update(sessionScoreSelectorVM: sessionScoreSelctorVM)
         return cell
     }
     

@@ -28,7 +28,7 @@ class SessionVM {
         addShot(withIndex: 0)
     }
     
-    private func addShot(withIndex index: Int) {
+    func addShot(withIndex index: Int) {
         var scores = Shot.ScoresByUser()
         if session.trackUserScore {
             scores.append((ShotNames.MY_SCORE, nil))
@@ -45,8 +45,8 @@ class SessionVM {
         print("created new empty shot with index \(index)")
     }
     
-    var possibleScores: Observable<[Float]> {
-        return Observable.just(session.ownerTarget.scores)
+    var possibleScores: [Float] {
+        return session.ownerTarget.scores
     }
     
     var shotsDatasource: Observable<[Shot]> {
