@@ -72,11 +72,11 @@ class Shot {
     // This observes the shots, and when every user has a shot set, it changes the activeness to false.
     // This happens only once, similar to shotReady.
     // This should hide the cells in the ui.
+    var activenessBasedOnScoresFilledSubscription: Disposable!
     
-    // TODO: this should stop observing when all the scores are selected, just like ready
     private func setupActivenessBasedOnScoresFilled() {
-        _scores.asObservable()
-            .subscribe(onNext: { scoresByUser in
+        activenessBasedOnScoresFilledSubscription = _scores.asObservable()
+            .subscribe(onNext: { [unowned self] scoresByUser in
                 var active = false
                 for scoreByUser in scoresByUser {
                     if scoreByUser.1 == nil {
@@ -86,10 +86,10 @@ class Shot {
                 }
                 if !active {
                     print("all the scores were selected, so activeness changed to false")
+                    self.activenessBasedOnScoresFilledSubscription.dispose()
                 }
                 self.active = active
             })
-            .disposed(by: disposeBag)
     }
     
     func addScore(_ score: Float?, byUser user: String) {
