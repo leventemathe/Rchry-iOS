@@ -62,7 +62,7 @@ class SessionVM {
             .disposed(by: disposeBag)
     }
     
-    func setScoreByUserAndIndex(reactingTo observable: Observable<(Float, String, Int)>)  {
+    func setScoreByUserAndIndex(reactingTo observable: Observable<(Float, String, Int)>, disposedBy disposeBag: DisposeBag? = nil)  {
         observable
             .subscribe(onNext: { [unowned self] scoreByUserAndIndex in
                 let index = scoreByUserAndIndex.2
@@ -72,7 +72,7 @@ class SessionVM {
                 self._shots.value[index].addScore(score, byUser: user)
                 print("score was set for \(user) to \(score ?? -1) for shot \(index)")
             })
-            .disposed(by: disposeBag)
+            .disposed(by: disposeBag ?? self.disposeBag)
     }
 }
 

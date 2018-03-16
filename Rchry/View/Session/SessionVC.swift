@@ -80,9 +80,17 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
     // TODO: do the subs clean up?
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SessionScoreSelectorCell") as! SessionScoreSelectorCell
+        
         let owner = elements[indexPath.section].scores[indexPath.row].0
-        let sessionScoreSelctorVM = SessionScoreSelectorVM(index: indexPath.section, owner: owner, scores: sessionVM.possibleScores)
+        let selectedScore = elements[indexPath.section].scores[indexPath.row].1
+        let sessionScoreSelctorVM = SessionScoreSelectorVM(index: indexPath.section, owner: owner, scores: sessionVM.possibleScores, score: selectedScore)
+        
         cell.update(sessionScoreSelectorVM: sessionScoreSelctorVM)
+        
+        let scoreByUserAndIndex = sessionScoreSelctorVM.scoreByUserAndIndex
+        // TODO: dispose by the cell?
+        sessionVM.setScoreByUserAndIndex(reactingTo: scoreByUserAndIndex, disposedBy: cell.disposeBag)
+        
         return cell
     }
     

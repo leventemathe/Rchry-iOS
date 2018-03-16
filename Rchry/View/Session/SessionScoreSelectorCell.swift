@@ -14,17 +14,17 @@ class SessionScoreSelectorCell: UITableViewCell {
     @IBOutlet weak var ownerLbl: UILabel!
     @IBOutlet weak var scoresCollectionView: UICollectionView!
     
-    private var sessionScoreSelectorVM: SessionScoreSelectorVM!
+    var sessionScoreSelectorVM: SessionScoreSelectorVM!
     
-    private var disposeBag = DisposeBag()
+    var disposeBag = DisposeBag()
     
     func update(sessionScoreSelectorVM: SessionScoreSelectorVM) {
         disposeBag = DisposeBag()
         self.sessionScoreSelectorVM = sessionScoreSelectorVM
         setupOwnerLbl()
         setupScoresDatasource()
-        setupReactingToTappingScore()
         setupObservingScoreSelection()
+        setupReactingToTappingScore()
     }
 
     private func setupOwnerLbl() {
@@ -45,18 +45,20 @@ class SessionScoreSelectorCell: UITableViewCell {
         .disposed(by: disposeBag)
     }
     
-    private func setupReactingToTappingScore() {
-        let selected = scoresCollectionView.rx.itemSelected.asObservable()
-            .map { $0.item }
-        sessionScoreSelectorVM.selectItem(reactingTo: selected)
-    }
-    
     private func setupObservingScoreSelection() {
-        sessionScoreSelectorVM.selectedItem
+        let skip = sessionScoreSelectorVM.selectedItemIndex == nil ? 0 : 1
+        sessionScoreSelectorVM.selectedItemIndexObservable
+            .skip(skip)
             .subscribe(onNext: { [unowned self] _ in
                 self.scoresCollectionView.reloadData()
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func setupReactingToTappingScore() {
+        let selected = scoresCollectionView.rx.itemSelected.asObservable()
+            .map { $0.item }
+        sessionScoreSelectorVM.selectItemAtIndex(reactingTo: selected)
     }
 }
 
