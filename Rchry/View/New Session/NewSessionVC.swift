@@ -63,7 +63,7 @@ class NewSessionVC: UIViewController {
         newSessionVM = NewSessionVM(ownerTarget: ownerTarget,
                                     newGuestAdded: newGuestAdded,
                                     availableGuestAdded: availableGuestAdded,
-                                    addedGuestRemoved: addedGuestRemoved,
+                                    guestRemoved: addedGuestRemoved,
                                     nameChanged: nameChanged)
     }
     

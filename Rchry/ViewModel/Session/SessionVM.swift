@@ -36,37 +36,41 @@ class SessionVM {
         scores = session.guests.reduce(into: scores, { scores, guest in
             scores.append((guest, nil))
         })
-        let shot = Shot(index: index, scores: scores, active: true)
-        _shots.value.append(shot)
+        _shots.value.append(Shot(index: index, scores: scores, active: true))
+        _shots.value[_shots.value.count - 1].shotReady
+            .subscribe(onNext: { [unowned self] _ in
+                self.addShot(withIndex: self._shots.value.count)
+            })
+            .disposed(by: disposeBag)
+        print("created new empty shot with index \(index)")
     }
     
-    var possibleScores: [Float] {
-        return session.ownerTarget.scores
+    var possibleScores: Observable<[Float]> {
+        return Observable.just(session.ownerTarget.scores)
     }
     
     var shotsDatasource: Observable<[Shot]> {
         return _shots.asObservable()
     }
     
-    func saveLatestShot(reactingTo observable: Observable<Shot>) {
+    func setShotActiveness(reactingTo observable: Observable<Int>) {
         observable
-            .flatMap { self.shotService.add(shot: $0, forSession: self.session) }
-            .retry(3)
-            .subscribe(onNext: { _ in
-                if let index = self._shots.value.last?.index {
-                    // .last is get only, that's why this is uglier than should be
-                    self._shots.value[self._shots.value.count-1].active = false
-                    self.addShot(withIndex: index)
-                }
-                
+            .subscribe(onNext: { [unowned self] index in
+                print("header was tapped so activeness changed at \(index) to \(!self._shots.value[index].active)")
+                self._shots.value[index].active = !self._shots.value[index].active
             })
             .disposed(by: disposeBag)
     }
     
-    func setShotActiveness(reactingTo observable: Observable<Int>) {
+    func setScoreByUserAndIndex(reactingTo observable: Observable<(Float, String, Int)>)  {
         observable
-            .subscribe(onNext: { [unowned self] index in
-                self._shots.value[index].active = !self._shots.value[index].active
+            .subscribe(onNext: { [unowned self] scoreByUserAndIndex in
+                let index = scoreByUserAndIndex.2
+                let user = scoreByUserAndIndex.1
+                let score: Float? = scoreByUserAndIndex.0
+                
+                self._shots.value[index].addScore(score, byUser: user)
+                print("score was set for \(user) to \(score ?? -1) for shot \(index)")
             })
             .disposed(by: disposeBag)
     }

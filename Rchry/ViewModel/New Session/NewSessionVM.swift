@@ -24,7 +24,7 @@ class NewSessionVM {
     init(ownerTarget: Target,
          newGuestAdded: Observable<String>,
          availableGuestAdded: Observable<String>,
-         addedGuestRemoved: Observable<Int>,
+         guestRemoved: Observable<Int>,
          nameChanged: Observable<String>,
          sessionService: SessionService = FirebaseSessionService(),
          errorMapper: DatabaseErrorToMessageMapper = BasicDatabaseErrorToMessageMapper(),
@@ -32,27 +32,39 @@ class NewSessionVM {
         self.sessionService = sessionService
         self.errorMapper = errorMapper
         self.dateProvider = dateProvider
-        
         self.ownerTarget = ownerTarget
         
+        setup(newGuestAdded: newGuestAdded)
+        setup(availableGuestAdded: availableGuestAdded)
+        setup(guestRemoved: guestRemoved)
+        setup(nameChanged: nameChanged)
+    }
+    
+    private func setup(newGuestAdded: Observable<String>) {
         newGuestAdded
             .map { $0.trimmingCharacters(in: .whitespaces) }
             .filter { $0 != ""}
             .filter { [unowned self] in !self.guests.value.contains($0) }
             .subscribe(onNext: { [unowned self] in self.guests.value.append($0) })
             .disposed(by: disposeBag)
-        
+    }
+    
+    private func setup(availableGuestAdded: Observable<String>) {
         availableGuestAdded
             .filter { [unowned self] in !self.guests.value.contains($0) }
             .subscribe(onNext: { [unowned self] in self.guests.value.append($0) })
             .disposed(by: disposeBag)
-        
-        addedGuestRemoved
+    }
+    
+    private func setup(guestRemoved: Observable<Int>) {
+        guestRemoved
             .subscribe(onNext: { [unowned self] index in
                 self.guests.value.remove(at: index)
             })
             .disposed(by: disposeBag)
-        
+    }
+    
+    private func setup(nameChanged: Observable<String>) {
         nameChanged
             .map { $0.trimmingCharacters(in: .whitespaces) }
             .bind(to: name)

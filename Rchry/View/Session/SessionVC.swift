@@ -13,23 +13,17 @@ import RxCocoa
 class SessionVC: UIViewController {
 
     @IBOutlet weak var scoreSelectorTableView: UITableView!
-    var scoreSelectorCellHeight: CGFloat!
     
     var sessionVM: SessionVM!
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupScoreSelectorCellHeight()
         setupScoresTableView()
     }
     
-    private func setupScoreSelectorCellHeight() {
-        scoreSelectorCellHeight = scoreSelectorTableView.rowHeight
-    }
-    
     private func setupScoresTableView() {
-        let sessionDatasource = SessionScoreSelectorDatasource(sessionVM: sessionVM, rowHeight: scoreSelectorCellHeight)
+        let sessionDatasource = SessionScoreSelectorDatasource(sessionVM: sessionVM, rowHeight: scoreSelectorTableView.rowHeight)
         sessionVM.shotsDatasource.bind(to: scoreSelectorTableView.rx.items(dataSource: sessionDatasource)).disposed(by: disposeBag)
         scoreSelectorTableView.rx.setDelegate(sessionDatasource).disposed(by: disposeBag)
     }
@@ -55,6 +49,7 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
     func tableView(_ tableView: UITableView, observedEvent: Event<Element>) {
         switch observedEvent {
         case .next(let elements):
+            print("event arrived in datasource delegate")
             self.elements = elements
             tableView.reloadData()
         default:
@@ -74,12 +69,7 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SessionScoreSelectorCell") as! SessionScoreSelectorCell
         let owner = elements[indexPath.section].scores[indexPath.row].0
-        cell.update(owner: owner, scoresDatasource: sessionVM.possibleScores)
-        cell.scoreSelected
-            .subscribe(onNext: { scoreByUser in
-                print("score tapped at: \(scoreByUser)")
-            }, onError: { print("error: \($0)") }, onCompleted: { print("completed") }, onDisposed: { print("disposed") })
-            .disposed(by: disposeBag)
+        cell.update(index: indexPath.section, owner: owner, scoresDatasource: sessionVM.possibleScores)
         return cell
     }
     
@@ -96,8 +86,6 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
         let header = Bundle.main.loadNibNamed("SessionScoreSelectorHeaderView", owner: self, options: nil)?.first as? SessionScoreSelectorHeaderView
         if let header = header {
             header.update(elements[section].index, title: elements[section].title)
-            let tap = header.tapped
-            sessionVM.setShotActiveness(reactingTo: tap)
         }
         return header
     }
