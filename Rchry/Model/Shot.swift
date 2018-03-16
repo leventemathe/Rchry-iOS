@@ -49,6 +49,8 @@ class Shot {
         setupActivenessBasedOnScoresFilled()
     }
     
+    // Emit an event (then complete) when all users have selected a score.
+    // Because you can't unselect scores, this should be sent only once, then it should complete.
     private func setupSendShotReadyBasedOnScoresFilled() {
         _scores.asObservable()
             .subscribe(onNext: { [unowned self] scoresByUser in
@@ -67,6 +69,11 @@ class Shot {
             .disposed(by: disposeBag)
     }
     
+    // This observes the shots, and when every user has a shot set, it changes the activeness to false.
+    // This happens only once, similar to shotReady.
+    // This should hide the cells in the ui.
+    
+    // TODO: this should stop observing when all the scores are selected, just like ready
     private func setupActivenessBasedOnScoresFilled() {
         _scores.asObservable()
             .subscribe(onNext: { scoresByUser in

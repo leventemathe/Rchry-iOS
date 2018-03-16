@@ -77,7 +77,6 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
         return elements[section].active ? elements[section].scores.count : 0
     }
     
-    // TODO: do the subs clean up?
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SessionScoreSelectorCell") as! SessionScoreSelectorCell
         
@@ -88,7 +87,6 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
         cell.update(sessionScoreSelectorVM: sessionScoreSelctorVM)
         
         let scoreByUserAndIndex = sessionScoreSelctorVM.scoreByUserAndIndex
-        // TODO: dispose by the cell?
         sessionVM.setScoreByUserAndIndex(reactingTo: scoreByUserAndIndex, disposedBy: cell.disposeBag)
         
         return cell
@@ -103,7 +101,7 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        // TODO: cache these and get them from array
+        // TODO: cache these and get them from array?
         let header = Bundle.main.loadNibNamed("SessionScoreSelectorHeaderView", owner: self, options: nil)?.first as? SessionScoreSelectorHeaderView
         if let header = header {
             header.update(elements[section].index, title: elements[section].title)

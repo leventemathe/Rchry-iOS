@@ -9,6 +9,13 @@
 import Foundation
 import RxSwift
 
+// A session starts with 1 shot at index 0, called Shot 1.
+// It doesn't have any scores selected.
+// Then the user can select a score for himself and the guests.
+// When every user has a score set, 2 things happen:
+// 1. The shot turns ready (this can happen only once) -> the session vm subs to this, and creates a new shot with index + 1 (again, no scores selected)
+// 2. The shot turns to active == false. -> The shot only shows the header in the ui.
+// A shot can change its activenss by tapping the header. This shows/hides the scores.
 class SessionVM {
     
     private let shotService: ShotService
@@ -53,6 +60,7 @@ class SessionVM {
         return _shots.asObservable()
     }
     
+    // This is set by tapping the header -> hide/show scores by users
     func setShotActiveness(reactingTo observable: Observable<Int>) {
         observable
             .subscribe(onNext: { [unowned self] index in
@@ -62,6 +70,7 @@ class SessionVM {
             .disposed(by: disposeBag)
     }
     
+    // This is set by the user's score cell, when a new score is tapped
     func setScoreByUserAndIndex(reactingTo observable: Observable<(Float, String, Int)>, disposedBy disposeBag: DisposeBag? = nil)  {
         observable
             .subscribe(onNext: { [unowned self] scoreByUserAndIndex in
