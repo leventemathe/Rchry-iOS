@@ -54,9 +54,26 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
         switch observedEvent {
         case .next(let newElements):
             print("event arrived in datasource delegate")
-
+            
+            // new section
+            var newSections = IndexSet()
+            if newElements.count > elements.count {
+                for i in elements.count..<newElements.count {
+                    newSections.insert(i)
+                }
+            }
+            
+            // TODO: get inactive cells
+            
             self.elements = newElements
-            tableView.reloadData()
+            
+            if newSections.count > 0 {
+                tableView.beginUpdates()
+                tableView.insertSections(newSections, with: .left)
+                tableView.endUpdates()
+            }
+            
+            // TODO: reload inactive cells
         default:
             break
         }
@@ -87,8 +104,8 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return elements[indexPath.section].active ? rowHeight : 0.0
-        //return rowHeight
+        //return elements[indexPath.section].active ? rowHeight : 0.0
+        return rowHeight
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
