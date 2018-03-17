@@ -9,6 +9,9 @@
 import Foundation
 import RxSwift
 
+// Never again put rx code into the model.
+// Set the reactive behaviour outside.
+// Problem: when you create a new object, the rx code is setup wether you want it or not.
 class Shot {
     
     // I need this ordered so the users are always in the same order in a list of shots,
@@ -18,7 +21,11 @@ class Shot {
     let index: Int
     let title: String
     // Should the UI show this shot?
-    var active: Bool
+    private var _active: Bool
+    
+    var active: Bool {
+        return _active
+    }
     
     private var _scores: Variable<ScoresByUser>
     
@@ -32,26 +39,37 @@ class Shot {
     // It should emit only once, as this can happen only once.
     // It should be subscribed to to get notified when a new shot can be added.
     // So SessionVM subs to it.
-    private var _shotReady = PublishSubject<Void>()
+    private var _shotReadySubject = PublishSubject<Void>()
     
-    var shotReady: Observable<Void> {
-        return _shotReady.asObservable()
+    var shotReadyObservable: Observable<Void> {
+        return _shotReadySubject.asObservable()
     }
     
-    init(index: Int, scores: ScoresByUser, active: Bool) {
+    private var _shotReady = false
+    
+    var shotReady: Bool {
+        return _shotReady
+    }
+    
+    init(index: Int, scores: ScoresByUser, active: Bool, shotReady: Bool = false) {
         self.index = index
         let titleFormat = NSLocalizedString("Shot%d", comment: "Index of shot for a session.")
         self.title = String.localizedStringWithFormat(titleFormat, index + 1)
         self._scores = Variable(scores)
-        self.active = active
+        self._active = active
+        self._shotReady = shotReady
         
-        setupSendShotReadyBasedOnScoresFilled()
+        // The order here is important! Activeness needs to be set before readyness, so that when the event arrives in the collection view, it's already set.
         setupActivenessBasedOnScoresFilled()
+        setupSendShotReadyBasedOnScoresFilled()
     }
     
     // Emit an event (then complete) when all users have selected a score.
     // Because you can't unselect scores, this should be sent only once, then it should complete.
     private func setupSendShotReadyBasedOnScoresFilled() {
+        if shotReady {
+            return
+        }
         _scores.asObservable()
             .subscribe(onNext: { [unowned self] scoresByUser in
                 var ready = true
@@ -62,8 +80,9 @@ class Shot {
                     }
                 }
                 if ready {
-                    self._shotReady.onNext(())
-                    self._shotReady.onCompleted()
+                    self._shotReady = true
+                    self._shotReadySubject.onNext(())
+                    self._shotReadySubject.onCompleted()
                 }
             })
             .disposed(by: disposeBag)
@@ -75,6 +94,9 @@ class Shot {
     var activenessBasedOnScoresFilledSubscription: Disposable!
     
     private func setupActivenessBasedOnScoresFilled() {
+        if shotReady {
+            return
+        }
         activenessBasedOnScoresFilledSubscription = _scores.asObservable()
             .subscribe(onNext: { [unowned self] scoresByUser in
                 var active = false
@@ -86,9 +108,9 @@ class Shot {
                 }
                 if !active {
                     print("all the scores were selected, so activeness changed to false")
-                    self.activenessBasedOnScoresFilledSubscription.dispose()
+                    self.activenessBasedOnScoresFilledSubscription?.dispose()
                 }
-                self.active = active
+                self._active = active
             })
     }
     

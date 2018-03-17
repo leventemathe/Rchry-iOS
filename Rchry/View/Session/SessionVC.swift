@@ -20,22 +20,14 @@ class SessionVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScoresTableView()
-        
-        // TEST CODE
-        //let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
-        //view.addGestureRecognizer(tap)
-    }
-    
-    var index = 0
-    
-    @objc func tapped() {
-        print("session vc tapped")
-        index += 1
-        //sessionVM.addShot(withIndex: index)
     }
     
     private func setupScoresTableView() {
-        let sessionDatasource = SessionScoreSelectorDatasource(sessionVM: sessionVM, rowHeight: scoreSelectorTableView.rowHeight)
+        let rowHeight = scoreSelectorTableView.rowHeight
+        scoreSelectorTableView.estimatedRowHeight = rowHeight
+        scoreSelectorTableView.rowHeight = UITableViewAutomaticDimension
+        
+        let sessionDatasource = SessionScoreSelectorDatasource(sessionVM: sessionVM, rowHeight: rowHeight)
         sessionVM.shotsDatasource.bind(to: scoreSelectorTableView.rx.items(dataSource: sessionDatasource)).disposed(by: disposeBag)
         scoreSelectorTableView.rx.setDelegate(sessionDatasource).disposed(by: disposeBag)
     }
@@ -60,9 +52,10 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
     
     func tableView(_ tableView: UITableView, observedEvent: Event<Element>) {
         switch observedEvent {
-        case .next(let elements):
+        case .next(let newElements):
             print("event arrived in datasource delegate")
-            self.elements = elements
+
+            self.elements = newElements
             tableView.reloadData()
         default:
             break
@@ -74,7 +67,8 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return elements[section].active ? elements[section].scores.count : 0
+        //return elements[section].active ? elements[section].scores.count : 0
+        return elements[section].scores.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -93,7 +87,8 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return rowHeight
+        return elements[indexPath.section].active ? rowHeight : 0.0
+        //return rowHeight
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -105,6 +100,7 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
         let header = Bundle.main.loadNibNamed("SessionScoreSelectorHeaderView", owner: self, options: nil)?.first as? SessionScoreSelectorHeaderView
         if let header = header {
             header.update(elements[section].index, title: elements[section].title)
+            sessionVM.setShotActiveness(reactingTo: header.tapped, disposedBy: header.disposeBag)
         }
         return header
     }

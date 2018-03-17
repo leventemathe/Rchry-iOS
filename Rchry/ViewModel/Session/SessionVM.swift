@@ -44,7 +44,7 @@ class SessionVM {
             scores.append((guest, nil))
         })
         _shots.value.append(Shot(index: index, scores: scores, active: true))
-        _shots.value[_shots.value.count - 1].shotReady
+        _shots.value[_shots.value.count - 1].shotReadyObservable
             .subscribe(onNext: { [unowned self] _ in
                 self.addShot(withIndex: self._shots.value.count)
             })
@@ -61,13 +61,18 @@ class SessionVM {
     }
     
     // This is set by tapping the header -> hide/show scores by users
-    func setShotActiveness(reactingTo observable: Observable<Int>) {
+    func setShotActiveness(reactingTo observable: Observable<Int>, disposedBy disposeBag: DisposeBag? = nil) {
         observable
             .subscribe(onNext: { [unowned self] index in
-                print("header was tapped so activeness changed at \(index) to \(!self._shots.value[index].active)")
-                self._shots.value[index].active = !self._shots.value[index].active
+                let oldShot = self._shots.value[index]
+                if !oldShot.shotReady {
+                    return
+                }
+                let newShot = Shot(index: oldShot.index, scores: oldShot.scores, active: !oldShot.active, shotReady: true)
+                print("new shot: \(newShot.active) old shot: \(oldShot.active)")
+                self._shots.value[index] = newShot
             })
-            .disposed(by: disposeBag)
+            .disposed(by: disposeBag ?? self.disposeBag)
     }
     
     // This is set by the user's score cell, when a new score is tapped
