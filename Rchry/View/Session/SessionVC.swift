@@ -24,8 +24,6 @@ class SessionVC: UIViewController {
     
     private func setupScoresTableView() {
         let rowHeight = scoreSelectorTableView.rowHeight
-        scoreSelectorTableView.estimatedRowHeight = rowHeight
-        scoreSelectorTableView.rowHeight = UITableViewAutomaticDimension
         
         let sessionDatasource = SessionScoreSelectorDatasource(sessionVM: sessionVM, rowHeight: rowHeight)
         sessionVM.shotsDatasource.bind(to: scoreSelectorTableView.rx.items(dataSource: sessionDatasource)).disposed(by: disposeBag)
@@ -53,30 +51,56 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
     func tableView(_ tableView: UITableView, observedEvent: Event<Element>) {
         switch observedEvent {
         case .next(let newElements):
-            print("event arrived in datasource delegate")
-            
-            // new section
-            var newSections = IndexSet()
-            if newElements.count > elements.count {
-                for i in elements.count..<newElements.count {
-                    newSections.insert(i)
-                }
-            }
-            
-            // TODO: get inactive cells
-            
-            self.elements = newElements
-            
-            if newSections.count > 0 {
-                tableView.beginUpdates()
-                tableView.insertSections(newSections, with: .left)
-                tableView.endUpdates()
-            }
-            
-            // TODO: reload inactive cells
+            handleNewElements(newElements, tableView)
         default:
             break
         }
+    }
+    
+    func handleNewElements(_ newElements: Element, _ tableView: UITableView) {
+        print("event arrived in datasource delegate")
+        
+        // new section
+        let newSections = getNewSections(newElements)
+        // rows thats activeness changed
+        let changedRows = getChangedRows(newElements)
+        
+        self.elements = newElements
+        
+        if newSections.count > 0 {
+            tableView.beginUpdates()
+            tableView.insertSections(newSections, with: .left)
+            tableView.endUpdates()
+        }
+        
+        if changedRows.count > 0 {
+            tableView.beginUpdates()
+            tableView.reloadRows(at: changedRows, with: .right)
+            tableView.endUpdates()
+        }
+    }
+    
+    func getNewSections(_ newElements: Element) -> IndexSet {
+        var newSections = IndexSet()
+        if newElements.count > elements.count {
+            for i in elements.count..<newElements.count {
+                newSections.insert(i)
+            }
+        }
+        return newSections
+    }
+    
+    func getChangedRows(_ newElements: Element) -> [IndexPath] {
+        var changedRows = [IndexPath]()
+        for i in 0..<elements.count {
+            if elements[i].active != newElements[i].active {
+                for j in 0..<elements[i].scores.count {
+                    changedRows.append(IndexPath(row: j, section: i))
+                }
+            }
+        }
+        
+        return changedRows
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -84,7 +108,6 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return elements[section].active ? elements[section].scores.count : 0
         return elements[section].scores.count
     }
     
@@ -104,8 +127,7 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //return elements[indexPath.section].active ? rowHeight : 0.0
-        return rowHeight
+        return elements[indexPath.section].active ? rowHeight : 0.0
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
