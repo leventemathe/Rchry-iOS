@@ -27,21 +27,34 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ATw-yk-HZj">
+                    <rect key="frame" x="0.0" y="143" width="561" height="2"/>
+                    <color key="backgroundColor" name="ColorThemeBright"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="3Gv-cq-yqS"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" name="ColorThemeMid"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="ATw-yk-HZj" secondAttribute="bottom" id="IuP-zI-lx8"/>
+                <constraint firstAttribute="trailing" secondItem="ATw-yk-HZj" secondAttribute="trailing" id="QLO-OX-3xi"/>
                 <constraint firstItem="lam-bA-csC" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="d6C-YD-4nH"/>
                 <constraint firstItem="lam-bA-csC" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="eHe-8K-Qos"/>
+                <constraint firstItem="ATw-yk-HZj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fgl-Cj-G2d"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="titleLbl" destination="lam-bA-csC" id="RCe-aD-tkR"/>
             </connections>
-            <point key="canvasLocation" x="-135" y="-120"/>
+            <point key="canvasLocation" x="-135.5" y="-120.5"/>
         </view>
     </objects>
     <resources>
+        <namedColor name="ColorThemeBright">
+            <color red="0.47499999403953552" green="0.97299998998641968" blue="0.73299998044967651" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="ColorThemeMid">
             <color red="0.37599998712539673" green="0.74500000476837158" blue="0.70200002193450928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
