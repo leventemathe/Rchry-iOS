@@ -107,7 +107,7 @@ class Shot {
                     }
                 }
                 if !active {
-                    print("all the scores were selected, so activeness changed to false")
+                    //print("all the scores were selected, so activeness changed to false")
                     self.activenessBasedOnScoresFilledSubscription?.dispose()
                 }
                 self._active = active

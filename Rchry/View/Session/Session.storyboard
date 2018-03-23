@@ -70,7 +70,7 @@
                                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q89-cd-vJn" customClass="LMLabel" customModule="LMViews">
                                                                         <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                                                                         <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="24"/>
-                                                                        <color key="textColor" name="ColorThemeDark"/>
+                                                                        <color key="textColor" red="0.082352941176470587" green="0.26666666666666666" blue="0.37647058823529411" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -146,9 +146,6 @@
     <resources>
         <namedColor name="ColorThemeBright">
             <color red="0.47499999403953552" green="0.97299998998641968" blue="0.73299998044967651" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="ColorThemeDark">
-            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

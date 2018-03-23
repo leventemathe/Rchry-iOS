@@ -58,7 +58,7 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
     }
     
     func handleNewElements(_ newElements: Element, _ tableView: UITableView) {
-        print("event arrived in datasource delegate")
+        //print("event arrived in datasource delegate")
         
         // new section
         let newSections = getNewSections(newElements)

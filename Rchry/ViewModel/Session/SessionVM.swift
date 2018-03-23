@@ -49,7 +49,7 @@ class SessionVM {
                 self.addShot(withIndex: self._shots.value.count)
             })
             .disposed(by: disposeBag)
-        print("created new empty shot with index \(index)")
+        //print("created new empty shot with index \(index)")
     }
     
     var possibleScores: [Float] {
@@ -69,7 +69,7 @@ class SessionVM {
                     return
                 }
                 let newShot = Shot(index: oldShot.index, scores: oldShot.scores, active: !oldShot.active, shotReady: true)
-                print("new shot: \(newShot.active) old shot: \(oldShot.active)")
+                //print("new shot: \(newShot.active) old shot: \(oldShot.active)")
                 self._shots.value[index] = newShot
             })
             .disposed(by: disposeBag ?? self.disposeBag)
@@ -84,7 +84,7 @@ class SessionVM {
                 let score: Float? = scoreByUserAndIndex.0
                 
                 self._shots.value[index].addScore(score, byUser: user)
-                print("score was set for \(user) to \(score ?? -1) for shot \(index)")
+                //print("score was set for \(user) to \(score ?? -1) for shot \(index)")
             })
             .disposed(by: disposeBag ?? self.disposeBag)
     }

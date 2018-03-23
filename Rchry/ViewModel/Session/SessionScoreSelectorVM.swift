@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-class SessionScoreSelectorVM {
+class SessionScoreSelectorVM: CustomStringConvertible {
     
     private let _index: Variable<Int>
     private let _owner: Variable<String>
@@ -75,5 +75,9 @@ class SessionScoreSelectorVM {
     
     var scoreByUserAndIndex: Observable<(Float, String, Int)> {
         return _scoreByUserAndIndex
+    }
+    
+    var description: String {
+        return ("Index: \(_index.value), owned by: \(_owner.value), scores: \(_scores), selected: \(_selectedScoreIndex.value ?? -1)")
     }
 }

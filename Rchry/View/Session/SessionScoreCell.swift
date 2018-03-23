@@ -10,15 +10,34 @@ import UIKit
 
 class SessionScoreCell: ScoreCell {
 
+    private var _isScoreselected = false
+    
+    var isScoreSelected: Bool {
+        return _isScoreselected
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        setUnselected()
+    }
+    
     func setSelected() {
-        scoreLbl.backgroundColor = UIColor(named: "ColorThemeBright")
-        scoreLbl.textColor = UIColor.white
-        scoreLbl.borderColor = .clear
+        if !isScoreSelected {
+            // print("set selected called for lbl: \(scoreLbl.text ?? "")")
+            scoreLbl.backgroundColor = UIColor(named: "ColorThemeBright")
+            scoreLbl.textColor = UIColor.white
+            scoreLbl.borderColor = .clear
+            _isScoreselected = true
+        }
     }
     
     func setUnselected() {
-        scoreLbl.backgroundColor = UIColor.clear
-        scoreLbl.textColor = UIColor(named: "ColorThemeDark")
-        scoreLbl.borderColor = UIColor(named: "ColorThemeMid")!
+        if isScoreSelected {
+            // print("set UNselected called for lbl: \(scoreLbl.text ?? "")")
+            scoreLbl.backgroundColor = UIColor.clear
+            scoreLbl.textColor = UIColor(named: "ColorThemeDark")
+            scoreLbl.borderColor = UIColor(named: "ColorThemeMid")!
+            _isScoreselected = false
+        }
     }
 }
