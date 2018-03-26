@@ -61,7 +61,6 @@ class SessionVM {
         _shots.value[index].scoreFilledForUserAndIndex
             .subscribe(onNext: { [unowned self] (score, user, index) in
                 self.shotService.update(score: score, byUser: user, forIndex: index, inSession: self.session).subscribe().dispose()
-                print("index: \(index), user: \(user), score: \(score)")
             })
             .disposed(by: disposeBag)
     }
@@ -83,7 +82,6 @@ class SessionVM {
                     return
                 }
                 let newShot = Shot(index: oldShot.index, scores: oldShot.scores, active: !oldShot.active, shotReady: true)
-                //print("new shot: \(newShot.active) old shot: \(oldShot.active)")
                 self._shots.value[index] = newShot
                 self.subscribeToNewScoreSelectedToUpdateService(index)
             })
@@ -99,7 +97,6 @@ class SessionVM {
                 let score: Float? = scoreByUserAndIndex.0
                 
                 self._shots.value[index].addScore(score, byUser: user)
-                //print("score was set for \(user) to \(score ?? -1) for shot \(index)")
             })
             .disposed(by: disposeBag ?? self.disposeBag)
     }

@@ -23,7 +23,6 @@ class SessionScoreCell: ScoreCell {
     
     func setSelected() {
         if !isScoreSelected {
-            // print("set selected called for lbl: \(scoreLbl.text ?? "")")
             scoreLbl.backgroundColor = UIColor(named: "ColorThemeBright")
             scoreLbl.textColor = UIColor.white
             scoreLbl.borderColor = .clear
@@ -33,7 +32,6 @@ class SessionScoreCell: ScoreCell {
     
     func setUnselected() {
         if isScoreSelected {
-            // print("set UNselected called for lbl: \(scoreLbl.text ?? "")")
             scoreLbl.backgroundColor = UIColor.clear
             scoreLbl.textColor = UIColor(named: "ColorThemeDark")
             scoreLbl.borderColor = UIColor(named: "ColorThemeMid")!

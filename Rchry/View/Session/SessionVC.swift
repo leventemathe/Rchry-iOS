@@ -57,9 +57,7 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
         }
     }
     
-    func handleNewElements(_ newElements: Element, _ tableView: UITableView) {
-        //print("event arrived in datasource delegate")
-        
+    func handleNewElements(_ newElements: Element, _ tableView: UITableView) {        
         // new section
         let newSections = getNewSections(newElements)
         // rows thats activeness changed

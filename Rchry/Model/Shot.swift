@@ -103,7 +103,6 @@ class Shot: CustomStringConvertible {
                     }
                 }
                 if !active {
-                    //print("all the scores were selected, so activeness changed to false")
                     self.activenessBasedOnScoresFilledSubscription?.dispose()
                 }
                 self.active = active
