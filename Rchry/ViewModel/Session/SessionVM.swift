@@ -44,12 +44,26 @@ class SessionVM {
             scores.append((guest, nil))
         })
         _shots.value.append(Shot(index: index, scores: scores, active: true))
+        subscribeToLatesShotsReadynessToAddNewShot()
+        subscribeToNewScoreSelectedToUpdateService(_shots.value.count-1)
+    }
+    
+    private func subscribeToLatesShotsReadynessToAddNewShot() {
         _shots.value[_shots.value.count - 1].shotReadyObservable
             .subscribe(onNext: { [unowned self] _ in
                 self.addShot(withIndex: self._shots.value.count)
             })
             .disposed(by: disposeBag)
-        //print("created new empty shot with index \(index)")
+    }
+    
+    // Mark: Call this for every new Shot
+    private func subscribeToNewScoreSelectedToUpdateService(_ index: Int) {
+        _shots.value[index].scoreFilledForUserAndIndex
+            .subscribe(onNext: { [unowned self] (score, user, index) in
+                self.shotService.update(score: score, byUser: user, forIndex: index, inSession: self.session).subscribe().dispose()
+                print("index: \(index), user: \(user), score: \(score)")
+            })
+            .disposed(by: disposeBag)
     }
     
     var possibleScores: [Float] {
@@ -71,6 +85,7 @@ class SessionVM {
                 let newShot = Shot(index: oldShot.index, scores: oldShot.scores, active: !oldShot.active, shotReady: true)
                 //print("new shot: \(newShot.active) old shot: \(oldShot.active)")
                 self._shots.value[index] = newShot
+                self.subscribeToNewScoreSelectedToUpdateService(index)
             })
             .disposed(by: disposeBag ?? self.disposeBag)
     }

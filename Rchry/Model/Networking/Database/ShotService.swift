@@ -12,74 +12,40 @@ import Firebase
 
 struct ShotNames {
     
+    static let PATH = "shots"
     static let MY_SCORE = "my_score"
 }
 
 protocol ShotService {
     
-    func add(shot: Shot, forSession session: Session) -> Observable<Shot>
-}
-
-struct FirebaseShotCoder {
-    
-    func encode(shot: Shot) -> [String: Any] {
-        return shot.scores.reduce(into: [String: Any](), { result, scoreByUser in
-            result[scoreByUser.0] = scoreByUser.1
-        })
-    }
-    
-    func decode(dictionary: [String: Any]) -> Shot? {
-        guard let indexString = dictionary.keys.first, let index = Int(indexString) else {
-            return nil
-        }
-        guard let scoresByUserDict = dictionary.values.first as? [String: Float] else {
-            return nil
-        }
-        let scoresByUser = scoresByUserDict.reduce(into: [(String, Float?)](), { result, scoreByUser in
-            result.append((scoreByUser.key, scoreByUser.value))
-        })
-        return Shot(index: index, scores: scoresByUser, active: false)
-    }
-    
-    func decode(dictionary: [String: Any]) -> [Shot] {
-        var shots = [Shot]()
-        for (_, value) in dictionary {
-            if let shotDict = value as? [String: Any], let shot: Shot = decode(dictionary: shotDict) {
-                shots.append(shot)
-            }
-        }
-        return shots
-    }
+    func update(score: Float, byUser user: String, forIndex index: Int, inSession session: Session) -> Observable<(Float, String, Int)>
 }
 
 class FirebaseShotService: ShotService {
     
     private var databaseReference: DatabaseReference
-    private var shotCoder: FirebaseShotCoder
-    private var sessionCoder: FirebaseSessionCoder
     private var authService: AuthService
+    private var sessionCoder: FirebaseSessionCoder
     
-    init(databaseReference: DatabaseReference = DatabaseReference(),
-         shotCoder: FirebaseShotCoder = FirebaseShotCoder(),
-         sessionCoder: FirebaseSessionCoder = FirebaseSessionCoder(),
-         authService: AuthService = FirebaseAuthService()) {
+    init(databaseReference: DatabaseReference = Database.database().reference(),
+         authService: AuthService = FirebaseAuthService(),
+         sessionCoder: FirebaseSessionCoder = FirebaseSessionCoder()) {
         self.databaseReference = databaseReference
-        self.shotCoder = shotCoder
-        self.sessionCoder = sessionCoder
         self.authService = authService
+        self.sessionCoder = sessionCoder
     }
-    
-    func add(shot: Shot, forSession session: Session) -> Observable<Shot> {
+
+    func update(score: Float, byUser user: String, forIndex index: Int, inSession session: Session) -> Observable<(Float, String, Int)> {
         guard let uid = authService.userID else {
             return Observable.error(DatabaseError.userNotLoggedIn)
         }
+        let sessionPath = sessionCoder.createSessionKey(fromSession: session)
         return Observable.create { [unowned self] observer in
-            let update = self.shotCoder.encode(shot: shot)
-            self.databaseReference.child(uid).child(SessionNames.PATH).child(self.sessionCoder.createSessionKey(fromSession: session)).child(String(shot.index)).updateChildValues(update, withCompletionBlock: { error, ref in
-                if let _ = error {
+            self.databaseReference.child(uid).child(SessionNames.PATH).child(sessionPath).child(ShotNames.PATH).child(String(index)).child(user).setValue(score, withCompletionBlock: { error, _ in
+                if error != nil {
                     observer.onError(DatabaseError.server)
                 } else {
-                    observer.onNext(shot)
+                    observer.onNext((score, user, index))
                     observer.onCompleted()
                 }
             })

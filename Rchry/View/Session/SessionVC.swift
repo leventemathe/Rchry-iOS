@@ -75,7 +75,6 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
             tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
         
-        // TODO: replace with insert/delete, and change size of models instead of row height
         if changedRows.count > 0 {
             tableView.beginUpdates()
             tableView.reloadRows(at: changedRows, with: .right)

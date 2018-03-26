@@ -12,7 +12,7 @@ import RxSwift
 // Never again put rx code into the model.
 // Set the reactive behaviour outside.
 // Problem: when you create a new object, the rx code is setup wether you want it or not.
-class Shot {
+class Shot: CustomStringConvertible {
     
     // I need this ordered so the users are always in the same order in a list of shots,
     // so I can't use dictionary
@@ -21,11 +21,7 @@ class Shot {
     let index: Int
     let title: String
     // Should the UI show this shot?
-    private var _active: Bool
-    
-    var active: Bool {
-        return _active
-    }
+    var active: Bool
     
     private var _scores: Variable<ScoresByUser>
     
@@ -56,7 +52,7 @@ class Shot {
         let titleFormat = NSLocalizedString("Shot%d", comment: "Index of shot for a session.")
         self.title = String.localizedStringWithFormat(titleFormat, index + 1)
         self._scores = Variable(scores)
-        self._active = active
+        self.active = active
         self._shotReady = shotReady
         
         // The order here is important! Activeness needs to be set before readyness, so that when the event arrives in the collection view, it's already set.
@@ -91,7 +87,7 @@ class Shot {
     // This observes the shots, and when every user has a shot set, it changes the activeness to false.
     // This happens only once, similar to shotReady.
     // This should hide the cells in the ui.
-    var activenessBasedOnScoresFilledSubscription: Disposable!
+    private var activenessBasedOnScoresFilledSubscription: Disposable!
     
     private func setupActivenessBasedOnScoresFilled() {
         if shotReady {
@@ -110,9 +106,12 @@ class Shot {
                     //print("all the scores were selected, so activeness changed to false")
                     self.activenessBasedOnScoresFilledSubscription?.dispose()
                 }
-                self._active = active
+                self.active = active
             })
     }
+    
+    // When a new score is added, this is updated
+    private var _newestScoreForUser = Variable<(Float, String)?>(nil)
     
     func addScore(_ score: Float?, byUser user: String) {
         if let scoreByUserIndex = scores.index(where: { (foundUser, _  ) in
@@ -120,5 +119,26 @@ class Shot {
         }) {
             _scores.value[scoreByUserIndex] = (user, score)
         }
+        // I update newestScores here instead of a subscription to _scores,
+        // because of performance: this way I don't have to compare
+        // the new scores to the old every time a score is selected.
+        // Sub would be cleaner though.
+        if let score = score {
+            _newestScoreForUser.value = (score, user)
+        }
+    }
+    
+    // With this the newest score can be subscribed to from outside
+    var scoreFilledForUserAndIndex: Observable<(Float, String, Int)> {
+        return Observable.combineLatest(
+            _newestScoreForUser.asObservable()
+                .filter { $0 != nil }
+                .map { $0! },
+            Observable.just(index),
+            resultSelector: { ($0.0, $0.1, $1) })
+    }
+    
+    var description: String {
+        return("Shot at index \(index), scores: \(_scores.value)")
     }
 }
