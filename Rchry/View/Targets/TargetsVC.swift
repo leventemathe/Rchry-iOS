@@ -49,7 +49,7 @@ class TargetsVC: UIViewController {
                 targets == nil ? [Target]() : targets!
             }
             .bind(to: targetsTableView.rx.items(cellIdentifier: "TargetCell", cellType: TargetCell.self)) { _, target, cell in
-                cell.update(icon: target.icon, name: target.name, distance: target.distance, preferredDistanceUnit: target.preferredDistanceUnit, scores: target.scores, shots: target.shots)
+                cell.update(icon: target.icon, name: target.name, distance: target.distance, preferredDistanceUnit: target.preferredDistanceUnit, scores: target.scores)
             }
             .disposed(by: networkingDisposeBag)
     }

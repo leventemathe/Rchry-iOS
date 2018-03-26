@@ -18,7 +18,6 @@ struct TargetNames {
     static let PREFERRED_DISTANCE_UNIT = "preferred_distance_unit"
     static let SCORES = "scores"
     static let ICON = "icon"
-    static let SHOTS = "shots"
     static let TIMESTAMP = "timestamp"
 }
 
@@ -38,7 +37,6 @@ class FirebaseTargetCoder {
             TargetNames.PREFERRED_DISTANCE_UNIT: target.preferredDistanceUnit.toString(),
             TargetNames.SCORES: target.scores,
             TargetNames.ICON: target.icon,
-            TargetNames.SHOTS: target.shots,
             TargetNames.TIMESTAMP: target.timestamp
         ]
     }
@@ -53,9 +51,8 @@ class FirebaseTargetCoder {
             scores = [Float]()
         }
         guard let icon = targetDicitonary[TargetNames.ICON] as? String else { return nil }
-        guard let shots = targetDicitonary[TargetNames.SHOTS] as? Int else { return nil }
         guard let timestamp = targetDicitonary[TargetNames.TIMESTAMP] as? Double else { return nil }
-        return Target(name: name, distance: distance, preferredDistanceUnit: preferredDistanceUnit, scores: scores!, icon: icon, timestamp: timestamp, shots: shots)
+        return Target(name: name, distance: distance, preferredDistanceUnit: preferredDistanceUnit, scores: scores!, icon: icon, timestamp: timestamp)
     }
     
     func decode(targetsDicitonary: [String: Any]) -> [Target] {

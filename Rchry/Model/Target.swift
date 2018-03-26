@@ -57,5 +57,4 @@ struct Target {
     let scores: [Float]
     let icon: String
     let timestamp: Double
-    var shots: Int
 }

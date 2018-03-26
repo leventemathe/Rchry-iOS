@@ -51,7 +51,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6RK-Sa-CdR">
-                                                            <rect key="frame" x="90" y="0.0" width="245" height="84.5"/>
+                                                            <rect key="frame" x="90" y="0.0" width="253" height="84.5"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0SX-PQ-Gtr">
                                                                     <rect key="frame" x="0.0" y="0.0" width="164" height="30.5"/>
@@ -71,7 +71,7 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kTq-7D-aKY">
-                                                                    <rect key="frame" x="0.0" y="38.5" width="245" height="46"/>
+                                                                    <rect key="frame" x="0.0" y="38.5" width="253" height="46"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="46" id="G2h-Il-Eu4"/>
@@ -135,16 +135,7 @@
                                                                 <constraint firstItem="kTq-7D-aKY" firstAttribute="leading" secondItem="6RK-Sa-CdR" secondAttribute="leading" id="ij5-Fn-Ztu"/>
                                                             </constraints>
                                                         </stackView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O34-Oo-oox">
-                                                            <rect key="frame" x="343" y="0.0" width="0.0" height="84.5"/>
-                                                            <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="33"/>
-                                                            <color key="textColor" name="ColorThemeDark"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="O34-Oo-oox" firstAttribute="centerY" secondItem="dVl-n3-DmA" secondAttribute="centerY" id="UUT-1g-xID"/>
-                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -159,7 +150,6 @@
                                             <outlet property="iconImageView" destination="bE7-MO-o0s" id="D21-4g-3S0"/>
                                             <outlet property="nameLbl" destination="Agf-l8-tRM" id="YFd-Il-knA"/>
                                             <outlet property="scoresCollectionView" destination="kTq-7D-aKY" id="nEe-bc-lIE"/>
-                                            <outlet property="shotsLbl" destination="O34-Oo-oox" id="HWG-RG-VmZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

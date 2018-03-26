@@ -17,7 +17,6 @@ class TargetCell: UITableViewCell {
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var distanceLbl: UILabel!
     @IBOutlet weak var scoresCollectionView: UICollectionView!
-    @IBOutlet weak var shotsLbl: UILabel!
     
     // This should go to a viewmodel, and the vm should also have bindings for all the other ui elements
     // It's overcomplicated though, for a simple ui like this
@@ -25,14 +24,13 @@ class TargetCell: UITableViewCell {
     private var disposeBag = DisposeBag()
     
     // TODO: These parameters should all be strings, and the conversions to string should happen in a viewmodel
-    func update(icon: String, name: String, distance: Float, preferredDistanceUnit: DistanceUnit, scores: [Float], shots: Int) {
+    func update(icon: String, name: String, distance: Float, preferredDistanceUnit: DistanceUnit, scores: [Float]) {
         iconImageView.image = UIImage(named: icon)
         nameLbl.text = name
         if let distanceString = distance.prettyString() {
             distanceLbl.text = distanceString + " " + preferredDistanceUnit.toShortString()
         }
         scoresDatasource = scores
-        shotsLbl.text = String(shots)
         disposeBag = DisposeBag()
         setupScoresDatasource()
     }

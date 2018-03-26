@@ -80,8 +80,7 @@ class NewTargetVM {
                                     preferredDistanceUnit: self.inputDistanceUnit.value,
                                     scores: self._datasourceScores!.value,
                                     icon: self._datasourceIcons[self.inputCurrentSelectedIcon.value],
-                                    timestamp: self.dateProvider.currentTimestamp,
-                                    shots: 0)
+                                    timestamp: self.dateProvider.currentTimestamp)
                 return self.targetService.create(target: target)
                     .map { ($0, nil) }
                     .catchError {
