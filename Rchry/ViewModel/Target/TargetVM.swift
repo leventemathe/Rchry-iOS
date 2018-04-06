@@ -11,4 +11,12 @@ import Foundation
 struct TargetVM {
     
     let target: Target
+    
+    func buildTitle() -> String {
+        return target.name +
+            " " +
+            (target.distance.prettyString() ?? "") +
+            " " +
+            target.preferredDistanceUnit.toShortString()
+    }
 }

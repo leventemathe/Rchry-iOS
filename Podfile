@@ -13,6 +13,7 @@ target 'Rchry' do
   pod 'Firebase/Analytics',   '~> 4.6.0'
   pod 'Firebase/Auth',        '~> 4.6.0'
   pod 'Firebase/Database',    '~> 4.6.0'
+  pod 'Charts',               '~> 3.1.1'
 
   target 'RchryTests' do
     inherit! :search_paths

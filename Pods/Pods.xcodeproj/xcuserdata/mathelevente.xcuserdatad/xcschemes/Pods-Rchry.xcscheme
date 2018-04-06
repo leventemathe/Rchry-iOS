@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "65645C929EBE1743546C1FDD216D86B7"
+               BlueprintIdentifier = "A8BA86DF6E4149B7277FC2D2BFC29851"
                BuildableName = "Pods_Rchry.framework"
                BlueprintName = "Pods-Rchry"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -26,7 +26,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -37,7 +36,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -47,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "65645C929EBE1743546C1FDD216D86B7"
+            BlueprintIdentifier = "A8BA86DF6E4149B7277FC2D2BFC29851"
             BuildableName = "Pods_Rchry.framework"
             BlueprintName = "Pods-Rchry"
             ReferencedContainer = "container:Pods.xcodeproj">

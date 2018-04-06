@@ -10,6 +10,7 @@ import UIKit
 import LMViews
 import RxCocoa
 import RxSwift
+import Charts
 
 class TargetVC: UIViewController {
 
@@ -21,16 +22,8 @@ class TargetVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavbarTitle(buildTitle())
+        setNavbarTitle(targetVM.buildTitle())
         setupNewSessionBtn()
-    }
-    
-    private func buildTitle() -> String {
-        return targetVM.target.name +
-                " " +
-                (targetVM.target.distance.prettyString() ?? "") +
-                " " +
-                targetVM.target.preferredDistanceUnit.toShortString()
     }
     
     private func setNavbarTitle(_ title: String) {
@@ -40,11 +33,15 @@ class TargetVC: UIViewController {
     private func setupNewSessionBtn() {
         newSessionBtn.rx.tap.asObservable()
             .subscribe(onNext: { [unowned self] in
-                let storyboard = UIStoryboard(name: "NewSession", bundle: nil)
-                let newSessionVC = storyboard.instantiateViewController(withIdentifier: "NewSessionVC") as! NewSessionVC
-                newSessionVC.ownerTarget = self.targetVM.target
-                self.navigationController?.pushViewController(newSessionVC, animated: true)
+                self.pushNewSessionScreen()
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func pushNewSessionScreen() {
+        let storyboard = UIStoryboard(name: "NewSession", bundle: nil)
+        let newSessionVC = storyboard.instantiateViewController(withIdentifier: "NewSessionVC") as! NewSessionVC
+        newSessionVC.ownerTarget = self.targetVM.target
+        navigationController?.pushViewController(newSessionVC, animated: true)
     }
 }
