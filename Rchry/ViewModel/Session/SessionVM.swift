@@ -37,10 +37,13 @@ class SessionVM {
     
     func addShot(withIndex index: Int) {
         var scores = Shot.ScoresByUser()
-        if session.trackUserScore {
+        if session.shotsByUser.contains(where: { $0.0 == ShotNames.MY_SCORE }) {
             scores.append((ShotNames.MY_SCORE, nil))
         }
-        scores = session.guests.reduce(into: scores, { scores, guest in
+        scores = session.shotsByUser
+            .filter{ $0.0 != ShotNames.MY_SCORE }
+            .map { $0.0 }
+            .reduce(into: scores, { scores, guest in
             scores.append((guest, nil))
         })
         _shots.value.append(Shot(index: index, scores: scores, active: true))

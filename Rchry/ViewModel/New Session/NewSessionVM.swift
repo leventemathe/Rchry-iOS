@@ -82,7 +82,14 @@ class NewSessionVM {
     func createSession(reactingTo observable: Observable<()>) -> Observable<(Session?, String?)> {
         return observable
             .flatMap { [unowned self] _ -> Observable<(Session?, String?)> in
-                let session = Session(ownerTarget: self.ownerTarget, name: self.name.value, timestamp: self.dateProvider.currentTimestamp, guests: self.guests.value)
+                // TODO: add or don't add my_score depending on ui
+                var users = self.guests.value
+                users.append(ShotNames.MY_SCORE )
+                let session = Session(ownerTarget: self.ownerTarget, name: self.name.value, timestamp: self.dateProvider.currentTimestamp, shotsByUser: users.reduce([String: [Float]]()) { result, user in
+                    var result = result
+                    result[user] = [Float()]
+                    return result
+                })
                 return self.sessionService.create(session: session)
                     .map { ($0, nil) }
                     .catchError { error in

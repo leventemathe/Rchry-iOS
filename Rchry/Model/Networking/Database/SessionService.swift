@@ -37,7 +37,10 @@ struct FirebaseSessionCoder {
             "\(SessionNames.PATH)/\(sessionKey)/\(SessionNames.TARGET)": target
         ]
         
-        let savedGuestsDict = session.guests.reduce(into: [String: Any](), { dict, guest in
+        let savedGuestsDict = session.shotsByUser
+            .filter { $0.0 != ShotNames.MY_SCORE }
+            .map { $0.0 }
+            .reduce(into: [String: Any](), { dict, guest in
             dict["\(SessionNames.SAVED_GUESTS)/\(guest)"] = timestamp as Any
         })
         

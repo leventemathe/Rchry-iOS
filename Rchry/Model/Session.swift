@@ -13,17 +13,12 @@ struct Session {
     let ownerTarget: Target
     let name: String
     let timestamp: Double
-    let guests: [String]
-    let trackUserScore: Bool = true
+    let shotsByUser: [String: [Float]]
     
-    init(ownerTarget: Target, name: String, timestamp: Double, guests: [String]? = nil) {
+    init(ownerTarget: Target, name: String, timestamp: Double, shotsByUser: [String: [Float]]) {
         self.ownerTarget = ownerTarget
         self.name = name
         self.timestamp = timestamp
-        if let guests = guests {
-            self.guests = guests
-        } else {
-            self.guests = [String]()
-        }
+        self.shotsByUser = shotsByUser
     }
 }

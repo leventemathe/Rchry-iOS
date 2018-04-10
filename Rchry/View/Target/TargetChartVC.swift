@@ -24,16 +24,17 @@ class TargetChartVC: UIViewController {
         ("fsgdsdafdsfgsdghhfdgfhgfdhdfghfgsdfgsfdg", 7.5),
         ("gdsfgdfsgdfs", 8.0),
     ]
- */
+    */
 
-    
+    /*
     private let dummyModelForChart = [
         ("first", 5.1),
         ("second", 4.2),
         ("third", 6.3)
         ]
+    */
  
-    /*
+    
     private let dummyModelForChart = [
         ("first", 5.1),
         ("second", 4.2),
@@ -63,7 +64,7 @@ class TargetChartVC: UIViewController {
         ("gdsfgdfsgdfs", 8.9),
         ("gdsfgdfsgdfs", 9.8)
         ]
- */
+
     
     private let colors = [UIColor(named: "ColorThemeBright")!, UIColor(named: "ColorThemeDark")!, UIColor(named: "ColorThemeMid")!, UIColor(named: "ColorThemeError")!]
     
