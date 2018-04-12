@@ -10,9 +10,9 @@ target 'Rchry' do
   pod 'RxSwift',              '~> 4.0'
   pod 'RxCocoa',              '~> 4.0'
   pod 'FBSDKLoginKit',        '~> 4.28.0'
-  pod 'Firebase/Analytics',   '~> 4.6.0'
-  pod 'Firebase/Auth',        '~> 4.6.0'
-  pod 'Firebase/Database',    '~> 4.6.0'
+  pod 'Firebase/Analytics',   '~> 4.12.0'
+  pod 'Firebase/Auth',        '~> 4.12.0'
+  pod 'Firebase/Database',    '~> 4.12.0'
   pod 'Charts',               '~> 3.1.1'
 
   target 'RchryTests' do

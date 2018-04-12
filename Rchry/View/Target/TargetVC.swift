@@ -44,4 +44,10 @@ class TargetVC: UIViewController {
         newSessionVC.ownerTarget = self.targetVM.target
         navigationController?.pushViewController(newSessionVC, animated: true)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let chartVC = segue.destination as? TargetChartVC {
+            chartVC.targetChartVM = TargetChartVM(target: targetVM.target)
+        }
+    }
 }

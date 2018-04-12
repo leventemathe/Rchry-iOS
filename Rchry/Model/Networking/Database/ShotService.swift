@@ -34,27 +34,6 @@ class FirebaseShotService: ShotService {
         self.authService = authService
         self.sessionCoder = sessionCoder
     }
-
-    /*
-    func update(score: Float, byUser user: String, forIndex index: Int, inSession session: Session) -> Observable<(Float, String, Int)> {
-        guard let uid = authService.userID else {
-            return Observable.error(DatabaseError.userNotLoggedIn)
-        }
-        let sessionPath = sessionCoder.createSessionKey(fromSession: session)
-        return Observable.create { [unowned self] observer in
-            self.databaseReference.child(uid).child(SessionNames.PATH).child(sessionPath).child(ShotNames.PATH).child(String(index)).child(user).setValue(score, withCompletionBlock: { error, _ in
-                if error != nil {
-                    observer.onError(DatabaseError.server)
-                } else {
-                    observer.onNext((score, user, index))
-                    observer.onCompleted()
-                }
-            })
-            return Disposables.create()
-        }
-    }
- */
-    
     
     func update(score: Float, byUser user: String, forIndex index: Int, inSession session: Session) -> Observable<(Float, String, Int)> {
         guard let uid = authService.userID else {

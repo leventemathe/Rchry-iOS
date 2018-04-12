@@ -8,63 +8,16 @@
 
 import UIKit
 import Charts
+import RxSwift
 
 class TargetChartVC: UIViewController {
     
     @IBOutlet weak var barChart: BarChartView!
     
     // TODO: move entry and model to model and vm
-    /*
-    private let dummyModelForChart = [
-        ("first", 5.1),
-        ("second", 4.2),
-        ("third", 6.3),
-        ("asd", 6.1),
-        ("qwe", 8.3),
-        ("fsgdsdafdsfgsdghhfdgfhgfdhdfghfgsdfgsfdg", 7.5),
-        ("gdsfgdfsgdfs", 8.0),
-    ]
-    */
-
-    /*
-    private let dummyModelForChart = [
-        ("first", 5.1),
-        ("second", 4.2),
-        ("third", 6.3)
-        ]
-    */
- 
     
-    private let dummyModelForChart = [
-        ("first", 5.1),
-        ("second", 4.2),
-        ("third", 6.3),
-        ("asd", 6.1),
-        ("qwe", 8.3),
-        ("fsgdsdafdsfgsdghhfdgfhgfdhdfghfgsdfgsfdg", 7.5),
-        ("gdsfgdfsgdfs", 7.1),
-        ("gdsfgdfsgdfs", 8.2),
-        ("gdsfgdfsgdfs", 8.5),
-        ("gdsfgdfsgdfs", 8.6),
-        ("gdsfgdfsgdfs", 8.7),
-        ("gdsfgdfsgdfs", 8.2),
-        ("gdsfgdfsgdfs", 8.9),
-        ("gdsfgdfsgdfs", 9.2),
-        ("gdsfgdfsgdfs", 6.5),
-        ("gdsfgdfsgdfs", 6.8),
-        ("gdsfgdfsgdfs", 8.2),
-        ("gdsfgdfsgdfs", 8.3),
-        ("gdsfgdfsgdfs", 9.2),
-        ("gdsfgdfsgdfs", 7.2),
-        ("gdsfgdfsgdfs", 6.5),
-        ("gdsfgdfsgdfs", 6.4),
-        ("gdsfgdfsgdfs", 9.1),
-        ("gdsfgdfsgdfs", 9.2),
-        ("gdsfgdfsgdfs", 9.0),
-        ("gdsfgdfsgdfs", 8.9),
-        ("gdsfgdfsgdfs", 9.8)
-        ]
-
+    var targetChartVM: TargetChartVM!
+    private var disposeBag = DisposeBag()
     
     private let colors = [UIColor(named: "ColorThemeBright")!, UIColor(named: "ColorThemeDark")!, UIColor(named: "ColorThemeMid")!, UIColor(named: "ColorThemeError")!]
     
@@ -74,8 +27,8 @@ class TargetChartVC: UIViewController {
     
     private func setupBarChart() {
         setupBarChartNoDataText()
-        setupBarChartData()
-        setupBarChartLooks()
+        // TODO: add logic to select user
+        setupBarchartForSingleUser("my_score")
     }
     
     private func setupBarChartNoDataText() {
@@ -84,31 +37,40 @@ class TargetChartVC: UIViewController {
         barChart.noDataFont = UIFont(name: "Amatic-Bold", size: 24)!
     }
     
-    private func setupBarChartData() {
-        var entries = [BarChartDataEntry]()
-        for (i, val) in dummyModelForChart.enumerated() {
-            let entry = BarChartDataEntry(x: Double(i), y: val.1)
-            entries.append(entry)
-        }
-        
-        // Each user should have a dataset, where the label is their name.
-        let dataSet = BarChartDataSet(values: entries, label: "my_scores")
-        dataSet.colors = [colors[0]]
-        let data = BarChartData(dataSets: [dataSet])
-    
-        barChart.data = data
+    private func setupBarchartForSingleUser(_ user: String) {
+        targetChartVM.averageScoresForUserBySession(user)
+            .subscribe(onNext: { [unowned self] averageScoresBySession in
+                var entries = [BarChartDataEntry]()
+                var sessionNames = [String]()
+                for (i, val) in averageScoresBySession.enumerated() {
+                    let entry = BarChartDataEntry(x: Double(i), y: Double(val.1))
+                    entries.append(entry)
+                    sessionNames.append(val.0)
+                }
+                self.setupBarchartDataForSingleUser(user, fromEntries: entries)
+                self.setupBarChartLooks(sessionNames)
+            })
+            .disposed(by: disposeBag)
     }
     
-    private func setupBarChartLooks() {
-        let formatter = TargetBarChartFormatter(dummyModelForChart.map { $0.0 })
+    private func setupBarchartDataForSingleUser(_ user: String, fromEntries entries: [BarChartDataEntry]) {
+        // Each user should have a dataset, where the label is their name.
+        let dataSet = BarChartDataSet(values: entries, label: user)
+        dataSet.colors = [self.colors[0]]
+        let data = BarChartData(dataSets: [dataSet])
+        self.barChart.data = data
+    }
+    
+    private func setupBarChartLooks(_ xStrings: [String]) {
+        let formatter = TargetBarChartFormatter(xStrings)
         let xAxis = XAxis()
         xAxis.valueFormatter = formatter
         barChart.xAxis.valueFormatter = xAxis.valueFormatter
         
-        if dummyModelForChart.count > 4 {
+        if xStrings.count > 4 {
             barChart.xAxis.drawLabelsEnabled = false
         } else {
-            barChart.xAxis.setLabelCount(dummyModelForChart.count, force: false)
+            barChart.xAxis.setLabelCount(xStrings.count, force: false)
             barChart.xAxis.wordWrapEnabled = true
             barChart.xAxis.labelFont = UIFont(name: "Lato-Regular", size: 8)!
         }
