@@ -12,9 +12,8 @@ import RxSwift
 
 class TargetChartVC: UIViewController {
     
+    @IBOutlet weak var userPickerView: UIPickerView!
     @IBOutlet weak var barChart: BarChartView!
-    
-    // TODO: move entry and model to model and vm
     
     var targetChartVM: TargetChartVM!
     private var disposeBag = DisposeBag()
@@ -22,7 +21,16 @@ class TargetChartVC: UIViewController {
     private let colors = [UIColor(named: "ColorThemeBright")!, UIColor(named: "ColorThemeDark")!, UIColor(named: "ColorThemeMid")!, UIColor(named: "ColorThemeError")!]
     
     override func viewDidLoad() {
+        setupUserPickerView()
         setupBarChart()
+    }
+    
+    private func setupUserPickerView() {
+        targetChartVM.guests
+            .bind(to: userPickerView.rx.itemTitles) { row, element in
+                return element
+            }
+            .disposed(by: disposeBag)
     }
     
     private func setupBarChart() {

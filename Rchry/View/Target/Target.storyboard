@@ -42,9 +42,9 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xaO-oi-mdJ">
-                                <rect key="frame" x="0.0" y="98" width="375" height="256"/>
+                                <rect key="frame" x="0.0" y="98" width="375" height="512"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="256" id="LP2-XQ-J4R"/>
+                                    <constraint firstAttribute="height" constant="512" id="LP2-XQ-J4R"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="ppW-fe-7si" kind="embed" id="DRB-ig-Zhz"/>
@@ -77,30 +77,40 @@
             <objects>
                 <viewController restorationIdentifier="TargetChartVC" storyboardIdentifier="TargetChartVC" id="ppW-fe-7si" customClass="TargetChartVC" customModule="Rchry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kYy-8b-caQ" customClass="I">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="512"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u37-V7-R6D" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="256"/>
+                                <rect key="frame" x="0.0" y="148" width="375" height="364"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZ1-5J-aYr">
+                                <rect key="frame" x="0.0" y="20" width="375" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="cXT-LT-wb1"/>
+                                </constraints>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="u37-V7-R6D" firstAttribute="leading" secondItem="kYy-8b-caQ" secondAttribute="leading" id="Htr-Ut-MIx"/>
+                            <constraint firstItem="YZ1-5J-aYr" firstAttribute="trailing" secondItem="d9S-Iv-z2Z" secondAttribute="trailing" id="JN2-3k-BAG"/>
+                            <constraint firstItem="u37-V7-R6D" firstAttribute="top" secondItem="YZ1-5J-aYr" secondAttribute="bottom" id="KgZ-CG-8QV"/>
+                            <constraint firstItem="YZ1-5J-aYr" firstAttribute="top" secondItem="d9S-Iv-z2Z" secondAttribute="top" id="NhJ-qu-bE1"/>
                             <constraint firstAttribute="bottom" secondItem="u37-V7-R6D" secondAttribute="bottom" id="Q18-Sz-NiE"/>
+                            <constraint firstItem="YZ1-5J-aYr" firstAttribute="leading" secondItem="d9S-Iv-z2Z" secondAttribute="leading" id="Qof-aO-Qtd"/>
                             <constraint firstAttribute="trailing" secondItem="u37-V7-R6D" secondAttribute="trailing" id="ci6-g4-mhh"/>
-                            <constraint firstItem="u37-V7-R6D" firstAttribute="top" secondItem="kYy-8b-caQ" secondAttribute="top" id="qGi-Al-iyx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d9S-Iv-z2Z"/>
                     </view>
                     <connections>
                         <outlet property="barChart" destination="u37-V7-R6D" id="3w9-UQ-7br"/>
+                        <outlet property="userPickerView" destination="YZ1-5J-aYr" id="MZ4-Ax-x7w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="56i-gR-Y2n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="796" y="-76"/>
+            <point key="canvasLocation" x="796" y="-76.46176911544228"/>
         </scene>
     </scenes>
     <resources>

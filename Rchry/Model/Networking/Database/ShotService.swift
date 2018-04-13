@@ -13,7 +13,9 @@ import Firebase
 struct ShotNames {
     
     static let PATH = "shots"
+    // TODO: translate these
     static let MY_SCORE = "my_score"
+    static let ALL_SCORES = "all"
 }
 
 protocol ShotService {

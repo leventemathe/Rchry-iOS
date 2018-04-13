@@ -22,7 +22,6 @@ class TargetChartVM {
         return (scores.reduce(0.0) { $0 + $1 }) / Float(scores.count)
     }
     
-    // TODO: cache sessions, the same is used here and averageScoresPerUser
     func averageScoresForUserBySession(_ user: String) -> Observable<[(String, Float)]> {
         return sessionService.getSessions(underTarget: target)
             .map { sessions in
@@ -36,6 +35,16 @@ class TargetChartVM {
             }
     }
     
+    var guests: Observable<[String]> {
+        return sessionService.getGuests()
+            .map { guests in
+                var users = [ShotNames.MY_SCORE]
+                users.append(contentsOf: guests)
+                return users
+            }
+    }
+    
+    // TODO:
     // TODO: change the return type to match func name
     var averageScoresPerUserBySession: Observable<[String: [Float]]> {
         return sessionService.getSessions(underTarget: target)
