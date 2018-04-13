@@ -21,17 +21,30 @@ class TargetChartVC: UIViewController {
     
     private let colors = [UIColor(named: "ColorThemeBright")!, UIColor(named: "ColorThemeDark")!, UIColor(named: "ColorThemeMid")!, UIColor(named: "ColorThemeError")!]
     
-    override func viewDidLoad() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupUserPicking()
         setupBarChart()
     }
     
     private func setupUserPicking() {
+        let userPicker = createUserPickerView()
+        setupUserPickerTextField(userPicker)
+    }
+    
+    private func createUserPickerView() -> UIPickerView {
         let userPicker = UIPickerView()
+        userPicker.backgroundColor = UIColor.white
+        addToolbarToUserPicker()
         
         targetChartVM.guests
-            .bind(to: userPicker.rx.itemTitles) { row, element in
-                return element
+            .bind(to: userPicker.rx.items) { [unowned self] row, element, view in
+                var label: UILabel!
+                if let view = view as? UILabel {
+                    label = view
+                }
+                label = self.createLabelForUserPicker(element)
+                return label
             }
             .disposed(by: disposeBag)
         
@@ -40,23 +53,40 @@ class TargetChartVC: UIViewController {
             .bind(to: userPickerTextfield.rx.text)
             .disposed(by: disposeBag)
         
-        userPickerTextfield.text = ShotNames.MY_SCORE
-        userPickerTextfield.inputView = userPicker
-        
-        addToolbarToUserPicker()
+        return userPicker
     }
     
     private func addToolbarToUserPicker() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
+        toolbar.barTintColor = UIColor(named: "ColorThemeMid")
         
-        let doneButtonText = NSLocalizedString("TargetChartUserSelectionDone", comment: "The user selected a target, and they press this button to leave the selector view.")
-        let doneButton = UIBarButtonItem(title: doneButtonText, style: .done, target: self, action: #selector(TargetChartVC.dismissUserPickerView))
-        
-        toolbar.setItems([doneButton], animated: false)
+        toolbar.setItems([createDoneButtonForToolbar()], animated: false)
         toolbar.isUserInteractionEnabled = true
         
         userPickerTextfield.inputAccessoryView = toolbar
+    }
+    
+    private func createDoneButtonForToolbar() -> UIBarButtonItem {
+        let doneButtonText = NSLocalizedString("TargetChartUserSelectionDone", comment: "The user selected a target, and they press this button to leave the selector view.")
+        let doneButton = UIBarButtonItem(title: doneButtonText, style: .done, target: self, action: #selector(TargetChartVC.dismissUserPickerView))
+        doneButton.tintColor = UIColor.white
+        doneButton.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: "Amatic-Bold", size: 26.0)!], for: .normal)
+        return doneButton
+    }
+    
+    private func createLabelForUserPicker(_ text: String) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.textColor = UIColor(named: "ColorThemeDark")
+        label.textAlignment = .center
+        label.font = UIFont(name: "Lato-Regular", size: 18)
+        return label
+    }
+    
+    private func setupUserPickerTextField(_ userPicker: UIPickerView) {
+        userPickerTextfield.text = ShotNames.MY_SCORE
+        userPickerTextfield.inputView = userPicker
     }
     
     @objc private func dismissUserPickerView() {
