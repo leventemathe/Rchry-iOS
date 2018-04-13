@@ -153,7 +153,8 @@ class FirebaseSessionService: SessionService {
             let targetName: String = self.firebaseTargetCoder.createTargetKey(target)!
             self.databaseRef.child(uid).child(SessionNames.PATH).queryOrdered(byChild: SessionNames.TARGET).queryEqual(toValue: targetName).observeSingleEvent(of: .value, with: { snapshot in
                 if let dict = snapshot.value as? [String: Any] {
-                    if let sessions = self.firebaseSessionCoder.decode(dict, underTarget: target) {
+                    if var sessions = self.firebaseSessionCoder.decode(dict, underTarget: target) {
+                        sessions.sort(by: { $0.timestamp < $1.timestamp })
                         observer.onNext(sessions)
                     }
                     observer.onCompleted()

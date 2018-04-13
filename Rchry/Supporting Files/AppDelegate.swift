@@ -18,9 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        FirebaseApp.configure()
-        Database.database().isPersistenceEnabled = true
-
+        setupFirebase()
+        
         setupGlobalViews()
         
         decideInitialVC()
@@ -30,6 +29,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
         return handled
+    }
+    
+    private func setupFirebase() {
+        FirebaseApp.configure()
+        Database.database().isPersistenceEnabled = true
+        let userSession = FirebaseAuthService()
+        if let uid = userSession.userID {
+            Database.database().reference(withPath: uid).keepSynced(true)
+        }
     }
     
     private func setupGlobalViews() {
