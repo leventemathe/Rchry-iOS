@@ -18,16 +18,39 @@ class TargetChartVC: UIViewController {
     
     var targetChartVM: TargetChartVM!
     private var disposeBag = DisposeBag()
+    // Chart and picker views should be refreshed with new data whenever the vc
+    private var pickerDisposeBag: DisposeBag!
+    private var chartDisposeBag: DisposeBag!
     
     private let colors = [UIColor(named: "ColorThemeBright")!, UIColor(named: "ColorThemeDark")!, UIColor(named: "ColorThemeMid")!, UIColor(named: "ColorThemeError")!]
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupUserPicking()
-        setupBarChart()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupBarChartNoDataText()
+        setupUserPickerViews()
     }
     
-    private func setupUserPicking() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        pickerDisposeBag = DisposeBag()
+        chartDisposeBag = DisposeBag()
+        refreshUserPickerViews()
+        refreshBarChart()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        pickerDisposeBag = nil
+        chartDisposeBag = nil
+    }
+    
+    private func setupBarChartNoDataText() {
+        barChart.noDataText = NSLocalizedString("TargetChartNoDataText", comment: "The text to display when there is no data yet for the chart for a target: average scores per session.")
+        barChart.noDataTextColor = UIColor(named: "ColorThemeDark")!
+        barChart.noDataFont = UIFont(name: "Amatic-Bold", size: 24)!
+    }
+    
+    private func setupUserPickerViews() {
         let userPicker = createUserPickerView()
         setupUserPickerTextField(userPicker)
     }
@@ -36,17 +59,6 @@ class TargetChartVC: UIViewController {
         let userPicker = UIPickerView()
         userPicker.backgroundColor = UIColor.white
         addToolbarToUserPicker()
-        
-        targetChartVM.guests
-            .bind(to: userPicker.rx.items) { [unowned self] row, element, view in
-                var label: UILabel!
-                if let view = view as? UILabel {
-                    label = view
-                }
-                label = self.createLabelForUserPicker(element)
-                return label
-            }
-            .disposed(by: disposeBag)
         
         userPicker.rx.modelSelected(String.self)
             .map { $0[0] }
@@ -93,19 +105,33 @@ class TargetChartVC: UIViewController {
         view.endEditing(true)
     }
     
-    private func setupBarChart() {
-        setupBarChartNoDataText()
-        // TODO: add logic to select user
-        setupBarchartForSingleUser("my_score")
+    private func refreshUserPickerViews() {
+        let pickerView = userPickerTextfield.inputView as! UIPickerView
+        targetChartVM.guests
+            .bind(to: pickerView.rx.items) { [unowned self] row, element, view in
+                var label: UILabel!
+                if let view = view as? UILabel {
+                    label = view
+                }
+                label = self.createLabelForUserPicker(element)
+                return label
+            }
+            .disposed(by: pickerDisposeBag)
     }
     
-    private func setupBarChartNoDataText() {
-        barChart.noDataText = NSLocalizedString("TargetChartNoDataText", comment: "The text to display when there is no data yet for the chart for a target: average scores per session.")
-        barChart.noDataTextColor = UIColor(named: "ColorThemeDark")!
-        barChart.noDataFont = UIFont(name: "Amatic-Bold", size: 24)!
+    private func refreshBarChart() {
+        // TODO: add logic for all users
+        // TODO: move usertext  to viewmodel
+        let userText = userPickerTextfield.rx.text.asObservable()
+        userText
+            .filter { $0 != nil }
+            .map { $0! }
+            .subscribe(onNext: { [unowned self] user in
+                self.refreshBarchartForSingleUser(user)
+            }).disposed(by: chartDisposeBag)
     }
     
-    private func setupBarchartForSingleUser(_ user: String) {
+    private func refreshBarchartForSingleUser(_ user: String) {
         targetChartVM.averageScoresForUserBySession(user)
             .subscribe(onNext: { [unowned self] averageScoresBySession in
                 var entries = [BarChartDataEntry]()
@@ -115,13 +141,13 @@ class TargetChartVC: UIViewController {
                     entries.append(entry)
                     sessionNames.append(val.0)
                 }
-                self.setupBarchartDataForSingleUser(user, fromEntries: entries)
-                self.setupBarChartLooks(sessionNames)
+                self.refreshBarchartDataForSingleUser(user, fromEntries: entries)
+                self.refreshBarChartLooks(sessionNames)
             })
-            .disposed(by: disposeBag)
+            .disposed(by: chartDisposeBag)
     }
     
-    private func setupBarchartDataForSingleUser(_ user: String, fromEntries entries: [BarChartDataEntry]) {
+    private func refreshBarchartDataForSingleUser(_ user: String, fromEntries entries: [BarChartDataEntry]) {
         // Each user should have a dataset, where the label is their name.
         let dataSet = BarChartDataSet(values: entries, label: user)
         dataSet.colors = [self.colors[0]]
@@ -129,7 +155,7 @@ class TargetChartVC: UIViewController {
         self.barChart.data = data
     }
     
-    private func setupBarChartLooks(_ xStrings: [String]) {
+    private func refreshBarChartLooks(_ xStrings: [String]) {
         let formatter = TargetBarChartFormatter(xStrings)
         let xAxis = XAxis()
         xAxis.valueFormatter = formatter
