@@ -13,6 +13,9 @@
         <array key="Amatic-Bold.ttf">
             <string>Amatic-Bold</string>
         </array>
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Target-->
@@ -42,9 +45,9 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xaO-oi-mdJ">
-                                <rect key="frame" x="0.0" y="98" width="375" height="512"/>
+                                <rect key="frame" x="0.0" y="98" width="375" height="320"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="512" id="LP2-XQ-J4R"/>
+                                    <constraint firstAttribute="height" constant="320" id="LP2-XQ-J4R"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="ppW-fe-7si" kind="embed" id="DRB-ig-Zhz"/>
@@ -77,35 +80,55 @@
             <objects>
                 <viewController restorationIdentifier="TargetChartVC" storyboardIdentifier="TargetChartVC" id="ppW-fe-7si" customClass="TargetChartVC" customModule="Rchry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kYy-8b-caQ" customClass="I">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="512"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u37-V7-R6D" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="148" width="375" height="364"/>
+                                <rect key="frame" x="0.0" y="62.5" width="375" height="257.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZ1-5J-aYr">
-                                <rect key="frame" x="0.0" y="20" width="375" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="cXT-LT-wb1"/>
-                                </constraints>
-                            </pickerView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="xyb-JN-D9m">
+                                <rect key="frame" x="16" y="16" width="343" height="30.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick a user:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S37-I3-Bhg">
+                                        <rect key="frame" x="0.0" y="0.0" width="78.5" height="30.5"/>
+                                        <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="28"/>
+                                        <color key="textColor" name="ColorThemeDark"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pick a user to show data" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bVh-qf-Mxf" customClass="LMTextField" customModule="LMViews">
+                                        <rect key="frame" x="94.5" y="0.0" width="248.5" height="30.5"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" name="ColorThemeDark"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="underlineColor">
+                                                <color key="value" name="ColorThemeMid"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="underlineWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="xyb-JN-D9m" firstAttribute="top" secondItem="kYy-8b-caQ" secondAttribute="top" constant="16" id="5iD-DU-cNa"/>
                             <constraint firstItem="u37-V7-R6D" firstAttribute="leading" secondItem="kYy-8b-caQ" secondAttribute="leading" id="Htr-Ut-MIx"/>
-                            <constraint firstItem="YZ1-5J-aYr" firstAttribute="trailing" secondItem="d9S-Iv-z2Z" secondAttribute="trailing" id="JN2-3k-BAG"/>
-                            <constraint firstItem="u37-V7-R6D" firstAttribute="top" secondItem="YZ1-5J-aYr" secondAttribute="bottom" id="KgZ-CG-8QV"/>
-                            <constraint firstItem="YZ1-5J-aYr" firstAttribute="top" secondItem="d9S-Iv-z2Z" secondAttribute="top" id="NhJ-qu-bE1"/>
+                            <constraint firstItem="xyb-JN-D9m" firstAttribute="leading" secondItem="d9S-Iv-z2Z" secondAttribute="leading" constant="16" id="OHP-eC-bLf"/>
                             <constraint firstAttribute="bottom" secondItem="u37-V7-R6D" secondAttribute="bottom" id="Q18-Sz-NiE"/>
-                            <constraint firstItem="YZ1-5J-aYr" firstAttribute="leading" secondItem="d9S-Iv-z2Z" secondAttribute="leading" id="Qof-aO-Qtd"/>
+                            <constraint firstItem="d9S-Iv-z2Z" firstAttribute="trailing" secondItem="xyb-JN-D9m" secondAttribute="trailing" constant="16" id="Wfz-Xj-aKc"/>
                             <constraint firstAttribute="trailing" secondItem="u37-V7-R6D" secondAttribute="trailing" id="ci6-g4-mhh"/>
+                            <constraint firstItem="u37-V7-R6D" firstAttribute="top" secondItem="xyb-JN-D9m" secondAttribute="bottom" constant="16" id="fid-Mu-71c"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d9S-Iv-z2Z"/>
                     </view>
                     <connections>
                         <outlet property="barChart" destination="u37-V7-R6D" id="3w9-UQ-7br"/>
-                        <outlet property="userPickerView" destination="YZ1-5J-aYr" id="MZ4-Ax-x7w"/>
+                        <outlet property="userPickerTextfield" destination="bVh-qf-Mxf" id="sSa-pA-RAI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="56i-gR-Y2n" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -116,6 +139,15 @@
     <resources>
         <namedColor name="ColorThemeBright">
             <color red="0.47499999399999998" green="0.97299999000000004" blue="0.73299998040000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeDark">
+            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeDark">
+            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeMid">
+            <color red="0.37599998709999999" green="0.74500000479999995" blue="0.70200002189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

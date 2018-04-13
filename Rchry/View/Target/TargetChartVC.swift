@@ -12,7 +12,8 @@ import RxSwift
 
 class TargetChartVC: UIViewController {
     
-    @IBOutlet weak var userPickerView: UIPickerView!
+    
+    @IBOutlet weak var userPickerTextfield: UITextField!
     @IBOutlet weak var barChart: BarChartView!
     
     var targetChartVM: TargetChartVM!
@@ -21,16 +22,45 @@ class TargetChartVC: UIViewController {
     private let colors = [UIColor(named: "ColorThemeBright")!, UIColor(named: "ColorThemeDark")!, UIColor(named: "ColorThemeMid")!, UIColor(named: "ColorThemeError")!]
     
     override func viewDidLoad() {
-        setupUserPickerView()
+        setupUserPicking()
         setupBarChart()
     }
     
-    private func setupUserPickerView() {
+    private func setupUserPicking() {
+        let userPicker = UIPickerView()
+        
         targetChartVM.guests
-            .bind(to: userPickerView.rx.itemTitles) { row, element in
+            .bind(to: userPicker.rx.itemTitles) { row, element in
                 return element
             }
             .disposed(by: disposeBag)
+        
+        userPicker.rx.modelSelected(String.self)
+            .map { $0[0] }
+            .bind(to: userPickerTextfield.rx.text)
+            .disposed(by: disposeBag)
+        
+        userPickerTextfield.text = ShotNames.MY_SCORE
+        userPickerTextfield.inputView = userPicker
+        
+        addToolbarToUserPicker()
+    }
+    
+    private func addToolbarToUserPicker() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let doneButtonText = NSLocalizedString("TargetChartUserSelectionDone", comment: "The user selected a target, and they press this button to leave the selector view.")
+        let doneButton = UIBarButtonItem(title: doneButtonText, style: .done, target: self, action: #selector(TargetChartVC.dismissUserPickerView))
+        
+        toolbar.setItems([doneButton], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        
+        userPickerTextfield.inputAccessoryView = toolbar
+    }
+    
+    @objc private func dismissUserPickerView() {
+        view.endEditing(true)
     }
     
     private func setupBarChart() {
