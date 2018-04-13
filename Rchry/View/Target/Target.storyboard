@@ -26,41 +26,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWx-R0-UEa" customClass="LMButton" customModule="LMViews">
-                                <rect key="frame" x="107" y="36" width="160" height="46"/>
-                                <color key="backgroundColor" name="ColorThemeBright"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="p8i-WH-hOu">
+                                <rect key="frame" x="0.0" y="28" width="375" height="432.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target Statistics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7Q-fE-2AQ">
+                                        <rect key="frame" x="122.5" y="0.0" width="130.5" height="34.5"/>
+                                        <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
+                                        <color key="textColor" name="ColorThemeDark"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xaO-oi-mdJ">
+                                        <rect key="frame" x="0.0" y="50.5" width="375" height="320"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="320" id="LP2-XQ-J4R"/>
+                                        </constraints>
+                                        <connections>
+                                            <segue destination="ppW-fe-7si" kind="embed" id="DRB-ig-Zhz"/>
+                                        </connections>
+                                    </containerView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqf-B3-dfQ" customClass="LMButton" customModule="LMViews">
+                                        <rect key="frame" x="107.5" y="386.5" width="160" height="46"/>
+                                        <color key="backgroundColor" name="ColorThemeBright"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="3D9-2T-xYH"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="ex3-q4-lo7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="31"/>
+                                        <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                        <state key="normal" title="New Session">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="23"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="0ct-l2-sCA"/>
-                                    <constraint firstAttribute="height" constant="46" id="g1H-LK-9A7"/>
+                                    <constraint firstItem="xaO-oi-mdJ" firstAttribute="width" secondItem="p8i-WH-hOu" secondAttribute="width" id="x6x-X7-wyK"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="31"/>
-                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
-                                <state key="normal" title="New Session">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="23"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xaO-oi-mdJ">
-                                <rect key="frame" x="0.0" y="98" width="375" height="320"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="320" id="LP2-XQ-J4R"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="ppW-fe-7si" kind="embed" id="DRB-ig-Zhz"/>
-                                </connections>
-                            </containerView>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="caQ-3o-MwW" firstAttribute="trailing" secondItem="xaO-oi-mdJ" secondAttribute="trailing" id="7Xc-Ue-WzL"/>
-                            <constraint firstItem="RWx-R0-UEa" firstAttribute="centerX" secondItem="g06-MZ-SjX" secondAttribute="centerX" id="Hm6-Lp-PRf"/>
-                            <constraint firstItem="xaO-oi-mdJ" firstAttribute="top" secondItem="RWx-R0-UEa" secondAttribute="bottom" constant="16" id="YhC-Ea-Gle"/>
-                            <constraint firstItem="xaO-oi-mdJ" firstAttribute="leading" secondItem="caQ-3o-MwW" secondAttribute="leading" id="c9g-Yb-6bW"/>
-                            <constraint firstItem="RWx-R0-UEa" firstAttribute="top" secondItem="caQ-3o-MwW" secondAttribute="top" constant="16" id="xom-RG-lZh"/>
+                            <constraint firstItem="p8i-WH-hOu" firstAttribute="leading" secondItem="caQ-3o-MwW" secondAttribute="leading" id="R7E-Xg-Ond"/>
+                            <constraint firstItem="p8i-WH-hOu" firstAttribute="top" secondItem="caQ-3o-MwW" secondAttribute="top" constant="8" id="T6p-KN-RV8"/>
+                            <constraint firstItem="p8i-WH-hOu" firstAttribute="trailing" secondItem="caQ-3o-MwW" secondAttribute="trailing" id="WjX-mv-JYv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="caQ-3o-MwW"/>
                     </view>
@@ -68,7 +80,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="3uf-6g-J82"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="newSessionBtn" destination="RWx-R0-UEa" id="TxI-uc-yv1"/>
+                        <outlet property="newSessionBtn" destination="fqf-B3-dfQ" id="aWY-oe-Z06"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bNj-wT-Yzd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -79,7 +91,7 @@
         <scene sceneID="a9v-n1-XSg">
             <objects>
                 <viewController restorationIdentifier="TargetChartVC" storyboardIdentifier="TargetChartVC" id="ppW-fe-7si" customClass="TargetChartVC" customModule="Rchry" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kYy-8b-caQ" customClass="I">
+                    <view key="view" contentMode="scaleToFill" id="kYy-8b-caQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
