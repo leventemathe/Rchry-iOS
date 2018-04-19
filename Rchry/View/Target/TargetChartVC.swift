@@ -136,20 +136,37 @@ class TargetChartVC: UIViewController {
     private func refreshBarChartForAllUsers() {
         targetChartVM.averageScoresPerUserBySession
             .subscribe(onNext: { averageScoreBySessionByUser in
-                // TODO: because not all users take part in all sessions,
+                
+                
+                // Because not all users take part in all sessions,
                 // the indexes for the entries will be off.
-                // Because of this, assign a indexes to the session names,
+                // Because of this, I assign indexes to the session names,
                 // that way sessions where the user didn't participate, can be skipped.
+                let thisUsersScoresTookPartInAllSessions = averageScoreBySessionByUser.max(by: { $0.value.count < $1.value.count })!.value
+                let sessionNames = thisUsersScoresTookPartInAllSessions.map { $0.0 }
+                var sessionNameIndexes = [String: Int]()
+                var index = 0
+                for sessionName in sessionNames {
+                    sessionNameIndexes[sessionName] = index
+                    index += 1
+                }
+                
+                // Build data sets
                 var dataSets = [BarChartDataSet]()
-                for (user, averageScoresBySession) in averageScoreBySessionByUser {
+                for (offset: indexOfUser, element: (key: user, value: averageScoresBySession)) in averageScoreBySessionByUser.enumerated() {
                     var entries = [BarChartDataEntry]()
-                    for (i, val) in averageScoresBySession.enumerated() {
-                        let entry = BarChartDataEntry(x: Double(i), y: Double(val.1))
+                    for (session, averageScore) in averageScoresBySession {
+                        let index = Double(sessionNameIndexes[session]!)
+                        let entry = BarChartDataEntry(x: index, y: Double(averageScore))
                         entries.append(entry)
                     }
+                    let xOffset = -(1.0 / Double(averageScoreBySessionByUser.count))/2.0 * Double(averageScoreBySessionByUser.count - 1)
+                    self.groupEntries(&entries, numberOfUsers: averageScoreBySessionByUser.count, indexOfUser: indexOfUser, xInterval: 1.0, xOffset: xOffset)
                     let dataSet = BarChartDataSet(values: entries, label: user)
                     dataSets.append(dataSet)
                 }
+                
+                // Color data sets
                 for (i, dataSet) in dataSets.enumerated() {
                     if dataSets.count <= self.colors.count {
                         dataSet.colors = [self.colors[i]]
@@ -157,20 +174,27 @@ class TargetChartVC: UIViewController {
                         // TODO
                     }
                 }
-                let data = BarChartData(dataSets: dataSets)
-                // The reason for these numbers:
-                // The way BarChartData calculates group width: datasets.count * (barWidth + barSpace) + groupSpace.
-                // In order for the group to fit on the x axis, this needs to be 1 (because we go from 0 to n on the x axis, by increments of 1).
-                // So: 1 = datasets.count * (barWidth + barSpace) + groupSpace.
-                // I set barSpace to 0, we know datasets.count, so we have to set the barWidth to fit the group into 1.
-                let groupSpace = 0.5
-                data.barWidth = (1-groupSpace) / Double(data.dataSets.count)
-                data.groupBars(fromX: -groupSpace, groupSpace: groupSpace, barSpace: 0)
                 
+                // Set data
+                let data = BarChartData(dataSets: dataSets)
+                data.barWidth = data.barWidth / Double(averageScoreBySessionByUser.count)
                 self.barChart.data = data
                 self.refreshBarChartLooksForMultipleUsers()
             })
             .disposed(by: chartDisposeBag)
+    }
+    
+    private func groupEntries(_ entries: inout [BarChartDataEntry], numberOfUsers m: Int, indexOfUser j: Int,  xInterval interval: Double, xOffset: Double) {
+        var xDeltas = [Double]()
+        for i in 0..<m {
+            xDeltas.append((Double(i) * interval) / Double(m))
+        }
+        print(xDeltas)
+        
+        for entry in entries {
+            entry.x += xDeltas[j] + xOffset
+        }
+        print(entries)
     }
     
     private func refreshBarchartForSingleUser(_ user: String) {
