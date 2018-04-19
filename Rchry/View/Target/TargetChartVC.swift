@@ -120,15 +120,57 @@ class TargetChartVC: UIViewController {
     }
     
     private func refreshBarChart() {
-        // TODO: add logic for all users
-        // TODO: move usertext  to viewmodel
         let userText = userPickerTextfield.rx.text.asObservable()
         userText
             .filter { $0 != nil }
             .map { $0! }
             .subscribe(onNext: { [unowned self] user in
-                self.refreshBarchartForSingleUser(user)
+                if user == ShotNames.ALL_SCORES {
+                    self.refreshBarChartForAllUsers()
+                } else {
+                    self.refreshBarchartForSingleUser(user)
+                }
             }).disposed(by: chartDisposeBag)
+    }
+    
+    private func refreshBarChartForAllUsers() {
+        targetChartVM.averageScoresPerUserBySession
+            .subscribe(onNext: { averageScoreBySessionByUser in
+                // TODO: because not all users take part in all sessions,
+                // the indexes for the entries will be off.
+                // Because of this, assign a indexes to the session names,
+                // that way sessions where the user didn't participate, can be skipped.
+                var dataSets = [BarChartDataSet]()
+                for (user, averageScoresBySession) in averageScoreBySessionByUser {
+                    var entries = [BarChartDataEntry]()
+                    for (i, val) in averageScoresBySession.enumerated() {
+                        let entry = BarChartDataEntry(x: Double(i), y: Double(val.1))
+                        entries.append(entry)
+                    }
+                    let dataSet = BarChartDataSet(values: entries, label: user)
+                    dataSets.append(dataSet)
+                }
+                for (i, dataSet) in dataSets.enumerated() {
+                    if dataSets.count <= self.colors.count {
+                        dataSet.colors = [self.colors[i]]
+                    } else {
+                        // TODO
+                    }
+                }
+                let data = BarChartData(dataSets: dataSets)
+                // The reason for these numbers:
+                // The way BarChartData calculates group width: datasets.count * (barWidth + barSpace) + groupSpace.
+                // In order for the group to fit on the x axis, this needs to be 1 (because we go from 0 to n on the x axis, by increments of 1).
+                // So: 1 = datasets.count * (barWidth + barSpace) + groupSpace.
+                // I set barSpace to 0, we know datasets.count, so we have to set the barWidth to fit the group into 1.
+                let groupSpace = 0.5
+                data.barWidth = (1-groupSpace) / Double(data.dataSets.count)
+                data.groupBars(fromX: -groupSpace, groupSpace: groupSpace, barSpace: 0)
+                
+                self.barChart.data = data
+                self.refreshBarChartLooksForMultipleUsers()
+            })
+            .disposed(by: chartDisposeBag)
     }
     
     private func refreshBarchartForSingleUser(_ user: String) {
@@ -142,7 +184,7 @@ class TargetChartVC: UIViewController {
                     sessionNames.append(val.0)
                 }
                 self.refreshBarchartDataForSingleUser(user, fromEntries: entries)
-                self.refreshBarChartLooks(sessionNames)
+                self.refreshBarChartLooksForSingleUser(sessionNames)
             })
             .disposed(by: chartDisposeBag)
     }
@@ -152,10 +194,10 @@ class TargetChartVC: UIViewController {
         let dataSet = BarChartDataSet(values: entries, label: user)
         dataSet.colors = [self.colors[0]]
         let data = BarChartData(dataSets: [dataSet])
-        self.barChart.data = data
+        barChart.data = data
     }
     
-    private func refreshBarChartLooks(_ xStrings: [String]) {
+    private func refreshBarChartLooksForSingleUser(_ xStrings: [String]) {
         let formatter = TargetBarChartFormatter(xStrings)
         let xAxis = XAxis()
         xAxis.valueFormatter = formatter
@@ -164,6 +206,7 @@ class TargetChartVC: UIViewController {
         if xStrings.count > 4 {
             barChart.xAxis.drawLabelsEnabled = false
         } else {
+            barChart.xAxis.drawLabelsEnabled = true
             barChart.xAxis.setLabelCount(xStrings.count, force: false)
             barChart.xAxis.wordWrapEnabled = true
             barChart.xAxis.labelFont = UIFont(name: "Lato-Regular", size: 8)!
@@ -184,6 +227,33 @@ class TargetChartVC: UIViewController {
         barChart.rightAxis.drawLabelsEnabled = false
         barChart.rightAxis.drawAxisLineEnabled = false
     
+        barChart.chartDescription?.text = ""
+        
+        barChart.legend.textColor = UIColor(named: "ColorThemeDark")!
+        barChart.legend.font = UIFont(name: "Lato-Regular", size: 10)!
+        barChart.data?.setValueTextColor(UIColor(named: "ColorThemeDark")!)
+    }
+    
+    private func refreshBarChartLooksForMultipleUsers() {
+        barChart.xAxis.valueFormatter = nil
+        
+        barChart.data?.setValueFont(UIFont(name: "Lato-Regular", size: 8)!)
+        
+        barChart.xAxis.drawLabelsEnabled = true
+        
+        barChart.xAxis.drawGridLinesEnabled = true
+        barChart.xAxis.labelPosition = .bottom
+        barChart.xAxis.axisLineColor = UIColor(named: "ColorThemeMid")!
+        barChart.xAxis.labelTextColor = UIColor(named: "ColorThemeDark")!
+        
+        barChart.leftAxis.drawGridLinesEnabled = true
+        barChart.leftAxis.drawLabelsEnabled = true
+        barChart.leftAxis.drawAxisLineEnabled = true
+        
+        barChart.rightAxis.drawGridLinesEnabled = true
+        barChart.rightAxis.drawLabelsEnabled = true
+        barChart.rightAxis.drawAxisLineEnabled = true
+        
         barChart.chartDescription?.text = ""
         
         barChart.legend.textColor = UIColor(named: "ColorThemeDark")!

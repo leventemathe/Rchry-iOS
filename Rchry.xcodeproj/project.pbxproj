@@ -61,8 +61,6 @@
 		D7BBC01620176CE500DC2480 /* TargetVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BBC01520176CE500DC2480 /* TargetVM.swift */; };
 		D7BF04D71FFE66A000465C8C /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BF04D61FFE66A000465C8C /* Target.swift */; };
 		D7C1C4D81FD8471700FA0551 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D7C1C4DA1FD8471700FA0551 /* Localizable.strings */; };
-		D7C376942080AB2600AD3F9A /* PickerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7C376932080AB2600AD3F9A /* PickerViewCell.xib */; };
-		D7C376962080AB8C00AD3F9A /* PickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C376952080AB8C00AD3F9A /* PickerViewCell.swift */; };
 		D7C6F2751FC7163B0032A879 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6F2741FC7163B0032A879 /* AppDelegate.swift */; };
 		D7C6F2771FC7163B0032A879 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C6F2761FC7163B0032A879 /* LoginVC.swift */; };
 		D7C6F27A1FC7163B0032A879 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7C6F2781FC7163B0032A879 /* Login.storyboard */; };
@@ -155,8 +153,6 @@
 		D7BF04D61FFE66A000465C8C /* Target.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
 		D7C1C4D91FD8471700FA0551 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D7C1C4DB1FD8471B00FA0551 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D7C376932080AB2600AD3F9A /* PickerViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerViewCell.xib; sourceTree = "<group>"; };
-		D7C376952080AB8C00AD3F9A /* PickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewCell.swift; sourceTree = "<group>"; };
 		D7C6F2711FC7163B0032A879 /* Rchry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rchry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C6F2741FC7163B0032A879 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7C6F2761FC7163B0032A879 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -396,15 +392,6 @@
 			path = "New Target";
 			sourceTree = "<group>";
 		};
-		D7C376902080AA7400AD3F9A /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				D7C376932080AB2600AD3F9A /* PickerViewCell.xib */,
-				D7C376952080AB8C00AD3F9A /* PickerViewCell.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		D7C6F2681FC7163B0032A879 = {
 			isa = PBXGroup;
 			children = (
@@ -510,7 +497,6 @@
 		D7F0D8BD1FCC58BE009A044B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D7C376902080AA7400AD3F9A /* Common */,
 				D71E08D21FCED8CA00D9FAA3 /* AlertModal */,
 				D7F0D8BF1FCC5FB2009A044B /* Login */,
 				D7572C8A1FCDA06F0024DEED /* Targets */,
@@ -652,7 +638,6 @@
 				D7D689381FD57EDC00ABB213 /* MessageAlertModal.storyboard in Resources */,
 				D7D6893B1FD57EEF00ABB213 /* Targets.storyboard in Resources */,
 				D778CA801FCD9094001F2D99 /* Amatic-Bold.ttf in Resources */,
-				D7C376942080AB2600AD3F9A /* PickerViewCell.xib in Resources */,
 				D7BBC0112017671300DC2480 /* Target.storyboard in Resources */,
 				D7C6F27C1FC7163B0032A879 /* Assets.xcassets in Resources */,
 				D7BBC00E2017665A00DC2480 /* NewSession.storyboard in Resources */,
@@ -847,7 +832,6 @@
 				D71F8E312004F64E0077ECAB /* TargetValidator.swift in Sources */,
 				D7709ED020179D560080FC22 /* Session.swift in Sources */,
 				D77ABD4E20178A3300418986 /* GuestCell.swift in Sources */,
-				D7C376962080AB8C00AD3F9A /* PickerViewCell.swift in Sources */,
 				D70D18C4207D1B6B00D1E031 /* TargetChartVM.swift in Sources */,
 				D7BBC0132017678000DC2480 /* TargetVC.swift in Sources */,
 				D7C7E9101FFE848C003C102D /* TargetsService.swift in Sources */,

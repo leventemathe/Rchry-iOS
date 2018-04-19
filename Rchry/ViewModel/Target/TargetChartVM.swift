@@ -38,25 +38,23 @@ class TargetChartVM {
     var guests: Observable<[String]> {
         return sessionService.getGuests()
             .map { guests in
-                var users = [ShotNames.MY_SCORE]
+                var users = [ShotNames.MY_SCORE, ShotNames.ALL_SCORES]
                 users.append(contentsOf: guests)
                 return users
             }
     }
     
-    // TODO:
-    // TODO: change the return type to match func name
-    var averageScoresPerUserBySession: Observable<[String: [Float]]> {
+    var averageScoresPerUserBySession: Observable<[String: [(String, Float)]]> {
         return sessionService.getSessions(underTarget: target)
-            .map { sessions in
-                var result = [String: [Float]]()
+            .map { [unowned self] sessions in
+                var result = [String: [(String, Float)]]()
                 for session in sessions {
-                    session.shotsByUser.forEach {
-                        if result[$0.key] == nil {
-                            result[$0.key] = [Float]()
+                    for (user, scores) in session.shotsByUser {
+                        let averageScore = self.calculateAverageScore(scores)
+                        if result[user] == nil {
+                            result[user] = [(String, Float)]()
                         }
-                        let average = self.calculateAverageScore($0.value)
-                        result[$0.key]?.append(average)
+                        result[user]?.append((session.name, averageScore))
                     }
                 }
                 return result
