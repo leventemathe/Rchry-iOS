@@ -27,25 +27,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="p8i-WH-hOu">
-                                <rect key="frame" x="0.0" y="28" width="375" height="432.5"/>
+                                <rect key="frame" x="8" y="28" width="359" height="512.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target Statistics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7Q-fE-2AQ">
-                                        <rect key="frame" x="122.5" y="0.0" width="130.5" height="34.5"/>
+                                        <rect key="frame" x="114.5" y="0.0" width="130.5" height="34.5"/>
                                         <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
                                         <color key="textColor" name="ColorThemeDark"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xaO-oi-mdJ">
-                                        <rect key="frame" x="0.0" y="50.5" width="375" height="320"/>
+                                        <rect key="frame" x="0.0" y="50.5" width="359" height="400"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="320" id="LP2-XQ-J4R"/>
+                                            <constraint firstAttribute="height" constant="400" id="LP2-XQ-J4R"/>
                                         </constraints>
                                         <connections>
                                             <segue destination="ppW-fe-7si" kind="embed" id="DRB-ig-Zhz"/>
                                         </connections>
                                     </containerView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqf-B3-dfQ" customClass="LMButton" customModule="LMViews">
-                                        <rect key="frame" x="107.5" y="386.5" width="160" height="46"/>
+                                        <rect key="frame" x="99.5" y="466.5" width="160.5" height="46"/>
                                         <color key="backgroundColor" name="ColorThemeBright"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="46" id="3D9-2T-xYH"/>
@@ -70,9 +70,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="p8i-WH-hOu" firstAttribute="leading" secondItem="caQ-3o-MwW" secondAttribute="leading" id="R7E-Xg-Ond"/>
                             <constraint firstItem="p8i-WH-hOu" firstAttribute="top" secondItem="caQ-3o-MwW" secondAttribute="top" constant="8" id="T6p-KN-RV8"/>
-                            <constraint firstItem="p8i-WH-hOu" firstAttribute="trailing" secondItem="caQ-3o-MwW" secondAttribute="trailing" id="WjX-mv-JYv"/>
+                            <constraint firstItem="caQ-3o-MwW" firstAttribute="trailing" secondItem="p8i-WH-hOu" secondAttribute="trailing" constant="8" id="YVc-XO-8pN"/>
+                            <constraint firstItem="p8i-WH-hOu" firstAttribute="leading" secondItem="g06-MZ-SjX" secondAttribute="leading" constant="8" id="b4A-Rf-d0O"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="caQ-3o-MwW"/>
                     </view>
@@ -92,54 +92,144 @@
             <objects>
                 <viewController restorationIdentifier="TargetChartVC" storyboardIdentifier="TargetChartVC" id="ppW-fe-7si" customClass="TargetChartVC" customModule="Rchry" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kYy-8b-caQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
+                        <rect key="frame" x="0.0" y="0.0" width="359" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u37-V7-R6D" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="62.5" width="375" height="257.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="xyb-JN-D9m">
-                                <rect key="frame" x="16" y="16" width="343" height="30.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="2sM-3L-8on">
+                                <rect key="frame" x="0.0" y="0.0" width="359.5" height="400"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick a user:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S37-I3-Bhg">
-                                        <rect key="frame" x="0.0" y="0.0" width="78.5" height="30.5"/>
-                                        <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="28"/>
-                                        <color key="textColor" name="ColorThemeDark"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pick a user to show data" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bVh-qf-Mxf" customClass="LMTextField" customModule="LMViews">
-                                        <rect key="frame" x="94.5" y="0.0" width="248.5" height="30.5"/>
-                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" name="ColorThemeDark"/>
-                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="underlineColor">
-                                                <color key="value" name="ColorThemeMid"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="underlineWidth">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="xyb-JN-D9m">
+                                        <rect key="frame" x="0.0" y="0.0" width="359.5" height="22.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick a user:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S37-I3-Bhg">
+                                                <rect key="frame" x="0.0" y="0.0" width="78.5" height="22.5"/>
+                                                <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="28"/>
+                                                <color key="textColor" name="ColorThemeDark"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pick a user to show data" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bVh-qf-Mxf" customClass="LMTextField" customModule="LMViews">
+                                                <rect key="frame" x="94.5" y="0.0" width="265" height="22.5"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" name="ColorThemeDark"/>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="underlineColor">
+                                                        <color key="value" name="ColorThemeMid"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="underlineWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u37-V7-R6D" customClass="BarChartView" customModule="Charts">
+                                        <rect key="frame" x="0.0" y="38.5" width="359.5" height="241.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Jcf-Gn-MEz">
+                                        <rect key="frame" x="0.0" y="296" width="359.5" height="104"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="df6-DT-bxg">
+                                                <rect key="frame" x="32" y="0.0" width="295.5" height="48"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0vf-mt-SuN">
+                                                        <rect key="frame" x="0.0" y="0.0" width="148" height="48"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ox-rm-cqK">
+                                                                <rect key="frame" x="52.5" y="0.0" width="43" height="24"/>
+                                                                <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="22"/>
+                                                                <color key="textColor" name="ColorThemeDark"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3lm-zT-7iO">
+                                                                <rect key="frame" x="68.5" y="24" width="11" height="24"/>
+                                                                <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="22"/>
+                                                                <color key="textColor" name="ColorThemeDark"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dtA-kP-whm">
+                                                        <rect key="frame" x="148" y="0.0" width="147.5" height="48"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diff" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Yr-zo-Vhy">
+                                                                <rect key="frame" x="62" y="0.0" width="23" height="24"/>
+                                                                <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="22"/>
+                                                                <color key="textColor" name="ColorThemeDark"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="832-72-FkN">
+                                                                <rect key="frame" x="68" y="24" width="11" height="24"/>
+                                                                <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="22"/>
+                                                                <color key="textColor" name="ColorThemeDark"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="acG-K3-bvb">
+                                                <rect key="frame" x="32" y="56" width="295.5" height="48"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Zn3-0J-dUm">
+                                                        <rect key="frame" x="0.0" y="0.0" width="148" height="48"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Highest" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXg-WT-sJf">
+                                                                <rect key="frame" x="54" y="0.0" width="39.5" height="24"/>
+                                                                <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="22"/>
+                                                                <color key="textColor" name="ColorThemeDark"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Zn-cf-H28">
+                                                                <rect key="frame" x="68.5" y="24" width="11" height="24"/>
+                                                                <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="22"/>
+                                                                <color key="textColor" name="ColorThemeDark"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SSS-26-hnW">
+                                                        <rect key="frame" x="148" y="0.0" width="147.5" height="48"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lowest" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fa-NI-Zd7">
+                                                                <rect key="frame" x="56" y="0.0" width="35" height="24"/>
+                                                                <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="22"/>
+                                                                <color key="textColor" name="ColorThemeDark"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sh4-yz-dtV">
+                                                                <rect key="frame" x="68" y="24" width="11" height="24"/>
+                                                                <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="22"/>
+                                                                <color key="textColor" name="ColorThemeDark"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <edgeInsets key="layoutMargins" top="0.0" left="32" bottom="0.0" right="32"/>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="xyb-JN-D9m" firstAttribute="top" secondItem="kYy-8b-caQ" secondAttribute="top" constant="16" id="5iD-DU-cNa"/>
-                            <constraint firstItem="u37-V7-R6D" firstAttribute="leading" secondItem="kYy-8b-caQ" secondAttribute="leading" id="Htr-Ut-MIx"/>
-                            <constraint firstItem="xyb-JN-D9m" firstAttribute="leading" secondItem="d9S-Iv-z2Z" secondAttribute="leading" constant="16" id="OHP-eC-bLf"/>
-                            <constraint firstAttribute="bottom" secondItem="u37-V7-R6D" secondAttribute="bottom" id="Q18-Sz-NiE"/>
-                            <constraint firstItem="d9S-Iv-z2Z" firstAttribute="trailing" secondItem="xyb-JN-D9m" secondAttribute="trailing" constant="16" id="Wfz-Xj-aKc"/>
-                            <constraint firstAttribute="trailing" secondItem="u37-V7-R6D" secondAttribute="trailing" id="ci6-g4-mhh"/>
-                            <constraint firstItem="u37-V7-R6D" firstAttribute="top" secondItem="xyb-JN-D9m" secondAttribute="bottom" constant="16" id="fid-Mu-71c"/>
+                            <constraint firstItem="2sM-3L-8on" firstAttribute="leading" secondItem="d9S-Iv-z2Z" secondAttribute="leading" id="A4L-sv-SuA"/>
+                            <constraint firstAttribute="trailing" secondItem="2sM-3L-8on" secondAttribute="trailing" id="E8G-XS-cCe"/>
+                            <constraint firstItem="2sM-3L-8on" firstAttribute="top" secondItem="d9S-Iv-z2Z" secondAttribute="top" id="UtC-Sm-13f"/>
+                            <constraint firstItem="d9S-Iv-z2Z" firstAttribute="bottom" secondItem="2sM-3L-8on" secondAttribute="bottom" id="WFC-rI-J28"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d9S-Iv-z2Z"/>
                     </view>
                     <connections>
+                        <outlet property="averageLbl" destination="3lm-zT-7iO" id="efX-Cl-xL6"/>
                         <outlet property="barChart" destination="u37-V7-R6D" id="3w9-UQ-7br"/>
+                        <outlet property="diffLabel" destination="832-72-FkN" id="tDk-ZG-Wod"/>
+                        <outlet property="maxLabel" destination="uXg-WT-sJf" id="XwY-5q-m5h"/>
+                        <outlet property="minLabel" destination="4fa-NI-Zd7" id="xnE-hQ-VSd"/>
                         <outlet property="userPickerTextfield" destination="bVh-qf-Mxf" id="sSa-pA-RAI"/>
                     </connections>
                 </viewController>
@@ -151,6 +241,27 @@
     <resources>
         <namedColor name="ColorThemeBright">
             <color red="0.47499999399999998" green="0.97299999000000004" blue="0.73299998040000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeDark">
+            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeDark">
+            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeDark">
+            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeDark">
+            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeDark">
+            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeDark">
+            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeDark">
+            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ColorThemeDark">
             <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -16,6 +16,11 @@ class TargetChartVC: UIViewController {
     @IBOutlet weak var userPickerTextfield: UITextField!
     @IBOutlet weak var barChart: BarChartView!
     
+    @IBOutlet weak var averageLbl: UILabel!
+    @IBOutlet weak var diffLabel: UILabel!
+    @IBOutlet weak var maxLabel: UILabel!
+    @IBOutlet weak var minLabel: UILabel!
+    
     var targetChartVM: TargetChartVM!
     private var disposeBag = DisposeBag()
     // Chart and picker views should be refreshed with new data whenever the vc appears.
