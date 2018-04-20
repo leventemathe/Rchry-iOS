@@ -26,8 +26,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="cXI-91-hjm">
-                                <rect key="frame" x="12" y="145.5" width="351" height="377.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="cXI-91-hjm">
+                                <rect key="frame" x="12" y="150.5" width="351" height="366"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="iLh-Aw-hKY">
                                         <rect key="frame" x="0.0" y="0.0" width="351" height="155"/>
@@ -59,7 +59,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Hi-iH-jxS" customClass="LMLabel" customModule="LMViews">
-                                                                    <rect key="frame" x="-30" y="25.5" width="60" height="26"/>
+                                                                    <rect key="frame" x="-30" y="19.5" width="60" height="26"/>
                                                                     <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="24"/>
                                                                     <color key="textColor" name="ColorThemeDark"/>
                                                                     <nil key="highlightedColor"/>
@@ -169,14 +169,14 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="N5v-6w-r6s">
                                         <rect key="frame" x="0.0" y="211" width="351" height="62"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guests (optional):" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1c-ls-uoS">
-                                                <rect key="frame" x="0.0" y="0.0" width="147.5" height="62"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guests:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1c-ls-uoS">
+                                                <rect key="frame" x="0.0" y="0.0" width="57.5" height="62"/>
                                                 <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
                                                 <color key="textColor" name="ColorThemeDark"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="H21-XP-GiE">
-                                                <rect key="frame" x="159.5" y="0.0" width="191.5" height="62"/>
+                                                <rect key="frame" x="69.5" y="0.0" width="281.5" height="62"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="62" id="Hho-oO-cH6"/>
@@ -239,8 +239,27 @@
                                             </collectionView>
                                         </subviews>
                                     </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Zcd-Bq-ucR">
+                                        <rect key="frame" x="0.0" y="285" width="166" height="34.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track my Score:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chV-eP-MZj">
+                                                <rect key="frame" x="0.0" y="0.0" width="122" height="34.5"/>
+                                                <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
+                                                <color key="textColor" name="ColorThemeDark"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="amm-Wf-zhF" customClass="CheckBox" customModule="Rchry" customModuleProvider="target">
+                                                <rect key="frame" x="134" y="1.5" width="32" height="32"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="32" id="Hct-SY-gkx"/>
+                                                    <constraint firstAttribute="height" constant="32" id="XnR-iG-1xG"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="iuw-VX-TGl">
-                                        <rect key="frame" x="0.0" y="285" width="351" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="331.5" width="351" height="34.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xmr-pW-f97">
                                                 <rect key="frame" x="0.0" y="0.0" width="44.5" height="34.5"/>
@@ -264,24 +283,6 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVE-z0-t1M" customClass="LMButton" customModule="LMViews">
-                                        <rect key="frame" x="95.5" y="331.5" width="160" height="46"/>
-                                        <color key="backgroundColor" name="ColorThemeBright"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="46" id="hsT-uv-tpv"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="vsJ-Rc-mrf"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="31"/>
-                                        <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
-                                        <state key="normal" title="Start">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="23"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="iLh-Aw-hKY" firstAttribute="leading" secondItem="cXI-91-hjm" secondAttribute="leading" id="0hI-Ee-yjQ"/>
@@ -294,11 +295,31 @@
                                     <constraint firstAttribute="trailing" secondItem="N5v-6w-r6s" secondAttribute="trailing" id="uWF-gU-eaa"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVE-z0-t1M" customClass="LMButton" customModule="LMViews">
+                                <rect key="frame" x="107.5" y="528.5" width="160" height="46"/>
+                                <color key="backgroundColor" name="ColorThemeBright"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="hsT-uv-tpv"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="vsJ-Rc-mrf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="31"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                <state key="normal" title="Start">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="23"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="S2A-bH-Gx7" firstAttribute="trailing" secondItem="cXI-91-hjm" secondAttribute="trailing" constant="12" id="9GX-lH-V4b"/>
+                            <constraint firstItem="NVE-z0-t1M" firstAttribute="centerX" secondItem="yCw-Eb-hrQ" secondAttribute="centerX" id="Qlz-e9-7yF"/>
                             <constraint firstItem="cXI-91-hjm" firstAttribute="leading" secondItem="S2A-bH-Gx7" secondAttribute="leading" constant="12" id="kia-MF-au7"/>
+                            <constraint firstItem="NVE-z0-t1M" firstAttribute="top" secondItem="cXI-91-hjm" secondAttribute="bottom" constant="12" id="mq7-ZQ-TX3"/>
                             <constraint firstItem="cXI-91-hjm" firstAttribute="centerY" secondItem="yCw-Eb-hrQ" secondAttribute="centerY" id="vTM-Nw-7M5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="S2A-bH-Gx7"/>
@@ -325,6 +346,9 @@
         <image name="plus_icon" width="24" height="24"/>
         <namedColor name="ColorThemeBright">
             <color red="0.47499999399999998" green="0.97299999000000004" blue="0.73299998040000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeDark">
+            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ColorThemeDark">
             <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
