@@ -12,10 +12,23 @@ class TargetChartVM {
     
     private let target: Target
     private let sessionService: SessionService
+    private var disposeBag: DisposeBag!
     
     init(target: Target, sessionService: SessionService = FirebaseSessionService()) {
         self.target = target
         self.sessionService = sessionService
+        engage()
+    }
+    
+    private var sessions = Variable([Session]())
+    
+    func engage() {
+        disposeBag = DisposeBag()
+        sessionService.getSessions(underTarget: target).bind(to: sessions).disposed(by: disposeBag)
+    }
+    
+    func disengage() {
+        disposeBag = nil
     }
     
     private func calculateAverageScore(_ scores: [Float]) -> Float {
@@ -25,7 +38,8 @@ class TargetChartVM {
     typealias AverageScoresForUserBySession = [(String, Float)]
     
     func averageScoresForUserBySession(_ user: String) -> Observable<AverageScoresForUserBySession> {
-        return sessionService.getSessions(underTarget: target)
+        return sessions.asObservable()
+            .filter { $0.count > 0 }
             .map { sessions in
                 var averageScores = [(String, Float)]()
                 for session in sessions {
@@ -49,7 +63,8 @@ class TargetChartVM {
     typealias AverageScoresPerUserBySession = [String: [(String, Float)]]
     
     var averageScoresPerUserBySession: Observable<AverageScoresPerUserBySession> {
-        return sessionService.getSessions(underTarget: target)
+        return sessions.asObservable()
+            .filter { $0.count > 0 }
             .map { [unowned self] sessions in
                 var result = [String: [(String, Float)]]()
                 for session in sessions {
@@ -63,6 +78,20 @@ class TargetChartVM {
                 }
                 return result
             }
+    }
+    
+    var startTimestamp: Double? {
+        if sessions.value.count < 1 {
+            return nil
+        }
+        return sessions.value[0].timestamp
+    }
+    
+    var endTimestamp: Double? {
+        if sessions.value.count < 1 {
+            return nil
+        }
+        return sessions.value.last?.timestamp
     }
     
     func sessionNameIndexes(fromAverageScoresBySessionPerUser scores: AverageScoresPerUserBySession) -> [String: Int] {

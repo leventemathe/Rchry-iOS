@@ -33,14 +33,24 @@ class TargetChartVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        pickerDisposeBag = DisposeBag()
-        chartDisposeBag = DisposeBag()
+        engage()
         refreshUserPickerViews()
         refreshBarChart()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        disengage()
         super.viewWillDisappear(animated)
+    }
+    
+    private func engage() {
+        targetChartVM.engage()
+        pickerDisposeBag = DisposeBag()
+        chartDisposeBag = DisposeBag()
+    }
+    
+    private func disengage() {
+        targetChartVM.disengage()
         pickerDisposeBag = nil
         chartDisposeBag = nil
     }
@@ -152,7 +162,7 @@ class TargetChartVC: UIViewController {
                                                                   withUserCount: userCount)
                 self.setColorsForDatasetsForMultipleUsers(&dataSets)
                 self.refreshDataForMultipleUsers(dataSets, withUserCount: userCount)
-                self.refreshBarChartLooksForMultipleUsers()
+                self.refreshBarChartLooksForMultipleUsers(startTimestamp: self.targetChartVM.startTimestamp!, endTimestamp: self.targetChartVM.endTimestamp!)
             })
             .disposed(by: chartDisposeBag)
     }
@@ -217,7 +227,7 @@ class TargetChartVC: UIViewController {
             .subscribe(onNext: { [unowned self] averageScoresBySession in
                 let entries = self.buildEntriesForSingleUser(fromAverageScoresBySession: averageScoresBySession)
                 self.refreshBarchartDataForSingleUser(user, fromEntries: entries)
-                self.refreshBarChartLooksForSingleUser(entries.count)
+                self.refreshBarChartLooksForSingleUser(entries.count, startTimestamp: self.targetChartVM.startTimestamp!, endTimestamp: self.targetChartVM.endTimestamp!)
             })
             .disposed(by: chartDisposeBag)
     }
@@ -239,8 +249,8 @@ class TargetChartVC: UIViewController {
         barChart.data = data
     }
     
-    private func refreshBarChartLooksForSingleUser(_ barCount: Int) {
-        refreshBarChartLooksCommon()
+    private func refreshBarChartLooksForSingleUser(_ barCount: Int, startTimestamp start: Double, endTimestamp end: Double) {
+        refreshBarChartLooksCommon(startTimestamp: start, endTimestamp: end)
         if barCount < 8 {
             barChart.data?.setDrawValues(true)
             barChart.leftAxis.drawGridLinesEnabled = false
@@ -254,7 +264,9 @@ class TargetChartVC: UIViewController {
         }
     }
     
-    private func refreshBarChartLooksCommon() {
+    private func refreshBarChartLooksCommon(startTimestamp start: Double, endTimestamp end: Double) {
+        barChart.chartDescription?.text = ""
+        
         barChart.data?.setValueFont(UIFont(name: "Lato-Regular", size: 8)!)
         barChart.data?.setValueTextColor(UIColor(named: "ColorThemeDark")!)
         
@@ -265,23 +277,24 @@ class TargetChartVC: UIViewController {
         barChart.xAxis.labelTextColor = UIColor(named: "ColorThemeDark")!
         barChart.xAxis.labelPosition = .bottom
         
+        barChart.xAxis.drawLabelsEnabled = true
+        barChart.xAxis.axisMaxLabels = 2
+        barChart.xAxis.granularity = 1.0
+        barChart.xAxis.valueFormatter = TargetBarChartXAxisValueFormatter(startTimestamp: start, endTimestamp: end)
+        barChart.xAxis.drawGridLinesEnabled = false
+        
         barChart.leftAxis.axisLineColor = UIColor(named: "ColorThemeMid")!
         barChart.leftAxis.gridColor = UIColor(named: "ColorThemeMid")!
         barChart.leftAxis.labelTextColor = UIColor(named: "ColorThemeDark")!
         barChart.leftAxis.labelFont = UIFont(name: "Lato-Regular", size: 10)!
-        
-        barChart.chartDescription?.text = ""
-        
-        barChart.xAxis.drawLabelsEnabled = false
-        barChart.xAxis.drawGridLinesEnabled = false
         
         barChart.rightAxis.drawGridLinesEnabled = false
         barChart.rightAxis.drawLabelsEnabled = false
         barChart.rightAxis.drawAxisLineEnabled = false
     }
     
-    private func refreshBarChartLooksForMultipleUsers() {
-        refreshBarChartLooksCommon()
+    private func refreshBarChartLooksForMultipleUsers(startTimestamp start: Double, endTimestamp end: Double) {
+        refreshBarChartLooksCommon(startTimestamp: start, endTimestamp: end)
         barChart.data?.setDrawValues(false)
         barChart.leftAxis.drawGridLinesEnabled = true
         barChart.leftAxis.drawLabelsEnabled = true
@@ -289,3 +302,40 @@ class TargetChartVC: UIViewController {
     }
 }
 
+struct TargetBarChartDateProvider {
+    
+    func getDateStrings(forTimestamp timestamp: Double) -> String {
+        let date = Date(timeIntervalSince1970: timestamp)
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        return formatter.string(from: date)
+    }
+}
+
+class TargetBarChartXAxisValueFormatter: IAxisValueFormatter {
+    
+    let dateProvider: TargetBarChartDateProvider
+    let startTimestamp: Double
+    let endTimestamp: Double
+    
+    init(startTimestamp: Double, endTimestamp: Double, dateProvider: TargetBarChartDateProvider = TargetBarChartDateProvider()) {
+        self.dateProvider = dateProvider
+        self.startTimestamp = startTimestamp
+        self.endTimestamp = endTimestamp
+    }
+
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        let start = 0.0
+        let entryCount = axis?.axisRange
+
+        if value == start {
+            return dateProvider.getDateStrings(forTimestamp: startTimestamp)
+        } else if let entryCount = entryCount {
+            let end = round(entryCount-1.0)
+            if value == end {
+                return dateProvider.getDateStrings(forTimestamp: endTimestamp)
+            }
+        }
+        return ""
+    }
+}
