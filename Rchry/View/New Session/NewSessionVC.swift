@@ -23,6 +23,8 @@ class NewSessionVC: UIViewController {
     @IBOutlet weak var addGuestBtn: LMButton!
     @IBOutlet weak var addedGuestsCollectionView: UICollectionView!
     
+    @IBOutlet weak var trackMyScoreCheckBox: CheckBox!
+    
     @IBOutlet weak var nameTextfield: LMTextField!
     
     @IBOutlet weak var startBtn: LMButton!
@@ -86,8 +88,8 @@ class NewSessionVC: UIViewController {
     }
     
     private func setupStartButtonTapped() {
-        let tap = startBtn.rx.tap.asObservable()
-        newSessionVM.createSession(reactingTo: tap)
+        let tapWithShouldTrackMyScore = startBtn.rx.tap.asObservable().withLatestFrom(trackMyScoreCheckBox.rxIsChecked)
+        newSessionVM.createSession(reactingToShouldTrackMyScore: tapWithShouldTrackMyScore)
             .subscribe(onNext: { [unowned self] (session, error) in
                 if let error = error {
                     MessageAlertModalVC.present(withTitle: CommonMessages.ERROR_TITLE, withMessage: error, fromVC: self)

@@ -335,6 +335,7 @@
                         <outlet property="guestTextfield" destination="clu-zs-6Uk" id="9Bs-gy-ont"/>
                         <outlet property="nameTextfield" destination="wx0-Nr-TMK" id="bD4-o3-Gtu"/>
                         <outlet property="startBtn" destination="NVE-z0-t1M" id="ZJS-qS-5ps"/>
+                        <outlet property="trackMyScoreCheckBox" destination="amm-Wf-zhF" id="EHd-17-jmW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N0S-Ns-Ldm" userLabel="First Responder" sceneMemberID="firstResponder"/>

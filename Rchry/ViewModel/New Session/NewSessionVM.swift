@@ -75,12 +75,13 @@ class NewSessionVM {
         return guests.asObservable()
     }
         
-    func createSession(reactingTo observable: Observable<()>) -> Observable<(Session?, String?)> {
+    func createSession(reactingToShouldTrackMyScore observable: Observable<Bool>) -> Observable<(Session?, String?)> {
         return observable
-            .flatMap { [unowned self] _ -> Observable<(Session?, String?)> in
-                // TODO: add or don't add my_score depending on ui
+            .flatMap { [unowned self] shouldTrackMyScore -> Observable<(Session?, String?)> in
                 var users = self.guests.value
-                users.append(ShotNames.MY_SCORE )
+                if shouldTrackMyScore {
+                    users.append(ShotNames.MY_SCORE )
+                }
                 let session = Session(ownerTarget: self.ownerTarget, name: self.name.value, timestamp: self.dateProvider.currentTimestamp, shotsByUser: users.reduce([String: [Float]]()) { result, user in
                     var result = result
                     result[user] = [Float()]
