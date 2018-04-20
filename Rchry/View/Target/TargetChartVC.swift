@@ -27,6 +27,7 @@ class TargetChartVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBarChartNoDataText()
+        setupbarChartGestures()
         setupUserPickerViews()
     }
     
@@ -48,6 +49,10 @@ class TargetChartVC: UIViewController {
         barChart.noDataText = NSLocalizedString("TargetChartNoDataText", comment: "The text to display when there is no data yet for the chart for a target: average scores per session.")
         barChart.noDataTextColor = UIColor(named: "ColorThemeDark")!
         barChart.noDataFont = UIFont(name: "Amatic-Bold", size: 24)!
+    }
+    
+    private func setupbarChartGestures() {
+        barChart.isUserInteractionEnabled = false
     }
     
     private func setupUserPickerViews() {
