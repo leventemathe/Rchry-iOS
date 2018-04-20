@@ -227,9 +227,9 @@
                     <connections>
                         <outlet property="averageLbl" destination="3lm-zT-7iO" id="efX-Cl-xL6"/>
                         <outlet property="barChart" destination="u37-V7-R6D" id="3w9-UQ-7br"/>
-                        <outlet property="diffLabel" destination="832-72-FkN" id="tDk-ZG-Wod"/>
-                        <outlet property="maxLabel" destination="uXg-WT-sJf" id="XwY-5q-m5h"/>
-                        <outlet property="minLabel" destination="4fa-NI-Zd7" id="xnE-hQ-VSd"/>
+                        <outlet property="diffLbl" destination="832-72-FkN" id="kh0-fn-7B3"/>
+                        <outlet property="maxLbl" destination="2Zn-cf-H28" id="ar6-Oa-hJu"/>
+                        <outlet property="minLbl" destination="Sh4-yz-dtV" id="aa7-tJ-Wak"/>
                         <outlet property="userPickerTextfield" destination="bVh-qf-Mxf" id="sSa-pA-RAI"/>
                     </connections>
                 </viewController>
@@ -241,30 +241,6 @@
     <resources>
         <namedColor name="ColorThemeBright">
             <color red="0.47499999399999998" green="0.97299999000000004" blue="0.73299998040000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="ColorThemeDark">
-            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="ColorThemeDark">
-            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="ColorThemeDark">
-            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="ColorThemeDark">
-            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="ColorThemeDark">
-            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="ColorThemeDark">
-            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="ColorThemeDark">
-            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="ColorThemeDark">
-            <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ColorThemeDark">
             <color red="0.09499999881" green="0.33700001239999999" blue="0.45399999619999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -12,15 +12,17 @@ class TargetChartVM {
     
     private let target: Target
     private let sessionService: SessionService
-    private var disposeBag: DisposeBag!
-    
-    init(target: Target, sessionService: SessionService = FirebaseSessionService()) {
-        self.target = target
-        self.sessionService = sessionService
-        engage()
-    }
+    private let statistics: Statistics
     
     private var sessions = Variable([Session]())
+    private var disposeBag: DisposeBag!
+    
+    init(target: Target, statistics: Statistics = Statistics(), sessionService: SessionService = FirebaseSessionService()) {
+        self.target = target
+        self.sessionService = sessionService
+        self.statistics = statistics
+        engage()
+    }
     
     func engage() {
         disposeBag = DisposeBag()
@@ -31,24 +33,24 @@ class TargetChartVM {
         disposeBag = nil
     }
     
-    private func calculateAverageScore(_ scores: [Float]) -> Float {
-        return (scores.reduce(0.0) { $0 + $1 }) / Float(scores.count)
-    }
-    
     typealias AverageScoresForUserBySession = [(String, Float)]
     
     func averageScoresForUserBySession(_ user: String) -> Observable<AverageScoresForUserBySession> {
         return sessions.asObservable()
             .filter { $0.count > 0 }
-            .map { sessions in
-                var averageScores = [(String, Float)]()
-                for session in sessions {
-                    if let scores = session.shotsByUser[user] {
-                        averageScores.append((session.name, self.calculateAverageScore(scores)))
-                    }
+            .map { self.getScoresPerSessionForUser(user, fromSessions: $0) }
+    }
+    
+    private func getScoresPerSessionForUser(_ user: String, fromSessions sessions: [Session]) -> [(String, Float)] {
+        var averageScores = [(String, Float)]()
+        for session in sessions {
+            if let scores = session.shotsByUser[user] {
+                if scores.count > 0 {
+                    averageScores.append((session.name, self.statistics.calculateAverage(scores)!))
                 }
-                return averageScores
             }
+        }
+        return averageScores
     }
     
     var guests: Observable<[String]> {
@@ -69,7 +71,7 @@ class TargetChartVM {
                 var result = [String: [(String, Float)]]()
                 for session in sessions {
                     for (user, scores) in session.shotsByUser {
-                        let averageScore = self.calculateAverageScore(scores)
+                        let averageScore = self.statistics.calculateAverage(scores)!
                         if result[user] == nil {
                             result[user] = [(String, Float)]()
                         }
@@ -104,5 +106,33 @@ class TargetChartVM {
             index += 1
         }
         return sessionNameIndexes
+    }
+    
+    private func scoresForUser(_ user: String) -> Observable<[Float]> {
+        return sessions.asObservable()
+            .map { [unowned self] in self.getScoresPerSessionForUser(user, fromSessions: $0) }
+            .filter { $0.count > 0 }
+            .map { $0.map { $0.1 } }
+    }
+    
+    func average(forUser user: String) -> Observable<String> {
+        return scoresForUser(user)
+            .map { [unowned self] in self.statistics.calculateAverage($0)! }
+            .map { $0.prettyString()! }
+    }
+    
+    func min(forUser user: String) -> Observable<String> {
+        return scoresForUser(user).map { [unowned self] in self.statistics.calculateMin($0)! }
+        .map { $0.prettyString()! }
+    }
+    
+    func max(forUser user: String) -> Observable<String> {
+        return scoresForUser(user).map { [unowned self] in self.statistics.calculateMax($0)! }
+        .map { $0.prettyString()! }
+    }
+    
+    func diff(forUser user: String) -> Observable<String> {
+        return scoresForUser(user).map { [unowned self] in self.statistics.calculateDiff($0)! }
+        .map { $0.prettyString()! }
     }
 }

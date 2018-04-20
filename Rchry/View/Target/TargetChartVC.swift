@@ -17,15 +17,20 @@ class TargetChartVC: UIViewController {
     @IBOutlet weak var barChart: BarChartView!
     
     @IBOutlet weak var averageLbl: UILabel!
-    @IBOutlet weak var diffLabel: UILabel!
-    @IBOutlet weak var maxLabel: UILabel!
-    @IBOutlet weak var minLabel: UILabel!
+    @IBOutlet weak var diffLbl: UILabel!
+    @IBOutlet weak var maxLbl: UILabel!
+    @IBOutlet weak var minLbl: UILabel!
     
     var targetChartVM: TargetChartVM!
     private var disposeBag = DisposeBag()
+    
     // Chart and picker views should be refreshed with new data whenever the vc appears.
     private var pickerDisposeBag: DisposeBag!
     private var chartDisposeBag: DisposeBag!
+    
+    // Every time a different user is picked, I need to clear the subs to statistics for the old user.
+    // Recreate this when changing user.
+    private var statisticsDisposeBag: DisposeBag!
     
     private var colors = [UIColor(named: "ColorThemeBright")!, UIColor(named: "ColorThemeDark")!, UIColor(named: "ColorThemeMid")!, UIColor(named: "ColorThemeError")!]
     
@@ -40,7 +45,7 @@ class TargetChartVC: UIViewController {
         super.viewWillAppear(animated)
         engage()
         refreshUserPickerViews()
-        refreshBarChart()
+        refreshBarChartAndStatistics()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -116,6 +121,15 @@ class TargetChartVC: UIViewController {
         userPickerTextfield.inputView = userPicker
     }
     
+    private func setupStatisticsLabels(_ user: String) {
+        statisticsDisposeBag = nil
+        statisticsDisposeBag = DisposeBag()
+        targetChartVM.average(forUser: user).bind(to: averageLbl.rx.text).disposed(by: statisticsDisposeBag)
+        targetChartVM.min(forUser: user).bind(to: minLbl.rx.text).disposed(by: statisticsDisposeBag)
+        targetChartVM.max(forUser: user).bind(to: maxLbl.rx.text).disposed(by: statisticsDisposeBag)
+        targetChartVM.diff(forUser: user).bind(to: diffLbl.rx.text).disposed(by: statisticsDisposeBag)
+    }
+    
     private func refreshUserPickerViews() {
         let pickerView = userPickerTextfield.inputView as! UIPickerView
         targetChartVM.guests
@@ -139,7 +153,7 @@ class TargetChartVC: UIViewController {
         return label
     }
     
-    private func refreshBarChart() {
+    private func refreshBarChartAndStatistics() {
         let userText = userPickerTextfield.rx.text.asObservable()
         userText
             .filter { $0 != nil }
@@ -149,6 +163,7 @@ class TargetChartVC: UIViewController {
                     self.refreshBarChartForAllUsers()
                 } else {
                     self.refreshBarchartForSingleUser(user)
+                    self.setupStatisticsLabels(user)
                 }
             }).disposed(by: chartDisposeBag)
     }

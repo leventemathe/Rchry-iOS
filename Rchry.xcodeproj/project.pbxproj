@@ -33,6 +33,7 @@
 		D755503920188D9100177A98 /* Dates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D755503820188D9100177A98 /* Dates.swift */; };
 		D7572C901FCDA3FD0024DEED /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7572C8F1FCDA3FD0024DEED /* ProfileVC.swift */; };
 		D7572C941FCDA4ED0024DEED /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7572C931FCDA4ED0024DEED /* ProfileVM.swift */; };
+		D75D4095208A48AF00DAD0F7 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D4094208A48AF00DAD0F7 /* Statistics.swift */; };
 		D75D54651FD83740003B3D3F /* AuthErrorToMessageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75D54641FD83740003B3D3F /* AuthErrorToMessageMapper.swift */; };
 		D763A99F1FD84BC3005B8540 /* LoginVMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D763A99E1FD84BC3005B8540 /* LoginVMTest.swift */; };
 		D766875F2017732C00F9F65B /* NewSessionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D766875E2017732C00F9F65B /* NewSessionVC.swift */; };
@@ -124,6 +125,7 @@
 		D755503820188D9100177A98 /* Dates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dates.swift; sourceTree = "<group>"; };
 		D7572C8F1FCDA3FD0024DEED /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		D7572C931FCDA4ED0024DEED /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
+		D75D4094208A48AF00DAD0F7 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		D75D54641FD83740003B3D3F /* AuthErrorToMessageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrorToMessageMapper.swift; sourceTree = "<group>"; };
 		D763A99E1FD84BC3005B8540 /* LoginVMTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVMTest.swift; sourceTree = "<group>"; };
 		D766875E2017732C00F9F65B /* NewSessionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSessionVC.swift; sourceTree = "<group>"; };
@@ -307,6 +309,18 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		D75D4093208A487500DAD0F7 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				D7C6F27B1FC7163B0032A879 /* Assets.xcassets */,
+				D76CA94E1FCC622300D8C2AC /* Colors.xcassets */,
+				D778CA7E1FCD9093001F2D99 /* Amatic-Bold.ttf */,
+				D778CA7F1FCD9093001F2D99 /* AmaticSC-Regular.ttf */,
+				D7B2543F1FCEF61300976CAD /* Lato-Regular.ttf */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		D766876020177CC200F9F65B /* New Session */ = {
 			isa = PBXGroup;
 			children = (
@@ -427,6 +441,7 @@
 			children = (
 				D733044A1FCDA88E00FE4B8E /* GoogleService-Info.plist */,
 				D7C1C4DA1FD8471700FA0551 /* Localizable.strings */,
+				D75D4093208A487500DAD0F7 /* Assets */,
 				D7F0D8BE1FCC58D7009A044B /* Supporting Files */,
 				D7F0D8BB1FCC58A8009A044B /* Model */,
 				D7F0D8BC1FCC58B3009A044B /* ViewModel */,
@@ -483,6 +498,7 @@
 				D7BF04D61FFE66A000465C8C /* Target.swift */,
 				D7709ECF20179D560080FC22 /* Session.swift */,
 				D7935AD1201B6D7200A5174F /* Shot.swift */,
+				D75D4094208A48AF00DAD0F7 /* Statistics.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -530,11 +546,6 @@
 				D7B38D9820120EA800BAD510 /* CommonMessages.swift */,
 				D755503820188D9100177A98 /* Dates.swift */,
 				D7C6F2801FC7163B0032A879 /* Info.plist */,
-				D7C6F27B1FC7163B0032A879 /* Assets.xcassets */,
-				D76CA94E1FCC622300D8C2AC /* Colors.xcassets */,
-				D778CA7E1FCD9093001F2D99 /* Amatic-Bold.ttf */,
-				D778CA7F1FCD9093001F2D99 /* AmaticSC-Regular.ttf */,
-				D7B2543F1FCEF61300976CAD /* Lato-Regular.ttf */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -834,6 +845,7 @@
 				D73A0E4F208A131C00D21925 /* CheckBox.swift in Sources */,
 				D74C39662018BD19006EDBB4 /* SessionVC.swift in Sources */,
 				D7C7E9161FFE956B003C102D /* DatabaseError.swift in Sources */,
+				D75D4095208A48AF00DAD0F7 /* Statistics.swift in Sources */,
 				D71FB5B81FFD32A20085CDDC /* Extensions.swift in Sources */,
 				D7A1FA071FED39E1004DDF50 /* MainVC.swift in Sources */,
 				D7935AD4201B6FA300A5174F /* ShotService.swift in Sources */,
