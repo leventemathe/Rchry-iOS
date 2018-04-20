@@ -18,7 +18,7 @@ class TargetChartVC: UIViewController {
     
     var targetChartVM: TargetChartVM!
     private var disposeBag = DisposeBag()
-    // Chart and picker views should be refreshed with new data whenever the vc
+    // Chart and picker views should be refreshed with new data whenever the vc appears.
     private var pickerDisposeBag: DisposeBag!
     private var chartDisposeBag: DisposeBag!
     
@@ -87,22 +87,13 @@ class TargetChartVC: UIViewController {
         return doneButton
     }
     
-    private func createLabelForUserPicker(_ text: String) -> UILabel {
-        let label = UILabel()
-        label.text = text
-        label.textColor = UIColor(named: "ColorThemeDark")
-        label.textAlignment = .center
-        label.font = UIFont(name: "Lato-Regular", size: 18)
-        return label
+    @objc private func dismissUserPickerView() {
+        view.endEditing(true)
     }
     
     private func setupUserPickerTextField(_ userPicker: UIPickerView) {
         userPickerTextfield.text = ShotNames.MY_SCORE
         userPickerTextfield.inputView = userPicker
-    }
-    
-    @objc private func dismissUserPickerView() {
-        view.endEditing(true)
     }
     
     private func refreshUserPickerViews() {
@@ -117,6 +108,15 @@ class TargetChartVC: UIViewController {
                 return label
             }
             .disposed(by: pickerDisposeBag)
+    }
+    
+    private func createLabelForUserPicker(_ text: String) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.textColor = UIColor(named: "ColorThemeDark")
+        label.textAlignment = .center
+        label.font = UIFont(name: "Lato-Regular", size: 18)
+        return label
     }
     
     private func refreshBarChart() {
@@ -136,81 +136,93 @@ class TargetChartVC: UIViewController {
     private func refreshBarChartForAllUsers() {
         targetChartVM.averageScoresPerUserBySession
             .subscribe(onNext: { averageScoreBySessionByUser in
-                
-                
+                let userCount = averageScoreBySessionByUser.count
                 // Because not all users take part in all sessions,
-                // the indexes for the entries will be off.
+                // the indexes for the entries can be off.
                 // Because of this, I assign indexes to the session names,
                 // that way sessions where the user didn't participate, can be skipped.
-                let thisUsersScoresTookPartInAllSessions = averageScoreBySessionByUser.max(by: { $0.value.count < $1.value.count })!.value
-                let sessionNames = thisUsersScoresTookPartInAllSessions.map { $0.0 }
-                var sessionNameIndexes = [String: Int]()
-                var index = 0
-                for sessionName in sessionNames {
-                    sessionNameIndexes[sessionName] = index
-                    index += 1
-                }
-                
-                // Build data sets
-                var dataSets = [BarChartDataSet]()
-                for (offset: indexOfUser, element: (key: user, value: averageScoresBySession)) in averageScoreBySessionByUser.enumerated() {
-                    var entries = [BarChartDataEntry]()
-                    for (session, averageScore) in averageScoresBySession {
-                        let index = Double(sessionNameIndexes[session]!)
-                        let entry = BarChartDataEntry(x: index, y: Double(averageScore))
-                        entries.append(entry)
-                    }
-                    let xOffset = -(1.0 / Double(averageScoreBySessionByUser.count))/2.0 * Double(averageScoreBySessionByUser.count - 1)
-                    self.groupEntries(&entries, numberOfUsers: averageScoreBySessionByUser.count, indexOfUser: indexOfUser, xInterval: 1.0, xOffset: xOffset)
-                    let dataSet = BarChartDataSet(values: entries, label: user)
-                    dataSets.append(dataSet)
-                }
-                
-                // Color data sets
-                for (i, dataSet) in dataSets.enumerated() {
-                    if dataSets.count <= self.colors.count {
-                        dataSet.colors = [self.colors[i]]
-                    } else {
-                        // TODO
-                    }
-                }
-                
-                // Set data
-                let data = BarChartData(dataSets: dataSets)
-                data.barWidth = data.barWidth / Double(averageScoreBySessionByUser.count)
-                self.barChart.data = data
+                let sessionNameIndexes = self.targetChartVM.sessionNameIndexes(fromAverageScoresBySessionPerUser: averageScoreBySessionByUser)
+                var dataSets = self.buildDatasetsForMultipleUsers(fromAverageScoresBySessionPerUser: averageScoreBySessionByUser,
+                                                                  withSessionNameIndexes: sessionNameIndexes,
+                                                                  withUserCount: userCount)
+                self.setColorsForDatasetsForMultipleUsers(&dataSets)
+                self.refreshDataForMultipleUsers(dataSets, withUserCount: userCount)
                 self.refreshBarChartLooksForMultipleUsers()
             })
             .disposed(by: chartDisposeBag)
     }
     
-    private func groupEntries(_ entries: inout [BarChartDataEntry], numberOfUsers m: Int, indexOfUser j: Int,  xInterval interval: Double, xOffset: Double) {
+    private func buildDatasetsForMultipleUsers(fromAverageScoresBySessionPerUser scores: TargetChartVM.AverageScoresPerUserBySession,
+                                               withSessionNameIndexes sessionNameIndexes: [String: Int],
+                                               withUserCount userCount: Int) -> [BarChartDataSet] {
+        var dataSets = [BarChartDataSet]()
+        for (offset: indexOfUser, element: (key: user, value: averageScoresBySession)) in scores.enumerated() {
+            var entries = buildEntriesForMultipleUsers(fromAverageScoresBySession: averageScoresBySession, withSessionNameIndexes: sessionNameIndexes)
+            
+            let xOffset = -(1.0 / Double(userCount))/2.0 * (Double(userCount) - 1.0)
+            self.moveXCoordinatesOfEntriesToMakeThemGrouped(&entries, numberOfUsers: userCount, indexOfUser: indexOfUser, xInterval: 1.0, xOffset: xOffset)
+            
+            let dataSet = BarChartDataSet(values: entries, label: user)
+            dataSets.append(dataSet)
+        }
+        return dataSets
+    }
+    
+    private func buildEntriesForMultipleUsers(fromAverageScoresBySession scores: [(String, Float)],
+                                              withSessionNameIndexes sessionNameIndexes: [String: Int]) -> [BarChartDataEntry] {
+        var entries = [BarChartDataEntry]()
+        for (session, averageScore) in scores {
+            let index = Double(sessionNameIndexes[session]!)
+            let entry = BarChartDataEntry(x: index, y: Double(averageScore))
+            entries.append(entry)
+        }
+        return entries
+    }
+    
+    private func moveXCoordinatesOfEntriesToMakeThemGrouped(_ entries: inout [BarChartDataEntry], numberOfUsers m: Int, indexOfUser j: Int,  xInterval interval: Double, xOffset: Double) {
         var xDeltas = [Double]()
         for i in 0..<m {
             xDeltas.append((Double(i) * interval) / Double(m))
         }
-        print(xDeltas)
-        
         for entry in entries {
             entry.x += xDeltas[j] + xOffset
         }
-        print(entries)
+    }
+    
+    private func setColorsForDatasetsForMultipleUsers(_ dataSets: inout [BarChartDataSet]) {
+        for (i, dataSet) in dataSets.enumerated() {
+            if dataSets.count <= self.colors.count {
+                dataSet.colors = [self.colors[i]]
+            } else {
+                // TODO
+            }
+        }
+    }
+    
+    private func refreshDataForMultipleUsers(_ dataSets: [BarChartDataSet],
+                                         withUserCount userCount: Int) {
+        let data = BarChartData(dataSets: dataSets)
+        data.barWidth = data.barWidth / Double(userCount)
+        self.barChart.data = data
     }
     
     private func refreshBarchartForSingleUser(_ user: String) {
         targetChartVM.averageScoresForUserBySession(user)
             .subscribe(onNext: { [unowned self] averageScoresBySession in
-                var entries = [BarChartDataEntry]()
-                var sessionNames = [String]()
-                for (i, val) in averageScoresBySession.enumerated() {
-                    let entry = BarChartDataEntry(x: Double(i), y: Double(val.1))
-                    entries.append(entry)
-                    sessionNames.append(val.0)
-                }
+                let entries = self.buildEntriesForSingleUser(fromAverageScoresBySession: averageScoresBySession)
                 self.refreshBarchartDataForSingleUser(user, fromEntries: entries)
-                self.refreshBarChartLooksForSingleUser(sessionNames)
+                self.refreshBarChartLooksForSingleUser()
             })
             .disposed(by: chartDisposeBag)
+    }
+    
+    private func buildEntriesForSingleUser(fromAverageScoresBySession scores: TargetChartVM.AverageScoresForUserBySession) -> [BarChartDataEntry] {
+        var entries = [BarChartDataEntry]()
+        for (i, val) in scores.enumerated() {
+            let entry = BarChartDataEntry(x: Double(i), y: Double(val.1))
+            entries.append(entry)
+        }
+        return entries
     }
     
     private func refreshBarchartDataForSingleUser(_ user: String, fromEntries entries: [BarChartDataEntry]) {
@@ -221,20 +233,8 @@ class TargetChartVC: UIViewController {
         barChart.data = data
     }
     
-    private func refreshBarChartLooksForSingleUser(_ xStrings: [String]) {
-        let formatter = TargetBarChartFormatter(xStrings)
-        let xAxis = XAxis()
-        xAxis.valueFormatter = formatter
-        barChart.xAxis.valueFormatter = xAxis.valueFormatter
-        
-        if xStrings.count > 4 {
-            barChart.xAxis.drawLabelsEnabled = false
-        } else {
-            barChart.xAxis.drawLabelsEnabled = true
-            barChart.xAxis.setLabelCount(xStrings.count, force: false)
-            barChart.xAxis.wordWrapEnabled = true
-            barChart.xAxis.labelFont = UIFont(name: "Lato-Regular", size: 8)!
-        }
+    private func refreshBarChartLooksForSingleUser() {
+        barChart.xAxis.drawLabelsEnabled = false
         
         barChart.data?.setValueFont(UIFont(name: "Lato-Regular", size: 8)!)
         
@@ -259,7 +259,7 @@ class TargetChartVC: UIViewController {
     }
     
     private func refreshBarChartLooksForMultipleUsers() {
-        barChart.xAxis.valueFormatter = nil
+        barChart.xAxis.drawLabelsEnabled = false
         
         barChart.data?.setValueFont(UIFont(name: "Lato-Regular", size: 8)!)
         
@@ -286,19 +286,3 @@ class TargetChartVC: UIViewController {
     }
 }
 
-class TargetBarChartFormatter: IAxisValueFormatter {
-    
-    private let strings: [String]
-    
-    init(_ strings: [String]) {
-        self.strings = strings
-    }
-    
-    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        let i = Int(value)
-        if i < strings.count && i >= 0 {
-            return strings[i]
-        }
-        return ""
-    }
-}

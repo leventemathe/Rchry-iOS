@@ -22,7 +22,9 @@ class TargetChartVM {
         return (scores.reduce(0.0) { $0 + $1 }) / Float(scores.count)
     }
     
-    func averageScoresForUserBySession(_ user: String) -> Observable<[(String, Float)]> {
+    typealias AverageScoresForUserBySession = [(String, Float)]
+    
+    func averageScoresForUserBySession(_ user: String) -> Observable<AverageScoresForUserBySession> {
         return sessionService.getSessions(underTarget: target)
             .map { sessions in
                 var averageScores = [(String, Float)]()
@@ -44,7 +46,9 @@ class TargetChartVM {
             }
     }
     
-    var averageScoresPerUserBySession: Observable<[String: [(String, Float)]]> {
+    typealias AverageScoresPerUserBySession = [String: [(String, Float)]]
+    
+    var averageScoresPerUserBySession: Observable<AverageScoresPerUserBySession> {
         return sessionService.getSessions(underTarget: target)
             .map { [unowned self] sessions in
                 var result = [String: [(String, Float)]]()
@@ -59,5 +63,17 @@ class TargetChartVM {
                 }
                 return result
             }
+    }
+    
+    func sessionNameIndexes(fromAverageScoresBySessionPerUser scores: AverageScoresPerUserBySession) -> [String: Int] {
+        let thisUsersScoresTookPartInAllSessions = scores.max(by: { $0.value.count < $1.value.count })!.value
+        let sessionNames = thisUsersScoresTookPartInAllSessions.map { $0.0 }
+        var sessionNameIndexes = [String: Int]()
+        var index = 0
+        for sessionName in sessionNames {
+            sessionNameIndexes[sessionName] = index
+            index += 1
+        }
+        return sessionNameIndexes
     }
 }
