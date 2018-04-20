@@ -22,7 +22,7 @@ class TargetChartVC: UIViewController {
     private var pickerDisposeBag: DisposeBag!
     private var chartDisposeBag: DisposeBag!
     
-    private let colors = [UIColor(named: "ColorThemeBright")!, UIColor(named: "ColorThemeDark")!, UIColor(named: "ColorThemeMid")!, UIColor(named: "ColorThemeError")!]
+    private var colors = [UIColor(named: "ColorThemeBright")!, UIColor(named: "ColorThemeDark")!, UIColor(named: "ColorThemeMid")!, UIColor(named: "ColorThemeError")!]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -196,11 +196,12 @@ class TargetChartVC: UIViewController {
     
     private func setColorsForDatasetsForMultipleUsers(_ dataSets: inout [BarChartDataSet]) {
         for (i, dataSet) in dataSets.enumerated() {
-            if dataSets.count <= self.colors.count {
-                dataSet.colors = [self.colors[i]]
-            } else {
-                // TODO
+            if dataSets.count > self.colors.count {
+                for _ in colors.count-1..<dataSets.count {
+                    colors.append(UIColor.random())
+                }
             }
+            dataSet.colors = [self.colors[i]]
         }
     }
     
