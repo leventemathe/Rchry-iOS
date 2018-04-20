@@ -74,11 +74,7 @@ class NewSessionVM {
     var guestsDatasource: Observable<[String]> {
         return guests.asObservable()
     }
-    
-    var isSessionReady: Observable<Bool> {
-        return name.asObservable().map { $0 != "" }
-    }
-    
+        
     func createSession(reactingTo observable: Observable<()>) -> Observable<(Session?, String?)> {
         return observable
             .flatMap { [unowned self] _ -> Observable<(Session?, String?)> in

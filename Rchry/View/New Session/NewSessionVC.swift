@@ -77,19 +77,12 @@ class NewSessionVC: UIViewController {
     
     private func setupStartButton() {
         setupStartButtonTitle()
-        setupStartButtonEnabling()
         setupStartButtonTapped()
     }
     
     private func setupStartButtonTitle() {
         startBtn.setTitle(NewSessionVC.NEW_SESSION_START_BUTTON_DISABLED, for: .disabled)
         startBtn.setTitle(NewSessionVC.NEW_SESSION_START_BUTTON_ENABLED, for: .normal)
-    }
-    
-    private func setupStartButtonEnabling() {
-        newSessionVM.isSessionReady.asDriver(onErrorJustReturn: false)
-            .drive(startBtn.rx.isEnabled)
-            .disposed(by: disposeBag)
     }
     
     private func setupStartButtonTapped() {

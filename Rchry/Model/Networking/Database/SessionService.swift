@@ -67,7 +67,10 @@ struct FirebaseSessionCoder {
     }
     
     func createSessionKey(fromSession session: Session) -> String {
-        return "\(session.name)-\(Int(session.timestamp))"
+        if session.name != "" {
+            return "\(session.name)-\(Int(session.timestamp))"
+        }
+        return String(Int(session.timestamp))
     }
 }
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -51,7 +51,7 @@
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="GuestCell" reuseIdentifier="GuestCell" id="Toe-Nj-cjQ" customClass="GuestCell" customModule="Rchry" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" restorationIdentifier="GuestCell" reuseIdentifier="GuestCell" id="Toe-Nj-cjQ" customClass="GuestCell" customModule="Rchry" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -59,7 +59,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Hi-iH-jxS" customClass="LMLabel" customModule="LMViews">
-                                                                    <rect key="frame" x="0.0" y="7" width="60" height="26"/>
+                                                                    <rect key="frame" x="-30" y="25.5" width="60" height="26"/>
                                                                     <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="24"/>
                                                                     <color key="textColor" name="ColorThemeDark"/>
                                                                     <nil key="highlightedColor"/>
@@ -169,14 +169,14 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="N5v-6w-r6s">
                                         <rect key="frame" x="0.0" y="211" width="351" height="62"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guests:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1c-ls-uoS">
-                                                <rect key="frame" x="0.0" y="0.0" width="45.5" height="62"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guests (optional):" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1c-ls-uoS">
+                                                <rect key="frame" x="0.0" y="0.0" width="147.5" height="62"/>
                                                 <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
                                                 <color key="textColor" name="ColorThemeDark"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="H21-XP-GiE">
-                                                <rect key="frame" x="57.5" y="0.0" width="293.5" height="62"/>
+                                                <rect key="frame" x="159.5" y="0.0" width="191.5" height="62"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="62" id="Hho-oO-cH6"/>
@@ -188,7 +188,7 @@
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="AddedGuestCell" reuseIdentifier="AddedGuestCell" id="HtQ-6p-GCB" customClass="GuestCell" customModule="Rchry" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" restorationIdentifier="AddedGuestCell" reuseIdentifier="AddedGuestCell" id="HtQ-6p-GCB" customClass="GuestCell" customModule="Rchry" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -196,7 +196,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSe-w3-YAl" customClass="LMLabel" customModule="LMViews">
-                                                                    <rect key="frame" x="0.0" y="7" width="60" height="26"/>
+                                                                    <rect key="frame" x="-30" y="-7" width="60" height="26.5"/>
                                                                     <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="24"/>
                                                                     <color key="textColor" name="ColorThemeDark"/>
                                                                     <nil key="highlightedColor"/>
@@ -248,7 +248,7 @@
                                                 <color key="textColor" name="ColorThemeDark"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. house competition" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wx0-Nr-TMK" customClass="LMTextField" customModule="LMViews">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="optional" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wx0-Nr-TMK" customClass="LMTextField" customModule="LMViews">
                                                 <rect key="frame" x="56.5" y="0.0" width="294.5" height="34.5"/>
                                                 <color key="textColor" name="ColorThemeDark"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
