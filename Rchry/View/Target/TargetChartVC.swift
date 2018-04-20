@@ -217,7 +217,7 @@ class TargetChartVC: UIViewController {
             .subscribe(onNext: { [unowned self] averageScoresBySession in
                 let entries = self.buildEntriesForSingleUser(fromAverageScoresBySession: averageScoresBySession)
                 self.refreshBarchartDataForSingleUser(user, fromEntries: entries)
-                self.refreshBarChartLooksForSingleUser()
+                self.refreshBarChartLooksForSingleUser(entries.count)
             })
             .disposed(by: chartDisposeBag)
     }
@@ -239,56 +239,53 @@ class TargetChartVC: UIViewController {
         barChart.data = data
     }
     
-    private func refreshBarChartLooksForSingleUser() {
-        barChart.xAxis.drawLabelsEnabled = false
-        
+    private func refreshBarChartLooksForSingleUser(_ barCount: Int) {
+        refreshBarChartLooksCommon()
+        if barCount < 8 {
+            barChart.data?.setDrawValues(true)
+            barChart.leftAxis.drawGridLinesEnabled = false
+            barChart.leftAxis.drawLabelsEnabled = false
+            barChart.leftAxis.drawAxisLineEnabled = false
+        } else {
+            barChart.data?.setDrawValues(false)
+            barChart.leftAxis.drawGridLinesEnabled = true
+            barChart.leftAxis.drawLabelsEnabled = true
+            barChart.leftAxis.drawAxisLineEnabled = true
+        }
+    }
+    
+    private func refreshBarChartLooksCommon() {
         barChart.data?.setValueFont(UIFont(name: "Lato-Regular", size: 8)!)
+        barChart.data?.setValueTextColor(UIColor(named: "ColorThemeDark")!)
         
-        barChart.xAxis.drawGridLinesEnabled = false
-        barChart.xAxis.labelPosition = .bottom
+        barChart.legend.textColor = UIColor(named: "ColorThemeDark")!
+        barChart.legend.font = UIFont(name: "Lato-Regular", size: 10)!
+        
         barChart.xAxis.axisLineColor = UIColor(named: "ColorThemeMid")!
         barChart.xAxis.labelTextColor = UIColor(named: "ColorThemeDark")!
+        barChart.xAxis.labelPosition = .bottom
         
-        barChart.leftAxis.drawGridLinesEnabled = false
-        barChart.leftAxis.drawLabelsEnabled = false
-        barChart.leftAxis.drawAxisLineEnabled = false
+        barChart.leftAxis.axisLineColor = UIColor(named: "ColorThemeMid")!
+        barChart.leftAxis.gridColor = UIColor(named: "ColorThemeMid")!
+        barChart.leftAxis.labelTextColor = UIColor(named: "ColorThemeDark")!
+        barChart.leftAxis.labelFont = UIFont(name: "Lato-Regular", size: 10)!
+        
+        barChart.chartDescription?.text = ""
+        
+        barChart.xAxis.drawLabelsEnabled = false
+        barChart.xAxis.drawGridLinesEnabled = false
         
         barChart.rightAxis.drawGridLinesEnabled = false
         barChart.rightAxis.drawLabelsEnabled = false
         barChart.rightAxis.drawAxisLineEnabled = false
-    
-        barChart.chartDescription?.text = ""
-        
-        barChart.legend.textColor = UIColor(named: "ColorThemeDark")!
-        barChart.legend.font = UIFont(name: "Lato-Regular", size: 10)!
-        barChart.data?.setValueTextColor(UIColor(named: "ColorThemeDark")!)
     }
     
     private func refreshBarChartLooksForMultipleUsers() {
-        barChart.xAxis.drawLabelsEnabled = false
-        
-        barChart.data?.setValueFont(UIFont(name: "Lato-Regular", size: 8)!)
-        
-        barChart.xAxis.drawLabelsEnabled = true
-        
-        barChart.xAxis.drawGridLinesEnabled = true
-        barChart.xAxis.labelPosition = .bottom
-        barChart.xAxis.axisLineColor = UIColor(named: "ColorThemeMid")!
-        barChart.xAxis.labelTextColor = UIColor(named: "ColorThemeDark")!
-        
+        refreshBarChartLooksCommon()
+        barChart.data?.setDrawValues(false)
         barChart.leftAxis.drawGridLinesEnabled = true
         barChart.leftAxis.drawLabelsEnabled = true
         barChart.leftAxis.drawAxisLineEnabled = true
-        
-        barChart.rightAxis.drawGridLinesEnabled = true
-        barChart.rightAxis.drawLabelsEnabled = true
-        barChart.rightAxis.drawAxisLineEnabled = true
-        
-        barChart.chartDescription?.text = ""
-        
-        barChart.legend.textColor = UIColor(named: "ColorThemeDark")!
-        barChart.legend.font = UIFont(name: "Lato-Regular", size: 10)!
-        barChart.data?.setValueTextColor(UIColor(named: "ColorThemeDark")!)
     }
 }
 
