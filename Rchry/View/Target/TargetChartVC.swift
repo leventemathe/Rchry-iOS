@@ -303,6 +303,16 @@ class TargetChartVC: UIViewController {
         barChart.xAxis.granularity = 1.0
         barChart.xAxis.valueFormatter = TargetBarChartXAxisValueFormatter(startTimestamp: start, endTimestamp: end)
         barChart.xAxis.drawGridLinesEnabled = false
+        if let entryCount = barChart.barData?.entryCount {
+            if entryCount > 8 {
+                barChart.xAxis.avoidFirstLastClippingEnabled = true
+            } else {
+                barChart.xAxis.avoidFirstLastClippingEnabled = false
+            }
+            
+        } else {
+            barChart.xAxis.avoidFirstLastClippingEnabled = false
+        }
         
         barChart.leftAxis.axisLineColor = UIColor(named: "ColorThemeMid")!
         barChart.leftAxis.gridColor = UIColor(named: "ColorThemeMid")!
