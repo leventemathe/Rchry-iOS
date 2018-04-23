@@ -289,12 +289,7 @@ class TargetChartVC: UIViewController {
         
         barChart.data?.setValueFont(UIFont(name: "Lato-Regular", size: 8)!)
         barChart.data?.setValueTextColor(UIColor(named: "ColorThemeDark")!)
-        let numberFormatter = NumberFormatter()
-        numberFormatter.locale = Locale.current
-        numberFormatter.minimumFractionDigits = targetChartVM.decimalPrecision
-        numberFormatter.maximumFractionDigits = targetChartVM.decimalPrecision
-    
-        barChart.data?.setValueFormatter(DefaultValueFormatter(formatter: numberFormatter))
+        barChart.data?.setValueFormatter(TargetBarChartDataValueFormatter(minFractionDigits: targetChartVM.decimalPrecision, maxFractionDigits: targetChartVM.decimalPrecision))
         
         barChart.legend.textColor = UIColor(named: "ColorThemeDark")!
         barChart.legend.font = UIFont(name: "Lato-Regular", size: 10)!
@@ -313,6 +308,9 @@ class TargetChartVC: UIViewController {
         barChart.leftAxis.gridColor = UIColor(named: "ColorThemeMid")!
         barChart.leftAxis.labelTextColor = UIColor(named: "ColorThemeDark")!
         barChart.leftAxis.labelFont = UIFont(name: "Lato-Regular", size: 10)!
+        barChart.leftAxis.axisMinimum = Double(targetChartVM.minimumScore)
+        barChart.leftAxis.axisMaximum = Double(targetChartVM.maximumScore)
+        barChart.leftAxis.valueFormatter = TargetBarChartYAxisValueFormatter(minFractionDigits: targetChartVM.decimalPrecision, maxFractionDigits: targetChartVM.decimalPrecision)
         
         barChart.rightAxis.drawGridLinesEnabled = false
         barChart.rightAxis.drawLabelsEnabled = false
@@ -335,6 +333,36 @@ struct TargetBarChartDateProvider {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         return formatter.string(from: date)
+    }
+}
+
+class TargetBarChartDataValueFormatter: IValueFormatter {
+    
+    private let minFractionDigits: Int
+    private let maxFractionDigits: Int
+    
+    init(minFractionDigits: Int, maxFractionDigits: Int) {
+        self.minFractionDigits = minFractionDigits
+        self.maxFractionDigits = maxFractionDigits
+    }
+    
+    func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
+        return Float(value).prettyString(minFractionDigits: minFractionDigits, maxFractionDigits: maxFractionDigits)!
+    }
+}
+
+class TargetBarChartYAxisValueFormatter: IAxisValueFormatter {
+
+    private let minFractionDigits: Int
+    private let maxFractionDigits: Int
+    
+    init(minFractionDigits: Int, maxFractionDigits: Int) {
+        self.minFractionDigits = minFractionDigits
+        self.maxFractionDigits = maxFractionDigits
+    }
+    
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        return Float(value).prettyString(minFractionDigits: minFractionDigits, maxFractionDigits: maxFractionDigits)!
     }
 }
 

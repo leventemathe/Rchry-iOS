@@ -138,4 +138,12 @@ class TargetChartVM {
         return scoresForUser(user).map { [unowned self] in self.statistics.calculateDiff($0)! }
         .map { $0.prettyString(minFractionDigits: self.decimalPrecision, maxFractionDigits: self.decimalPrecision)! }
     }
+    
+    var minimumScore: Float {
+        return target.scores.min()!
+    }
+    
+    var maximumScore: Float {
+        return target.scores.max()!
+    }
 }
