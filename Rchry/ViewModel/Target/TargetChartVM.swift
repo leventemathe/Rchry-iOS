@@ -146,4 +146,11 @@ class TargetChartVM {
     var maximumScore: Float {
         return target.scores.max()!
     }
+    
+    func shouldHideStats(forUser user: String) -> Observable<Bool> {
+        return sessions.asObservable()
+            .map { [unowned self] in self.getScoresPerSessionForUser(user, fromSessions: $0) }
+            .map { $0.map { $0.1 } }
+            .map { $0.count < 1 }
+    }
 }

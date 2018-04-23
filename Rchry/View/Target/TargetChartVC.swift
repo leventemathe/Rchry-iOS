@@ -16,6 +16,7 @@ class TargetChartVC: UIViewController {
     @IBOutlet weak var userPickerTextfield: UITextField!
     @IBOutlet weak var barChart: BarChartView!
     
+    @IBOutlet weak var statsContainerStackView: UIStackView!
     @IBOutlet weak var averageLbl: UILabel!
     @IBOutlet weak var diffLbl: UILabel!
     @IBOutlet weak var maxLbl: UILabel!
@@ -121,15 +122,6 @@ class TargetChartVC: UIViewController {
         userPickerTextfield.inputView = userPicker
     }
     
-    private func setupStatisticsLabels(_ user: String) {
-        statisticsDisposeBag = nil
-        statisticsDisposeBag = DisposeBag()
-        targetChartVM.average(forUser: user).bind(to: averageLbl.rx.text).disposed(by: statisticsDisposeBag)
-        targetChartVM.min(forUser: user).bind(to: minLbl.rx.text).disposed(by: statisticsDisposeBag)
-        targetChartVM.max(forUser: user).bind(to: maxLbl.rx.text).disposed(by: statisticsDisposeBag)
-        targetChartVM.diff(forUser: user).bind(to: diffLbl.rx.text).disposed(by: statisticsDisposeBag)
-    }
-    
     private func refreshUserPickerViews() {
         let pickerView = userPickerTextfield.inputView as! UIPickerView
         targetChartVM.guests
@@ -163,14 +155,32 @@ class TargetChartVC: UIViewController {
                     self.refreshBarChartForAllUsers()
                 } else {
                     self.refreshBarchartForSingleUser(user)
-                    self.setupStatisticsLabels(user)
+                    self.refreshStatisticsLabels(user)
                 }
             }).disposed(by: chartDisposeBag)
     }
     
+    private func refreshStatisticsLabels(_ user: String) {
+        statisticsDisposeBag = nil
+        statisticsDisposeBag = DisposeBag()
+        targetChartVM.average(forUser: user).bind(to: averageLbl.rx.text).disposed(by: statisticsDisposeBag)
+        targetChartVM.min(forUser: user).bind(to: minLbl.rx.text).disposed(by: statisticsDisposeBag)
+        targetChartVM.max(forUser: user).bind(to: maxLbl.rx.text).disposed(by: statisticsDisposeBag)
+        targetChartVM.diff(forUser: user).bind(to: diffLbl.rx.text).disposed(by: statisticsDisposeBag)
+        refreshStatisticsHiding(user)
+    }
+    
+    private func refreshStatisticsHiding(_ user: String) {
+        targetChartVM.shouldHideStats(forUser: user).bind(to: statsContainerStackView.rx.isHidden).disposed(by: statisticsDisposeBag)
+    }
+    
     private func refreshBarChartForAllUsers() {
         targetChartVM.averageScoresPerUserBySession
-            .subscribe(onNext: { averageScoreBySessionByUser in
+            .subscribe(onNext: { [unowned self] averageScoreBySessionByUser in
+                if averageScoreBySessionByUser.count < 1 {
+                    self.barChart.data = nil
+                    return
+                }
                 let userCount = averageScoreBySessionByUser.count
                 // Because not all users take part in all sessions,
                 // the indexes for the entries can be off.
@@ -245,6 +255,10 @@ class TargetChartVC: UIViewController {
     private func refreshBarchartForSingleUser(_ user: String) {
         targetChartVM.averageScoresForUserBySession(user)
             .subscribe(onNext: { [unowned self] averageScoresBySession in
+                if averageScoresBySession.count < 1 {
+                    self.barChart.data = nil
+                    return
+                }
                 let entries = self.buildEntriesForSingleUser(fromAverageScoresBySession: averageScoresBySession)
                 self.refreshBarchartDataForSingleUser(user, fromEntries: entries)
                 self.refreshBarChartLooksForSingleUser(entries.count, startTimestamp: self.targetChartVM.startTimestamp!, endTimestamp: self.targetChartVM.endTimestamp!)

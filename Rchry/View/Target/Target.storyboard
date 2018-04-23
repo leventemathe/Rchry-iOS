@@ -97,16 +97,16 @@
                                 <rect key="frame" x="0.0" y="20" width="359.5" height="474.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="xyb-JN-D9m">
-                                        <rect key="frame" x="0.0" y="0.0" width="359.5" height="22"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="359.5" height="30.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick a user:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S37-I3-Bhg">
-                                                <rect key="frame" x="0.0" y="0.0" width="78.5" height="22"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="78.5" height="30.5"/>
                                                 <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="28"/>
                                                 <color key="textColor" name="ColorThemeDark"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pick a user to show data" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bVh-qf-Mxf" customClass="LMTextField" customModule="LMViews">
-                                                <rect key="frame" x="94.5" y="0.0" width="265" height="22"/>
+                                                <rect key="frame" x="94.5" y="0.0" width="265" height="30.5"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" name="ColorThemeDark"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
@@ -123,26 +123,26 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u37-V7-R6D" customClass="BarChartView" customModule="Charts">
-                                        <rect key="frame" x="0.0" y="38" width="359.5" height="288.5"/>
+                                        <rect key="frame" x="0.0" y="46.5" width="359.5" height="296"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nGU-Cm-UbB">
-                                        <rect key="frame" x="0.0" y="342.5" width="359.5" height="1"/>
-                                        <color key="backgroundColor" red="0.37599998709999999" green="0.74500000479999995" blue="0.70200002189999999" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="1" id="GzC-OH-c9L"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Jcf-Gn-MEz">
-                                        <rect key="frame" x="0.0" y="359.5" width="359.5" height="98"/>
+                                        <rect key="frame" x="0.0" y="358.5" width="359.5" height="116"/>
                                         <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nGU-Cm-UbB">
+                                                <rect key="frame" x="32" y="0.0" width="295.5" height="1"/>
+                                                <color key="backgroundColor" red="0.37599998709999999" green="0.74500000479999995" blue="0.70200002189999999" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="GzC-OH-c9L"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="df6-DT-bxg">
-                                                <rect key="frame" x="32" y="0.0" width="295.5" height="45"/>
+                                                <rect key="frame" x="32" y="9" width="295.5" height="45"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="0vf-mt-SuN">
                                                         <rect key="frame" x="0.0" y="0.0" width="148" height="45"/>
@@ -181,7 +181,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="acG-K3-bvb">
-                                                <rect key="frame" x="32" y="53" width="295.5" height="45"/>
+                                                <rect key="frame" x="32" y="62" width="295.5" height="45"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Zn3-0J-dUm">
                                                         <rect key="frame" x="0.0" y="0.0" width="148" height="45"/>
@@ -219,21 +219,21 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35H-uk-OP1">
+                                                <rect key="frame" x="32" y="115" width="295.5" height="1"/>
+                                                <color key="backgroundColor" red="0.37599998709999999" green="0.74500000479999995" blue="0.70200002189999999" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="ige-nD-SCz"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                         </subviews>
                                         <edgeInsets key="layoutMargins" top="0.0" left="32" bottom="0.0" right="32"/>
                                     </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35H-uk-OP1">
-                                        <rect key="frame" x="0.0" y="473.5" width="359.5" height="1"/>
-                                        <color key="backgroundColor" red="0.37599998709999999" green="0.74500000479999995" blue="0.70200002189999999" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="1" id="ige-nD-SCz"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -252,6 +252,7 @@
                         <outlet property="diffLbl" destination="832-72-FkN" id="kh0-fn-7B3"/>
                         <outlet property="maxLbl" destination="2Zn-cf-H28" id="ar6-Oa-hJu"/>
                         <outlet property="minLbl" destination="Sh4-yz-dtV" id="aa7-tJ-Wak"/>
+                        <outlet property="statsContainerStackView" destination="Jcf-Gn-MEz" id="StK-rW-3Q9"/>
                         <outlet property="userPickerTextfield" destination="bVh-qf-Mxf" id="sSa-pA-RAI"/>
                     </connections>
                 </viewController>
