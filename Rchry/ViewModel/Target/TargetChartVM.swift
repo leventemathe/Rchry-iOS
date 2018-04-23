@@ -10,6 +10,8 @@ import RxSwift
 
 class TargetChartVM {
     
+    let decimalPrecision: Int
+    
     private let target: Target
     private let sessionService: SessionService
     private let statistics: Statistics
@@ -17,7 +19,8 @@ class TargetChartVM {
     private var sessions = Variable([Session]())
     private var disposeBag: DisposeBag!
     
-    init(target: Target, statistics: Statistics = Statistics(), sessionService: SessionService = FirebaseSessionService()) {
+    init(decimalPrecision: Int = 2, target: Target, statistics: Statistics = Statistics(), sessionService: SessionService = FirebaseSessionService()) {
+        self.decimalPrecision = decimalPrecision
         self.target = target
         self.sessionService = sessionService
         self.statistics = statistics
@@ -118,21 +121,21 @@ class TargetChartVM {
     func average(forUser user: String) -> Observable<String> {
         return scoresForUser(user)
             .map { [unowned self] in self.statistics.calculateAverage($0)! }
-            .map { $0.prettyString()! }
+            .map { $0.prettyString(minFractionDigits: self.decimalPrecision, maxFractionDigits: self.decimalPrecision)! }
     }
     
     func min(forUser user: String) -> Observable<String> {
         return scoresForUser(user).map { [unowned self] in self.statistics.calculateMin($0)! }
-        .map { $0.prettyString()! }
+        .map { $0.prettyString(minFractionDigits: self.decimalPrecision, maxFractionDigits: self.decimalPrecision)! }
     }
     
     func max(forUser user: String) -> Observable<String> {
         return scoresForUser(user).map { [unowned self] in self.statistics.calculateMax($0)! }
-        .map { $0.prettyString()! }
+        .map { $0.prettyString(minFractionDigits: self.decimalPrecision, maxFractionDigits: self.decimalPrecision)! }
     }
     
     func diff(forUser user: String) -> Observable<String> {
         return scoresForUser(user).map { [unowned self] in self.statistics.calculateDiff($0)! }
-        .map { $0.prettyString()! }
+        .map { $0.prettyString(minFractionDigits: self.decimalPrecision, maxFractionDigits: self.decimalPrecision)! }
     }
 }

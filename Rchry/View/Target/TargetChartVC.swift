@@ -289,6 +289,12 @@ class TargetChartVC: UIViewController {
         
         barChart.data?.setValueFont(UIFont(name: "Lato-Regular", size: 8)!)
         barChart.data?.setValueTextColor(UIColor(named: "ColorThemeDark")!)
+        let numberFormatter = NumberFormatter()
+        numberFormatter.locale = Locale.current
+        numberFormatter.minimumFractionDigits = targetChartVM.decimalPrecision
+        numberFormatter.maximumFractionDigits = targetChartVM.decimalPrecision
+    
+        barChart.data?.setValueFormatter(DefaultValueFormatter(formatter: numberFormatter))
         
         barChart.legend.textColor = UIColor(named: "ColorThemeDark")!
         barChart.legend.font = UIFont(name: "Lato-Regular", size: 10)!

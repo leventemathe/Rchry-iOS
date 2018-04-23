@@ -25,7 +25,19 @@ extension Float {
     
     func prettyString(_ locale: Locale = Locale.current) -> String? {
         let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal        
+        numberFormatter.locale = locale
+        if let result = numberFormatter.string(from: NSNumber(value: self)) {
+            return result
+        }
+        return nil
+    }
+    
+    func prettyString(minFractionDigits: Int, maxFractionDigits: Int, _ locale: Locale = Locale.current) -> String? {
+        let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
+        numberFormatter.minimumFractionDigits = minFractionDigits
+        numberFormatter.maximumFractionDigits = maxFractionDigits
         numberFormatter.locale = locale
         if let result = numberFormatter.string(from: NSNumber(value: self)) {
             return result
