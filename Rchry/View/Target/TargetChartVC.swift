@@ -109,7 +109,9 @@ class TargetChartVC: UIViewController {
         let doneButtonText = NSLocalizedString("TargetChartUserSelectionDone", comment: "The user selected a target, and they press this button to leave the selector view.")
         let doneButton = UIBarButtonItem(title: doneButtonText, style: .done, target: self, action: #selector(TargetChartVC.dismissUserPickerView))
         doneButton.tintColor = UIColor.white
-        doneButton.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: "Amatic-Bold", size: 26.0)!], for: .normal)
+        let doneButtonFont = UIFont(name: "Amatic-Bold", size: 26.0)!
+        doneButton.setTitleTextAttributes([NSAttributedStringKey.font: doneButtonFont], for: .normal)
+        doneButton.setTitleTextAttributes([NSAttributedStringKey.font: doneButtonFont], for: .selected)
         return doneButton
     }
     
