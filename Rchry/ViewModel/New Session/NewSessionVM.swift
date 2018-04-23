@@ -19,6 +19,7 @@ class NewSessionVM {
     
     private var ownerTarget: Target
     private var guests = Variable([String]())
+    private var shouldTrackUser = Variable(true)
     private var name = Variable("")
     
     init(ownerTarget: Target,
@@ -26,6 +27,7 @@ class NewSessionVM {
          availableGuestAdded: Observable<String>,
          guestRemoved: Observable<Int>,
          nameChanged: Observable<String>,
+         userTrackingChanged: Observable<Bool>,
          sessionService: SessionService = FirebaseSessionService(),
          errorMapper: DatabaseErrorToMessageMapper = BasicDatabaseErrorToMessageMapper(),
          dateProvider: DateProvider = BasicDateProvider()) {
@@ -38,6 +40,7 @@ class NewSessionVM {
         setup(availableGuestAdded: availableGuestAdded)
         setup(guestRemoved: guestRemoved)
         setup(nameChanged: nameChanged)
+        setup(userTrackingChanged: userTrackingChanged)
     }
     
     private func setup(newGuestAdded: Observable<String>) {
@@ -68,6 +71,12 @@ class NewSessionVM {
         nameChanged
             .map { $0.trimmingCharacters(in: .whitespaces) }
             .bind(to: name)
+            .disposed(by: disposeBag)
+    }
+    
+    private func setup(userTrackingChanged: Observable<Bool>) {
+        userTrackingChanged
+            .bind(to: shouldTrackUser)
             .disposed(by: disposeBag)
     }
     
@@ -102,5 +111,11 @@ class NewSessionVM {
             .do(onNext: { [unowned self] in self.savedGuestsArray = $0 })
             .map { ($0, nil) }
             .catchError { [unowned self] in Observable.just((nil, self.errorMapper.map(error: $0 as! DatabaseError))) }
+    }
+    
+    var isFormReady: Observable<Bool> {
+        return Observable.combineLatest(guests.asObservable(), shouldTrackUser.asObservable(), resultSelector: { guests, shouldTrackUser in
+            return guests.count > 0 || shouldTrackUser
+        })
     }
 }

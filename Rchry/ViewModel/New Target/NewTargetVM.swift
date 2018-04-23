@@ -34,6 +34,7 @@ class NewTargetVM {
     }
     
     private var _datasourceIcons = ["target", "deer", "bear", "ram", "wolf"]
+    
     var datasourceIcons: Observable<[String]> {
         return Observable.just(_datasourceIcons)
     }

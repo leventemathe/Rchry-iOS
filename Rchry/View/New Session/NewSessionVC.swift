@@ -62,11 +62,14 @@ class NewSessionVC: UIViewController {
         
         let nameChanged = nameTextfield.rx.text.asObservable().filter{ $0 != nil }.map { $0! }
         
+        let userTrackingChanged = trackMyScoreCheckBox.rxIsChecked
+        
         newSessionVM = NewSessionVM(ownerTarget: ownerTarget,
                                     newGuestAdded: newGuestAdded,
                                     availableGuestAdded: availableGuestAdded,
                                     guestRemoved: addedGuestRemoved,
-                                    nameChanged: nameChanged)
+                                    nameChanged: nameChanged,
+                                    userTrackingChanged: userTrackingChanged)
     }
     
     private func setupAddedGuestsCollectionView() {
@@ -78,8 +81,13 @@ class NewSessionVC: UIViewController {
     }
     
     private func setupStartButton() {
+        setupStartButtonReadyness()
         setupStartButtonTitle()
         setupStartButtonTapped()
+    }
+    
+    private func setupStartButtonReadyness() {
+        newSessionVM.isFormReady.bind(to: startBtn.rx.isEnabled).disposed(by: disposeBag)
     }
     
     private func setupStartButtonTitle() {
