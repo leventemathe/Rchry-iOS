@@ -59,7 +59,9 @@ class TargetChartVM {
     var guests: Observable<[String]> {
         return sessionService.getGuests()
             .map { guests in
-                var users = [ShotNames.MY_SCORE, ShotNames.ALL_SCORES]
+                // TODO: To show all user charts again, uncomment here.
+                // Do it when the bars align properly, even if some users skipped some sessions.
+                var users = [ShotNames.MY_SCORE] //, ShotNames.ALL_SCORES]
                 users.append(contentsOf: guests)
                 return users
             }
