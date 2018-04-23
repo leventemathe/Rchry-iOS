@@ -352,16 +352,6 @@ class TargetChartVC: UIViewController {
     }
 }
 
-struct TargetBarChartDateProvider {
-    
-    func getDateStrings(forTimestamp timestamp: Double) -> String {
-        let date = Date(timeIntervalSince1970: timestamp)
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        return formatter.string(from: date)
-    }
-}
-
 class TargetBarChartDataValueFormatter: IValueFormatter {
     
     private let minFractionDigits: Int
@@ -394,11 +384,11 @@ class TargetBarChartYAxisValueFormatter: IAxisValueFormatter {
 
 class TargetBarChartXAxisValueFormatter: IAxisValueFormatter {
     
-    let dateProvider: TargetBarChartDateProvider
+    let dateProvider: DateProvider
     let startTimestamp: Double
     let endTimestamp: Double
     
-    init(startTimestamp: Double, endTimestamp: Double, dateProvider: TargetBarChartDateProvider = TargetBarChartDateProvider()) {
+    init(startTimestamp: Double, endTimestamp: Double, dateProvider: DateProvider = BasicDateProvider()) {
         self.dateProvider = dateProvider
         self.startTimestamp = startTimestamp
         self.endTimestamp = endTimestamp
@@ -409,11 +399,11 @@ class TargetBarChartXAxisValueFormatter: IAxisValueFormatter {
         let entryCount = axis?.axisRange
 
         if value == start {
-            return dateProvider.getDateStrings(forTimestamp: startTimestamp)
+            return dateProvider.dateString(fromTimestamp: startTimestamp)
         } else if let entryCount = entryCount {
             let end = round(entryCount-1.0)
             if value == end {
-                return dateProvider.getDateStrings(forTimestamp: endTimestamp)
+                return dateProvider.dateString(fromTimestamp: endTimestamp)
             }
         }
         return ""

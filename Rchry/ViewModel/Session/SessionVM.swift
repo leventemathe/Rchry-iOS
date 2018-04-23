@@ -19,14 +19,17 @@ import RxSwift
 class SessionVM {
     
     private let shotService: ShotService
+    private let dateProvider: DateProvider
     
     private let session: Session
     
     private var _shots = Variable([Shot]())
     private let disposeBag = DisposeBag()
     
-    init(session: Session, shotService: ShotService = FirebaseShotService()) {
+    init(session: Session, shotService: ShotService = FirebaseShotService(), dateProvider: DateProvider = BasicDateProvider()) {
         self.session = session
+        self.dateProvider = dateProvider
+        
         self.shotService = shotService
         setupInitialShot()
     }
@@ -102,6 +105,14 @@ class SessionVM {
                 self._shots.value[index].addScore(score, byUser: user)
             })
             .disposed(by: disposeBag ?? self.disposeBag)
+    }
+    
+    var title: String {
+        if session.name != "" {
+            return session.name
+        }
+        let dateString = dateProvider.dateString(fromTimestamp: session.timestamp)
+        return dateString
     }
 }
 

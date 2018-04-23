@@ -19,7 +19,12 @@ class SessionVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTitle()
         setupScoresTableView()
+    }
+    
+    private func setupTitle() {
+        navigationItem.title = sessionVM.title
     }
     
     private func setupScoresTableView() {
