@@ -287,7 +287,7 @@ class TargetChartVC: UIViewController {
     
     private func refreshBarChartLooksForSingleUser(_ barCount: Int, startTimestamp start: Double, endTimestamp end: Double) {
         refreshBarChartLooksCommon(startTimestamp: start, endTimestamp: end)
-        if barCount < 8 {
+        if barCount < changeDataLabelLookLimit {
             barChart.data?.setDrawValues(true)
             barChart.leftAxis.drawGridLinesEnabled = false
             barChart.leftAxis.drawLabelsEnabled = false
@@ -299,6 +299,8 @@ class TargetChartVC: UIViewController {
             barChart.leftAxis.drawAxisLineEnabled = true
         }
     }
+    
+    private let changeDataLabelLookLimit = 8
     
     private func refreshBarChartLooksCommon(startTimestamp start: Double, endTimestamp end: Double) {
         barChart.chartDescription?.text = ""
@@ -317,10 +319,11 @@ class TargetChartVC: UIViewController {
         barChart.xAxis.drawLabelsEnabled = true
         barChart.xAxis.axisMaxLabels = 2
         barChart.xAxis.granularity = 1.0
+        barChart.xAxis.granularityEnabled = true
         barChart.xAxis.valueFormatter = TargetBarChartXAxisValueFormatter(startTimestamp: start, endTimestamp: end)
         barChart.xAxis.drawGridLinesEnabled = false
         if let entryCount = barChart.barData?.entryCount {
-            if entryCount > 8 {
+            if entryCount > changeDataLabelLookLimit {
                 barChart.xAxis.avoidFirstLastClippingEnabled = true
             } else {
                 barChart.xAxis.avoidFirstLastClippingEnabled = false
@@ -395,16 +398,13 @@ class TargetBarChartXAxisValueFormatter: IAxisValueFormatter {
     }
 
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        let start = 0.0
-        let entryCount = axis?.axisRange
-
-        if value == start {
+        guard let entries = axis?.entries, let firstEntry = entries.first, let lastEntry = entries.last else {
+            return ""
+        }
+        if value == firstEntry {
             return dateProvider.dateString(fromTimestamp: startTimestamp)
-        } else if let entryCount = entryCount {
-            let end = round(entryCount-1.0)
-            if value == end {
-                return dateProvider.dateString(fromTimestamp: endTimestamp)
-            }
+        } else if value == lastEntry {
+            return dateProvider.dateString(fromTimestamp: endTimestamp)
         }
         return ""
     }
