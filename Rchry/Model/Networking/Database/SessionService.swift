@@ -23,8 +23,7 @@ protocol SessionService {
     
     func create(session: Session) -> Observable<Session>
     func observeGuests() -> Observable<[String]>
-    func getGuests() -> Observable<[String]>
-    func getSessions(underTarget target: Target) -> Observable<[Session]>
+    func observeSessions(underTarget target: Target) -> Observable<[Session]>
     func delete(session: Session) -> Observable<Void>
 }
 
@@ -123,6 +122,8 @@ class FirebaseSessionService: SessionService {
                 if let guestsDict = snapshot.value as? [String: Any] {
                     let guests = guestsDict.keys.map { $0 }
                     observer.onNext(guests)
+                } else {
+                    observer.onNext([String]())
                 }
             }, withCancel: { error in
                 // TODO: Instead of terminating stream, pass the error in onNext
@@ -133,38 +134,21 @@ class FirebaseSessionService: SessionService {
         }
     }
     
-    func getGuests() -> Observable<[String]> {
-        guard let uid = authService.userID else {
-            return Observable.error(DatabaseError.userNotLoggedIn)
-        }
-        return Observable.create { [unowned self] observer in
-            self.databaseRef.child(uid).child(SessionNames.SAVED_GUESTS).observeSingleEvent(of: .value, with: { snapshot in
-                if let guestsDict = snapshot.value as? [String: Any] {
-                    let guests = guestsDict.keys.map { $0 }
-                    observer.onNext(guests)
-                }
-                observer.onCompleted()
-            })
-            return Disposables.create()
-        }
-    }
-    
-    func getSessions(underTarget target: Target) -> Observable<[Session]> {
+    func observeSessions(underTarget target: Target) -> Observable<[Session]> {
         guard let uid = authService.userID else {
             return Observable.error(DatabaseError.userNotLoggedIn)
         }
         return Observable.create { [unowned self] observer in
             let targetName: String = self.firebaseTargetCoder.createTargetKey(target)!
-            self.databaseRef.child(uid).child(SessionNames.PATH).queryOrdered(byChild: SessionNames.TARGET).queryEqual(toValue: targetName).observeSingleEvent(of: .value, with: { snapshot in
+            let handle = self.databaseRef.child(uid).child(SessionNames.PATH).queryOrdered(byChild: SessionNames.TARGET).queryEqual(toValue: targetName).observe(.value, with: { snapshot in
                 if let dict = snapshot.value as? [String: Any] {
                     if var sessions = self.firebaseSessionCoder.decode(dict, underTarget: target) {
                         sessions.sort(by: { $0.timestamp < $1.timestamp })
                         observer.onNext(sessions)
                     }
-                    observer.onCompleted()
                 }
             })
-            return Disposables.create()
+            return Disposables.create { self.databaseRef.removeObserver(withHandle: handle) }
         }
     }
     
