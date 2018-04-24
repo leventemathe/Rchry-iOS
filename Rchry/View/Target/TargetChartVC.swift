@@ -337,8 +337,7 @@ class TargetChartVC: UIViewController {
         barChart.leftAxis.gridColor = UIColor(named: "ColorThemeMid")!
         barChart.leftAxis.labelTextColor = UIColor(named: "ColorThemeDark")!
         barChart.leftAxis.labelFont = UIFont(name: "Lato-Regular", size: 10)!
-        barChart.leftAxis.axisMinimum = Double(targetChartVM.minimumScore)
-        barChart.leftAxis.axisMaximum = Double(targetChartVM.maximumScore)
+        barChart.leftAxis.axisMinimum = Double(targetChartVM.minimumScore)        
         barChart.leftAxis.valueFormatter = TargetBarChartYAxisValueFormatter(minFractionDigits: targetChartVM.decimalPrecision, maxFractionDigits: targetChartVM.decimalPrecision)
         
         barChart.rightAxis.drawGridLinesEnabled = false
