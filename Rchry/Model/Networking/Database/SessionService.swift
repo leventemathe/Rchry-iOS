@@ -25,6 +25,7 @@ protocol SessionService {
     func observeGuests() -> Observable<[String]>
     func getGuests() -> Observable<[String]>
     func getSessions(underTarget target: Target) -> Observable<[Session]>
+    func delete(session: Session) -> Observable<Void>
 }
 
 struct FirebaseSessionCoder {
@@ -163,6 +164,19 @@ class FirebaseSessionService: SessionService {
                     observer.onCompleted()
                 }
             })
+            return Disposables.create()
+        }
+    }
+    
+    // Not checking for errors, because local caching is on
+    func delete(session: Session) -> Observable<Void> {
+        guard let uid = authService.userID else {
+            return Observable.error(DatabaseError.userNotLoggedIn)
+        }
+        return Observable.create { [unowned self] observer in
+            let key = self.firebaseSessionCoder.createSessionKey(fromSession: session)
+            self.databaseRef.child(uid).child(SessionNames.PATH).child(key).setValue(nil)
+            observer.onCompleted()
             return Disposables.create()
         }
     }

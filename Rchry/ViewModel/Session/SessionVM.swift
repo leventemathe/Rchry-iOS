@@ -18,6 +18,7 @@ import RxSwift
 // A shot can change its activenss by tapping the header. This shows/hides the scores.
 class SessionVM {
     
+    private let sessionService: SessionService
     private let shotService: ShotService
     private let dateProvider: DateProvider
     
@@ -26,10 +27,10 @@ class SessionVM {
     private var _shots = Variable([Shot]())
     private let disposeBag = DisposeBag()
     
-    init(session: Session, shotService: ShotService = FirebaseShotService(), dateProvider: DateProvider = BasicDateProvider()) {
+    init(session: Session, shotService: ShotService = FirebaseShotService(), sessionService: SessionService = FirebaseSessionService(), dateProvider: DateProvider = BasicDateProvider()) {
         self.session = session
         self.dateProvider = dateProvider
-        
+        self.sessionService = sessionService
         self.shotService = shotService
         setupInitialShot()
     }
@@ -113,6 +114,23 @@ class SessionVM {
         }
         let dateString = dateProvider.dateString(fromTimestamp: session.timestamp)
         return dateString
+    }
+    
+    private let doneTextDone = NSLocalizedString("SessionDoneButtonTextDone", comment: "The done button text in session indicating the scoring is done.")
+    private let doneTextCancel = NSLocalizedString("SessionDoneButtonTextCancel", comment: "The done button text in session indicating the scoring is done, but no scores were added (cancel).")
+    
+    var doneText: Observable<String> {
+        return _shots.asObservable()
+            .map { $0.filter { $0.shotReady } }
+            .map { [unowned self] in $0.count > 0 ? self.doneTextDone : self.doneTextCancel }
+    }
+    
+    var isEmpty: Bool {
+        return _shots.value.filter { $0.shotReady }.count < 1
+    }
+    
+    func deleteSession() {
+        sessionService.delete(session: session).subscribe().disposed(by: disposeBag)
     }
 }
 

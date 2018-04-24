@@ -105,7 +105,8 @@ class NewSessionVC: UIViewController {
                     let storyboard = UIStoryboard(name: "Session", bundle: nil)
                     let sessionVC = storyboard.instantiateViewController(withIdentifier: "SessionVC") as! SessionVC
                     sessionVC.sessionVM = SessionVM(session: session)
-                    self.navigationController?.pushViewController(sessionVC, animated: true)
+                    sessionVC.modalPresentationStyle = .overFullScreen
+                    self.present(sessionVC, animated: true, completion: { [weak self] in self?.navigationController?.popViewController(animated: false) })
                 } else {
                     MessageAlertModalVC.present(withTitle: CommonMessages.ERROR_TITLE, withMessage: CommonMessages.UNKOWN_ERROR, fromVC: self)
                 }

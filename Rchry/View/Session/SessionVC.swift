@@ -13,6 +13,7 @@ import RxCocoa
 class SessionVC: UIViewController {
 
     @IBOutlet weak var scoreSelectorTableView: UITableView!
+    @IBOutlet weak var doneButton: UIButton!
     
     var sessionVM: SessionVM!
     let disposeBag = DisposeBag()
@@ -21,6 +22,7 @@ class SessionVC: UIViewController {
         super.viewDidLoad()
         setupTitle()
         setupScoresTableView()
+        setupDoneButton()
     }
     
     private func setupTitle() {
@@ -33,6 +35,26 @@ class SessionVC: UIViewController {
         let sessionDatasource = SessionScoreSelectorDatasource(sessionVM: sessionVM, rowHeight: rowHeight)
         sessionVM.shotsDatasource.bind(to: scoreSelectorTableView.rx.items(dataSource: sessionDatasource)).disposed(by: disposeBag)
         scoreSelectorTableView.rx.setDelegate(sessionDatasource).disposed(by: disposeBag)
+    }
+    
+    private func setupDoneButton() {
+        setupDoneButtonText()
+        setupDoneButtonClicked()
+    }
+    
+    private func setupDoneButtonClicked() {
+        doneButton.rx.tap.bind { [unowned self] in
+            if self.sessionVM.isEmpty {
+                self.sessionVM.deleteSession()
+            }
+            self.dismiss(animated: true)
+        }.disposed(by: disposeBag)
+    }
+    
+    private func setupDoneButtonText() {
+        sessionVM.doneText
+            .bind(to: doneButton.rx.title())
+            .disposed(by: disposeBag)
     }
 }
 

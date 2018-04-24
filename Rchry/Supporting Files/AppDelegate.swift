@@ -42,6 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func setupGlobalViews() {
         UINavigationBar.appearance().tintColor = UIColor(named: "ColorThemeMid")
+        let navBarFont = UIFont(name: "Amatic-Bold", size: 24)!
+        UIBarButtonItem.appearance().setTitleTextAttributes([.font: navBarFont], for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes([.font: navBarFont], for: .selected)
     }
     
     private func decideInitialVC() {

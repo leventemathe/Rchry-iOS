@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,7 +27,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ieg-9o-xYt">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="589"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SessionScoreSelectorCell" rowHeight="100" id="gwR-yX-eil" customClass="SessionScoreSelectorCell" customModule="Rchry" customModuleProvider="target">
@@ -123,18 +123,39 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="acP-8v-rz8" customClass="LMButton" customModule="LMViews">
+                                <rect key="frame" x="107.5" y="605" width="160" height="46"/>
+                                <color key="backgroundColor" name="ColorThemeBright"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="7ws-AG-L18"/>
+                                    <constraint firstAttribute="height" constant="46" id="bSd-hZ-7ES"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="31"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="23"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ieg-9o-xYt" firstAttribute="leading" secondItem="odF-yZ-rZA" secondAttribute="leading" id="50J-zW-U8i"/>
                             <constraint firstItem="Ieg-9o-xYt" firstAttribute="trailing" secondItem="odF-yZ-rZA" secondAttribute="trailing" id="Iyh-Gb-8yn"/>
                             <constraint firstItem="Ieg-9o-xYt" firstAttribute="top" secondItem="i3y-XC-15i" secondAttribute="top" id="P7d-Ta-vv5"/>
-                            <constraint firstItem="Ieg-9o-xYt" firstAttribute="bottom" secondItem="odF-yZ-rZA" secondAttribute="bottom" id="fZp-31-dUZ"/>
+                            <constraint firstItem="acP-8v-rz8" firstAttribute="centerX" secondItem="i3y-XC-15i" secondAttribute="centerX" id="fE4-59-s8o"/>
+                            <constraint firstItem="acP-8v-rz8" firstAttribute="top" secondItem="Ieg-9o-xYt" secondAttribute="bottom" constant="16" id="mOg-Rd-AUQ"/>
+                            <constraint firstItem="odF-yZ-rZA" firstAttribute="bottom" secondItem="acP-8v-rz8" secondAttribute="bottom" constant="16" id="uWv-Ii-7gi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="odF-yZ-rZA"/>
                     </view>
                     <navigationItem key="navigationItem" title="Session" id="FIb-vB-JyY"/>
                     <connections>
+                        <outlet property="doneButton" destination="acP-8v-rz8" id="h5V-Fg-5qd"/>
                         <outlet property="scoreSelectorTableView" destination="Ieg-9o-xYt" id="p81-Y7-3BN"/>
                     </connections>
                 </viewController>
@@ -146,6 +167,9 @@
     <resources>
         <namedColor name="ColorThemeBright">
             <color red="0.47499999403953552" green="0.97299998998641968" blue="0.73299998044967651" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeBright">
+            <color red="0.47499999399999998" green="0.97299999000000004" blue="0.73299998040000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
