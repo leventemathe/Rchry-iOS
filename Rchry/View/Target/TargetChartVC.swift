@@ -12,9 +12,10 @@ import RxSwift
 
 class TargetChartVC: UIViewController {
     
+    var targetChartVM: TargetChartVM!
     
     @IBOutlet weak var userPickerTextfield: UITextField!
-    @IBOutlet weak var barChart: BarChartView!
+    @IBOutlet weak var barChart: TargetBarChart!
     
     @IBOutlet weak var statsContainerStackView: UIStackView!
     @IBOutlet weak var averageLbl: UILabel!
@@ -22,31 +23,26 @@ class TargetChartVC: UIViewController {
     @IBOutlet weak var maxLbl: UILabel!
     @IBOutlet weak var minLbl: UILabel!
     
-    var targetChartVM: TargetChartVM!
     private var disposeBag = DisposeBag()
     
     // Chart and picker views should be refreshed with new data whenever the vc appears.
     private var pickerDisposeBag: DisposeBag!
-    private var chartDisposeBag: DisposeBag!
     
     // Every time a different user is picked, I need to clear the subs to statistics for the old user.
     // Recreate this when changing user.
     private var statisticsDisposeBag: DisposeBag!
     
-    private var colors = [UIColor(named: "ColorThemeBright")!, UIColor(named: "ColorThemeDark")!, UIColor(named: "ColorThemeMid")!, UIColor(named: "ColorThemeError")!]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupBarChartNoDataText()
-        setupbarChartGestures()
         setupUserPickerViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        barChart.setNoDataText(NSLocalizedString("No data", comment: "No data label for chart"))
+        barChart.setGestures(false)
         engage()
-        refreshUserPickerViews()
-        refreshBarChartAndStatistics()
+        refresh()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -56,25 +52,30 @@ class TargetChartVC: UIViewController {
     
     private func engage() {
         targetChartVM.engage()
+        barChart.engage()
         pickerDisposeBag = DisposeBag()
-        chartDisposeBag = DisposeBag()
+        statisticsDisposeBag = DisposeBag()
     }
     
     private func disengage() {
         targetChartVM.disengage()
+        barChart.disengage()
         pickerDisposeBag = nil
-        chartDisposeBag = nil
+        statisticsDisposeBag = nil
     }
     
-    private func setupBarChartNoDataText() {
-        barChart.noDataText = NSLocalizedString("TargetChartNoDataText", comment: "The text to display when there is no data yet for the chart for a target: average scores per session.")
-        barChart.noDataTextColor = UIColor(named: "ColorThemeDark")!
-        barChart.noDataFont = UIFont(name: "Amatic-Bold", size: 24)!
+    private func refresh() {
+        refreshUserPickerViews()
+        refreshBarChart()
+        refreshStatistics()
     }
     
-    private func setupbarChartGestures() {
-        barChart.isUserInteractionEnabled = false
-    }
+    
+    
+    
+    
+    
+    // MARK: ********* User Picker setup **********
     
     private func setupUserPickerViews() {
         let userPicker = createUserPickerView()
@@ -124,6 +125,14 @@ class TargetChartVC: UIViewController {
         userPickerTextfield.inputView = userPicker
     }
     
+    // MARK: ********* End of User Picker setup **********
+    
+    
+    
+    
+    
+    // MARK: Refresh user picker, chart, and statistics labels
+    
     private func refreshUserPickerViews() {
         let pickerView = userPickerTextfield.inputView as! UIPickerView
         targetChartVM.guests
@@ -147,264 +156,32 @@ class TargetChartVC: UIViewController {
         return label
     }
     
-    private func refreshBarChartAndStatistics() {
-        let userText = userPickerTextfield.rx.text.asObservable()
-        userText
-            .filter { $0 != nil }
-            .map { $0! }
-            .subscribe(onNext: { [unowned self] user in
-                if user == ShotNames.ALL_SCORES {
-                    self.refreshBarChartForAllUsers()
-                } else {
-                    self.refreshBarchartForSingleUser(user)
-                    self.refreshStatisticsLabels(user)
-                }
-            }).disposed(by: chartDisposeBag)
+    private func refreshBarChart() {
+        guard let user = userPickerTextfield.text,
+              let start = targetChartVM.startTimestamp,
+              let end = targetChartVM.endTimestamp else {
+            return
+        }
+        let scores = targetChartVM.averageScoresForUserBySession(user)
+        barChart.refreshBarchart(scores,
+                                 user: user,
+                                 startTimestamp: start,
+                                 endTimestamp: end,
+                                 decimalPrecision: targetChartVM.decimalPrecision,
+                                 minimumScore: targetChartVM.minimumScore)
     }
     
-    private func refreshStatisticsLabels(_ user: String) {
-        statisticsDisposeBag = nil
-        statisticsDisposeBag = DisposeBag()
-        targetChartVM.average(forUser: user).bind(to: averageLbl.rx.text).disposed(by: statisticsDisposeBag)
-        targetChartVM.min(forUser: user).bind(to: minLbl.rx.text).disposed(by: statisticsDisposeBag)
-        targetChartVM.max(forUser: user).bind(to: maxLbl.rx.text).disposed(by: statisticsDisposeBag)
-        targetChartVM.diff(forUser: user).bind(to: diffLbl.rx.text).disposed(by: statisticsDisposeBag)
-        refreshStatisticsHiding(user)
-    }
-    
-    private func refreshStatisticsHiding(_ user: String) {
-        targetChartVM.shouldHideStats(forUser: user).bind(to: statsContainerStackView.rx.isHidden).disposed(by: statisticsDisposeBag)
-    }
-    
-    private func refreshBarChartForAllUsers() {
-        targetChartVM.averageScoresPerUserBySession
-            .subscribe(onNext: { [unowned self] averageScoreBySessionByUser in
-                if averageScoreBySessionByUser.count < 1 {
-                    self.barChart.data = nil
-                    return
-                }
-                let userCount = averageScoreBySessionByUser.count
-                // Because not all users take part in all sessions,
-                // the indexes for the entries can be off.
-                // Because of this, I assign indexes to the session names,
-                // that way sessions where the user didn't participate, can be skipped.
-                let sessionNameIndexes = self.targetChartVM.sessionNameIndexes(fromAverageScoresBySessionPerUser: averageScoreBySessionByUser)
-                var dataSets = self.buildDatasetsForMultipleUsers(fromAverageScoresBySessionPerUser: averageScoreBySessionByUser,
-                                                                  withSessionNameIndexes: sessionNameIndexes,
-                                                                  withUserCount: userCount)
-                self.setColorsForDatasetsForMultipleUsers(&dataSets)
-                self.refreshDataForMultipleUsers(dataSets, withUserCount: userCount)
-                self.refreshBarChartLooksForMultipleUsers(startTimestamp: self.targetChartVM.startTimestamp!, endTimestamp: self.targetChartVM.endTimestamp!)
-            })
-            .disposed(by: chartDisposeBag)
-    }
-    
-    private func buildDatasetsForMultipleUsers(fromAverageScoresBySessionPerUser scores: TargetChartVM.AverageScoresPerUserBySession,
-                                               withSessionNameIndexes sessionNameIndexes: [String: Int],
-                                               withUserCount userCount: Int) -> [BarChartDataSet] {
-        var dataSets = [BarChartDataSet]()
-        for (offset: indexOfUser, element: (key: user, value: averageScoresBySession)) in scores.enumerated() {
-            var entries = buildEntriesForMultipleUsers(fromAverageScoresBySession: averageScoresBySession, withSessionNameIndexes: sessionNameIndexes)
+    private func refreshStatistics() {
+        if let user = userPickerTextfield.text {
+            statisticsDisposeBag = nil
+            statisticsDisposeBag = DisposeBag()
             
-            let xOffset = -(1.0 / Double(userCount))/2.0 * (Double(userCount) - 1.0)
-            self.moveXCoordinatesOfEntriesToMakeThemGrouped(&entries, numberOfUsers: userCount, indexOfUser: indexOfUser, xInterval: 1.0, xOffset: xOffset)
+            targetChartVM.average(forUser: user).bind(to: averageLbl.rx.text).disposed(by: statisticsDisposeBag)
+            targetChartVM.min(forUser: user).bind(to: minLbl.rx.text).disposed(by: statisticsDisposeBag)
+            targetChartVM.max(forUser: user).bind(to: maxLbl.rx.text).disposed(by: statisticsDisposeBag)
+            targetChartVM.diff(forUser: user).bind(to: diffLbl.rx.text).disposed(by: statisticsDisposeBag)
             
-            let dataSet = BarChartDataSet(values: entries, label: user)
-            dataSets.append(dataSet)
+            targetChartVM.shouldHideStats(forUser: user).bind(to: statsContainerStackView.rx.isHidden).disposed(by: statisticsDisposeBag)
         }
-        return dataSets
-    }
-    
-    private func buildEntriesForMultipleUsers(fromAverageScoresBySession scores: [(String, Float)],
-                                              withSessionNameIndexes sessionNameIndexes: [String: Int]) -> [BarChartDataEntry] {
-        var entries = [BarChartDataEntry]()
-        for (session, averageScore) in scores {
-            let index = Double(sessionNameIndexes[session]!)
-            let entry = BarChartDataEntry(x: index, y: Double(averageScore))
-            entries.append(entry)
-        }
-        return entries
-    }
-    
-    private func moveXCoordinatesOfEntriesToMakeThemGrouped(_ entries: inout [BarChartDataEntry], numberOfUsers m: Int, indexOfUser j: Int,  xInterval interval: Double, xOffset: Double) {
-        var xDeltas = [Double]()
-        for i in 0..<m {
-            xDeltas.append((Double(i) * interval) / Double(m))
-        }
-        for entry in entries {
-            entry.x += xDeltas[j] + xOffset
-        }
-    }
-    
-    private func setColorsForDatasetsForMultipleUsers(_ dataSets: inout [BarChartDataSet]) {
-        for (i, dataSet) in dataSets.enumerated() {
-            if dataSets.count > self.colors.count {
-                for _ in colors.count-1..<dataSets.count {
-                    colors.append(UIColor.random())
-                }
-            }
-            dataSet.colors = [self.colors[i]]
-        }
-    }
-    
-    private func refreshDataForMultipleUsers(_ dataSets: [BarChartDataSet],
-                                         withUserCount userCount: Int) {
-        let data = BarChartData(dataSets: dataSets)
-        data.barWidth = data.barWidth / Double(userCount)
-        self.barChart.data = data
-    }
-    
-    private func refreshBarchartForSingleUser(_ user: String) {
-        targetChartVM.averageScoresForUserBySession(user)
-            .subscribe(onNext: { [unowned self] averageScoresBySession in
-                if averageScoresBySession.count < 1 {
-                    self.barChart.data = nil
-                    return
-                }
-                let entries = self.buildEntriesForSingleUser(fromAverageScoresBySession: averageScoresBySession)
-                self.refreshBarchartDataForSingleUser(user, fromEntries: entries)
-                self.refreshBarChartLooksForSingleUser(entries.count, startTimestamp: self.targetChartVM.startTimestamp!, endTimestamp: self.targetChartVM.endTimestamp!)
-            })
-            .disposed(by: chartDisposeBag)
-    }
-    
-    private func buildEntriesForSingleUser(fromAverageScoresBySession scores: TargetChartVM.AverageScoresForUserBySession) -> [BarChartDataEntry] {
-        var entries = [BarChartDataEntry]()
-        for (i, val) in scores.enumerated() {
-            let entry = BarChartDataEntry(x: Double(i), y: Double(val.1))
-            entries.append(entry)
-        }
-        return entries
-    }
-    
-    private func refreshBarchartDataForSingleUser(_ user: String, fromEntries entries: [BarChartDataEntry]) {
-        // Each user should have a dataset, where the label is their name.
-        let dataSet = BarChartDataSet(values: entries, label: user)
-        dataSet.colors = [self.colors[0]]
-        let data = BarChartData(dataSets: [dataSet])
-        barChart.data = data
-    }
-    
-    private func refreshBarChartLooksForSingleUser(_ barCount: Int, startTimestamp start: Double, endTimestamp end: Double) {
-        refreshBarChartLooksCommon(startTimestamp: start, endTimestamp: end)
-        if barCount < changeDataLabelLookLimit {
-            barChart.data?.setDrawValues(true)
-            barChart.leftAxis.drawGridLinesEnabled = false
-            barChart.leftAxis.drawLabelsEnabled = false
-            barChart.leftAxis.drawAxisLineEnabled = false
-        } else {
-            barChart.data?.setDrawValues(false)
-            barChart.leftAxis.drawGridLinesEnabled = true
-            barChart.leftAxis.drawLabelsEnabled = true
-            barChart.leftAxis.drawAxisLineEnabled = true
-        }
-    }
-    
-    private let changeDataLabelLookLimit = 8
-    
-    private func refreshBarChartLooksCommon(startTimestamp start: Double, endTimestamp end: Double) {
-        barChart.chartDescription?.text = ""
-        
-        barChart.data?.setValueFont(UIFont(name: "Lato-Regular", size: 8)!)
-        barChart.data?.setValueTextColor(UIColor(named: "ColorThemeDark")!)
-        barChart.data?.setValueFormatter(TargetBarChartDataValueFormatter(minFractionDigits: targetChartVM.decimalPrecision, maxFractionDigits: targetChartVM.decimalPrecision))
-        
-        barChart.legend.textColor = UIColor(named: "ColorThemeDark")!
-        barChart.legend.font = UIFont(name: "Lato-Regular", size: 10)!
-        
-        barChart.xAxis.axisLineColor = UIColor(named: "ColorThemeMid")!
-        barChart.xAxis.labelTextColor = UIColor(named: "ColorThemeDark")!
-        barChart.xAxis.labelPosition = .bottom
-        
-        barChart.xAxis.drawLabelsEnabled = true
-        barChart.xAxis.axisMaxLabels = 2
-        barChart.xAxis.granularity = 1.0
-        barChart.xAxis.granularityEnabled = true
-        barChart.xAxis.valueFormatter = TargetBarChartXAxisValueFormatter(startTimestamp: start, endTimestamp: end)
-        barChart.xAxis.drawGridLinesEnabled = false
-        if let entryCount = barChart.barData?.entryCount {
-            if entryCount > changeDataLabelLookLimit {
-                barChart.xAxis.avoidFirstLastClippingEnabled = true
-            } else {
-                barChart.xAxis.avoidFirstLastClippingEnabled = false
-            }
-            
-        } else {
-            barChart.xAxis.avoidFirstLastClippingEnabled = false
-        }
-        
-        barChart.leftAxis.axisLineColor = UIColor(named: "ColorThemeMid")!
-        barChart.leftAxis.gridColor = UIColor(named: "ColorThemeMid")!
-        barChart.leftAxis.labelTextColor = UIColor(named: "ColorThemeDark")!
-        barChart.leftAxis.labelFont = UIFont(name: "Lato-Regular", size: 10)!
-        barChart.leftAxis.axisMinimum = Double(targetChartVM.minimumScore)        
-        barChart.leftAxis.valueFormatter = TargetBarChartYAxisValueFormatter(minFractionDigits: targetChartVM.decimalPrecision, maxFractionDigits: targetChartVM.decimalPrecision)
-        
-        barChart.rightAxis.drawGridLinesEnabled = false
-        barChart.rightAxis.drawLabelsEnabled = false
-        barChart.rightAxis.drawAxisLineEnabled = false
-    }
-    
-    private func refreshBarChartLooksForMultipleUsers(startTimestamp start: Double, endTimestamp end: Double) {
-        refreshBarChartLooksCommon(startTimestamp: start, endTimestamp: end)
-        barChart.data?.setDrawValues(false)
-        barChart.leftAxis.drawGridLinesEnabled = true
-        barChart.leftAxis.drawLabelsEnabled = true
-        barChart.leftAxis.drawAxisLineEnabled = true
-    }
-}
-
-class TargetBarChartDataValueFormatter: IValueFormatter {
-    
-    private let minFractionDigits: Int
-    private let maxFractionDigits: Int
-    
-    init(minFractionDigits: Int, maxFractionDigits: Int) {
-        self.minFractionDigits = minFractionDigits
-        self.maxFractionDigits = maxFractionDigits
-    }
-    
-    func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
-        return Float(value).prettyString(minFractionDigits: minFractionDigits, maxFractionDigits: maxFractionDigits)!
-    }
-}
-
-class TargetBarChartYAxisValueFormatter: IAxisValueFormatter {
-
-    private let minFractionDigits: Int
-    private let maxFractionDigits: Int
-    
-    init(minFractionDigits: Int, maxFractionDigits: Int) {
-        self.minFractionDigits = minFractionDigits
-        self.maxFractionDigits = maxFractionDigits
-    }
-    
-    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        return Float(value).prettyString(minFractionDigits: minFractionDigits, maxFractionDigits: maxFractionDigits)!
-    }
-}
-
-class TargetBarChartXAxisValueFormatter: IAxisValueFormatter {
-    
-    let dateProvider: DateProvider
-    let startTimestamp: Double
-    let endTimestamp: Double
-    
-    init(startTimestamp: Double, endTimestamp: Double, dateProvider: DateProvider = BasicDateProvider()) {
-        self.dateProvider = dateProvider
-        self.startTimestamp = startTimestamp
-        self.endTimestamp = endTimestamp
-    }
-
-    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        guard let entries = axis?.entries, let firstEntry = entries.first, let lastEntry = entries.last else {
-            return ""
-        }
-        if value == firstEntry {
-            return dateProvider.dateString(fromTimestamp: startTimestamp)
-        } else if value == lastEntry {
-            return dateProvider.dateString(fromTimestamp: endTimestamp)
-        }
-        return ""
     }
 }

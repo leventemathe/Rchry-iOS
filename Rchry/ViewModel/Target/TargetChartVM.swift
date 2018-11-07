@@ -8,6 +8,8 @@
 
 import RxSwift
 
+typealias AverageScoresForUserBySession = [(String, Float)]
+
 class TargetChartVM {
     
     let decimalPrecision: Int
@@ -36,8 +38,6 @@ class TargetChartVM {
         disposeBag = nil
     }
     
-    typealias AverageScoresForUserBySession = [(String, Float)]
-    
     func averageScoresForUserBySession(_ user: String) -> Observable<AverageScoresForUserBySession> {
         return sessions.asObservable()
             .filter { $0.count > 0 }
@@ -59,33 +59,11 @@ class TargetChartVM {
     var guests: Observable<[String]> {
         return sessionService.observeGuests()
             .map { guests in
-                // TODO: To show all user charts again, uncomment here.
-                // Do it when the bars align properly, even if some users skipped some sessions.
-                var users = [ShotNames.MY_SCORE] //, ShotNames.ALL_SCORES]
+                var users = [ShotNames.MY_SCORE]
                 if guests.count > 0 {
                     users.append(contentsOf: guests)
                 }
                 return users
-            }
-    }
-    
-    typealias AverageScoresPerUserBySession = [String: [(String, Float)]]
-    
-    var averageScoresPerUserBySession: Observable<AverageScoresPerUserBySession> {
-        return sessions.asObservable()
-            .filter { $0.count > 0 }
-            .map { [unowned self] sessions in
-                var result = [String: [(String, Float)]]()
-                for session in sessions {
-                    for (user, scores) in session.shotsByUser {
-                        let averageScore = self.statistics.calculateAverage(scores)!
-                        if result[user] == nil {
-                            result[user] = [(String, Float)]()
-                        }
-                        result[user]?.append((session.name, averageScore))
-                    }
-                }
-                return result
             }
     }
     
@@ -101,18 +79,6 @@ class TargetChartVM {
             return nil
         }
         return sessions.value.last?.timestamp
-    }
-    
-    func sessionNameIndexes(fromAverageScoresBySessionPerUser scores: AverageScoresPerUserBySession) -> [String: Int] {
-        let thisUsersScoresTookPartInAllSessions = scores.max(by: { $0.value.count < $1.value.count })!.value
-        let sessionNames = thisUsersScoresTookPartInAllSessions.map { $0.0 }
-        var sessionNameIndexes = [String: Int]()
-        var index = 0
-        for sessionName in sessionNames {
-            sessionNameIndexes[sessionName] = index
-            index += 1
-        }
-        return sessionNameIndexes
     }
     
     private func scoresForUser(_ user: String) -> Observable<[Float]> {
