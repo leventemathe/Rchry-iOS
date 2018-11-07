@@ -157,16 +157,12 @@ class TargetChartVC: UIViewController {
     }
     
     private func refreshBarChart() {
-        guard let user = userPickerTextfield.text,
-              let start = targetChartVM.startTimestamp,
-              let end = targetChartVM.endTimestamp else {
+        guard let user = userPickerTextfield.text else {
             return
         }
-        let scores = targetChartVM.averageScoresForUserBySession(user)
+        let scores = targetChartVM.userScore(user)
         barChart.refreshBarchart(scores,
                                  user: user,
-                                 startTimestamp: start,
-                                 endTimestamp: end,
                                  decimalPrecision: targetChartVM.decimalPrecision,
                                  minimumScore: targetChartVM.minimumScore)
     }

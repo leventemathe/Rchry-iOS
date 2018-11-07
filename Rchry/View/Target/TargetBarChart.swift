@@ -49,31 +49,29 @@ class TargetBarChart: BarChartView {
         isUserInteractionEnabled = gestures
     }
 
-    func refreshBarchart(_ averageScoresForUserBySession: Observable<AverageScoresForUserBySession>,
+    func refreshBarchart(_ averageScoresForUserBySession: Observable<UserScoreData>,
                          user: String,
-                         startTimestamp: Double,
-                         endTimestamp: Double,
                          decimalPrecision precision: Int,
                          minimumScore: Float) {
         engage()
         averageScoresForUserBySession
-            .subscribe(onNext: { [unowned self] averageScoresBySession in
-                if averageScoresBySession.count < 1 {
+            .subscribe(onNext: { [unowned self] userScore in
+                if userScore.scoresBySession.count < 1 {
                     self.data = nil
                     return
                 }
-                let entries = self.buildEntries(fromAverageScoresBySession: averageScoresBySession)
+                let entries = self.buildEntries(fromAverageScoresBySession: userScore.scoresBySession)
                 self.refreshBarchartData(user, fromEntries: entries)
                 self.refreshBarChartLooks(entries.count,
-                                          startTimestamp: startTimestamp,
-                                          endTimestamp: endTimestamp,
+                                          startTimestamp: userScore.startTimestamp,
+                                          endTimestamp: userScore.endTimestamp,
                                           decimalPrecision: precision,
                                           minimumScore: minimumScore)
             })
             .disposed(by: disposeBag)
     }
     
-    private func buildEntries(fromAverageScoresBySession scores: AverageScoresForUserBySession) -> [BarChartDataEntry] {
+    private func buildEntries(fromAverageScoresBySession scores: [(String, Float)]) -> [BarChartDataEntry] {
         var entries = [BarChartDataEntry]()
         for (i, val) in scores.enumerated() {
             let entry = BarChartDataEntry(x: Double(i), y: Double(val.1))

@@ -8,7 +8,12 @@
 
 import RxSwift
 
-typealias AverageScoresForUserBySession = [(String, Float)]
+struct UserScoreData {
+    
+    let scoresBySession: [(String, Float)]
+    let startTimestamp: Double
+    let endTimestamp: Double
+}
 
 class TargetChartVM {
     
@@ -38,13 +43,13 @@ class TargetChartVM {
         disposeBag = nil
     }
     
-    func averageScoresForUserBySession(_ user: String) -> Observable<AverageScoresForUserBySession> {
+    func userScore(_ user: String) -> Observable<UserScoreData> {
         return sessions.asObservable()
             .filter { $0.count > 0 }
             .map { self.getScoresPerSessionForUser(user, fromSessions: $0) }
     }
     
-    private func getScoresPerSessionForUser(_ user: String, fromSessions sessions: [Session]) -> [(String, Float)] {
+    private func getScoresPerSessionForUser(_ user: String, fromSessions sessions: [Session]) -> UserScoreData {
         var averageScores = [(String, Float)]()
         for session in sessions {
             if let scores = session.shotsByUser[user] {
@@ -53,7 +58,7 @@ class TargetChartVM {
                 }
             }
         }
-        return averageScores
+        return UserScoreData(scoresBySession: averageScores, startTimestamp: sessions.first?.timestamp ?? 0, endTimestamp: sessions.last?.timestamp ?? 0)
     }
     
     var guests: Observable<[String]> {
@@ -67,23 +72,10 @@ class TargetChartVM {
             }
     }
     
-    var startTimestamp: Double? {
-        if sessions.value.count < 1 {
-            return nil
-        }
-        return sessions.value[0].timestamp
-    }
-    
-    var endTimestamp: Double? {
-        if sessions.value.count < 1 {
-            return nil
-        }
-        return sessions.value.last?.timestamp
-    }
-    
     private func scoresForUser(_ user: String) -> Observable<[Float]> {
         return sessions.asObservable()
             .map { [unowned self] in self.getScoresPerSessionForUser(user, fromSessions: $0) }
+            .map { $0.scoresBySession }
             .filter { $0.count > 0 }
             .map { $0.map { $0.1 } }
     }
@@ -120,7 +112,7 @@ class TargetChartVM {
     func shouldHideStats(forUser user: String) -> Observable<Bool> {
         return sessions.asObservable()
             .map { [unowned self] in self.getScoresPerSessionForUser(user, fromSessions: $0) }
-            .map { $0.map { $0.1 } }
+            .map { $0.scoresBySession.map { $0.1 } }
             .map { $0.count < 1 }
     }
 }
