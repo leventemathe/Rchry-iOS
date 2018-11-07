@@ -91,7 +91,7 @@ open class LMLabel: UILabel {
     private var textPaddingInsets: UIEdgeInsets = UIEdgeInsets.zero
     
     override open func drawText(in rect: CGRect) {
-        super.drawText(in: UIEdgeInsetsInsetRect(rect, textPaddingInsets))
+        super.drawText(in: rect.inset(by: textPaddingInsets))
     }
     
     override open var intrinsicContentSize: CGSize {

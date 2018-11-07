@@ -29,18 +29,13 @@ class MainVC: UIViewController {
         decideVC()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UIApplication.shared.isStatusBarHidden = false
-    }
-    
     func decideVC() {
         if authService.isLoggedIn{
-            if !childViewControllers.contains(targetsNavigationVC) {
+            if !children.contains(targetsNavigationVC) {
                 setTargetsNavigationVC()
             }
         } else {
-            if !childViewControllers.contains(loginVC) {
+            if !children.contains(loginVC) {
                 setLoginVC()
             }
         }
@@ -57,15 +52,24 @@ class MainVC: UIViewController {
     }
     
     private func set(vc: UIViewController) {
-        addChildViewController(vc)
+        addChild(vc)
         vc.view.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
         view.addSubview(vc.view)
-        vc.didMove(toParentViewController: self)
+        vc.didMove(toParent: self)
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     private func unset(vc: UIViewController) {
-        vc.willMove(toParentViewController: nil)
+        vc.willMove(toParent: nil)
         vc.view.removeFromSuperview()
-        vc.removeFromParentViewController()
+        vc.removeFromParent()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if let _ = children.first as? LoginVC {
+            return .lightContent
+        } else {
+            return .default
+        }
     }
 }

@@ -10,6 +10,7 @@
 		BA612F4279376393D67C2A99 /* Pods_RchryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1590B90AFD3CED9B09886251 /* Pods_RchryTests.framework */; };
 		D70880E4205BD9E100F56319 /* SessionScoreSelectorVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70880E3205BD9E100F56319 /* SessionScoreSelectorVM.swift */; };
 		D70D18C4207D1B6B00D1E031 /* TargetChartVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70D18C3207D1B6B00D1E031 /* TargetChartVM.swift */; };
+		D71AD7672190998A009018B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D71AD7662190998A009018B2 /* GoogleService-Info.plist */; };
 		D71E08D61FCEE9A400D9FAA3 /* MessageAlertModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E08D51FCEE9A400D9FAA3 /* MessageAlertModalVC.swift */; };
 		D71E08D81FCEECA200D9FAA3 /* TargetsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E08D71FCEECA200D9FAA3 /* TargetsVC.swift */; };
 		D71F8E312004F64E0077ECAB /* TargetValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71F8E302004F64E0077ECAB /* TargetValidator.swift */; };
@@ -20,7 +21,6 @@
 		D71FB5BF1FFD48330085CDDC /* NewTarget.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D71FB5C11FFD48330085CDDC /* NewTarget.storyboard */; };
 		D7231CD6201A2B320073CBD7 /* SessionScoreSelectorHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7231CD5201A2B320073CBD7 /* SessionScoreSelectorHeaderView.swift */; };
 		D7231CD8201A2B420073CBD7 /* SessionScoreSelectorHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7231CD7201A2B420073CBD7 /* SessionScoreSelectorHeaderView.xib */; };
-		D733044B1FCDA88F00FE4B8E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D733044A1FCDA88E00FE4B8E /* GoogleService-Info.plist */; };
 		D73528F21FF527B700EDC0FC /* NewTargetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D73528F11FF527B700EDC0FC /* NewTargetVC.swift */; };
 		D7377D1A1FDEE50A00AEA161 /* ProfileVMTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7377D191FDEE50A00AEA161 /* ProfileVMTest.swift */; };
 		D7377D1C1FDEE56200AEA161 /* AuthMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7377D1B1FDEE56200AEA161 /* AuthMocks.swift */; };
@@ -98,6 +98,7 @@
 		D70880E3205BD9E100F56319 /* SessionScoreSelectorVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionScoreSelectorVM.swift; sourceTree = "<group>"; };
 		D70D18C3207D1B6B00D1E031 /* TargetChartVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetChartVM.swift; sourceTree = "<group>"; };
 		D71ACA3B1FF3D35500988370 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Profile.strings; sourceTree = "<group>"; };
+		D71AD7662190998A009018B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D71E08D51FCEE9A400D9FAA3 /* MessageAlertModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAlertModalVC.swift; sourceTree = "<group>"; };
 		D71E08D71FCEECA200D9FAA3 /* TargetsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetsVC.swift; sourceTree = "<group>"; };
 		D71F8E302004F64E0077ECAB /* TargetValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetValidator.swift; sourceTree = "<group>"; };
@@ -108,7 +109,6 @@
 		D71FB5C21FFD48360085CDDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NewTarget.storyboard; sourceTree = "<group>"; };
 		D7231CD5201A2B320073CBD7 /* SessionScoreSelectorHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionScoreSelectorHeaderView.swift; sourceTree = "<group>"; };
 		D7231CD7201A2B420073CBD7 /* SessionScoreSelectorHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SessionScoreSelectorHeaderView.xib; sourceTree = "<group>"; };
-		D733044A1FCDA88E00FE4B8E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D734C4CC1FD5860000027CDD /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/MessageAlertModal.strings; sourceTree = "<group>"; };
 		D734C4CD1FD5860100027CDD /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Login.strings; sourceTree = "<group>"; };
 		D734C4D01FD5860200027CDD /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -439,7 +439,7 @@
 		D7C6F2731FC7163B0032A879 /* Rchry */ = {
 			isa = PBXGroup;
 			children = (
-				D733044A1FCDA88E00FE4B8E /* GoogleService-Info.plist */,
+				D71AD7662190998A009018B2 /* GoogleService-Info.plist */,
 				D7C1C4DA1FD8471700FA0551 /* Localizable.strings */,
 				D75D4093208A487500DAD0F7 /* Assets */,
 				D7F0D8BE1FCC58D7009A044B /* Supporting Files */,
@@ -571,7 +571,6 @@
 				D7C6F26E1FC7163B0032A879 /* Frameworks */,
 				D7C6F26F1FC7163B0032A879 /* Resources */,
 				65DE0C8CF57E37217175E36A /* [CP] Embed Pods Frameworks */,
-				3A270EB48D89CEA779B8FF31 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -591,7 +590,6 @@
 				D7C6F2821FC7163B0032A879 /* Frameworks */,
 				D7C6F2831FC7163B0032A879 /* Resources */,
 				1D8A0E40D9EDA4FA28ACE18D /* [CP] Embed Pods Frameworks */,
-				B3A6B92FCBA49F8D4D14098B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -610,11 +608,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0910;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Máthé Levente";
 				TargetAttributes = {
 					D7C6F2701FC7163B0032A879 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 					D7C6F2841FC7163B0032A879 = {
@@ -654,7 +653,6 @@
 				D71FB5BF1FFD48330085CDDC /* NewTarget.storyboard in Resources */,
 				D7D6893E1FD57EFB00ABB213 /* Profile.storyboard in Resources */,
 				D76CA94F1FCC622300D8C2AC /* Colors.xcassets in Resources */,
-				D733044B1FCDA88F00FE4B8E /* GoogleService-Info.plist in Resources */,
 				D7231CD8201A2B420073CBD7 /* SessionScoreSelectorHeaderView.xib in Resources */,
 				D778CA811FCD9094001F2D99 /* AmaticSC-Regular.ttf in Resources */,
 				D7D689381FD57EDC00ABB213 /* MessageAlertModal.storyboard in Resources */,
@@ -663,6 +661,7 @@
 				D7BBC0112017671300DC2480 /* Target.storyboard in Resources */,
 				D7C6F27C1FC7163B0032A879 /* Assets.xcassets in Resources */,
 				D7BBC00E2017665A00DC2480 /* NewSession.storyboard in Resources */,
+				D71AD7672190998A009018B2 /* GoogleService-Info.plist in Resources */,
 				D7C1C4D81FD8471700FA0551 /* Localizable.strings in Resources */,
 				D74C39682018BD33006EDBB4 /* Session.storyboard in Resources */,
 				D7C6F27A1FC7163B0032A879 /* Login.storyboard in Resources */,
@@ -687,12 +686,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RchryTests/Pods-RchryTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
 				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
@@ -700,21 +701,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RchryTests/Pods-RchryTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3A270EB48D89CEA779B8FF31 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rchry/Pods-Rchry-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		57CABEBFF5DB6ABF83147AF5 /* [CP] Check Pods Manifest.lock */ = {
@@ -747,8 +733,9 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/LMViews/LMViews.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -761,8 +748,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LMViews.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -789,21 +777,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B3A6B92FCBA49F8D4D14098B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RchryTests/Pods-RchryTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -966,6 +939,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -973,6 +947,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1024,6 +999,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1031,6 +1007,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1072,7 +1049,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.levente.mathe.Rchry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1089,7 +1066,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.levente.mathe.Rchry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1107,7 +1084,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.levente.mathe.RchryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rchry.app/Rchry";
 			};
@@ -1125,7 +1102,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.levente.mathe.RchryTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rchry.app/Rchry";
 			};

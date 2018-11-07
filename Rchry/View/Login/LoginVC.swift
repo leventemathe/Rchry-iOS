@@ -14,14 +14,6 @@ class LoginVC: UIViewController {
     
     private var loginVM = LoginVM(facebookAuthService: FacebookAuthService(), authService: FirebaseAuthService(), authErrorHandler: BasicAuthErrorToMessageMapper())
     
-    override func viewWillAppear(_ animated: Bool) {
-        UIApplication.shared.statusBarStyle = .lightContent
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        UIApplication.shared.statusBarStyle = .default
-    }
-    
     @IBAction func facebookLoginBtnTouched(_ sender: LMButton) {
         loginVM.loginWithFacebook { errorMessage in
             if let errorMessage = errorMessage {

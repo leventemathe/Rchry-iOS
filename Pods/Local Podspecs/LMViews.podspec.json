@@ -1,6 +1,6 @@
 {
   "name": "LMViews",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "summary": "A set of IBDesignable UIView subclasses with IBInspectable properties",
   "homepage": "https://github.com/leviouss/LMViews",
   "license": "MIT",
@@ -12,7 +12,7 @@
   },
   "source": {
     "git": "https://github.com/leviouss/LMViews.git",
-    "tag": "v0.5.1-alpha"
+    "tag": "v0.5.2-alpha"
   },
   "source_files": [
     "LMViews",

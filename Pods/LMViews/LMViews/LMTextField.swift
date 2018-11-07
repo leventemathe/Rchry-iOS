@@ -160,7 +160,7 @@ open class LMTextField: UITextField, UITextFieldDelegate {
     
     open override func textRect(forBounds bounds: CGRect) -> CGRect {
         if textPadding {
-            return UIEdgeInsetsInsetRect(bounds, textPaddingInsets)
+            return bounds.inset(by: textPaddingInsets)
         } else {
             return super.textRect(forBounds: bounds)
         }
@@ -168,7 +168,7 @@ open class LMTextField: UITextField, UITextFieldDelegate {
     
     open override func editingRect(forBounds bounds: CGRect) -> CGRect {
         if textPadding {
-            return UIEdgeInsetsInsetRect(bounds, textPaddingInsets)
+            return bounds.inset(by: textPaddingInsets)
         } else {
             return super.textRect(forBounds: bounds)
         }
@@ -197,7 +197,7 @@ open class LMTextField: UITextField, UITextFieldDelegate {
     private func setClearButton(_ image: UIImage) {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 15, height: 15))
         button.setImage(clearButton, for: .normal)
-        button.addTarget(self, action: #selector(clearText(sender:)), for: UIControlEvents.touchUpInside)
+        button.addTarget(self, action: #selector(clearText(sender:)), for: UIControl.Event.touchUpInside)
         rightView = button
         
         self.clearButtonMode = .never

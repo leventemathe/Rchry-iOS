@@ -110,8 +110,8 @@ class TargetChartVC: UIViewController {
         let doneButton = UIBarButtonItem(title: doneButtonText, style: .done, target: self, action: #selector(TargetChartVC.dismissUserPickerView))
         doneButton.tintColor = UIColor.white
         let doneButtonFont = UIFont(name: "Amatic-Bold", size: 26.0)!
-        doneButton.setTitleTextAttributes([NSAttributedStringKey.font: doneButtonFont], for: .normal)
-        doneButton.setTitleTextAttributes([NSAttributedStringKey.font: doneButtonFont], for: .selected)
+        doneButton.setTitleTextAttributes([NSAttributedString.Key.font: doneButtonFont], for: .normal)
+        doneButton.setTitleTextAttributes([NSAttributedString.Key.font: doneButtonFont], for: .selected)
         return doneButton
     }
     

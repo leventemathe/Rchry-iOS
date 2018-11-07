@@ -11,16 +11,17 @@ import Firebase
 
 protocol FirebaseAuth {
     
-    func signIn(with credential: AuthCredential, completion: @escaping AuthResultCallback)
+    func signIn(with credential: AuthCredential, completion: @escaping AuthDataResultCallback)
     func signOut(_ completion: @escaping (Error?) -> ())
     func deleteCurrentUser(_ completion: @escaping (Error?) -> ())
     func getUser() -> User?
 }
 
 fileprivate struct BasicFirebaseAuth: FirebaseAuth {
+
     
-    func signIn(with credential: AuthCredential, completion: @escaping AuthResultCallback) {
-        Auth.auth().signIn(with: credential, completion: completion)
+    func signIn(with credential: AuthCredential, completion: @escaping AuthDataResultCallback) {
+        Auth.auth().signInAndRetrieveData(with: credential, completion: completion)
     }
     
     func signOut(_ completion: @escaping (Error?) -> ()) {

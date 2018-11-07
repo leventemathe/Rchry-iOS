@@ -75,8 +75,8 @@ open class LMSegmentedControl: UISegmentedControl {
     }
     
     private func setFont() {
-        let attr: [AnyHashable: Any] = [
-            NSAttributedStringKey.font: UIFont(name: font, size: fontSize)!
+        let attr = [
+            NSAttributedString.Key.font: UIFont(name: font, size: fontSize)!
         ]
         setTitleTextAttributes(attr, for: .normal)
     }

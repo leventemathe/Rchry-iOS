@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -94,11 +95,11 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="lYD-2L-W4Z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="DLe-Om-96b"/>
-                            <constraint firstItem="kJC-i5-oTX" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="GE3-w0-ErU"/>
+                            <constraint firstItem="kJC-i5-oTX" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="GE3-w0-ErU"/>
                             <constraint firstAttribute="trailing" secondItem="lYD-2L-W4Z" secondAttribute="trailing" id="l7j-UI-gRC"/>
                             <constraint firstItem="kJC-i5-oTX" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="mdt-Hs-AZ3"/>
-                            <constraint firstItem="kJC-i5-oTX" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="vR3-Y6-ZYp"/>
-                            <constraint firstItem="kJC-i5-oTX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="yZd-f6-mm2"/>
+                            <constraint firstItem="kJC-i5-oTX" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="vR3-Y6-ZYp"/>
+                            <constraint firstItem="kJC-i5-oTX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yZd-f6-mm2"/>
                             <constraint firstItem="lYD-2L-W4Z" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="zqb-b9-ZWh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -130,7 +131,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Targets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jI9-mc-uvd">
-                                <rect key="frame" x="106" y="28" width="109" height="34.5"/>
+                                <rect key="frame" x="105.5" y="28" width="109" height="34.5"/>
                                 <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -168,7 +169,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score Shots" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ftb-aw-Siv">
-                                <rect key="frame" x="117" y="28" width="87" height="34.5"/>
+                                <rect key="frame" x="116.5" y="28" width="87" height="34.5"/>
                                 <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
