@@ -100,14 +100,14 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="xyb-JN-D9m">
                                         <rect key="frame" x="0.0" y="0.0" width="359" height="30.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick a user:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S37-I3-Bhg">
-                                                <rect key="frame" x="0.0" y="0.0" width="78.5" height="30.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick user:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S37-I3-Bhg">
+                                                <rect key="frame" x="0.0" y="0.0" width="66.5" height="30.5"/>
                                                 <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="28"/>
                                                 <color key="textColor" name="ColorThemeDark"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pick a user to show data" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bVh-qf-Mxf" customClass="UserPickerView" customModule="Rchry" customModuleProvider="target">
-                                                <rect key="frame" x="94.5" y="0.0" width="264.5" height="30.5"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pick user" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bVh-qf-Mxf" customClass="UserPickerView" customModule="Rchry" customModuleProvider="target">
+                                                <rect key="frame" x="82.5" y="0.0" width="276.5" height="30.5"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" name="ColorThemeDark"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>

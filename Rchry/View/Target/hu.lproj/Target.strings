@@ -1,0 +1,42 @@
+
+/* Class = "UILabel"; text = "Average"; ObjectID = "0Ox-rm-cqK"; */
+"0Ox-rm-cqK.text" = "Átlag";
+
+/* Class = "UILabel"; text = "12"; ObjectID = "2Zn-cf-H28"; */
+"2Zn-cf-H28.text" = "12";
+
+/* Class = "UILabel"; text = "12"; ObjectID = "3lm-zT-7iO"; */
+"3lm-zT-7iO.text" = "12";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "3uf-6g-J82"; */
+"3uf-6g-J82.title" = " ";
+
+/* Class = "UILabel"; text = "Lowest"; ObjectID = "4fa-NI-Zd7"; */
+"4fa-NI-Zd7.text" = "Legalacsonyabb";
+
+/* Class = "UILabel"; text = "Diff"; ObjectID = "6Yr-zo-Vhy"; */
+"6Yr-zo-Vhy.text" = "Különbség";
+
+/* Class = "UILabel"; text = "12"; ObjectID = "832-72-FkN"; */
+"832-72-FkN.text" = "12";
+
+/* Class = "UILabel"; text = "Pick a user:"; ObjectID = "S37-I3-Bhg"; */
+"S37-I3-Bhg.text" = "Felhasználó:";
+
+/* Class = "UILabel"; text = "12"; ObjectID = "Sh4-yz-dtV"; */
+"Sh4-yz-dtV.text" = "12";
+
+/* Class = "UITextField"; placeholder = "Pick a user to show data"; ObjectID = "bVh-qf-Mxf"; */
+"bVh-qf-Mxf.placeholder" = "Válassz felhasználót";
+
+/* Class = "UIButton"; normalTitle = "New Session"; ObjectID = "fqf-B3-dfQ"; */
+"fqf-B3-dfQ.normalTitle" = "Új sorozat";
+
+/* Class = "UINavigationItem"; title = "Target"; ObjectID = "gd7-3Z-1qw"; */
+"gd7-3Z-1qw.title" = "Cél";
+
+/* Class = "UILabel"; text = "Average score per Session"; ObjectID = "t7Q-fE-2AQ"; */
+"t7Q-fE-2AQ.text" = "Átlagos pont per sorozat";
+
+/* Class = "UILabel"; text = "Highest"; ObjectID = "uXg-WT-sJf"; */
+"uXg-WT-sJf.text" = "Legmagasabb";

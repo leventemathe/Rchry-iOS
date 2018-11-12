@@ -1,0 +1,39 @@
+
+/* Class = "UILabel"; text = "Guest User"; ObjectID = "0Hi-iH-jxS"; */
+"0Hi-iH-jxS.text" = "Vendég felhasználó";
+
+/* Class = "UILabel"; text = "Guest User"; ObjectID = "NSe-w3-YAl"; */
+"NSe-w3-YAl.text" = "Vendég felhasználó";
+
+/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "NVE-z0-t1M"; */
+"NVE-z0-t1M.normalTitle" = "Kezdés";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "Xmr-pW-f97"; */
+"Xmr-pW-f97.text" = "Név";
+
+/* Class = "UILabel"; text = "Track my Score"; ObjectID = "chV-eP-MZj"; */
+"chV-eP-MZj.text" = "Kövesd a saját pontjaim";
+
+/* Class = "UITextField"; placeholder = "e.g. j_doe"; ObjectID = "clu-zs-6Uk"; */
+"clu-zs-6Uk.placeholder" = "pl. janos";
+
+/* Class = "UINavigationItem"; title = "New Session"; ObjectID = "dIr-0u-vOw"; */
+"dIr-0u-vOw.title" = "Új sorozat";
+
+/* Class = "UILabel"; text = "Guests:"; ObjectID = "f1c-ls-uoS"; */
+"f1c-ls-uoS.text" = "Vendégek:";
+
+/* Class = "UILabel"; text = "Add new guest"; ObjectID = "kay-Z7-W4w"; */
+"kay-Z7-W4w.text" = "Új vendég";
+
+/* Class = "UILabel"; text = "Pick a guest you added earlier:"; ObjectID = "qnv-xb-4Ae"; */
+"qnv-xb-4Ae.text" = "Korábban hozzáadott vendég:";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "wPY-In-QeF"; */
+"wPY-In-QeF.title" = " ";
+
+/* Class = "UITextField"; placeholder = "optional"; ObjectID = "wx0-Nr-TMK"; */
+"wx0-Nr-TMK.placeholder" = "opcionális";
+
+/* Class = "UILabel"; text = "Or"; ObjectID = "yea-q0-Mrt"; */
+"yea-q0-Mrt.text" = "vagy";
