@@ -12,32 +12,9 @@ import RxSwift
 
 class TargetBarChart: BarChartView {
     
-    private var disposeBag: DisposeBag!
+    private var disposeBag = DisposeBag()
     
     private var colors = [UIColor(named: "ColorThemeBright")!, UIColor(named: "ColorThemeDark")!, UIColor(named: "ColorThemeMid")!, UIColor(named: "ColorThemeError")!]
-    
-    init() {
-        super.init(frame: CGRect.zero)
-        setup()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-    
-    private func setup() {
-        disposeBag = DisposeBag()
-    }
-    
-    // TODO: what are these? in vc and vm too
-    func engage() {
-        disposeBag = DisposeBag()
-    }
-    
-    func disengage() {
-        disposeBag = nil
-    }
     
     func setNoDataText(_ text: String) {
         noDataText = text
@@ -49,17 +26,16 @@ class TargetBarChart: BarChartView {
         isUserInteractionEnabled = gestures
     }
 
-    func refreshBarchart(_ averageScoresForUserBySession: Observable<UserScoreData>,
-                         user: String,
-                         decimalPrecision precision: Int,
-                         minimumScore: Float) {
-        engage()
-        averageScoresForUserBySession
+    func subscribe(_ userData: Observable<UserScoreData>,
+                   decimalPrecision precision: Int,
+                   minimumScore: Float) {
+        userData
             .subscribe(onNext: { [unowned self] userScore in
                 if userScore.scoresBySession.count < 1 {
                     self.data = nil
                     return
                 }
+                let user = userScore.user
                 let entries = self.buildEntries(fromAverageScoresBySession: userScore.scoresBySession)
                 self.refreshBarchartData(user, fromEntries: entries)
                 self.refreshBarChartLooks(entries.count,

@@ -10,6 +10,7 @@
 		BA612F4279376393D67C2A99 /* Pods_RchryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1590B90AFD3CED9B09886251 /* Pods_RchryTests.framework */; };
 		D70880E4205BD9E100F56319 /* SessionScoreSelectorVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70880E3205BD9E100F56319 /* SessionScoreSelectorVM.swift */; };
 		D70D18C4207D1B6B00D1E031 /* TargetChartVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70D18C3207D1B6B00D1E031 /* TargetChartVM.swift */; };
+		D71074F821998B63002B134C /* UserPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71074F721998B63002B134C /* UserPickerView.swift */; };
 		D71AD7672190998A009018B2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D71AD7662190998A009018B2 /* GoogleService-Info.plist */; };
 		D71C195021933C2B0024EF91 /* TargetBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C194F21933C2B0024EF91 /* TargetBarChart.swift */; };
 		D71E08D61FCEE9A400D9FAA3 /* MessageAlertModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71E08D51FCEE9A400D9FAA3 /* MessageAlertModalVC.swift */; };
@@ -98,6 +99,7 @@
 		C82D1563AD28DBE6B97FCED7 /* Pods-RchryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RchryTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RchryTests/Pods-RchryTests.release.xcconfig"; sourceTree = "<group>"; };
 		D70880E3205BD9E100F56319 /* SessionScoreSelectorVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionScoreSelectorVM.swift; sourceTree = "<group>"; };
 		D70D18C3207D1B6B00D1E031 /* TargetChartVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetChartVM.swift; sourceTree = "<group>"; };
+		D71074F721998B63002B134C /* UserPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPickerView.swift; sourceTree = "<group>"; };
 		D71ACA3B1FF3D35500988370 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Profile.strings; sourceTree = "<group>"; };
 		D71AD7662190998A009018B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D71C194F21933C2B0024EF91 /* TargetBarChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetBarChart.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 			children = (
 				D7BBC0102017671300DC2480 /* Target.storyboard */,
 				D7BBC0122017678000DC2480 /* TargetVC.swift */,
+				D71074F721998B63002B134C /* UserPickerView.swift */,
 				D71C194F21933C2B0024EF91 /* TargetBarChart.swift */,
 				D7C81D442077765C004EB32E /* TargetChartVC.swift */,
 			);
@@ -812,6 +815,7 @@
 				D75D54651FD83740003B3D3F /* AuthErrorToMessageMapper.swift in Sources */,
 				D74EF8432019E2AA00FF1512 /* SessionScoreSelectorCell.swift in Sources */,
 				D7572C941FCDA4ED0024DEED /* ProfileVM.swift in Sources */,
+				D71074F821998B63002B134C /* UserPickerView.swift in Sources */,
 				D70880E4205BD9E100F56319 /* SessionScoreSelectorVM.swift in Sources */,
 				D7C6F2751FC7163B0032A879 /* AppDelegate.swift in Sources */,
 				D73528F21FF527B700EDC0FC /* NewTargetVC.swift in Sources */,

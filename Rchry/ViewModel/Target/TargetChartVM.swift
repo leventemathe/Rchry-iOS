@@ -10,6 +10,7 @@ import RxSwift
 
 struct UserScoreData {
     
+    let user: String
     let scoresBySession: [(String, Float)]
     let startTimestamp: Double
     let endTimestamp: Double
@@ -23,42 +24,33 @@ class TargetChartVM {
     private let sessionService: SessionService
     private let statistics: Statistics
     
-    private var sessions = Variable([Session]())
-    private var disposeBag: DisposeBag!
+    private var user = Variable("my_score")
+    private var disposeBag = DisposeBag()
     
-    init(decimalPrecision: Int = 2, target: Target, statistics: Statistics = Statistics(), sessionService: SessionService = FirebaseSessionService()) {
+    init(target: Target, decimalPrecision: Int = 2, statistics: Statistics = Statistics(), sessionService: SessionService = FirebaseSessionService()) {
         self.decimalPrecision = decimalPrecision
         self.target = target
         self.sessionService = sessionService
         self.statistics = statistics
-        engage()
+
     }
     
-    func engage() {
-        disposeBag = DisposeBag()
-        sessionService.observeSessions(underTarget: target).bind(to: sessions).disposed(by: disposeBag)
+    func subscribeToUser(_ user: Observable<String>) {
+        user.bind(to: self.user).disposed(by: disposeBag)
     }
     
-    func disengage() {
-        disposeBag = nil
-    }
-    
-    func userScore(_ user: String) -> Observable<UserScoreData> {
-        return sessions.asObservable()
-            .filter { $0.count > 0 }
-            .map { self.getScoresPerSessionForUser(user, fromSessions: $0) }
-    }
-    
-    private func getScoresPerSessionForUser(_ user: String, fromSessions sessions: [Session]) -> UserScoreData {
-        var averageScores = [(String, Float)]()
-        for session in sessions {
-            if let scores = session.shotsByUser[user] {
-                if scores.count > 0 {
-                    averageScores.append((session.name, self.statistics.calculateAverage(scores)!))
+    var userScore: Observable<UserScoreData> {
+        return Observable.combineLatest(user.asObservable(), sessionService.observeSessions(underTarget: target), resultSelector: { user, sessions in
+            var averageScores = [(String, Float)]()
+            for session in sessions {
+                if let scores = session.shotsByUser[user] {
+                    if scores.count > 0 {
+                        averageScores.append((session.name, self.statistics.calculateAverage(scores)!))
+                    }
                 }
             }
-        }
-        return UserScoreData(scoresBySession: averageScores, startTimestamp: sessions.first?.timestamp ?? 0, endTimestamp: sessions.last?.timestamp ?? 0)
+            return UserScoreData(user: user, scoresBySession: averageScores, startTimestamp: sessions.first?.timestamp ?? 0, endTimestamp: sessions.last?.timestamp ?? 0)
+        }).asObservable()
     }
     
     var guests: Observable<[String]> {
@@ -72,33 +64,28 @@ class TargetChartVM {
             }
     }
     
-    private func scoresForUser(_ user: String) -> Observable<[Float]> {
-        return sessions.asObservable()
-            .map { [unowned self] in self.getScoresPerSessionForUser(user, fromSessions: $0) }
-            .map { $0.scoresBySession }
-            .filter { $0.count > 0 }
-            .map { $0.map { $0.1 } }
-    }
-    
-    func average(forUser user: String) -> Observable<String> {
-        return scoresForUser(user)
-            .map { [unowned self] in self.statistics.calculateAverage($0)! }
+    var average: Observable<String> {
+        return userScore
+            .map { [unowned self] in self.statistics.calculateAverage($0.scoresBySession.map { $0.1 })! }
             .map { $0.prettyString(minFractionDigits: self.decimalPrecision, maxFractionDigits: self.decimalPrecision)! }
     }
     
-    func min(forUser user: String) -> Observable<String> {
-        return scoresForUser(user).map { [unowned self] in self.statistics.calculateMin($0)! }
-        .map { $0.prettyString(minFractionDigits: self.decimalPrecision, maxFractionDigits: self.decimalPrecision)! }
+    var min: Observable<String> {
+        return userScore
+            .map { [unowned self] in self.statistics.calculateMin($0.scoresBySession.map { $0.1 })! }
+            .map { $0.prettyString(minFractionDigits: self.decimalPrecision, maxFractionDigits: self.decimalPrecision)! }
     }
     
-    func max(forUser user: String) -> Observable<String> {
-        return scoresForUser(user).map { [unowned self] in self.statistics.calculateMax($0)! }
-        .map { $0.prettyString(minFractionDigits: self.decimalPrecision, maxFractionDigits: self.decimalPrecision)! }
+    var max: Observable<String> {
+        return userScore
+            .map { [unowned self] in self.statistics.calculateMax($0.scoresBySession.map { $0.1 })! }
+            .map { $0.prettyString(minFractionDigits: self.decimalPrecision, maxFractionDigits: self.decimalPrecision)! }
     }
     
-    func diff(forUser user: String) -> Observable<String> {
-        return scoresForUser(user).map { [unowned self] in self.statistics.calculateDiff($0)! }
-        .map { $0.prettyString(minFractionDigits: self.decimalPrecision, maxFractionDigits: self.decimalPrecision)! }
+    var diff: Observable<String> {
+        return userScore
+            .map { [unowned self] in self.statistics.calculateDiff($0.scoresBySession.map { $0.1 })! }
+            .map { $0.prettyString(minFractionDigits: self.decimalPrecision, maxFractionDigits: self.decimalPrecision)! }
     }
     
     var minimumScore: Float {
@@ -109,10 +96,9 @@ class TargetChartVM {
         return target.scores.max()!
     }
     
-    func shouldHideStats(forUser user: String) -> Observable<Bool> {
-        return sessions.asObservable()
-            .map { [unowned self] in self.getScoresPerSessionForUser(user, fromSessions: $0) }
-            .map { $0.scoresBySession.map { $0.1 } }
-            .map { $0.count < 1 }
+    var shouldHideStats: Observable<Bool> {
+        return userScore
+            .map { $0.scoresBySession }
+            .map { $0.isEmpty }
     }
 }

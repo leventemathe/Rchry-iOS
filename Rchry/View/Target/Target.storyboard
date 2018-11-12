@@ -106,7 +106,7 @@
                                                 <color key="textColor" name="ColorThemeDark"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pick a user to show data" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bVh-qf-Mxf" customClass="LMTextField" customModule="LMViews">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pick a user to show data" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bVh-qf-Mxf" customClass="UserPickerView" customModule="Rchry" customModuleProvider="target">
                                                 <rect key="frame" x="94.5" y="0.0" width="264.5" height="30.5"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="textColor" name="ColorThemeDark"/>
