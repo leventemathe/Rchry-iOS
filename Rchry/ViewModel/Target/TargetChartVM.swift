@@ -25,7 +25,6 @@ class TargetChartVM {
     private let statistics: Statistics
     
     private var user = Variable("my_score")
-    private var disposeBag = DisposeBag()
     
     init(target: Target, decimalPrecision: Int = 2, statistics: Statistics = Statistics(), sessionService: SessionService = FirebaseSessionService()) {
         self.decimalPrecision = decimalPrecision
@@ -35,8 +34,8 @@ class TargetChartVM {
 
     }
     
-    func subscribeToUser(_ user: Observable<String>) {
-        user.bind(to: self.user).disposed(by: disposeBag)
+    func subscribeToUser(_ user: Observable<String>) -> Disposable {
+        return user.bind(to: self.user)
     }
     
     var userScore: Observable<UserScoreData> {

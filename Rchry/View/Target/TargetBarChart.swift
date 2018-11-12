@@ -11,9 +11,7 @@ import Charts
 import RxSwift
 
 class TargetBarChart: BarChartView {
-    
-    private var disposeBag = DisposeBag()
-    
+        
     private var colors = [UIColor(named: "ColorThemeBright")!, UIColor(named: "ColorThemeDark")!, UIColor(named: "ColorThemeMid")!, UIColor(named: "ColorThemeError")!]
     
     func setNoDataText(_ text: String) {
@@ -28,8 +26,8 @@ class TargetBarChart: BarChartView {
 
     func subscribe(_ userData: Observable<UserScoreData>,
                    decimalPrecision precision: Int,
-                   minimumScore: Float) {
-        userData
+                   minimumScore: Float) -> Disposable {
+        return userData
             .subscribe(onNext: { [unowned self] userScore in
                 if userScore.scoresBySession.count < 1 {
                     self.data = nil
@@ -44,7 +42,6 @@ class TargetBarChart: BarChartView {
                                           decimalPrecision: precision,
                                           minimumScore: minimumScore)
             })
-            .disposed(by: disposeBag)
     }
     
     private func buildEntries(fromAverageScoresBySession scores: [(String, Float)]) -> [BarChartDataEntry] {

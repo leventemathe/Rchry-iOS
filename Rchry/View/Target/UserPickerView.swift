@@ -71,9 +71,9 @@ class UserPickerView: LMTextField {
         return self.rx.text.asObservable().filter { $0 != nil }.map { $0! }
     }
     
-    func subscribeToGuests(_ guests: Observable<[String]>) {
+    func subscribeToGuests(_ guests: Observable<[String]>) -> Disposable {
         let pickerView = self.inputView as! UIPickerView
-        guests
+        return guests
             .bind(to: pickerView.rx.items) { [unowned self] row, element, view in
                 var label: UILabel!
                 if let view = view as? UILabel {
@@ -82,7 +82,6 @@ class UserPickerView: LMTextField {
                 label = self.createLabelForUserPicker(element)
                 return label
             }
-            .disposed(by: disposeBag)
     }
     
     private func createLabelForUserPicker(_ text: String) -> UILabel {

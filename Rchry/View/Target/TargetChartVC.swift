@@ -23,6 +23,8 @@ class TargetChartVC: UIViewController {
     @IBOutlet weak var maxLbl: UILabel!
     @IBOutlet weak var minLbl: UILabel!
 
+    let disposeBag = DisposeBag()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupBarchart()
@@ -35,8 +37,13 @@ class TargetChartVC: UIViewController {
     }
     
     private func linkStreams() {
-        userPickerTextfield.subscribeToGuests(targetChartVM.guests)
-        targetChartVM.subscribeToUser(userPickerTextfield.user)
-        barChart.subscribe(targetChartVM.userScore, decimalPrecision: targetChartVM.decimalPrecision, minimumScore: targetChartVM.minimumScore)
+        userPickerTextfield.subscribeToGuests(targetChartVM.guests).disposed(by: disposeBag)
+        targetChartVM.subscribeToUser(userPickerTextfield.user).disposed(by: disposeBag)
+        barChart.subscribe(targetChartVM.userScore, decimalPrecision: targetChartVM.decimalPrecision, minimumScore: targetChartVM.minimumScore).disposed(by: disposeBag)
+        
+        targetChartVM.average.bind(to: averageLbl.rx.text).disposed(by: disposeBag)
+        targetChartVM.diff.bind(to: diffLbl.rx.text).disposed(by: disposeBag)
+        targetChartVM.min.bind(to: minLbl.rx.text).disposed(by: disposeBag)
+        targetChartVM.max.bind(to: maxLbl.rx.text).disposed(by: disposeBag)
     }
 }
