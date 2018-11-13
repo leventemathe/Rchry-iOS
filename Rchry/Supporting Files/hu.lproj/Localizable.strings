@@ -30,6 +30,9 @@
 /* Meters */
 "Meters" = "Méter";
 
+/* The score of the user */
+"My Score" = "Saját pontszám";
+
 /* No data label for chart */
 "No data" = "Nincs adat";
 

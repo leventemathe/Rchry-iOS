@@ -63,7 +63,7 @@ class UserPickerView: LMTextField {
     }
     
     private func setupUserPickerTextField(_ userPicker: UIPickerView) {
-        self.text = ShotNames.MY_SCORE
+        self.text = ShotNames.LOC_MY_SCORE
         self.inputView = userPicker
     }
     

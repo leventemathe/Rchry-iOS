@@ -93,7 +93,7 @@ class NewSessionVM {
             .flatMap { [unowned self] shouldTrackMyScore -> Observable<(Session?, String?)> in
                 var users = self.guests.value
                 if shouldTrackMyScore {
-                    users.append(ShotNames.MY_SCORE )
+                    users.append(ShotNames.LOC_MY_SCORE )
                 }
                 let session = Session(ownerTarget: self.ownerTarget, name: self.name.value, timestamp: self.dateProvider.currentTimestamp, shotsByUser: users.reduce([String: [Float]]()) { result, user in
                     var result = result

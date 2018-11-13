@@ -41,7 +41,7 @@ struct FirebaseSessionCoder {
         ]
         
         let savedGuestsDict = session.shotsByUser
-            .filter { $0.0 != ShotNames.MY_SCORE }
+            .filter { $0.0 != ShotNames.LOC_MY_SCORE }
             .map { $0.0 }
             .reduce(into: [String: Any](), { dict, guest in
             dict["\(SessionNames.SAVED_GUESTS)/\(guest)"] = timestamp as Any
@@ -58,7 +58,11 @@ struct FirebaseSessionCoder {
         var sessions = [Session]()
         for (_, sessionDict) in dict {
             if let name = sessionDict[SessionNames.NAME] as? String, let timestamp = sessionDict[SessionNames.TIMESTAMP] as? Double, let shotsByUserDict = sessionDict[ShotNames.PATH] as? [String: Any] {
-                if let shotsByUser = shotsByUserDict as? [String: [Float]] {
+                if var shotsByUser = shotsByUserDict as? [String: [Float]] {
+                    if let userShots = shotsByUser[ShotNames.MY_SCORE] {
+                        shotsByUser[ShotNames.MY_SCORE] = nil
+                        shotsByUser[ShotNames.LOC_MY_SCORE] = userShots
+                    }
                     sessions.append(Session(ownerTarget: target, name: name, timestamp: timestamp, shotsByUser: shotsByUser))
                 }
             }

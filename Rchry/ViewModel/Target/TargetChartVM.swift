@@ -24,7 +24,7 @@ class TargetChartVM {
     private let sessionService: SessionService
     private let statistics: Statistics
     
-    private var user = Variable("my_score")
+    private var user = Variable(ShotNames.LOC_MY_SCORE)
     
     init(target: Target, decimalPrecision: Int = 2, statistics: Statistics = Statistics(), sessionService: SessionService = FirebaseSessionService()) {
         self.decimalPrecision = decimalPrecision
@@ -40,6 +40,7 @@ class TargetChartVM {
     
     var userScore: Observable<UserScoreData> {
         return Observable.combineLatest(user.asObservable(), sessionService.observeSessions(underTarget: target), resultSelector: { user, sessions in
+            print(user)
             var averageScores = [(String, Float)]()
             for session in sessions {
                 if let scores = session.shotsByUser[user] {
@@ -55,7 +56,7 @@ class TargetChartVM {
     var guests: Observable<[String]> {
         return sessionService.observeGuests()
             .map { guests in
-                var users = [ShotNames.MY_SCORE]
+                var users = [ShotNames.LOC_MY_SCORE]
                 if guests.count > 0 {
                     users.append(contentsOf: guests)
                 }

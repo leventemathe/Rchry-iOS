@@ -13,9 +13,9 @@ import Firebase
 struct ShotNames {
     
     static let PATH = "shots"
-    // TODO: translate these
     static let MY_SCORE = "my_score"
-    static let ALL_SCORES = "all"
+    static let LOC_MY_SCORE = NSLocalizedString("My Score", comment: "The score of the user")
+    
 }
 
 protocol ShotService {
@@ -42,6 +42,7 @@ class FirebaseShotService: ShotService {
             return Observable.error(DatabaseError.userNotLoggedIn)
         }
         let sessionPath = sessionCoder.createSessionKey(fromSession: session)
+        let user = user == ShotNames.LOC_MY_SCORE ? ShotNames.MY_SCORE : user
         return Observable.create { [unowned self] observer in
             self.databaseReference.child(uid).child(SessionNames.PATH).child(sessionPath).child(ShotNames.PATH).child(user).child(String(index)).setValue(score, withCompletionBlock: { error, _ in
                 if error != nil {
