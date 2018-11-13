@@ -145,6 +145,8 @@ class FirebaseTargetService: TargetService {
                 if let value = snapshot.value, let targetsDict = value as? [String: Any] {
                     let targets = self.targetCoder.decode(targetsDicitonary: targetsDict)
                     observer.onNext(targets)
+                }else {
+                    observer.onNext([Target]())
                 }
             }, withCancel: { error in
                 observer.onError(DatabaseError.server)
