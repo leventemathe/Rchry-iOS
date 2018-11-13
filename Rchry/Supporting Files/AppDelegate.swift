@@ -41,8 +41,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func setupGlobalViews() {
-        UINavigationBar.appearance().tintColor = UIColor(named: "ColorThemeMid")
         let navBarFont = UIFont(name: "Amatic-Bold", size: 24)!
+        let navBarTitleFont = UIFont(name: "Amatic-Bold", size: 28)!
+        UINavigationBar.appearance().titleTextAttributes =
+            [NSAttributedString.Key.foregroundColor: UIColor(named: "ColorThemeDark")!,
+             NSAttributedString.Key.font: navBarTitleFont]
         UIBarButtonItem.appearance().setTitleTextAttributes([.font: navBarFont], for: .normal)
         UIBarButtonItem.appearance().setTitleTextAttributes([.font: navBarFont], for: .selected)
     }
