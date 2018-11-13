@@ -41,7 +41,8 @@ class TargetVC: UIViewController {
     private func pushNewSessionScreen() {
         let storyboard = UIStoryboard(name: "NewSession", bundle: nil)
         let newSessionVC = storyboard.instantiateViewController(withIdentifier: "NewSessionVC") as! NewSessionVC
-        newSessionVC.ownerTarget = self.targetVM.target
+        let newSessionVM = NewSessionVM(ownerTarget: self.targetVM.target)
+        newSessionVC.newSessionVM = newSessionVM
         navigationController?.pushViewController(newSessionVC, animated: true)
     }
     

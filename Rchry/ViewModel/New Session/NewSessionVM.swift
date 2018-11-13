@@ -11,30 +11,34 @@ import RxSwift
 
 class NewSessionVM {
     
-    private var sessionService: SessionService
-    private var errorMapper: DatabaseErrorToMessageMapper
+    private let sessionService: SessionService
+    private let errorMapper: DatabaseErrorToMessageMapper
     private let dateProvider: DateProvider
     
-    private let disposeBag = DisposeBag()
+    private let ownerTarget: Target!
     
-    private var ownerTarget: Target
     private var guests = Variable([String]())
     private var shouldTrackUser = Variable(true)
     private var name = Variable("")
     
+    private let disposeBag = DisposeBag()
+    
     init(ownerTarget: Target,
-         newGuestAdded: Observable<String>,
-         availableGuestAdded: Observable<String>,
-         guestRemoved: Observable<Int>,
-         nameChanged: Observable<String>,
-         userTrackingChanged: Observable<Bool>,
          sessionService: SessionService = FirebaseSessionService(),
          errorMapper: DatabaseErrorToMessageMapper = BasicDatabaseErrorToMessageMapper(),
          dateProvider: DateProvider = BasicDateProvider()) {
+        
+        self.ownerTarget = ownerTarget
         self.sessionService = sessionService
         self.errorMapper = errorMapper
         self.dateProvider = dateProvider
-        self.ownerTarget = ownerTarget
+    }
+    
+    func setup(newGuestAdded: Observable<String>,
+         availableGuestAdded: Observable<String>,
+         guestRemoved: Observable<Int>,
+         nameChanged: Observable<String>,
+         userTrackingChanged: Observable<Bool>) {
         
         setup(newGuestAdded: newGuestAdded)
         setup(availableGuestAdded: availableGuestAdded)

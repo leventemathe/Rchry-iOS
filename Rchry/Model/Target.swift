@@ -10,11 +10,23 @@ import UIKit
 
 enum DistanceUnit {
     
-    static let STRING_METER = NSLocalizedString("Meters", comment: "Meters")
-    static let STRING_YARD = NSLocalizedString("Yards", comment: "Yards")
+    static let STRING_METER = "meters"
+    static let STRING_YARD = "yards"
+    
+    static let LOC_STRING_METER = NSLocalizedString("Meters", comment: "Meters")
+    static let LOC_STRING_YARD = NSLocalizedString("Yards", comment: "Yards")
     
     case meter
     case yard
+    
+    func toLocalizedString() -> String {
+        switch self {
+        case .meter:
+            return DistanceUnit.LOC_STRING_METER
+        case .yard:
+            return DistanceUnit.LOC_STRING_YARD
+        }
+    }
     
     func toString() -> String {
         switch self {

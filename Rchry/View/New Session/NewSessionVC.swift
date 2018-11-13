@@ -29,9 +29,6 @@ class NewSessionVC: UIViewController {
     
     @IBOutlet weak var startBtn: LMButton!
     
-    // This needs to be set when the vc is created, outside of the vc
-    var ownerTarget: Target!
-    // This is set in viewDidLoad
     var newSessionVM: NewSessionVM!
     
     private let disposeBag = DisposeBag()
@@ -64,12 +61,11 @@ class NewSessionVC: UIViewController {
         
         let userTrackingChanged = trackMyScoreCheckBox.rxIsChecked
         
-        newSessionVM = NewSessionVM(ownerTarget: ownerTarget,
-                                    newGuestAdded: newGuestAdded,
-                                    availableGuestAdded: availableGuestAdded,
-                                    guestRemoved: addedGuestRemoved,
-                                    nameChanged: nameChanged,
-                                    userTrackingChanged: userTrackingChanged)
+        newSessionVM.setup(newGuestAdded: newGuestAdded,
+                            availableGuestAdded: availableGuestAdded,
+                            guestRemoved: addedGuestRemoved,
+                            nameChanged: nameChanged,
+                            userTrackingChanged: userTrackingChanged)
     }
     
     private func setupAddedGuestsCollectionView() {
