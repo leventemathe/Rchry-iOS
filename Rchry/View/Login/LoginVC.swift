@@ -10,7 +10,7 @@ import UIKit
 import LMViews
 import FBSDKLoginKit
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController, StoryboardInstantiable {
     
     private var loginVM = LoginVM(facebookAuthService: FacebookAuthService(), authService: FirebaseAuthService(), authErrorHandler: BasicAuthErrorToMessageMapper())
     

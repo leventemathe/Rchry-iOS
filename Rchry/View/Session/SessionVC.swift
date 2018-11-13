@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SessionVC: UIViewController {
+class SessionVC: UIViewController, StoryboardInstantiable {
 
     @IBOutlet weak var scoreSelectorTableView: UITableView!
     @IBOutlet weak var doneButton: UIButton!

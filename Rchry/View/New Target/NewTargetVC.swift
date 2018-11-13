@@ -11,7 +11,7 @@ import LMViews
 import RxCocoa
 import RxSwift
 
-class NewTargetVC: UIViewController {
+class NewTargetVC: UIViewController, StoryboardInstantiable {
     
     let CREATE_BTN_TEXT_ENABLED = NSLocalizedString("Create", comment: "The text displayed on the create target button, when it's enabled")
     let CREATE_BTN_TEXT_DISABLED = NSLocalizedString("Please fill the form", comment: "The text displayed on the create target button, when it's disabled")

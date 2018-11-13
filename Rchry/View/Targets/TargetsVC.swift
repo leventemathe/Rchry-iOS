@@ -10,11 +10,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class TargetsVC: UIViewController {
+class TargetsVC: UIViewController, StoryboardInstantiable {
 
     @IBAction func newTargetBtnTouched(_ sender: UIBarButtonItem) {
-        let newTargetVC = UIStoryboard(name: "NewTarget", bundle: nil).instantiateViewController(withIdentifier: "NewTargetVC")
-        navigationController?.pushViewController(newTargetVC, animated: true)
+        navigationController?.pushViewController(NewTargetVC.instantiate(), animated: true)
     }
     
     @IBOutlet weak var targetsTableView: UITableView!
@@ -57,8 +56,7 @@ class TargetsVC: UIViewController {
     private func setupTargetTap() {
         targetsTableView.rx.itemSelected.asObservable()
             .subscribe(onNext: { [unowned self] indexpath in
-                let storyboard = UIStoryboard(name: "Target", bundle: nil)
-                let targetVC = storyboard.instantiateViewController(withIdentifier: "TargetVC") as! TargetVC
+                let targetVC = TargetVC.instantiate()
                 let target = self.targetsVM.targetsArray[indexpath.item]
                 targetVC.targetVM = TargetVM(target: target)
                 self.navigationController?.pushViewController(targetVC, animated: true)

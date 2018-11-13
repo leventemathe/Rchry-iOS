@@ -11,7 +11,7 @@ import LMViews
 import RxCocoa
 import RxSwift
 
-class NewSessionVC: UIViewController {
+class NewSessionVC: UIViewController, StoryboardInstantiable {
     
     static let NEW_SESSION_START_BUTTON_DISABLED = NSLocalizedString("Please fill the form", comment: "The form is not filled yet, so the start button is disabled")
     static let NEW_SESSION_START_BUTTON_ENABLED = NSLocalizedString("Done", comment: "The form is filled, so the start button is enabled")
@@ -98,8 +98,7 @@ class NewSessionVC: UIViewController {
                 if let error = error {
                     MessageAlertModalVC.present(withTitle: CommonMessages.ERROR_TITLE, withMessage: error, fromVC: self)
                 } else if let session = session {
-                    let storyboard = UIStoryboard(name: "Session", bundle: nil)
-                    let sessionVC = storyboard.instantiateViewController(withIdentifier: "SessionVC") as! SessionVC
+                    let sessionVC = SessionVC.instantiate()
                     sessionVC.sessionVM = SessionVM(session: session)
                     sessionVC.modalPresentationStyle = .overFullScreen
                     self.present(sessionVC, animated: true, completion: { [weak self] in self?.navigationController?.popViewController(animated: false) })

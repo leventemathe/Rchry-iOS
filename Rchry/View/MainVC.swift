@@ -13,8 +13,7 @@ class MainVC: UIViewController {
     var authService = FirebaseAuthService()
     
     private lazy var loginVC: UIViewController = {
-        let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
-        let vc = loginStoryboard.instantiateViewController(withIdentifier: "LoginVC")
+        let vc = LoginVC.instantiate()
         return vc
     }()
     

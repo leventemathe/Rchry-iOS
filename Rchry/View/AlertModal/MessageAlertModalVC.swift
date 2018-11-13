@@ -9,7 +9,7 @@
 import UIKit
 import LMViews
 
-class MessageAlertModalVC: UIViewController {
+class MessageAlertModalVC: UIViewController, StoryboardInstantiable {
 
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var titleLbl: UILabel!
@@ -43,8 +43,7 @@ class MessageAlertModalVC: UIViewController {
     }
     
     static func present(withTitle title: String, withMessage message: String, fromVC vc: UIViewController) {
-        let storyboard = UIStoryboard(name: "MessageAlertModal", bundle: nil)
-        let modal = storyboard.instantiateViewController(withIdentifier: "MessageAlertModalVC") as! MessageAlertModalVC
+        let modal = MessageAlertModalVC.instantiate()
         modal.message = message
         modal.titleText = title
         vc.present(modal, animated: true, completion: nil)

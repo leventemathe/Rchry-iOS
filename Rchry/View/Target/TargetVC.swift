@@ -12,7 +12,7 @@ import RxCocoa
 import RxSwift
 import Charts
 
-class TargetVC: UIViewController {
+class TargetVC: UIViewController, StoryboardInstantiable {
 
     @IBOutlet weak var newSessionBtn: LMButton!
     
@@ -39,8 +39,7 @@ class TargetVC: UIViewController {
     }
     
     private func pushNewSessionScreen() {
-        let storyboard = UIStoryboard(name: "NewSession", bundle: nil)
-        let newSessionVC = storyboard.instantiateViewController(withIdentifier: "NewSessionVC") as! NewSessionVC
+        let newSessionVC = NewSessionVC.instantiate()
         let newSessionVM = NewSessionVM(ownerTarget: self.targetVM.target)
         newSessionVC.newSessionVM = newSessionVM
         navigationController?.pushViewController(newSessionVC, animated: true)

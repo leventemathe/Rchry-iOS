@@ -73,6 +73,7 @@
 		D7C7E9161FFE956B003C102D /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C7E9151FFE956B003C102D /* DatabaseError.swift */; };
 		D7C81D452077765C004EB32E /* TargetChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C81D442077765C004EB32E /* TargetChartVC.swift */; };
 		D7C8E66D219ACFD800EE9EFD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D7C8E66B219ACFD800EE9EFD /* Localizable.strings */; };
+		D7CD3FFE219B4D4E0077420C /* StoryboardInstantiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CD3FFD219B4D4E0077420C /* StoryboardInstantiable.swift */; };
 		D7D689381FD57EDC00ABB213 /* MessageAlertModal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D689361FD57EDC00ABB213 /* MessageAlertModal.storyboard */; };
 		D7D6893B1FD57EEF00ABB213 /* Targets.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D689391FD57EEF00ABB213 /* Targets.storyboard */; };
 		D7D6893E1FD57EFB00ABB213 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7D6893C1FD57EFB00ABB213 /* Profile.storyboard */; };
@@ -176,6 +177,7 @@
 		D7C7E9151FFE956B003C102D /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 		D7C81D442077765C004EB32E /* TargetChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetChartVC.swift; sourceTree = "<group>"; };
 		D7C8E66C219ACFD800EE9EFD /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D7CD3FFD219B4D4E0077420C /* StoryboardInstantiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardInstantiable.swift; sourceTree = "<group>"; };
 		D7D689371FD57EDC00ABB213 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MessageAlertModal.storyboard; sourceTree = "<group>"; };
 		D7D6893A1FD57EEF00ABB213 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Targets.storyboard; sourceTree = "<group>"; };
 		D7D6893D1FD57EFB00ABB213 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
@@ -555,6 +557,7 @@
 				D755503820188D9100177A98 /* Dates.swift */,
 				D7C6F2801FC7163B0032A879 /* Info.plist */,
 				D7C8E66B219ACFD800EE9EFD /* Localizable.strings */,
+				D7CD3FFD219B4D4E0077420C /* StoryboardInstantiable.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -841,6 +844,7 @@
 				D7709ED020179D560080FC22 /* Session.swift in Sources */,
 				D77ABD4E20178A3300418986 /* GuestCell.swift in Sources */,
 				D70D18C4207D1B6B00D1E031 /* TargetChartVM.swift in Sources */,
+				D7CD3FFE219B4D4E0077420C /* StoryboardInstantiable.swift in Sources */,
 				D7BBC0132017678000DC2480 /* TargetVC.swift in Sources */,
 				D7C7E9101FFE848C003C102D /* TargetsService.swift in Sources */,
 			);
