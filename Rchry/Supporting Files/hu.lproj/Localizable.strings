@@ -40,6 +40,9 @@
    The text displayed on the create target button, when it's disabled */
 "Please fill the form" = "Töltsd ki";
 
+/* Index of shot for a session. */
+"Shot %d" = "%d. Lövés";
+
 /* The name of the provided target is an empty string */
 "The name can't be empty" = "A név nem lehet üres";
 

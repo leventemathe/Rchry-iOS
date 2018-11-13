@@ -49,7 +49,7 @@ class Shot: CustomStringConvertible {
     
     init(index: Int, scores: ScoresByUser, active: Bool, shotReady: Bool = false) {
         self.index = index
-        let titleFormat = NSLocalizedString("Shot%d", comment: "Index of shot for a session.")
+        let titleFormat = NSLocalizedString("Shot %d", comment: "Index of shot for a session.")
         self.title = String.localizedStringWithFormat(titleFormat, index + 1)
         self._scores = Variable(scores)
         self.active = active
