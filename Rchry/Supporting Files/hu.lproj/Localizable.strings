@@ -1,0 +1,60 @@
+/* A network error happened while accessing the database. */
+"A database error occured" = "Adatbázis hiba";
+
+/* A server error happened while accessing the database. */
+"A server error occured" = "Szerver hiba";
+
+/* An error message for an unknown error */
+"An unknown error occured" = "Ismeretlen hiba történt";
+
+/* The done button text in session indicating the scoring is done, but no scores were added (cancel). */
+"Cancel" = "Mégse";
+
+/* The text displayed on the create target button, when it's enabled */
+"Create" = "Létrehozás";
+
+/* An error message that indicates the social credential is invalid */
+"Credentials are invalid" = "Érvénytelen hitelesítés";
+
+/* The done button text in session indicating the scoring is done.
+   The form is filled, so the start button is enabled
+   The user selected a target, and they press this button to leave the selector view. */
+"Done" = "Kész";
+
+/* A common title for error */
+"Error" = "Hiba";
+
+/* The error title for logout errors */
+"Logout error" = "Hiba kijelentkezéskor";
+
+/* Meters */
+"Meters" = "Méter";
+
+/* No data label for chart */
+"No data" = "Nincs adat";
+
+/* An error message for network errors, like no internet */
+"No internet connection" = "Nincs internetkapcsolat";
+
+/* The form is not filled yet, so the start button is disabled
+   The text displayed on the create target button, when it's disabled */
+"Please fill the form" = "Töltsd ki";
+
+/* The name of the provided target is an empty string */
+"The name can't be empty" = "A név nem lehet üres";
+
+/* Too many requests, please slow down. */
+"Too many requests, please slow down" = "Túl sok kérés, lassíts";
+
+/* Some other, unknown error happened while accessing the database. */
+"Unknown database error" = "Ismeretlen adatbázis hiba";
+
+/* A common case error message for unknown/other types of error */
+"Unknown Errror" = "Ismeretlen hiba";
+
+/* Yards */
+"Yards" = "Yard";
+
+/* No scores were provided for the target */
+"You need to provide at least one score" = "Legalább egy pontszámot meg kell adni";
+

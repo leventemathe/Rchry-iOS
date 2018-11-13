@@ -10,7 +10,7 @@ import UIKit
 
 class ProfileVC: UIViewController {
     
-    let ERROR_TITLE = NSLocalizedString("LogoutErrorTitle", comment: "The error title for logout errors")
+    let ERROR_TITLE = NSLocalizedString("Logout error", comment: "The error title for logout errors")
     
     private var profileVM = ProfileVM(facebookAuthService: FacebookAuthService(), authService: FirebaseAuthService(), authErrorHandler: BasicAuthErrorToMessageMapper())
     

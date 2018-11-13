@@ -1,15 +1,5 @@
-
 /* Class = "UILabel"; text = "Guest User"; ObjectID = "0Hi-iH-jxS"; */
 "0Hi-iH-jxS.text" = "Vendég felhasználó";
-
-/* Class = "UILabel"; text = "Guest User"; ObjectID = "NSe-w3-YAl"; */
-"NSe-w3-YAl.text" = "Vendég felhasználó";
-
-/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "NVE-z0-t1M"; */
-"NVE-z0-t1M.normalTitle" = "Kezdés";
-
-/* Class = "UILabel"; text = "Name"; ObjectID = "Xmr-pW-f97"; */
-"Xmr-pW-f97.text" = "Név";
 
 /* Class = "UILabel"; text = "Track my Score"; ObjectID = "chV-eP-MZj"; */
 "chV-eP-MZj.text" = "Kövesd a saját pontjaim";
@@ -26,6 +16,12 @@
 /* Class = "UILabel"; text = "Add new guest"; ObjectID = "kay-Z7-W4w"; */
 "kay-Z7-W4w.text" = "Új vendég";
 
+/* Class = "UILabel"; text = "Guest User"; ObjectID = "NSe-w3-YAl"; */
+"NSe-w3-YAl.text" = "Vendég felhasználó";
+
+/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "NVE-z0-t1M"; */
+"NVE-z0-t1M.normalTitle" = "Kezdés";
+
 /* Class = "UILabel"; text = "Pick a guest you added earlier:"; ObjectID = "qnv-xb-4Ae"; */
 "qnv-xb-4Ae.text" = "Korábban hozzáadott vendég:";
 
@@ -35,5 +31,9 @@
 /* Class = "UITextField"; placeholder = "optional"; ObjectID = "wx0-Nr-TMK"; */
 "wx0-Nr-TMK.placeholder" = "opcionális";
 
+/* Class = "UILabel"; text = "Name"; ObjectID = "Xmr-pW-f97"; */
+"Xmr-pW-f97.text" = "Név";
+
 /* Class = "UILabel"; text = "Or"; ObjectID = "yea-q0-Mrt"; */
 "yea-q0-Mrt.text" = "vagy";
+

@@ -13,8 +13,8 @@ import RxSwift
 
 class NewSessionVC: UIViewController {
     
-    static let NEW_SESSION_START_BUTTON_DISABLED = NSLocalizedString("NewSesseionStartButtonDisabled", comment: "The form is not filled yet, so the start button is disabled")
-    static let NEW_SESSION_START_BUTTON_ENABLED = NSLocalizedString("NewSesseionStartButtonEnabled", comment: "The form is filled, so the start button is enabled")
+    static let NEW_SESSION_START_BUTTON_DISABLED = NSLocalizedString("Please fill the form", comment: "The form is not filled yet, so the start button is disabled")
+    static let NEW_SESSION_START_BUTTON_ENABLED = NSLocalizedString("Done", comment: "The form is filled, so the start button is enabled")
     
     @IBOutlet weak var guestPickerViews: UIStackView!
     @IBOutlet weak var availableGuestsCollectionView: UICollectionView!

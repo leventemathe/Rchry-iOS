@@ -1,6 +1,15 @@
+/* Class = "UILabel"; text = "Target name"; ObjectID = "Agf-l8-tRM"; */
+"Agf-l8-tRM.text" = "Cél neve";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "EO8-2r-5gF"; */
+"EO8-2r-5gF.text" = "0";
+
+/* Class = "UILabel"; text = "Distance"; ObjectID = "EzA-D9-2vb"; */
+"EzA-D9-2vb.text" = "Távolság";
 
 /* Class = "UINavigationItem"; title = "Targets"; ObjectID = "kOo-BJ-KaT"; */
 "kOo-BJ-KaT.title" = "Célok";
 
 /* Class = "UIBarButtonItem"; title = " "; ObjectID = "oyV-o2-T89"; */
 "oyV-o2-T89.title" = " ";
+

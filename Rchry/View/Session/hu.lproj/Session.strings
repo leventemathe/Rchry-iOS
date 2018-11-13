@@ -1,3 +1,5 @@
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "acP-8v-rz8"; */
+"acP-8v-rz8.normalTitle" = "Mégse";
 
 /* Class = "UINavigationItem"; title = "Session"; ObjectID = "FIb-vB-JyY"; */
 "FIb-vB-JyY.title" = "Sorozat";
@@ -8,5 +10,3 @@
 /* Class = "UILabel"; text = "0"; ObjectID = "Q89-cd-vJn"; */
 "Q89-cd-vJn.text" = "0";
 
-/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "acP-8v-rz8"; */
-"acP-8v-rz8.normalTitle" = "Mégse";

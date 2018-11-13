@@ -10,8 +10,8 @@ import UIKit
 
 enum DistanceUnit {
     
-    static let STRING_METER = NSLocalizedString("DistanceUnitStringMeter", comment: "Meters")
-    static let STRING_YARD = NSLocalizedString("DistanceUnitStringYard", comment: "Yards")
+    static let STRING_METER = NSLocalizedString("Meters", comment: "Meters")
+    static let STRING_YARD = NSLocalizedString("Yards", comment: "Yards")
     
     case meter
     case yard

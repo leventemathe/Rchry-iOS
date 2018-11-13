@@ -116,8 +116,8 @@ class SessionVM {
         return dateString
     }
     
-    private let doneTextDone = NSLocalizedString("SessionDoneButtonTextDone", comment: "The done button text in session indicating the scoring is done.")
-    private let doneTextCancel = NSLocalizedString("SessionDoneButtonTextCancel", comment: "The done button text in session indicating the scoring is done, but no scores were added (cancel).")
+    private let doneTextDone = NSLocalizedString("Done", comment: "The done button text in session indicating the scoring is done.")
+    private let doneTextCancel = NSLocalizedString("Cancel", comment: "The done button text in session indicating the scoring is done, but no scores were added (cancel).")
     
     var doneText: Observable<String> {
         return _shots.asObservable()

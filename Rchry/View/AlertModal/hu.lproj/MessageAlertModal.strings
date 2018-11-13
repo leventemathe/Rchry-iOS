@@ -1,9 +1,9 @@
-
 /* Class = "UILabel"; text = "Title"; ObjectID = "8de-iW-QBC"; */
 "8de-iW-QBC.text" = "Cím";
+
+/* Class = "UILabel"; text = "Message"; ObjectID = "kaU-kF-khz"; */
+"kaU-kF-khz.text" = "Üzenet";
 
 /* Class = "UIButton"; normalTitle = "OK"; ObjectID = "UZ8-tk-Swd"; */
 "UZ8-tk-Swd.normalTitle" = "OK";
 
-/* Class = "UILabel"; text = "Message"; ObjectID = "kaU-kF-khz"; */
-"kaU-kF-khz.text" = "Üzenet";

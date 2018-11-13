@@ -32,19 +32,19 @@ protocol AuthErrorToMessageMapper {
 struct BasicAuthErrorToMessageMapper: AuthErrorToMessageMapper {
     
     var ERROR_CANCELLED: String {
-        return NSLocalizedString("AuthErrorCancelled", comment: "An error message that is presented when the user cancels the social login, e.g. Facebook")
+        return NSLocalizedString("You cancelled authentication", comment: "An error message that is presented when the user cancels the social login, e.g. Facebook")
     }
     var ERROR_CREDENTIAL_TAKEN:String {
-        return NSLocalizedString("AuthErrorCredentialTaken", comment: "An error message that is presented when the social credentials are taken")
+        return NSLocalizedString("Credentials are taken", comment: "An error message that is presented when the social credentials are taken")
     }
     var ERROR_CREDENTIAL_INVALID: String {
-        return NSLocalizedString("AuthErrorCredentialInvalid", comment: "An error message that indicates the social credential is invalid")
+        return NSLocalizedString("Credentials are invalid", comment: "An error message that indicates the social credential is invalid")
     }
     var ERROR_NETWORK: String {
-        return NSLocalizedString("AuthErrorNetwork", comment: "An error message for network errors, like no internet")
+        return NSLocalizedString("No internet connection", comment: "An error message for network errors, like no internet")
     }
     var ERROR_OTHER: String {
-        return NSLocalizedString("AuthErrorOther", comment: "An error message for an unknown error")
+        return NSLocalizedString("An unknown error occured", comment: "An error message for an unknown error")
     }
     
     func map(error: AuthError, withCompletion completion: @escaping (String?)->()) {

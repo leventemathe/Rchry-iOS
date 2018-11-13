@@ -49,7 +49,7 @@ class UserPickerView: LMTextField {
     }
     
     private func createDoneButtonForToolbar() -> UIBarButtonItem {
-        let doneButtonText = NSLocalizedString("TargetChartUserSelectionDone", comment: "The user selected a target, and they press this button to leave the selector view.")
+        let doneButtonText = NSLocalizedString("Done", comment: "The user selected a target, and they press this button to leave the selector view.")
         let doneButton = UIBarButtonItem(title: doneButtonText, style: .done, target: self, action: #selector(UserPickerView.dismissUserPickerView))
         doneButton.tintColor = UIColor.white
         let doneButtonFont = UIFont(name: "Amatic-Bold", size: 26.0)!
