@@ -18,14 +18,17 @@ class TargetsVC: UIViewController, StoryboardInstantiable {
     
     @IBOutlet weak var targetsTableView: UITableView!
     
-    let targetsVM = TargetsVM()
+    var targetsVM = TargetsVM()
+    
     private var networkingDisposeBag = DisposeBag()
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        targetsTableView.rx.setDelegate(self).disposed(by: disposeBag)
         removeEmptyCells()
         setupTargetTap()
+        setupTargetSwipeToDelete()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +38,26 @@ class TargetsVC: UIViewController, StoryboardInstantiable {
     
     private func removeEmptyCells() {
         targetsTableView.tableFooterView = UIView()
+    }
+    
+    private func setupTargetTap() {
+        targetsTableView.rx.itemSelected.asObservable()
+            .subscribe(onNext: { [unowned self] indexpath in
+                let targetVC = TargetVC.instantiate()
+                let target = self.targetsVM.targetsArray[indexpath.item]
+                targetVC.targetVM = TargetVM(target: target)
+                self.navigationController?.pushViewController(targetVC, animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func setupTargetSwipeToDelete() {
+        let deletedEvent = targetsTableView.rx.itemDeleted
+        deletedEvent.subscribe {
+            if let i = $0.element?.row {
+                print(i)
+            }
+        }.disposed(by: disposeBag)
     }
     
     private func observeTargets() {
@@ -53,19 +76,20 @@ class TargetsVC: UIViewController, StoryboardInstantiable {
             .disposed(by: networkingDisposeBag)
     }
     
-    private func setupTargetTap() {
-        targetsTableView.rx.itemSelected.asObservable()
-            .subscribe(onNext: { [unowned self] indexpath in
-                let targetVC = TargetVC.instantiate()
-                let target = self.targetsVM.targetsArray[indexpath.item]
-                targetVC.targetVM = TargetVM(target: target)
-                self.navigationController?.pushViewController(targetVC, animated: true)
-            })
-            .disposed(by: disposeBag)
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         // To release Firebase listener
         networkingDisposeBag = DisposeBag()
+    }
+}
+
+extension TargetsVC: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteButton = UITableViewRowAction(style: .default, title: NSLocalizedString("Delete", comment: "Delete target on swiping")) { (action, indexPath) in
+            let ds = self.targetsTableView.dataSource
+            ds?.tableView!(self.targetsTableView, commit: .delete, forRowAt: indexPath)
+            return
+        }
+        return [deleteButton]
     }
 }
