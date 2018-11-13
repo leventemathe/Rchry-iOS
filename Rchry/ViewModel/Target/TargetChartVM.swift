@@ -40,7 +40,6 @@ class TargetChartVM {
     
     var userScore: Observable<UserScoreData> {
         return Observable.combineLatest(user.asObservable(), sessionService.observeSessions(underTarget: target), resultSelector: { user, sessions in
-            print(user)
             var averageScores = [(String, Float)]()
             for session in sessions {
                 if let scores = session.shotsByUser[user] {
