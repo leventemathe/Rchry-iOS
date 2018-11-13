@@ -33,4 +33,8 @@ class TargetsVM {
                 return Observable.just((nil, errorString))
             }
     }
+    
+    func delete(_ target: Target) {
+        let _ = targetService.deleteTarget(target: target)
+    }
 }

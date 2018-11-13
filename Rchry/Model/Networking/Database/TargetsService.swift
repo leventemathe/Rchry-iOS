@@ -26,6 +26,7 @@ protocol TargetService {
     func create(target: Target) -> Observable<Target>
     func doesTargetExist(withName name: String, andWithDistance distance: Float) -> Observable<Bool>
     func observeTargets() -> Observable<[Target]>
+    func deleteTarget(target: Target) -> DatabaseError?
 }
 
 class FirebaseTargetCoder {
@@ -152,6 +153,17 @@ class FirebaseTargetService: TargetService {
                 self.databaseReference.removeObserver(withHandle: handle)
             }
         }
+    }
+    
+    func deleteTarget(target: Target) -> DatabaseError? {
+        guard let uid = authService.userID else {
+            return .userNotLoggedIn
+        }
+        guard let pathName = targetCoder.createTargetKey(fromName: target.name, andDistance: target.distance) else {
+            return .other
+        }
+        databaseReference.child(uid).child(TargetNames.PATH).child(pathName).removeValue()
+        return nil
     }
 }
 

@@ -51,11 +51,12 @@ class TargetsVC: UIViewController, StoryboardInstantiable {
             .disposed(by: disposeBag)
     }
     
+    // Handle delete events that are sent by the delegate
     private func setupTargetSwipeToDelete() {
-        let deletedEvent = targetsTableView.rx.itemDeleted
+        let deletedEvent = targetsTableView.rx.modelDeleted(Target.self)
         deletedEvent.subscribe {
-            if let i = $0.element?.row {
-                print(i)
+            if let target = $0.element {
+                self.targetsVM.delete(target)
             }
         }.disposed(by: disposeBag)
     }
@@ -84,6 +85,7 @@ class TargetsVC: UIViewController, StoryboardInstantiable {
 
 extension TargetsVC: UITableViewDelegate {
     
+    // Send delete events by swiping
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteButton = UITableViewRowAction(style: .default, title: NSLocalizedString("Delete", comment: "Delete target on swiping")) { (action, indexPath) in
             let ds = self.targetsTableView.dataSource
