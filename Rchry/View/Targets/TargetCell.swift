@@ -23,13 +23,14 @@ class TargetCell: UITableViewCell {
     private var scoresDatasource = [Float]()
     private var disposeBag = DisposeBag()
     
-    // TODO: These parameters should all be strings, and the conversions to string should happen in a viewmodel
-    func update(icon: String, name: String, distance: Float, preferredDistanceUnit: DistanceUnit, scores: [Float]) {
-        iconImageView.image = UIImage(named: icon)
+    func update(icon: UIImage,
+                name: String,
+                distance: String,
+                scores: [Float]) {
+        
+        iconImageView.image = icon
         nameLbl.text = name
-        if let distanceString = distance.prettyString() {
-            distanceLbl.text = distanceString + " " + preferredDistanceUnit.toShortString()
-        }
+        distanceLbl.text = distance
         scoresDatasource = scores
         disposeBag = DisposeBag()
         setupScoresDatasource()

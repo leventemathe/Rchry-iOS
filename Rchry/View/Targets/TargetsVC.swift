@@ -71,7 +71,14 @@ class TargetsVC: UIViewController, StoryboardInstantiable {
                 targets == nil ? [Target]() : targets!
             }
             .bind(to: targetsTableView.rx.items(cellIdentifier: "TargetCell", cellType: TargetCell.self)) { _, target, cell in
-                cell.update(icon: target.icon, name: target.name, distance: target.distance, preferredDistanceUnit: target.preferredDistanceUnit, scores: target.scores)
+                guard let icon = UIImage(named: target.icon) else {
+                    fatalError("The icon should be a valid image")
+                }
+                guard var distanceString = target.distance.prettyString() else {
+                    fatalError("Distance should be stringifiable")
+                }
+                distanceString += " " + target.preferredDistanceUnit.toShortString()
+                cell.update(icon: icon, name: target.name, distance: distanceString, scores: target.scores)
             }
             .disposed(by: networkingDisposeBag)
     }

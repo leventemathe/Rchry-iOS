@@ -133,8 +133,7 @@ class FirebaseSessionService: SessionService {
                     observer.onNext([String]())
                 }
             }, withCancel: { error in
-                // TODO: Instead of terminating stream, pass the error in onNext
-                // TODO: Similarly in other services too
+                // Maybe instead of terminating stream, pass the error in onNext?
                 observer.onError(DatabaseError.server)
             })
             return Disposables.create { self.databaseRef.removeObserver(withHandle: handle) }
