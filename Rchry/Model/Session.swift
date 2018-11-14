@@ -14,11 +14,4 @@ struct Session {
     let name: String
     let timestamp: Double
     let shotsByUser: [String: [Float]]
-    
-    init(ownerTarget: Target, name: String, timestamp: Double, shotsByUser: [String: [Float]]) {
-        self.ownerTarget = ownerTarget
-        self.name = name
-        self.timestamp = timestamp
-        self.shotsByUser = shotsByUser
-    }
 }
