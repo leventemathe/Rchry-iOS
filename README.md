@@ -1,5 +1,5 @@
 # Rchry-iOS
-An iOS app that helps you track your performance.
+An iOS app that helps you track your archery performance.
 Login with Facebook then create targets. Tap a target to see your stats or start a new shooting session.  
 You can also track guest users to compare your scores later. Scoring is easy: just tap the score you and your friends shot.
 
