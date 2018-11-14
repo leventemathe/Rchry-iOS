@@ -5,7 +5,7 @@ You can also track guest users to compare your scores later. Scoring is easy: ju
 
 <p float="left" align="center">
   <img src="/doc/img/1_login.png" width="30%"/>
-  <img src="/doc/img/2_new_target.png" width="30%" style="margin:0% 4%"/> 
+  <img src="/doc/img/2_new_target.png" width="30%" style="margin:4% 4%"/> 
   <img src="/doc/img/3_targets.png" width="30%"/>
 </p>
 
