@@ -41,10 +41,9 @@ class TargetsVC: UIViewController, StoryboardInstantiable {
     }
     
     private func setupTargetTap() {
-        targetsTableView.rx.itemSelected.asObservable()
-            .subscribe(onNext: { [unowned self] indexpath in
+        targetsTableView.rx.modelSelected(Target.self)
+            .subscribe(onNext: { [unowned self] target in
                 let targetVC = TargetVC.instantiate()
-                let target = self.targetsVM.targetsArray[indexpath.item]
                 targetVC.targetVM = TargetVM(target: target)
                 self.navigationController?.pushViewController(targetVC, animated: true)
             })
