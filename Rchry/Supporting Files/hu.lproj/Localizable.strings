@@ -16,6 +16,9 @@
 /* An error message that indicates the social credential is invalid */
 "Credentials are invalid" = "Érvénytelen hitelesítés";
 
+/* Delete target on swiping */
+"Delete" = "Törlés";
+
 /* The done button text in session indicating the scoring is done.
    The form is filled, so the start button is enabled
    The user selected a target, and they press this button to leave the selector view. */
