@@ -555,9 +555,9 @@
 				D71FB5B71FFD32A20085CDDC /* Extensions.swift */,
 				D7B38D9820120EA800BAD510 /* CommonMessages.swift */,
 				D755503820188D9100177A98 /* Dates.swift */,
+				D7CD3FFD219B4D4E0077420C /* StoryboardInstantiable.swift */,
 				D7C6F2801FC7163B0032A879 /* Info.plist */,
 				D7C8E66B219ACFD800EE9EFD /* Localizable.strings */,
-				D7CD3FFD219B4D4E0077420C /* StoryboardInstantiable.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";

@@ -88,16 +88,6 @@ struct FirebaseAuthService: AuthService {
         }
     }
     
-    func deleteUser(_ completion: @escaping (AuthError?)->()) {
-        firebaseAuth.deleteCurrentUser { error in
-            if let _ = error {
-                completion(.other)
-            } else {
-                completion(nil)
-            }
-        }
-    }
-    
     var isLoggedIn: Bool {
         if let _ = firebaseAuth.getUser() {
             return true

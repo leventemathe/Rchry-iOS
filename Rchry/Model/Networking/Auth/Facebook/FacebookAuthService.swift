@@ -42,19 +42,24 @@ struct FacebookAuthService: SocialAuthService {
                 completion(.other, nil)
                 return
             } else if let result = result {
-                if result.declinedPermissions != nil && result.declinedPermissions.count > 0 {
-                    completion(.permissionDenied, nil)
-                } else if result.isCancelled {
-                    completion(.cancelled, nil)
-                } else if result.token != nil {
-                    completion(nil, result.token.tokenString)
-                } else {
-                    completion(.other, nil)
-                }
+                self.handleResult(result, withCompletion: completion)
                 return
             }
             completion(.other, nil)
         })
+    }
+        
+    private func handleResult(_ result: FBSDKLoginManagerLoginResult, withCompletion completion: @escaping (AuthError?, _ token: String?)->()) {
+        if result.declinedPermissions != nil && result.declinedPermissions.count > 0 {
+            completion(.permissionDenied, nil)
+        } else if result.isCancelled {
+            completion(.cancelled, nil)
+        } else if result.token != nil {
+            completion(nil, result.token.tokenString)
+        } else {
+            completion(.other, nil)
+        }
+        return
     }
     
     func logout(_ completion: @escaping (AuthError?)->()) {
