@@ -161,13 +161,21 @@ class SessionScoreSelectorDatasource: NSObject, RxTableViewDataSourceType, UITab
         return 56
     }
     
+    private var headerCache = [UIView]()
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        // TODO: cache these and get them from array?
-        let header = Bundle.main.loadNibNamed("SessionScoreSelectorHeaderView", owner: self, options: nil)?.first as? SessionScoreSelectorHeaderView
-        if let header = header {
-            header.update(elements[section].index, title: elements[section].title)
-            sessionVM.setShotActiveness(reactingTo: header.tapped, disposedBy: header.disposeBag)
+        var header: SessionScoreSelectorHeaderView
+        if headerCache.isEmpty {
+            header = Bundle.main.loadNibNamed("SessionScoreSelectorHeaderView", owner: self, options: nil)?.first as! SessionScoreSelectorHeaderView
+        } else {
+            header = headerCache.removeFirst()  as! SessionScoreSelectorHeaderView
         }
+        header.update(elements[section].index, title: elements[section].title)
+        sessionVM.setShotActiveness(reactingTo: header.tapped, disposedBy: header.disposeBag)
         return header
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
+        headerCache.append(view)
     }
 }
