@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,6 +13,9 @@
     <customFonts key="customFonts">
         <array key="Amatic-Bold.ttf">
             <string>Amatic-Bold</string>
+        </array>
+        <array key="AmaticSC-Regular.ttf">
+            <string>AmaticSC-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -23,25 +27,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co2-UM-Vss">
-                                <rect key="frame" x="166" y="314" width="42" height="38"/>
-                                <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="24"/>
-                                <state key="normal" title="Logout">
-                                    <color key="titleColor" name="ColorThemeDark"/>
-                                </state>
-                                <connections>
-                                    <action selector="logoutBtnTouched:" destination="0a0-6k-bB0" eventType="touchUpInside" id="Cmv-BX-X2L"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVf-7l-cE5">
+                                <rect key="frame" x="165.5" y="224" width="44.5" height="34.5"/>
+                                <fontDescription key="fontDescription" name="Amatic-Bold" family="Amatic" pointSize="32"/>
+                                <color key="textColor" name="ColorThemeDark"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="m0s-qD-8tW">
+                                <rect key="frame" x="140" y="290.5" width="95" height="86"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co2-UM-Vss">
+                                        <rect key="frame" x="25.5" y="0.0" width="44" height="43"/>
+                                        <fontDescription key="fontDescription" name="AmaticSC-Regular" family="Amatic SC" pointSize="24"/>
+                                        <state key="normal" title="Logout">
+                                            <color key="titleColor" name="ColorThemeMid"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="logoutBtnTouched:" destination="0a0-6k-bB0" eventType="touchUpInside" id="Cmv-BX-X2L"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rVv-BI-sMI">
+                                        <rect key="frame" x="0.0" y="43" width="95" height="43"/>
+                                        <fontDescription key="fontDescription" name="AmaticSC-Regular" family="Amatic SC" pointSize="24"/>
+                                        <state key="normal" title="Delete Account">
+                                            <color key="titleColor" name="ColorThemeMid"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteBtnTouched:" destination="0a0-6k-bB0" eventType="touchUpInside" id="uGj-ly-UIV"/>
+                                            <action selector="logoutBtnTouched:" destination="0a0-6k-bB0" eventType="touchUpInside" id="uU3-Ls-spN"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Co2-UM-Vss" firstAttribute="centerY" secondItem="jjm-TY-9yy" secondAttribute="centerY" id="TOU-0Y-fLE"/>
-                            <constraint firstItem="Co2-UM-Vss" firstAttribute="centerX" secondItem="jjm-TY-9yy" secondAttribute="centerX" id="UsA-iS-dB5"/>
+                            <constraint firstItem="m0s-qD-8tW" firstAttribute="centerX" secondItem="jjm-TY-9yy" secondAttribute="centerX" id="BaS-3W-xwx"/>
+                            <constraint firstItem="m0s-qD-8tW" firstAttribute="top" secondItem="CVf-7l-cE5" secondAttribute="bottom" constant="32" id="Bq4-JR-f82"/>
+                            <constraint firstItem="CVf-7l-cE5" firstAttribute="centerX" secondItem="jjm-TY-9yy" secondAttribute="centerX" id="Klt-cN-bER"/>
+                            <constraint firstItem="m0s-qD-8tW" firstAttribute="centerY" secondItem="jjm-TY-9yy" secondAttribute="centerY" id="raM-Td-C84"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="j48-0w-ESB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="3K7-SA-ivd"/>
+                    <connections>
+                        <outlet property="nameLbl" destination="CVf-7l-cE5" id="PIu-iQ-moI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0f8-60-A8s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -51,6 +82,9 @@
     <resources>
         <namedColor name="ColorThemeDark">
             <color red="0.094999998807907104" green="0.33700001239776611" blue="0.45399999618530273" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ColorThemeMid">
+            <color red="0.37599998712539673" green="0.74500000476837158" blue="0.70200002193450928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
