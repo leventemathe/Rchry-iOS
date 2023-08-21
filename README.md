@@ -16,6 +16,3 @@ You can also track guest users to compare your scores later. Scoring is easy: ju
   <img src="/doc/img/6_session.png" width="30%"/>
 </p>
 
-# Technology
-The app is written in Swift with MVVM and RxSwift (in fact, I used this app to learn RxSwift and RxCocoa, so you can see different (better and worse) ways of using them).
-The data (targets, sessions, guests) is persisted to Firebase.
